@@ -1,0 +1,629 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XML>
+  <ConScript>
+    <Plane nameID="ConScript Unicode Registry">
+      <Name lang="en">ConScript Unicode Registry</Name>
+      <Description lang="en"></Description>
+      
+      <Block nameID="Tengwar">
+        <Name lang="en">Tengwar</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://www.evertype.com/standards/csur/tengwar.html" />
+        <CodeRange start="E000" end="E07F">
+          <Range>E001-E02E,E031,E032,E034-E03A</Range>
+          <Range>E040-E046,E048-E057,E060-E069,E070-E07D</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Cirth">
+        <Name lang="en">Cirth</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://www.evertype.com/standards/csur/cirth.html" />
+        <CodeRange start="E080" end="E0FF">
+          <Range>E080-E0EB</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Engsvanyáli">
+        <Name lang="en">Engsvanyáli</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://www.evertype.com/standards/csur/engsvanyali.html" />
+        <CodeRange start="E100" end="E14F">
+          <Range>E100-E12E,E130-E138,E13F-E14E</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Kinya">
+        <Name lang="en">Kinya</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://www.evertype.com/standards/csur/kinya.html" />
+        <CodeRange start="E150" end="E1AF">
+          <Range>E150-E16E,E170-E18E,E190-E19C,E1A0-E1A9</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Ilianore">
+        <Name lang="en">Ilianore</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://www.evertype.com/standards/csur/ilianore.html" />
+        <CodeRange start="E1B0" end="E1CF">
+          <Range>E1B0-E1CF</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Syai">
+        <Name lang="en">Syai</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://www.evertype.com/standards/csur/syai.html" />
+        <CodeRange start="E5B0" end="E5DF">
+          <Range>E5B0-E5DC</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Verdurian">
+        <Name lang="en">Verdurian</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://www.evertype.com/standards/csur/verdurian.html" />
+        <CodeRange start="E200" end="E26F">
+          <Range>E200-E225,E22B-E26B,E26E,E26F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="aUI">
+        <Name lang="en">aUI</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://www.evertype.com/standards/csur/aui.html" />
+        <CodeRange start="E280" end="E29F">
+          <Range>E280-E29D</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Amman-Iar">
+        <Name lang="en">Amman-Iar</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://www.evertype.com/standards/csur/amman-iar.html" />
+        <CodeRange start="E2A0" end="E2CF">
+          <Range>E2A0-E2A5,E2A8-E2AA,E2AC-E2B1</Range>
+          <Range>E2B4,E2B5,E2B8-E2BA,E2C0-E2C9</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Streich">
+        <Name lang="en">Streich</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://www.evertype.com/standards/csur/streich.html" />
+        <CodeRange start="E2D0" end="E2DF">
+          <Range>E2D0-E2DE</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Xaîni">
+        <Name lang="en">Xaîni</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://www.evertype.com/standards/csur/xaini.html" />
+        <CodeRange start="E2D0" end="E2FF">
+          <Range>E2D0-E2FB</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Mizarian">
+        <Name lang="en">Mizarian</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://www.evertype.com/standards/csur/mizarian.html" />
+        <CodeRange start="E300" end="E33F">
+          <Range>E300-E332</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Zírí:nnka">
+        <Name lang="en">Zírí:nnka</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://www.evertype.com/standards/csur/zirinka.html" />
+        <CodeRange start="E340" end="E35F">
+          <Range>E340-E35B</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Sarkai">
+        <Name lang="en">Sarkai</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://www.evertype.com/standards/csur/sarkai.html" />
+        <CodeRange start="E360" end="E37F">
+          <Range>E360-E374</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Thelwik">
+        <Name lang="en">Thelwik </Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://www.evertype.com/standards/csur/thelwik.html" />
+        <CodeRange start="E380" end="E3AF">
+          <Range>E380-E3A3</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Olaetyan">
+        <Name lang="en">Olaetyan</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://www.evertype.com/standards/csur/olaetyan.html" />
+        <CodeRange start="E3B0" end="E3FF">
+          <Range>E3B0-E3FC</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Nísklôz">
+        <Name lang="en">Nísklôz</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://www.evertype.com/standards/csur/niskloz.html" />
+        <CodeRange start="E400" end="E42F">
+          <Range>E400-E423</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Kazat ?akkorou">
+        <Name lang="en">Kazat ?akkorou</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://www.evertype.com/standards/csur/kazat-akkorou.html" />
+        <CodeRange start="E430" end="E44F">
+          <Range>E430-E44F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Kazvarad">
+        <Name lang="en">Kazvarad</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://www.evertype.com/standards/csur/kazvarad.html" />
+        <CodeRange start="E450" end="E46F">
+          <Range>E450-E463</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Zarkhánd">
+        <Name lang="en">Zarkhánd</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://www.evertype.com/standards/csur/zarkhand.html" />
+        <CodeRange start="E470" end="E48F">
+          <Range>E470-E48B</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Røzhxh">
+        <Name lang="en">Røzhxh</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://www.evertype.com/standards/csur/rozhxh.html" />
+        <CodeRange start="E490" end="E4BF">
+          <Range>E490-E4B4</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Serivelna">
+        <Name lang="en">Serivelna</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://www.evertype.com/standards/csur/serivelna.html" />
+        <CodeRange start="E4C0" end="E4EF">
+          <Range>E4C0-E4E8</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Kelwathi">
+        <Name lang="en">Kelwathi</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://www.evertype.com/standards/csur/kelwathi.html" />
+        <CodeRange start="E4F0" end="E4FF">
+          <Range>E4F0-E4FF</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Saklor">
+        <Name lang="en">Saklor</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://www.evertype.com/standards/csur/saklor.html" />
+        <CodeRange start="E500" end="E51F">
+          <Range>E500-E51B</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Rynnan">
+        <Name lang="en">Rynnan</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://www.evertype.com/standards/csur/rynnan.html" />
+        <CodeRange start="E520" end="E54F">
+          <Range>E520-E548</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Alzetjan">
+        <Name lang="en">Alzetjan</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://www.evertype.com/standards/csur/alzetjan.html" />
+        <CodeRange start="E550" end="E57F">
+          <Range>E550-E572</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Telarasso">
+        <Name lang="en">Telarasso</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://www.evertype.com/standards/csur/telarasso.html" />
+        <CodeRange start="E580" end="E59F">
+          <Range>E580-E593</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Ssûraki">
+        <Name lang="en">Ssûraki</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://www.evertype.com/standards/csur/ssuraki.html" />
+        <CodeRange start="E5A0" end="E5BF">
+          <Range>E5A0-E5BC</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Gargoyle">
+        <Name lang="en">Gargoyle</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://www.evertype.com/standards/csur/gargoyle.html" />
+        <CodeRange start="E5C0" end="E5DF">
+          <Range>E5C0-E5DF</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Ophidian">
+        <Name lang="en">Ophidian</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://www.evertype.com/standards/csur/ophidian.html" />
+        <CodeRange start="E5E0" end="E5FF">
+          <Range>E5E0-E5F9</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Ferengi">
+        <Name lang="en">Ferengi</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://www.evertype.com/standards/csur/ferengi.html" />
+        <CodeRange start="E600" end="E62F">
+          <Range>E600-E62F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Seussian Latin Extensions">
+        <Name lang="en">Seussian Latin Extensions</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://www.evertype.com/standards/csur/seuss.html" />
+        <CodeRange start="E630" end="E64F">
+          <Range>E630-E643</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Sylabica">
+        <Name lang="en">Sylabica</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="http://www.kreativekorp.com/ucsur/charts/PDF/UE650.pdf" />
+        <CodeRange start="E650" end="E67F">
+          <Range>E650-E678</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Ewellic">
+        <Name lang="en">Ewellic</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://www.evertype.com/standards/csur/ewellic.html" />
+        <CodeRange start="E680" end="E6CF">
+          <Range>E684,E685,E687,E68E-E6AB,E6AF-E6CF</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Unifon">
+        <Name lang="en">Unifon</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://www.evertype.com/standards/csur/unifon.html" />
+        <CodeRange start="E740" end="E76F">
+          <Range>E740-E767</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Solresol">
+        <Name lang="en">Solresol</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://www.evertype.com/standards/csur/solresol.html" />
+        <CodeRange start="E770" end="E77F">
+          <Range>E770-E776</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Visible Speech">
+        <Name lang="en">Visible Speech</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://www.evertype.com/standards/csur/visible-speech.html" />
+        <CodeRange start="E780" end="E7FF">
+          <Range>E780-E7F7</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Monofon">
+        <Name lang="en">Monofon</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://www.evertype.com/standards/csur/monofon.html" />
+        <CodeRange start="E800" end="E82F">
+          <Range>E800-E829</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Dni">
+        <Name lang="en">Dni</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="http://www.kreativekorp.com/ucsur/charts/PDF/UE830.pdf" />
+        <CodeRange start="E830" end="E88F">
+          <Range>E830-E852,E857-E859,E860-E879</Range>
+          <Range>E87C,E87D,E880-E885,E888,E889</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Aurebesh">
+        <Name lang="en">Aurebesh</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="http://www.kreativekorp.com/ucsur/charts/PDF/UE890.pdf" />
+        <CodeRange start="E890" end="E8DF">
+          <Range>E890-E8B1,E8C0-E8CE</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Tonal">
+        <Name lang="en">Tonal</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="http://www.kreativekorp.com/ucsur/charts/PDF/UE8E0.pdf" />
+        <CodeRange start="E8E0" end="E8FF">
+          <Range>E8E9-E8F4</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Glaitha-A">
+        <Name lang="en">Glaitha-A</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="http://www.kreativekorp.com/ucsur/charts/PDF/UE900.pdf" />
+        <CodeRange start="E900" end="E97F">
+          <Range>E900-E907,E910-E97F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Glaitha-B">
+        <Name lang="en">Glaitha-B</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="http://www.kreativekorp.com/ucsur/charts/PDF/UE900.pdf" />
+        <CodeRange start="E980" end="E9DF">
+          <Range>E97F-E97F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Lhenazi">
+        <Name lang="en">Lhenazi</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="http://www.kreativekorp.com/ucsur/charts/PDF/UEA00.pdf" />
+        <CodeRange start="EA00" end="EA9F">
+          <Range>EA00-EA07,EA09-EA0C,EA0E-EA11,EA13-EA16</Range>
+          <Range>EA18-EA1B,EA1D-EA20,EA22-EA2F,EA31-EA34</Range>
+          <Range>EA36-EA39,EA3B-EA6C,EA76-EA79</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Wanya">
+        <Name lang="en">Wanya</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="http://www.kreativekorp.com/ucsur/charts/PDF/UEAA0.pdf" />
+        <CodeRange start="EAA0" end="EAA0">
+          <Range>EAA0-EAF1</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Dein">
+        <Name lang="en">Dein</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="http://www.kreativekorp.com/ucsur/charts/PDF/UED00.pdf" />
+        <CodeRange start="ED00" end="ED3F">
+          <Range>ED00-ED30,ED37-ED3F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Niji">
+        <Name lang="en">Niji</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://norbertlindenberg.com/2018/03/niji-unicode/index.html" />
+        <CodeRange start="ED40" end="ED7F">
+          <Range>ED40-ED4A,ED4C-ED50,ED52-ED5B,ED5F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Aiha">
+        <Name lang="en">Aiha</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://www.evertype.com/standards/csur/aiha.html" />
+        <CodeRange start="F8A0" end="F8CF">
+          <Range>F8A0-F8C7</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Klingon">
+        <Name lang="en">Klingon</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://www.evertype.com/standards/csur/klingon.html" />
+        <CodeRange start="F8D0" end="F8FF">
+          <Range>F8D0-F8E9,F8F0-F8F9,F8FD-F8FF</Range>
+        </CodeRange>
+      </Block>
+      
+      <Block nameID="Kinya Syllables">
+        <Name lang="en">Kinya Syllables</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://www.evertype.com/standards/csur/kinya.html#SYLLABLES" />
+        <CodeRange start="F0000" end="F0E69">
+          <Range>F0000-F0E6F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Pikto">
+        <Name lang="en">Pikto</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://www.evertype.com/standards/csur/pikto.html" />
+        <CodeRange start="F0E70" end="F16A4">
+          <Range>F0E70-F16A4</Range>
+        </CodeRange>
+      </Block>
+
+    </Plane>
+  </ConScript>
+</XML>

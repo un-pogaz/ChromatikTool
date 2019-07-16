@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>84e88843-7ad5-4b04-a72b-747bdc43ad4d</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Chromatik.Sequence</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Audioactive.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Conway.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Fibonacci.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Robinson.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)Suite (mathematiques) - Wikipedia.url" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)104995347_o.png" />
+  </ItemGroup>
+</Project>

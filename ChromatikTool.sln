@@ -7,9 +7,44 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChromatikTool", "ChromatikT
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Chromatik", "Chromatik\Chromatik.shproj", "{7E078EC5-80B5-40A3-A55F-08B97E642325}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Chromatik.Compression", "Chromatik.Compression\Chromatik.Compression.shproj", "{01C2A431-8549-4A94-9C51-F1A60621C2A0}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Chromatik.Csv", "Chromatik.Csv\Chromatik.Csv.shproj", "{5AAD3FFB-F1E9-4DAA-ABB2-8DF48BA8D91D}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Chromatik.Drawing", "Chromatik.Drawing\Chromatik.Drawing.shproj", "{7C396CD0-E6B8-438A-8CA5-85B5B520E808}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Chromatik.Forms", "Chromatik.Forms\Chromatik.Forms.shproj", "{9C65A1F9-699C-45A7-B724-24D706E31637}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Chromatik.MimeType", "Chromatik.MimeType\Chromatik.MimeType.shproj", "{FE5827AE-897B-48E1-9AD3-E536134EE7BB}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Chromatik.RAmen", "Chromatik.RAmen\Chromatik.RAmen.shproj", "{381AAAA2-6761-4711-82BF-2D3932F34C92}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Chromatik.Sequence", "Chromatik.Sequence\Chromatik.Sequence.shproj", "{84E88843-7AD5-4B04-A72B-747BDC43AD4D}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Chromatik.SQLite", "Chromatik.SQLite\Chromatik.SQLite.shproj", "{DB77794D-A9EE-476C-A553-BDDA2849B878}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Chromatik.ToolBox", "Chromatik.ToolBox\Chromatik.ToolBox.shproj", "{01CD2CC5-0985-46E7-B029-5C3BB2315B70}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Chromatik.Unicode", "Chromatik.Unicode\Chromatik.Unicode.shproj", "{010804B0-74F5-4362-A574-3E552221AB30}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChromatikTool.IDpub", "ChromatikToo.IDpub\ChromatikTool.IDpub.csproj", "{8A18B5F6-8B80-45F7-9ED4-6923DEDBF4D6}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Chromatik.Zip", "Chromatik.Zip\Chromatik.Zip.shproj", "{E4C23370-C288-4B45-92D2-80B29B8DECDD}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Chromatik.Sequence\Chromatik.Sequence.projitems*{84e88843-7ad5-4b04-a72b-747bdc43ad4d}*SharedItemsImports = 13
+		Chromatik.MimeType\Chromatik.MimeType.projitems*{fe5827ae-897b-48e1-9ad3-e536134ee7bb}*SharedItemsImports = 13
+		Chromatik.Zip\Chromatik.Zip.projitems*{e4c23370-c288-4b45-92d2-80b29b8decdd}*SharedItemsImports = 13
+		Chromatik.SQLite\Chromatik.SQLite.projitems*{db77794d-a9ee-476c-a553-bdda2849b878}*SharedItemsImports = 13
+		Chromatik.Forms\Chromatik.Forms.projitems*{9c65a1f9-699c-45a7-b724-24d706e31637}*SharedItemsImports = 13
 		Chromatik\Chromatik.projitems*{7e078ec5-80b5-40a3-a55f-08b97e642325}*SharedItemsImports = 13
+		Chromatik.Drawing\Chromatik.Drawing.projitems*{7c396cd0-e6b8-438a-8ca5-85b5b520e808}*SharedItemsImports = 13
+		Chromatik.Csv\Chromatik.Csv.projitems*{5aad3ffb-f1e9-4daa-abb2-8df48ba8d91d}*SharedItemsImports = 13
+		Chromatik.Unicode\Chromatik.Unicode.projitems*{010804b0-74f5-4362-a574-3e552221ab30}*SharedItemsImports = 13
+		Chromatik.ToolBox\Chromatik.ToolBox.projitems*{01cd2cc5-0985-46e7-b029-5c3bb2315b70}*SharedItemsImports = 13
+		Chromatik.RAmen\Chromatik.RAmen.projitems*{381aaaa2-6761-4711-82bf-2d3932f34c92}*SharedItemsImports = 13
+		Chromatik.Compression\Chromatik.Compression.projitems*{01c2a431-8549-4a94-9c51-f1a60621c2a0}*SharedItemsImports = 13
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +55,10 @@ Global
 		{1B81048C-2F5F-4F46-8AC4-492D100C0824}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B81048C-2F5F-4F46-8AC4-492D100C0824}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B81048C-2F5F-4F46-8AC4-492D100C0824}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A18B5F6-8B80-45F7-9ED4-6923DEDBF4D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A18B5F6-8B80-45F7-9ED4-6923DEDBF4D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A18B5F6-8B80-45F7-9ED4-6923DEDBF4D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A18B5F6-8B80-45F7-9ED4-6923DEDBF4D6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

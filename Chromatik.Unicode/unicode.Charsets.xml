@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XML>
+  <Charsets>
+    
+    <Charset nameID="ASCII">
+      <Name lang="en">ASCII</Name>
+      <Description lang="en"></Description>
+      <Localisable>
+        <Languages lang="en"></Languages>
+        <Countries lang="en"></Countries>
+      </Localisable>
+      <CodeRange>
+        <Range>0000-007F</Range>
+      </CodeRange>
+    </Charset>
+    <Charset nameID="Latin-1">
+      <Name lang="en">Latin-1</Name>
+      <Description lang="en">Latin-1 Western European</Description>
+      <Localisable>
+        <Languages lang="en"></Languages>
+        <Countries lang="en"></Countries>
+      </Localisable>
+      <CodeRange>
+        <Range>0000-00FF</Range>
+      </CodeRange>
+    </Charset>
+    <Charset nameID="Latin-9">
+      <Name lang="en">Latin-9</Name>
+      <Description lang="en"></Description>
+      <Localisable>
+        <Languages lang="en"></Languages>
+        <Countries lang="en"></Countries>
+      </Localisable>
+      <CodeRange>
+        <Range>0000-007F,0080-009F</Range>
+        <Range>00A0-00A3,00A5,00A7</Range>
+        <Range>00A9-00B3,00B5-00B7</Range>
+        <Range>00B9-00BB,00BF,00C0-00FF</Range>
+        <Range>0152,0153,0160,0161,0178,017D,017E,20AC</Range>
+      </CodeRange>
+    </Charset>
+    <Charset nameID="Windows-1252">
+      <Name lang="en">Windows-1252</Name>
+      <Description lang="en"></Description>
+      <Localisable>
+        <Languages lang="en"></Languages>
+        <Countries lang="en"></Countries>
+      </Localisable>
+      <CodeRange>
+        <Range>0000-007F,00A0-00FF</Range>
+        <Range>0152,0153,0160,0161,0178,017D,017E,0192</Range>
+        <Range>02C6,02DC</Range>
+        <Range>2013,2014,2018,2019,201A,201C-201E,2020-2022,2026,2030,2039,203A,20AC,2122</Range>
+      </CodeRange>
+    </Charset>
+    
+  </Charsets>
+</XML>

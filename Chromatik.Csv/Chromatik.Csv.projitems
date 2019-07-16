@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>5aad3ffb-f1e9-4daa-abb2-8df48ba8d91d</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Chromatik.Csv</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)CsvOptions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CsvReader.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CsvWriter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HeaderMode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ICsvLine.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)WriterTests.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)LICENSE" />
+    <None Include="$(MSBuildThisFileDirectory)README.md" />
+  </ItemGroup>
+</Project>
