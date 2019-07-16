@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>010804b0-74f5-4362-a574-3e552221ab30</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Chromatik.Unicode</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)BasicMultilingual\BasicMultilingual_Blocks.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)BasicMultilingual\BasicMultilingual_Plane.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Charsets\Charsets_Block.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Charsets\Charsets_Plane.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CodeBlock.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CodeList.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CodePlane.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CodePoint.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ConScriptUnicodeRegistry\ConScript Unicode Registry_Block.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ConScriptUnicodeRegistry\ConScript Unicode Registry_Plane.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SupplementaryPrivateUseArea\SupplementaryPrivateUseArea_B_Blocks.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SupplementaryPrivateUseArea\SupplementaryPrivateUseArea_A_Blocks.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SupplementaryPrivateUseArea\SupplementaryPrivateUseArea_B_Plane.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SupplementaryPrivateUseArea\SupplementaryPrivateUseArea_A_Plane.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SupplementaryIdeographic\SupplementaryIdeographic_Blocks.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SupplementaryIdeographic\SupplementaryIdeographic_Plane.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SupplementaryMultilingual\SupplementaryMultilingual_Block.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SupplementaryMultilingual\SupplementaryMultilingual_Plane.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SupplementarySpecial-purpose\SupplementarySpecial-purpose_Blocks.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SupplementarySpecial-purpose\SupplementarySpecial-purpose_Plane.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Tertiary Ideographic\Tertiary Ideographic_Blocks.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Tertiary Ideographic\Tertiary Ideographic_Plane.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Unicode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UnicodeExceptions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Chromatik.Unicode.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)unicode.ConScript.xml" />
+    <None Include="$(MSBuildThisFileDirectory)unicode.Charsets.xml" />
+    <None Include="$(MSBuildThisFileDirectory)unicode.Unicode.xml" />
+  </ItemGroup>
+</Project>
