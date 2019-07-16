@@ -1,0 +1,3781 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XML>
+  <Unicode>
+    
+    <Plane nameID="Basic Multilingual Plane">
+      <Name lang="en">Basic Multilingual Plane</Name>
+      <Name lang="fr">Plan multilingue de base</Name>
+      <Description lang="en"></Description>
+      <Block nameID="C0 Controls">
+        <Name lang="en">C0 Controls</Name>
+        <Name lang="fr">Controle C0</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages></Languages>
+          <Countries></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/control-character/" />
+        <CodeRange start="0000" end="001F">
+          <Range>0000-001F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Basic Latin">
+        <Name lang="en">Basic Latin</Name>
+        <Name lang="fr">Latin Basique</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">English, german, French, Italian, Polish</Languages>
+          <Countries lang="en">England, USA, Germany, France, Italy, Poland</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/basic-latin/" />
+        <CodeRange start="0020" end="007F">
+          <Range>0020-007F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="C1 Controls">
+        <Name lang="en">C1 Controls</Name>
+        <Name lang="fr">Controle C1</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages></Languages>
+          <Countries></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/latin-1-supplement/" />
+        <CodeRange start="0080" end="009F">
+          <Range>0080-009F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Latin Supplement">
+        <Name lang="en">Latin Supplement</Name>
+        <Name lang="fr">Latin supplémentaire</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">English, german, French, Italian, Polish</Languages>
+          <Countries lang="en">England, USA, Germany, France, Italy, Poland</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/latin-1-supplement/" />
+        <CodeRange start="00A0" end="00FF">
+          <Range>00A0-00FF</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Latin Extended-A">
+        <Name lang="en">Latin Extended-A</Name>
+        <Name lang="fr">Latin étendu A</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Celtic, Sami, Maltese, Turkish</Languages>
+          <Countries lang="en">Scotland, Wales, Ireland, Norway, Finland, Sweden, Malta, Turkey</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/latin-extended-a/" />
+        <CodeRange start="0100" end="017F">
+          <Range>0100-017F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Latin Extended-B">
+        <Name lang="en">Latin Extended-B</Name>
+        <Name lang="fr">Latin étendu B</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Slovenian, Croatian</Languages>
+          <Countries lang="en">Slovenia, Croatia, Rumania, Libya</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/latin-extended-b/" />
+        <CodeRange start="0180" end="024F">
+          <Range>0180-024F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="International Phonetic Alphabet">
+        <Name lang="en">International Phonetic Alphabet</Name>
+        <Name lang="fr">Alphabet phonétique international</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/ipa-extensions/" />
+        <CodeRange start="0250" end="02AF">
+          <Range>0250-02AF</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Spacing Modifier Letters">
+        <Name lang="en">Spacing Modifier Letters</Name>
+        <Name lang="fr">Lettres modificatives à chasse</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/spacing-modifier-letters/" />
+        <CodeRange start="02B0" end="02FF">
+          <Range>02B0-02FF</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Combining Diacritical Marks">
+        <Name lang="en">Combining Diacritical Marks</Name>
+        <Name lang="fr">Diacritiques</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/combining-diacritical-marks/" />
+        <CodeRange start="0300" end="036F">
+          <Range>0300-036F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Greek and Coptic">
+        <Name lang="en">Greek and Coptic</Name>
+        <Name lang="fr">Grec et Copte</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Greek, Coptic</Languages>
+        <Name lang="fr"></Name>
+          <Countries lang="en">Greece</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/greek-coptic/" />
+        <CodeRange start="0370" end="03FF">
+          <Range>0370-0377,037A-037F,0384-038A</Range>
+            <Range>038C,038E-03A1,03A3-03FF</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Cyrillic">
+        <Name lang="en">Cyrillic</Name>
+        <Name lang="fr">Cyrillique</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Russian, Ukrainian, Bulgarian</Languages>
+          <Countries lang="en">Russia, Ukraine, Bulgaria, Serbia, Macedonia, Moldova</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/cyrillic/" />
+        <CodeRange start="0400" end="04FF">
+          <Range>0400-04FF</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Cyrillic Supplement">
+        <Name lang="en">Cyrillic Supplement</Name>
+        <Name lang="fr">Cyrillique supplémentaire</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Komi</Languages>
+          <Countries lang="en">Russia</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/cyrillic-supplement/" />
+        <CodeRange start="0500" end="052F">
+          <Range>0500-052F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Armenian">
+        <Name lang="en">Armenian</Name>
+        <Name lang="fr">Arménien</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Armenian</Languages>
+          <Countries lang="en">Armenia</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/armenian/" />
+        <CodeRange start="0530" end="058F">
+          <Range>0531-0556,0559-055F,0561-0587</Range>
+          <Range>0589,058A,058D-058F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Hebrew">
+        <Name lang="en">Hebrew</Name>
+        <Name lang="fr">Hébreu</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Hebrew, Yiddish</Languages>
+          <Countries lang="en">Israel</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/hebrew/" />
+        <CodeRange start="0590" end="05FF">
+          <Range>0591-05C7,05D0-05EA,05F0-05F4</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Arabic">
+        <Name lang="en">Arabic</Name>
+        <Name lang="fr">Arabe</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Arabic, Persian, Kurd</Languages>
+          <Countries lang="en">Algeria, Bahrain, Egypt, Iraq, Iran, Kuwait, Afghanistan, Pakistan, India, Fiji Islands</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/arabic/" />
+        <CodeRange start="0600" end="06FF">
+          <Range>0600-061C,061E-06FF</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Syriac">
+        <Name lang="en">Syriac</Name>
+        <Name lang="fr">Syriaque</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Syrian, Arabic</Languages>
+          <Countries lang="en">Algeria, Bahrain, Egypt, Syria</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/syrian/" />
+        <CodeRange start="0700" end="074F">
+          <Range>0700-070D,070F-074A,074D-074F </Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Arabic Supplement">
+        <Name lang="en">Arabic Supplement</Name>
+        <Name lang="fr">Arabe supplémentaire</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Arabic, Persian, Kurd</Languages>
+          <Countries lang="en">Algeria, Bahrain, Egypt, Iraq, Iran, Kuwait, Afghanistan, Pakistan, India, Fiji Islands</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/arabic-supplement/" />
+        <CodeRange start="0750" end="077F">
+          <Range>0750-077F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Thaana">
+        <Name lang="en">Thaana</Name>
+        <Name lang="fr">Thâna</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Maldivian</Languages>
+          <Countries lang="en">Maldives</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/thaana/" />
+        <CodeRange start="0780" end="07BF">
+          <Range>0780-07B1</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="NKo">
+        <Name lang="en">NKo</Name>
+        <Name lang="fr">N’ko</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">NKo</Languages>
+          <Countries lang="en">Guinea, Mali</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/nko/" />
+        <CodeRange start="07C0" end="07FF">
+          <Range>07C0-07FA</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Samaritan">
+        <Name lang="en">Samaritan</Name>
+        <Name lang="fr">Samaritain</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/samaritan/" />
+        <CodeRange start="0800" end="083F">
+          <Range>0800-082D,0830-083E</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Mandaic">
+        <Name lang="en">Mandaic</Name>
+        <Name lang="fr">Mandéen</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Mandaic</Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/mandaic/" />
+        <CodeRange start="0840" end="085F">
+          <Range>0840-085B,085E</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Syriac Supplement">
+        <Name lang="en">Syriac Supplement</Name>
+        <Name lang="fr">Syriaque supplémentaire</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/syriac-supplement/" />
+        <CodeRange start="0860" end="086F">
+          <Range>0860-086A</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Arabic Extended-A">
+        <Name lang="en">Arabic Extended-A</Name>
+        <Name lang="fr">Arabe étendu A</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/arabic-extended-a/" />
+        <CodeRange start="08A0" end="08FF">
+          <Range>08A0-08B4,08B6-08BD,08D4-08FF</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Devanagari">
+        <Name lang="en">Devanagari</Name>
+        <Name lang="fr">Dévanâgarî</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Sanskrit, Hindi</Languages>
+          <Countries lang="en">India, Pakistan, Fiji Islands, Mauritius</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/devanagari/" />
+        <CodeRange start="0900" end="097F">
+          <Range>0900-097F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Bengali">
+        <Name lang="en">Bengali</Name>
+        <Name lang="fr">Bengali</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Bengali</Languages>
+          <Countries lang="en">India, Bangladesh, Butane</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/bengali/" />
+        <CodeRange start="0980" end="09FF">
+          <Range>0980-0983,0985-098C,098F,0990</Range>
+          <Range>0993-09A8,09AA-09B0,09B2,09B6-09B9</Range>
+          <Range>09BC-09C4,09C7-09C8,09CB-09CE</Range>
+          <Range>09D7,09DC,09DD,09DF-09E3,09E6-09FD</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Gurmukhi">
+        <Name lang="en">Gurmukhi</Name>
+        <Name lang="fr">Gourmoukhî</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Punjabi</Languages>
+          <Countries lang="en">India, Pakistan</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/gurmukhi/" />
+        <CodeRange start="0A00" end="0A7F">
+          <Range>0A01-0A03,0A05-0A0A,0A0F,0A10</Range>
+          <Range>0A13-0A28,0A2A-0A30,0A32,0A33</Range>
+      <Range>0A35,0A36,0A38,0A39,0A3C,0A3E-0A42</Range>
+      <Range>0A47,0A48,0A4B-0A4D,0A51,0A59-0A5C</Range>
+      <Range>0A5E,0A66-0A75</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Gujarati">
+        <Name lang="en">Gujarati</Name>
+        <Name lang="fr">Goudjarati</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en">India, Pakistan, Uganda, Tanzania, Kenya</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/gujarati/" />
+        <CodeRange start="0A80" end="0AFF">
+          <Range>0A81-0A83,0A85-0A8D,0A8F-0A91</Range>
+      <Range>0A93-0AA8,0AAA-0AB0,0AB2,0AB3</Range>
+      <Range>0AB5-0AB9,0ABC-0AC5,0AC7-0AC9</Range>
+      <Range>0ACB-0ACD,0AD0,0AE0-0AE3,0AE6-0AF1</Range>
+      <Range>0AF9-0AFF</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Oriya">
+        <Name lang="en">Oriya</Name>
+        <Name lang="fr">Oriya</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Oriya</Languages>
+          <Countries lang="en">India</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/oriya/" />
+        <CodeRange start="0B00" end="0B7F">
+          <Range>0B01-0B03,0B05-0B0C,0B0F,0B10</Range>
+      <Range>0B13-0B28,0B2A-0B30,0B32,0B33</Range>
+      <Range>0B35-0B39,0B3C-0B44,0B47,0B48</Range>
+      <Range>0B4B-0B4D,0B56,0B57,0B5C,0B5D</Range>
+      <Range>0B5F-0B63,0B66-0B77</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Tamil">
+        <Name lang="en">Tamil</Name>
+        <Name lang="fr">Tamoul</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Tamil, Sanskrit</Languages>
+          <Countries lang="en">India, Sri-Lanka, Singapore, Malaysia, Kenya</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/tamil/" />
+        <CodeRange start="0B80" end="0BFF">
+          <Range>0B82,0B83,0B85-0B8A,0B8E-0B90</Range>
+      <Range>0B92-0B95,0B99,0B9A,0B9C,0B9E,0B9F</Range>
+      <Range>0BA3,0BA4,0BA8-0BAA,0BAE-0BB9</Range>
+      <Range>0BBE-0BC2,0BC6-0BC8,0BCA-0BCD</Range>
+      <Range>0BD0,0BE6-0BFA</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Telugu">
+        <Name lang="en">Telugu</Name>
+        <Name lang="fr">Télougou</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Telugu</Languages>
+          <Countries lang="en">India</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/telugu/" />
+        <CodeRange start="0C00" end="0C7F">
+          <Range>0C00-0C03,0C05-0C0C,0C0E-0C10</Range>
+      <Range>0C12-0C28,0C2A-0C39,0C3D-0C44</Range>
+      <Range>0C46-0C48,0C4A-0C4D,0C55,0C56</Range>
+      <Range>0C58-0C5A,0C60-0C63,0C66-0C6F</Range>
+      <Range>0C78-0C7F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Kannada">
+        <Name lang="en">Kannada</Name>
+        <Name lang="fr">Kannara</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Dravidian</Languages>
+          <Countries lang="en">India, Goa</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/kannada/" />
+        <CodeRange start="0C80" end="0CFF">
+          <Range>0C80-0C83,0C85-0C8C,0C8E-0C90</Range>
+      <Range>0C92-0CA8,0CAA-0CB3,0CB5-0CB9</Range>
+      <Range>0CBC-0CC4,0CC6-0CC8,0CCA-0CCD</Range>
+      <Range>0CD5,0CD6,0CDE,0CE0-0CE3,0CE6-0CEF</Range>
+      <Range>0CF1,0CF2</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Malayalam">
+        <Name lang="en">Malayalam</Name>
+        <Name lang="fr">Malayala</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Dravidian</Languages>
+          <Countries lang="en">India, Goa</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/malayalam/" />
+        <CodeRange start="0D00" end="0D7F">
+          <Range>0D00-0D03,0D05-0D0C,0D0E-0D10</Range>
+      <Range>0D12-0D44,0D46-0D48,0D4A-0D4F</Range>
+      <Rabge>0D54-0D63,0D66-0D7F</Rabge>
+        </CodeRange>
+      </Block>
+      <Block nameID="Sinhala">
+        <Name lang="en">Sinhala</Name>
+        <Name lang="fr">Singhalais</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Sinhalese, Sanskrit</Languages>
+          <Countries lang="en">Sri-Lanka, India</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/sinhala/" />
+        <CodeRange start="0D80" end="0DFF">
+          <Range>0D82,0D83,0D85-0D96,0D9A-0DB1</Range>
+      <Range>0DB3-0DBB,0DBD,0DC0-0DC6,0DCA</Range>
+      <Range>0DD0-0DD4,0DD6,0DD8-0DDF,0DE6-0DEF</Range>
+      <Range>0DF2-0DF4</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Thai">
+        <Name lang="en">Thai</Name>
+        <Name lang="fr">Thaï</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Thai</Languages>
+          <Countries lang="en">Thailand, India</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/thai/" />
+        <CodeRange start="0E00" end="0E7F">
+          <Range>0E01-0E3A,0E3F-0E5B</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Lao">
+        <Name lang="en">Lao</Name>
+        <Name lang="fr">Lao</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Laotian</Languages>
+          <Countries lang="en">Thailand, Laos</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/lao/" />
+        <CodeRange start="0E80" end="0EFF">
+          <Range>0E81,0E82,0E84,0E87,0E88,0E8A</Range>
+      <Range>0E8D,0E94-0E97,0E99-0E9F,0EA1-0EA3</Range>
+      <Range>0EA5,0EAA,0EAB,0EAD-0EB9,0EBB-0EBD</Range>
+      <Range>0EC0-0EC4,0EC6,0EC8-0ECD,0ED0-0ED9</Range>
+      <Range>0EDC-0EDF</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Tibetan">
+        <Name lang="en">Tibetan</Name>
+        <Name lang="fr">Tibétain</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Tibetan</Languages>
+          <Countries lang="en">China, India, Butane, Nepal, Pakistan</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/tibetan/" />
+        <CodeRange start="0F00" end="0FFF">
+          <Range>0F00-0F47,0F49-0F6C,0F71-0F97</Range>
+      <Range>0F99-0FBC,0FBE-0FCC,0FCE-0FDA</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Myanmar">
+        <Name lang="en">Myanmar</Name>
+        <Name lang="fr">Birman</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Burmese</Languages>
+          <Countries lang="en">Myanmar, Thailand, Bangladesh, Malaysia</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/myanmar/" />
+        <CodeRange start="1000" end="109F">
+          <Range>1000-109F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Georgian">
+        <Name lang="en">Georgian</Name>
+        <Name lang="fr">Géorgien</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Georgian, Abkhazian</Languages>
+          <Countries lang="en">Georgia, Abkhazia</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/georgian/" />
+        <CodeRange start="10A0" end="10FF">
+          <Range>10A0-10C5,10C7,10CD-10FF</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Hangul Jamo">
+        <Name lang="en">Hangul Jamo</Name>
+        <Name lang="fr">Hangûl Jamos</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Korean</Languages>
+          <Countries lang="en">Korea, South Korea, China, Japan, Indonesia</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/hangul-jamo/" />
+        <CodeRange start="1100" end="11FF">
+          <Range>1100-11FF</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Ethiopic">
+        <Name lang="en">Ethiopic</Name>
+        <Name lang="fr">Éthiopien</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en">Ethiopia, Eritrea, Somalia, Sudan, Israel</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/ethiopic/" />
+        <CodeRange start="1200" end="137F">
+          <Range>1200-1248,124A-124D,1250-1256</Range>
+          <Range>1258,125A-125D,1260-1288</Range>
+          <Range>128A-128D,1290-12B0,12B2-12B5</Range>
+          <Range>12B8-12BE,12C0,12C2-12C5</Range>
+          <Range>12C8-12D6,12D8-1310,1312-1315</Range>
+          <Range>1318-135A,135D-137C</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Ethiopic Supplement">
+        <Name lang="en">Ethiopic Supplement</Name>
+        <Name lang="fr">Éthiopien supplémentaire</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en">Ethiopia, Eritrea, Somalia, Sudan, Israel</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/ethiopic-supplement/" />
+        <CodeRange start="1380" end="139F">
+          <Range>1380-139E</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Cherokee">
+        <Name lang="en">Cherokee</Name>
+        <Name lang="fr">Chérokie</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Cherokee</Languages>
+          <Countries lang="en">USA</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/cherokee/" />
+        <CodeRange start="13A0" end="13FF">
+          <Range>13A0-13F5,13F8-13FD</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Unified Canadian Aboriginal Syllabics ">
+        <Name lang="en">Unified Canadian Aboriginal Syllabics</Name>
+        <Name lang="fr">Syllabaires autochtones canadiens</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Cree</Languages>
+          <Countries lang="en">Canada, USA</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/unified-canadian-aboriginal-syllabics/" />
+        <CodeRange start="1400" end="167F">
+          <Range>1400-167F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Ogham">
+        <Name lang="en">Ogham</Name>
+        <Name lang="fr">Ogam</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Primitive Irish, Pictish</Languages>
+          <Countries lang="en">Scotland, Ireland, Wales</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/ogham/" />
+        <CodeRange start="1680" end="169F">
+          <Range>1680-169C</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Runic">
+        <Name lang="en">Runic</Name>
+        <Name lang="fr">Runes</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Old Italic, Runic</Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/runic/" />
+        <CodeRange start="16A0" end="16FF">
+          <Range>16A0-16F8</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Tagalog">
+        <Name lang="en">Tagalog</Name>
+        <Name lang="fr">Tagalog</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Tagalog, Runic</Languages>
+          <Countries lang="en">North Philippines</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/tagalog/" />
+        <CodeRange start="1700" end="171F">
+          <Range>1720-170C,170E-1714</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Hanunoo">
+        <Name lang="en">Hanunoo</Name>
+        <Name lang="fr">Hanounóo</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Hanunoo</Languages>
+          <Countries lang="en">Philippines</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/hanunoo/" />
+        <CodeRange start="1720" end="173F">
+          <Range>1720-1736</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Buhid">
+        <Name lang="en">Buhid</Name>
+        <Name lang="fr">Bouhid</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Buhid</Languages>
+          <Countries lang="en">Philippines</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/buhid/" />
+        <CodeRange start="1740" end="175F">
+          <Range>1740-1753,1755,1756</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Tagbanwa">
+        <Name lang="en">Tagbanwa</Name>
+        <Name lang="fr">Tagbanoua</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en">Philippines</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/tagbanwa/" />
+        <CodeRange start="1760" end="177F">
+          <Range>1760-176C,176E-1770,1772,1773</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Khmer">
+        <Name lang="en">Khmer</Name>
+        <Name lang="fr">Khmer</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Khmer</Languages>
+          <Countries lang="en">Cambodia, Vietnam, Thailand, Laos, China</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/khmer/" />
+        <CodeRange start="1780" end="17FF">
+          <Range>1780-17DD,17E0-17E9,17F0-17F9</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Mongolian">
+        <Name lang="en">Mongolian</Name>
+        <Name lang="fr">Mongol</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Mongolian</Languages>
+          <Countries lang="en">China, Mongolia, Afghanistan</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/mongolian/" />
+        <CodeRange start="1800" end="18AF">
+          <Range>1800-180E,1810-181E,1820-1877</Range>
+          <Range>1880-18AA</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Unified Canadian Aboriginal Syllabics Extended">
+        <Name lang="en">Unified Canadian Aboriginal Syllabics Extended</Name>
+        <Name lang="fr">Syllabaires autochtones canadiens étendus</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Cree</Languages>
+          <Countries lang="en">Canada, USA</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/unified-canadian-aboriginal-syllabics-extended/" />
+        <CodeRange start="18B0" end="18FF">
+          <Range>18B0-18F5</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Limbu">
+        <Name lang="en">Limbu</Name>
+        <Name lang="fr">Limbu</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Limbu</Languages>
+          <Countries lang="en">Nepal, India, Kashmir, Pakistan</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/limbu/" />
+        <CodeRange start="1900" end="194F">
+          <Range>1900-191E,1920-192B,1930-193B</Range>
+          <Range>1940,1944-194F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Tai Le">
+        <Name lang="en">Tai Le</Name>
+        <Name lang="fr">Taï-le</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en">Vietnam, Laos, Myanmar, Thailand</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/tai-le/" />
+        <CodeRange start="1950" end="197F">
+          <Range>1950-196D,1970-1974</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="New Tai Lue">
+        <Name lang="en">New Tai Lue</Name>
+        <Name lang="fr">Nouveau Taï lü</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en">Vietnam, Laos, Myanmar, Thailand</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/new-tai-lue/" />
+        <CodeRange start="1980" end="19DF">
+          <Range>1980-19AB,19B0-19C9,19D0-19DA</Range>
+          <Range>19DE,19DF</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Khmer Symbols">
+        <Name lang="en">Khmer Symbols</Name>
+        <Name lang="fr">Khmers symboles</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Khmer</Languages>
+          <Countries lang="en">Cambodia, Vietnam, Thailand, Laos, China</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/khmer-symbols/" />
+        <CodeRange start="19E0" end="19FF">
+          <Range>19E0-19FF</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Buginese">
+        <Name lang="en">Buginese</Name>
+        <Name lang="fr">Bougui</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Buginese, Makassarese, Mandar</Languages>
+          <Countries lang="en">Indonesia</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/buginese/" />
+        <CodeRange start="1A00" end="1A1F">
+          <Range>1A20-1A1B,1A1E,1A1F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Tai Tham">
+        <Name lang="en">Tai Tham</Name>
+        <Name lang="fr">Taï-tham</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en">Thailand, Burma, Laos, Cambodia, China, Vietnam</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/tai-tham/" />
+        <CodeRange start="1A20" end="1AAF">
+          <Range>1A20-1A5E,1A60-1A7C,1A7F-1A89</Range>
+          <Range>1A90-1A99,1AA0-1AAD</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Combining Diacritical Marks Extended">
+        <Name lang="en">Combining Diacritical Marks Extended</Name>
+        <Name lang="fr">Diacritiques complémentaires</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/combining-diacritical-marks-extended/" />
+        <CodeRange start="1AB0" end="1AFF">
+          <Range>1AB0-1AB0</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Balinese">
+        <Name lang="en">Balinese</Name>
+        <Name lang="fr">Balinais</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Balinese, Sasak</Languages>
+          <Countries lang="en">Bali, Lombok, Indonesia</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/balinese/" />
+        <CodeRange start="1B00" end="1B7F">
+          <Range>1B00-1B4B,1B50-1B7C</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Sundanese">
+        <Name lang="en">Sundanese</Name>
+        <Name lang="fr">Soundanais</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Sundanese</Languages>
+          <Countries lang="en">Indonésie, Jakarta</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/sundanese/" />
+        <CodeRange start="1B80" end="1BBF">
+          <Range>1B80-1BBF</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Batak">
+        <Name lang="en">Batak</Name>
+        <Name lang="fr">Batak</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Batak</Languages>
+          <Countries lang="en">Indonesia</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/batak/" />
+        <CodeRange start="1BC0" end="1BFF">
+          <Range>1BC0-1BF3,1BFC-1BFF</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Lepcha">
+        <Name lang="en">Lepcha</Name>
+        <Name lang="fr">Leptcha</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Lepcha</Languages>
+          <Countries lang="en">India, Butane, Nepal</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/lepcha/" />
+        <CodeRange start="1C00" end="1C4F">
+          <Range>1C00-1C37,1C3B-1C49,1C4D-1C4F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Ol Chiki">
+        <Name lang="en">Ol Chiki</Name>
+        <Name lang="fr">Ol tchiki</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Santali</Languages>
+          <Countries lang="en">India, Butane, Nepal, Bangladesh</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/ol-chiki/" />
+        <CodeRange start="1C50" end="1C7F">
+          <Range>1C50-1C7F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Cyrillic Extended C">
+        <Name lang="en">Cyrillic Extended C</Name>
+        <Name lang="fr">Cyrillique étendu C</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/cyrillic-extended-c/" />
+        <CodeRange start="1C80" end="1C8F">
+          <Range>1C80-1C88</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Sundanese Supplement">
+        <Name lang="en">Sundanese Supplement</Name>
+        <Name lang="fr">Soundanais supplémentaire</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Sundanese</Languages>
+          <Countries lang="en">Indonésie, Jakarta</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/sundanese-supplement/" />
+        <CodeRange start="1CC0" end="1CCF">
+          <Range>1CC0-1CC7</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Vedic Extensions">
+        <Name lang="en">Vedic Extensions</Name>
+        <Name lang="fr">Védique supplémentaire</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/vedic-extensions/" />
+        <CodeRange start="1CD0" end="1CFF">
+          <Range>1CD0-1CF9</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Phonetic Extensions">
+        <Name lang="en">Phonetic Extensions</Name>
+        <Name lang="fr"></Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/phonetic-extensions/" />
+        <CodeRange start="1D00" end="1D7F">
+          <Range>1D00-1D7F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Phonetic Extensions Supplement">
+        <Name lang="en">Phonetic Extensions Supplement</Name>
+        <Name lang="fr">Alphabet phonétique international supplémentaire</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/phonetic-extensions-supplement/" />
+        <CodeRange start="1D80" end="1DBF">
+          <Range>1D80-1DBF</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Combining Diacritical Marks Supplement">
+        <Name lang="en">Combining Diacritical Marks Supplement</Name>
+        <Name lang="fr">Diacritiques supplémentaire</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/combining-diacritical-marks-supplement/" />
+        <CodeRange start="1DC0" end="1DFF">
+          <Range>1DC0-1DF9,1DFB-1DFF</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Latin Extended Additional">
+        <Name lang="en">Latin Extended Additional</Name>
+        <Name lang="fr">Latin étendu additionnel</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/latin-extended-additional/" />
+        <CodeRange start="1E00" end="1EFF">
+          <Range>1E00-1EFF</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Greek Extended">
+        <Name lang="en">Greek Extended</Name>
+        <Name lang="fr">Grec étendu</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en">Greece</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/greek-extended/" />
+        <CodeRange start="1FF0" end="1FFF">
+          <Range>1FF0-1F15,1F18-1F1D,1F20-1F45</Range>
+          <Range>1F48-1F4D,1F50-1F57,1F59,1F5B</Range>
+          <Range>1F5D,1F5F-1F7D,1F80-1FB4</Range>
+          <Range>1FB6-1FC4,1FC6-1FD3,1FD6-1FDB</Range>
+          <Range>1FDD-1FEF,1FF2-1FF4,1FF6-1FFE</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="General Punctuation">
+        <Name lang="en">General Punctuation</Name>
+        <Name lang="fr">Ponctuation générale</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/general-punctuation/" />
+        <CodeRange start="2000" end="206F">
+          <Range>2000-2064,2066-206F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Superscripts and Subscripts">
+        <Name lang="en">Superscripts and Subscripts</Name>
+        <Name lang="fr">Exposants et indices</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/superscripts-and-subscripts/" />
+        <CodeRange start="2070" end="209F">
+          <Range>2070-2071,2074-208E,2090-209C</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Currency Symbols">
+        <Name lang="en">Currency Symbols</Name>
+        <Name lang="fr">Symboles monétaires</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/currency-symbols/" />
+        <CodeRange start="20A0" end="20CF">
+          <Range>20A0-20BF</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Combining Diacritical Marks for Symbols">
+        <Name lang="en">Combining Diacritical Marks for Symbols</Name>
+        <Name lang="fr">Signes combinatoires pour des symboles</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/combining-diacritical-marks-for-symbols/" />
+        <CodeRange start="20D0" end="20FF">
+          <Range>20D0-20F0</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Letterlike Symbols">
+        <Name lang="en">Letterlike Symbols</Name>
+        <Name lang="fr">Symboles de type lettre</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/letterlike-symbols/" />
+        <CodeRange start="2100" end="214F">
+          <Range>2100-214F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Number Forms">
+        <Name lang="en">Number Forms</Name>
+        <Name lang="fr">Formes numérales</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/number-forms/" />
+        <CodeRange start="2150" end="218F">
+          <Range>2150-218B</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Arrows">
+        <Name lang="en">Arrows</Name>
+        <Name lang="fr">Flèches</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/arrows/" />
+        <CodeRange start="2190" end="21FF">
+          <Range>2190-21FF</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Mathematical Operators">
+        <Name lang="en">Mathematical Operators</Name>
+        <Name lang="fr">Opérateurs mathématiques</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/mathematical-operators/" />
+        <CodeRange start="2200" end="22FF">
+          <Range>2200-22FF</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Miscellaneous Technical">
+        <Name lang="en">Miscellaneous Technical</Name>
+        <Name lang="fr">Signes techniques divers</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/miscellaneous-technical/" />
+        <CodeRange start="2300" end="23FF">
+          <Range>2300-23FF</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Control Pictures">
+        <Name lang="en">Control Pictures</Name>
+        <Name lang="fr">Pictogrammes de commande</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/control-pictures/" />
+        <CodeRange start="2400" end="243F">
+          <Range>2400-2426</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Optical Character Recognition">
+        <Name lang="en">Optical Character Recognition</Name>
+        <Name lang="fr">Reconnaissance optique de caractères</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/optical-character-recognition/" />
+        <CodeRange start="2440" end="244F">
+          <Range>2440-244A</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Enclosed Alphanumerics">
+        <Name lang="en">Enclosed Alphanumerics</Name>
+        <Name lang="fr">Symboles alphanumériques entourés</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/enclosed-alphanumerics/" />
+        <CodeRange start="2460" end="24FF">
+          <Range>2460-24FF</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Box Drawing">
+        <Name lang="en">Box Drawing</Name>
+        <Name lang="fr">Filets</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/box-drawing/" />
+        <CodeRange start="2500" end="257F">
+          <Range>2500-257F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Block Elements">
+        <Name lang="en">Block Elements</Name>
+        <Name lang="fr">Pavés</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/block-elements/" />
+        <CodeRange start="2580" end="259F">
+          <Range>2580-259F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Geometric Shapes">
+        <Name lang="en">Geometric Shapes</Name>
+        <Name lang="fr">Formes géométriques</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/geometric-shapes/" />
+        <CodeRange start="25A0" end="25FF">
+          <Range>25A0-25FF</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Miscellaneous Symbols">
+        <Name lang="en">Miscellaneous Symbols</Name>
+        <Name lang="fr">Symboles divers</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/miscellaneous-symbols/" />
+        <CodeRange start="2600" end="26FF">
+          <Range>2600-26FF</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Dingbats">
+        <Name lang="en">Dingbats</Name>
+        <Name lang="fr">Casseau</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/dingbats/" />
+        <CodeRange start="2700" end="27BF">
+          <Range>2700-27BF</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Miscellaneous Mathematical Symbols-A">
+        <Name lang="en">Miscellaneous Mathematical Symbols-A</Name>
+        <Name lang="fr">Symboles mathématiques divers A</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/miscellaneous-mathematical-symbols-a/" />
+        <CodeRange start="27C0" end="27EF">
+          <Range>27C0-27EF</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Supplemental Arrows-A">
+        <Name lang="en">Supplemental Arrows-A</Name>
+        <Name lang="fr">Flèches supplémentaire A</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/suplemental-arrows-a/" />
+        <CodeRange start="27F0" end="27FF">
+          <Range>27F0-27FF</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Braille Patterns">
+        <Name lang="en">Braille Patterns</Name>
+        <Name lang="fr">Combinaisons Braille</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/braille-patterns/" />
+        <CodeRange start="2800" end="28FF">
+          <Range>2800-28FF</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Supplemental Arrows-B">
+        <Name lang="en">Supplemental Arrows-B</Name>
+        <Name lang="fr">Flèches supplémentaire B</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/suplemental-arrows-b/" />
+        <CodeRange start="2900" end="297F">
+          <Range>2900-297F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Miscellaneous Mathematical Symbols-B">
+        <Name lang="en">Miscellaneous Mathematical Symbols-B</Name>
+        <Name lang="fr">Symboles mathématiques divers B</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/miscellaneous-mathematical-symbols-b/" />
+        <CodeRange start="2980" end="29FF">
+          <Range>2980-29FF</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Mathematical Operators Supplemental">
+        <Name lang="en">Mathematical Operators Supplemental</Name>
+        <Name lang="fr">Opérateurs mathématiques supplémentaire</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/supplemental-mathematical-operators/" />
+        <CodeRange start="2A00" end="2AFF">
+          <Range>2A00-2AFF</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Symbols and Arrow Miscellaneouss">
+        <Name lang="en">Symbols and Arrows Miscellaneous</Name>
+        <Name lang="fr">Symboles et flèches divers</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/miscellaneous-symbols-and-arrows/" />
+        <CodeRange start="2B00" end="2BFF">
+          <Range>2B00-2B73,2B76-2B95,2B98-2BB9</Range>
+          <Range>2BBD-2BC8,2BCA-2BD2,2BEC-2BEF</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Glagolitic">
+        <Name lang="en">Glagolitic</Name>
+        <Name lang="fr">Glagolitique</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Old Church Slavic</Languages>
+          <Countries lang="en">Russia, Ukraine, Poland, Bulgaria, Bosnia, Herzegovina, Croatia, Montenegro, Macedonia</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/glagolitic/" />
+        <CodeRange start="2C00" end="2C5F">
+          <Range>2C00-2C2E,2C30-2C5E</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Latin Extended-C">
+        <Name lang="en">Latin Extended-C</Name>
+        <Name lang="fr">Latin étendu C</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/latin-extended-c/" />
+        <CodeRange start="2C60" end="2C7F">
+          <Range>2C60-2C7F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Coptic">
+        <Name lang="en">Coptic</Name>
+        <Name lang="fr">Copte</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Coptic</Languages>
+          <Countries lang="en">Egypt, Canada, Australia, USA</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/coptic/" />
+        <CodeRange start="2C80" end="2CFF">
+          <Range>2C80-2CF3,2CF9-2CFF</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Georgian Supplement">
+        <Name lang="en">Georgian Supplement</Name>
+        <Name lang="fr">Géorgien supplémentaire</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Georgian</Languages>
+          <Countries lang="en">Georgia, Abkhazia</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/georgian-supplement/" />
+        <CodeRange start="2D00" end="2D2F">
+          <Range>2D00-2D25,2D27,2D2D</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Tifinagh">
+        <Name lang="en">Tifinagh</Name>
+        <Name lang="fr">Tifinaghe</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Tuareg</Languages>
+          <Countries lang="en">North Africa</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/tifinagh/" />
+        <CodeRange start="2D30" end="2D7F">
+          <Range>2D30-2D67,2D6F,2D70,2D7F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Ethiopic Extended">
+        <Name lang="en">Ethiopic Extended</Name>
+        <Name lang="fr">Éthiopien étendu</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Amharic, Tigtinya</Languages>
+          <Countries lang="en">Ethiopia, Eritrea, Somalia, Sudan, Israel</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/ethiopic-extended/" />
+        <CodeRange start="2D80" end="2DDF">
+          <Range>2D80-2D96,2DA0-2DA6,2DA8-2DAE</Range>
+          <Range>2DB0-2DB6,2DB8-2DBE,2DC0-2DC6</Range>
+          <Range>2DC8-2DCE,2DD0-2DD6,2DD8-2DDE</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Cyrillic Extended-A">
+        <Name lang="en">Cyrillic Extended-A</Name>
+        <Name lang="fr">Cyrillique étendu A</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Russian, Ukrainian</Languages>
+          <Countries lang="en">Russia, Ukraine, Bulgaria, Serbia, Macedonia, Moldova</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/cyrillic-extended/" />
+        <CodeRange start="2DE0" end="2DFF">
+          <Range>2DE0-2DFF</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Punctuation Supplemental">
+        <Name lang="en">Punctuation Supplemental</Name>
+        <Name lang="fr">Ponctuation complémentair</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/supplemental-punctuation/" />
+        <CodeRange start="2E00" end="2E7F">
+          <Range>2E00-2E49</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="CJK Radicals Supplement">
+        <Name lang="en">CJK Radicals Supplement</Name>
+        <Name lang="fr">CJC Formes supplémentaires des clés</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Chinese, Japanese, Vietnamese, Korean</Languages>
+          <Countries lang="en">Peru, Laos, North Korea, China, Cambodia, Japan, Guam, Taiwan, South Korea, Vietnam, Somalia, Sudan, Israel, Singapore, Philippines, Malaysia, Indonesia, Thailand</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/cjk-radicals-supplement/" />
+        <CodeRange start="2E80" end="2EFF">
+          <Range>2E80-2E99,2E9B-2EF3</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Kangxi Radicals">
+        <Name lang="en">Kangxi Radicals</Name>
+        <Name lang="fr">Clés chinoises K’ang-hsi</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Chinese</Languages>
+          <Countries lang="en">China</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/kangxi-radicals/" />
+        <CodeRange start="2F00" end="2FDF">
+          <Range>2F00-2FD5</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Ideographic Description Characters">
+        <Name lang="en">Ideographic Description Characters</Name>
+        <Name lang="fr">Caractères de description idéographique</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/ideographic-description-characters/" />
+        <CodeRange start="2FF0" end="2FFF">
+          <Range>2FF0-2FFB</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="CJK Symbols and Punctuation">
+        <Name lang="en">CJK Symbols and Punctuation</Name>
+        <Name lang="fr">CJC Symboles et ponctuation</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Chinese, Japanese, Vietnamese, Korean</Languages>
+          <Countries lang="en">Peru, Laos, North Korea, China, Cambodia, Japan, Guam, Taiwan, South Korea, Vietnam, Somalia, Sudan, Israel, Singapore, Philippines, Malaysia, Indonesia, Thailand</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/cjk-symbols-and-punctuation/" />
+        <CodeRange start="3000" end="303F">
+          <Range>3000-303F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Hiragan">
+        <Name lang="en">Hiragan</Name>
+        <Name lang="fr">Hiragana</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Japanese, Okinawan</Languages>
+          <Countries lang="en">Peru, North Korea, Japan, Guam, Taiwan, South Korea</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/hiragana/" />
+        <CodeRange start="3040" end="309F">
+          <Range>3041-3096,3099-309F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Katakana">
+        <Name lang="en">Katakana</Name>
+        <Name lang="fr">Katakana</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Japanese, Okinawan, Ainu, Palaun</Languages>
+          <Countries lang="en">Peru, North Korea, Japan, Guam, Taiwan, South Korea</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/katakana/" />
+        <CodeRange start="30A0" end="30FF">
+          <Range>30A0-30FF</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Bopomofo">
+        <Name lang="en">Bopomofo</Name>
+        <Name lang="fr">Bopomofo</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Chinese</Languages>
+          <Countries lang="en">Taiwan</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/bopomofo/" />
+        <CodeRange start="3100" end="312F">
+          <Range>3105-312E</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Hangul Jamo Compatibility">
+        <Name lang="en">Hangul Jamo Compatibility</Name>
+        <Name lang="fr">Hangûl Jamos de compatibilité</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Chinese</Languages>
+          <Countries lang="en">North Korea, South Korea, China, Japan</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/hangul-compatibility-jamo/" />
+        <CodeRange start="3130" end="318F">
+          <Range>3131-318E</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Kanbun">
+        <Name lang="en">Kanbun</Name>
+        <Name lang="fr">Kanboun</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">China</Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/kanbun/" />
+        <CodeRange start="3190" end="319F">
+          <Range>3190-319F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Bopomofo Extended">
+        <Name lang="en">Bopomofo Extended</Name>
+        <Name lang="fr">Bopomofo étendu</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Chinese</Languages>
+          <Countries lang="en">Taiwan</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/bopomofo-extended/" />
+        <CodeRange start="31A0" end="31BF">
+          <Range>31A0-31BA</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="CJK Strokes">
+        <Name lang="en">CJK Strokes</Name>
+        <Name lang="fr">CJC Traits</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Chinese</Languages>
+          <Countries lang="en">Peru, Laos, North Korea, China, Cambodia, Japan, Guam, Taiwan, South Korea, Vietnam, Somalia, Sudan, Israel, Singapore, Philippines, Malaysia, Indonesia, Thailand</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/cjk-strokes/" />
+        <CodeRange start="31C0" end="31EF">
+          <Range>31C0-31E3</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Katakana Phonetic Extensions">
+        <Name lang="en">Katakana Phonetic Extensions</Name>
+        <Name lang="fr">Katakana phonétique supplémentaire</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Japanese, Okinawan, Ainu, Palauan</Languages>
+          <Countries lang="en">Peru, North Korea, Japan, Guam, Taiwan, South Korea</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/katakana-phonetic-extensions/" />
+        <CodeRange start="31F0" end="31FF">
+          <Range>31F0-31FF</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="CJK Enclosed Letters and Months">
+        <Name lang="en">CJK Enclosed Letters and Months</Name>
+        <Name lang="fr">CJC Lettres et mois entourés</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Chinese</Languages>
+          <Countries lang="en">Peru, Laos, North Korea, China, Cambodia, Japan, Guam, Taiwan, South Korea, Vietnam, Somalia, Sudan, Israel, Singapore, Philippines, Malaysia, Indonesia, Thailand</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/enclosed-cjk-letters-and-months/" />
+        <CodeRange start="3200" end="32FF">
+          <Range>3200-321E,3220-32FE</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="CJK Compatibility">
+        <Name lang="en">CJK Compatibility</Name>
+        <Name lang="fr">CJC Compatibilité</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Chinese, Japanese, Korean, Vietnamese</Languages>
+          <Countries lang="en">Peru, Laos, North Korea, China, Cambodia, Japan, Guam, Taiwan, South Korea, Vietnam, Somalia, Sudan, Israel, Singapore, Philippines, Malaysia, Indonesia, Thailand</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/cjk-compatibility/" />
+        <CodeRange start="3300" end="33FF">
+          <Range>3300-33FF</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="CJK Unified Ideographs Extension A">
+        <Name lang="en">CJK Extension A</Name>
+        <Name lang="fr">CJC supplémentaire A</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Chinese, Japanese, Korean, Vietnamese</Languages>
+          <Countries lang="en">Peru, Laos, North Korea, China, Cambodia, Japan, Guam, Taiwan, South Korea, Vietnam, Somalia, Sudan, Israel, Singapore, Philippines, Malaysia, Indonesia, Thailand</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/cjk-unified-ideographs-extension-a/" />
+        <CodeRange start="3400" end="4DBF">
+          <Range>3400-4DB5</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Yijing Hexagram Symbols">
+        <Name lang="en">Yijing Hexagram Symbols</Name>
+        <Name lang="fr">Hexagrammes du Yi-king</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en">China</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/yijing-hexagram-symbols/" />
+        <CodeRange start="4DC0" end="4DFF">
+          <Range>4DC0-4DFF</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="CJK Unified Ideographs">
+        <Name lang="en">CJK Unified Ideographs</Name>
+        <Name lang="fr">CJC Idéogrammes unifiés</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Chinese, Japanese, Korean, Vietnamese</Languages>
+          <Countries lang="en">Peru, Laos, North Korea, China, Cambodia, Japan, Guam, Taiwan, South Korea, Vietnam, Somalia, Sudan, Israel, Singapore, Philippines, Malaysia, Indonesia, Thailand</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/cjk-unified-ideographs/" />
+        <CodeRange start="4E00" end="9FFF">
+          <Range>4E00-9FEA</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Yi Syllables">
+        <Name lang="en">Yi Syllables</Name>
+        <Name lang="fr">Yi syllabaires</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Yi</Languages>
+          <Countries lang="en">China</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/yi-syllables/" />
+        <CodeRange start="A000" end="A48F">
+          <Range>A000-A48C</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Yi Radicals">
+        <Name lang="en">Yi Radicals</Name>
+        <Name lang="fr">Yi clés</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Yi</Languages>
+          <Countries lang="en">China</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/yi-radicals/" />
+        <CodeRange start="A490" end="A4CF">
+          <Range>A490-A4C6</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Lisu">
+        <Name lang="en">Lisu</Name>
+        <Name lang="fr">Lissou</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/lisu/" />
+        <CodeRange start="A4D0" end="A4FF">
+          <Range>A4D0-A4FF</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Vai">
+        <Name lang="en">Vai</Name>
+        <Name lang="fr">Vaï</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Vai</Languages>
+          <Countries lang="en">Liberia, Sierra-Leone</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/old-lisu-alphabet/" />
+        <CodeRange start="A500" end="A63F">
+          <Range>A500-A62B</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Cyrillic Extended-B">
+        <Name lang="en">Cyrillic Extended-B</Name>
+        <Name lang="fr">Cyrillique étendu B</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en">Russia, Ukraine, Bulgaria, Serbia, Macedonia, Moldova</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/ciryllic-extended-B/" />
+        <CodeRange start="A640" end="A69F">
+          <Range>A640-A69F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Bamum">
+        <Name lang="en">Bamum</Name>
+        <Name lang="fr">Bamoum</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Bamum</Languages>
+          <Countries lang="en">Cameroon, Nigeria</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/bamum/" />
+        <CodeRange start="A6A0" end="A6FF">
+          <Range>A6A0-A6F7</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Modifier Tone Letters">
+        <Name lang="en">Modifier Tone Letters</Name>
+        <Name lang="fr">Lettres modificatives de ton</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/modifier-tone-letters/" />
+        <CodeRange start="A700" end="A71F">
+          <Range>A700-A71F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Latin Extended-D">
+        <Name lang="en">Latin Extended-D</Name>
+        <Name lang="fr">Latin étendu D</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en">Countries: Finland, Estland, Hungary, Salvador</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/latin-extended-d/" />
+        <CodeRange start="A720" end="A7FF">
+          <Range>A720-A7B7,A7F7-A7FF</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Syloti Nagri">
+        <Name lang="en">Syloti Nagri</Name>
+        <Name lang="fr">Sylotî nâgrî</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Sylheti, Bengali</Languages>
+          <Countries lang="en">Bangladesh, India</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/syloty-nagri/" />
+        <CodeRange start="A800" end="A82F">
+          <Range>A800-A82B </Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Common Indic Number Forms">
+        <Name lang="en">Common Indic Number Forms</Name>
+        <Name lang="fr">Formes numériques communes Indiennes</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/indian-numeric-character/" />
+        <CodeRange start="A830" end="A83F">
+          <Range>A830-A839</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Phags-pa">
+        <Name lang="en">Phags-pa</Name>
+        <Name lang="fr">Phags-pa</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Mongolian, Sanskrit, Tibetan, Chinese, Uyghur</Languages>
+          <Countries lang="en">Mongolia, India, China, Tibet, Kazakhstan</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/phags-pa/" />
+        <CodeRange start="A840" end="A87F">
+          <Range>A840-A877</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Saurashtra">
+        <Name lang="en">Saurashtra</Name>
+        <Name lang="fr">Saurachtra</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">saurashtra</Languages>
+          <Countries lang="en">Mongolia</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/saurashtra/" />
+        <CodeRange start="A880" end="A8DF">
+          <Range>A880-A8C5,A8CE-A8D9</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Devanagari Extended">
+        <Name lang="en">Devanagari Extended</Name>
+        <Name lang="fr">Dévanâgarî étendue</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Marathi, Indian, Sanskrit, Hindi</Languages>
+          <Countries lang="en">India, Pakistan, Fiji Islands, Mauritius</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/devanagari-extended-characters/" />
+        <CodeRange start="A8E0" end="A8FF">
+          <Range>A8E0-A8FD</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Kayah Li">
+        <Name lang="en">Kayah Li</Name>
+        <Name lang="fr">Kayah li</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Kayah</Languages>
+          <Countries lang="en">Burma, Thailand</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/kayah-li/" />
+        <CodeRange start="A900" end="A92F">
+          <Range>A900-A92F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Rejang">
+        <Name lang="en">Rejang</Name>
+        <Name lang="fr">Rejang</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Rejang</Languages>
+          <Countries lang="en">Sumatra, Indonesia</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/rejang/" />
+        <CodeRange start="A930" end="A95F">
+          <Range>A930-A953,A95F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Hangul Jamo Extended-A">
+        <Name lang="en">Hangul Jamo Extended-A</Name>
+        <Name lang="fr">Hangûl Jamos complémentaires A</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Korean</Languages>
+          <Countries lang="en">North Korea, South Korea, China, Japan, Indonesia</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/hangul/" />
+        <CodeRange start="A960" end="A97F">
+          <Range>A960-A97C</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Javanese">
+        <Name lang="en">Javanese</Name>
+        <Name lang="fr">Javanais</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Javanese</Languages>
+          <Countries lang="en">Indonesia</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/javanese-alphabet/" />
+        <CodeRange start="A980" end="A9DF">
+          <Range>A980-A9CD,A9CF-A9D9,A9DE,A9DF</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Myanmar Extended-B">
+        <Name lang="en">Myanmar Extended-B</Name>
+        <Name lang="fr">Birman étendu BTcham</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/myanmar-extended-b/" />
+        <CodeRange start="A9E0" end="A9FF">
+          <Range>A9E0-A9FE</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Cham">
+        <Name lang="en">Cham</Name>
+        <Name lang="fr">Tcham</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Cham</Languages>
+          <Countries lang="en">Cambodia, Vietnam, Thailand, China</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/cham-alphabet/" />
+        <CodeRange start="AA00" end="AA5F">
+          <Range>AA60-AA36,AA40-AA4D,AA50-AA59</Range>
+          <Range>AA5C-AA5F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Myanmar Extended-A">
+        <Name lang="en">Myanmar Extended-A</Name>
+        <Name lang="fr">Birman étendu A</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en">Myanmar, Thailand, Bangladesh, Malaysia</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/burmese-alphabet-extention-a/" />
+        <CodeRange start="AA60" end="AA7F">
+          <Range>AA60-AA7F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Tai Viet">
+        <Name lang="en">Tai Viet</Name>
+        <Name lang="fr">Taï-viet</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en">Vietnam, Thailand, Laos, China</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/tai-viet-alphabet/" />
+        <CodeRange start="AA80" end="AADF">
+          <Range>AA80-AAC2,AADB-AADF</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Meetei Mayek Extensions">
+        <Name lang="en">Meetei Mayek Extensions</Name>
+        <Name lang="fr">Meitei mayek supplémentaire</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en">Vietnam, Thailand, Laos, China</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/meitei-language-extensions/" />
+        <CodeRange start="AAE0" end="AAFF">
+          <Range>AAE0-AAF6</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Ethiopic Extended-A">
+        <Name lang="en">Ethiopic Extended-A</Name>
+        <Name lang="fr">Éthiopien étendu A</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/ethiopic-extended-a/" />
+        <CodeRange start="AB00" end="AB2F">
+          <Range>AB01-AB06,AB09-AB0E,AB11-AB16</Range>
+          <Range>AB20-AB26,AB28-AB28</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Latin Extended-E">
+        <Name lang="en">Latin Extended-E</Name>
+        <Name lang="fr">Latin étendu E</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/latin-extended-e/" />
+        <CodeRange start="AB30" end="AB6F">
+          <Range>AB30-AB65</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Cherokee Supplement">
+        <Name lang="en">Cherokee Supplement</Name>
+        <Name lang="fr">Chérokie supplémentaire</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/cherokee-supplement/" />
+        <CodeRange start="AB70" end="ABBF">
+          <Range>AB70-ABBF</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Meetei Mayek">
+        <Name lang="en">Meetei Mayek</Name>
+        <Name lang="fr">Meitei mayek</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/meitei-language/" />
+        <CodeRange start="ABC0" end="ABFF">
+          <Range>ABC0-ABF9</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Hangul Syllables">
+        <Name lang="en">Hangul Syllables</Name>
+        <Name lang="fr">Hangûl syllabaires</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Korean, Cia-cia</Languages>
+          <Countries lang="en">North Korea, South Korea, China, Japan, Indonesia</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/hangul-syllables/" />
+        <CodeRange start="AC00" end="D7AF">
+          <Range>AC00-D7A3</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Hangul Jamo Extended-B">
+        <Name lang="en">Hangul Jamo Extended-B</Name>
+        <Name lang="fr">Hangûl Jamos complémentaires B</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Korean, Cia-cia</Languages>
+          <Countries lang="en">North Korea, South Korea, China, Japan, Indonesia</Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/hangul-jamo-extended-b/" />
+        <CodeRange start="D7B0" end="D7FF">
+          <Range>D7B0-D7C6,D7CB-D7FB</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Private Use Area">
+        <Name lang="en">Private Use Area</Name>
+        <Name lang="fr">Zone à usage privé</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/private-use-area/" />
+        <CodeRange start="E000" end="F8FF">
+          <Range>E000-F8FF</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="CJK Compatibility Ideographs">
+        <Name lang="en">CJK Compatibility Ideographs</Name>
+        <Name lang="fr">CJC Idéogrammes de compatibilité</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/cjk-compatibility-ideographs/" />
+        <CodeRange start="F900" end="FAFF">
+          <Range>F900-FA6D,FA70-FAD9</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Alphabetic Presentation Forms">
+        <Name lang="en">Alphabetic Presentation Forms</Name>
+        <Name lang="fr">Formes de présentation alphabétiques</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/alphabetic-presentation-forms/" />
+        <CodeRange start="FB00" end="FB4F">
+          <Range>FB00-FB06,FB13-FB17,FB1D-FB36</Range>
+          <Range>FB38-FB3C,FB3E,FB40,FB41</Range>
+          <Range>FB43,FB44,FB46-FB4F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Arabic Presentation Forms-A">
+        <Name lang="en">Arabic Presentation Forms-A</Name>
+        <Name lang="fr">Formes A de présentation arabes</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/arabic-presentation-forms-a/" />
+        <CodeRange start="FB50" end="FDFF">
+          <Range>FB50-FBC1,FBD3-FD3F,FD50-FD8F</Range>
+          <Range>FD92-FDC7</Range>
+          <Range>FDF0-FDFD</Range>
+        </CodeRange>
+    </Block>
+      <Block nameID="Variation Selectors">
+        <Name lang="en">Variation Selectors</Name>
+        <Name lang="fr">Sélecteurs de variante</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/variation-selectors/" />
+        <CodeRange start="FE00" end="FE0F">
+          <Range>FE00-FE0F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Vertical Forms">
+        <Name lang="en">Vertical Forms</Name>
+        <Name lang="fr">Formes verticales</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/vertical-forms/" />
+        <CodeRange start="FE10" end="FE1F">
+          <Range>FE10-FE19</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Combining Half Marks">
+        <Name lang="en">Combining Half Marks</Name>
+        <Name lang="fr">Demi-signes combinatoires</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/combining-half-marks/" />
+        <CodeRange start="FE20" end="FE2F">
+          <Range>FE20-FE2F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="CJK Compatibility Forms">
+        <Name lang="en">CJK Compatibility Forms</Name>
+        <Name lang="fr">CJC Formes de compatibilité</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/cjk-compatibility-forms/" />
+        <CodeRange start="FE30" end="FE4F">
+          <Range>FE30-FE4F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Small Form Variants">
+        <Name lang="en">Small Form Variants</Name>
+        <Name lang="fr">Petites variantes de forme</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/small-form-variants/" />
+        <CodeRange start="FE50" end="FE6F">
+          <Range>FE50-FE52,FE54-FE66,FE68-FE6B</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Arabic Presentation Forms-B">
+        <Name lang="en">Arabic Presentation Forms-B</Name>
+        <Name lang="fr">Formes B de présentation arabes</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/arabic-presentation-forms-b/" />
+        <CodeRange start="FE70" end="FEFF">
+          <Range>FE70-FE74,FE76-FEFC</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Halfwidth and Fullwidth Forms">
+        <Name lang="en">Halfwidth and Fullwidth Forms</Name>
+        <Name lang="fr">Formes de demi-chasse et de pleine chasse</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/halfwidth-and-fullwidth-forms/" />
+        <CodeRange start="FF00" end="FFEF">
+          <Range>FF01-FFBE,FFC2-FFC7,FFCA-FFCF</Range>
+          <Range>FFD2-FFD7,FFDA-FFDC,FFE0-FFE6</Range>
+          <Range>FFE8-FFEE</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Specials">
+        <Name lang="en">Specials</Name>
+        <Name lang="fr">Spéciaux</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/specials/" />
+        <CodeRange start="FFF0" end="FFFF">
+          <Range>FFF9-FFFD</Range>
+        </CodeRange>
+      </Block>
+    </Plane>
+
+    <Plane nameID="Supplementary Multilingual Plane">
+      <Name lang="en">Supplementary Multilingual Plane</Name>
+      <Name lang="fr">Plan multilingue complémentaire</Name>
+      <Description lang="en"></Description>
+      <Block nameID="Linear B Syllabary">
+        <Name lang="en">Linear B Syllabary</Name>
+        <Name lang="fr">Linéaire B syllabaire</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/linear-b-syllabary/" />
+        <CodeRange start="10000" end="1007F">
+          <Range>10080-1000B,1000D-10026,10028-1003A</Range>
+          <Range>1003C,1003D,1003F-1004D,10050-1005D</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Linear B Ideograms">
+        <Name lang="en">Linear B Ideograms</Name>
+        <Name lang="fr">Linéaire B idéogrammes</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en">https://unicode-table.com/en/blocks/linear-b-ideograms/</Countries>
+        </Localisable>
+        <WebCharTable url="" />
+        <CodeRange start="10080" end="100FF">
+          <Range>10080-100FA</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Aegean Numbers">
+        <Name lang="en">Aegean Numbers</Name>
+        <Name lang="fr">Nombres Égéens</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/aegean-numbers/" />
+        <CodeRange start="10100" end="1013F">
+          <Range>10100-10102,10107-10133,10137-1013F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Ancient Greek Numbers">
+        <Name lang="en">Ancient Greek Numbers</Name>
+        <Name lang="fr">Nombres Grecs anciens</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/ancient-greek-numbers/" />
+        <CodeRange start="10140" end="1018F">
+          <Range>10140-1018E</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Ancient Symbols">
+        <Name lang="en">Ancient Symbols</Name>
+        <Name lang="fr">Symboles de l’Antiquité</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/ancient-symbols/" />
+        <CodeRange start="10190" end="101CF">
+          <Range>10190-1019B,101A0</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Phaistos Disc">
+        <Name lang="en">Phaistos Disc</Name>
+        <Name lang="fr">Disque de Phaïstos</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/phaistos-disc/" />
+        <CodeRange start="101D0" end="101FF">
+          <Range>101D0-101FD</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Lycian">
+        <Name lang="en">Lycian</Name>
+        <Name lang="fr">Lycien</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/lycian/" />
+        <CodeRange start="10280" end="1029F">
+          <Range>10280-1029C</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Carian">
+        <Name lang="en">Carian</Name>
+        <Name lang="fr">Carien</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/carian/" />
+        <CodeRange start="102A0" end="102DF">
+          <Range>102A0-102D0</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Coptic Epact Numbers">
+        <Name lang="en">Coptic Epact Numbers</Name>
+        <Name lang="fr">Nombres épactes Coptes</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/coptic-epact-numbers/" />
+        <CodeRange start="102E0" end="102FF">
+          <Range>102E0-102FB</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Old Italic">
+        <Name lang="en">Old Italic</Name>
+        <Name lang="fr">Vieil italique</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/old-italic/" />
+        <CodeRange start="10300" end="1032F">
+          <Range>10300-10323,1032D-1032F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Gothic">
+        <Name lang="en">Gothic</Name>
+        <Name lang="fr">Gotique</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/gothic/" />
+        <CodeRange start="10330" end="1034F">
+          <Range>10330-1034A</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Old Permic">
+        <Name lang="en">Old Permic</Name>
+        <Name lang="fr">Ancien permien</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/old-permic/" />
+        <CodeRange start="10350" end="1037F">
+          <Range>10350-1037A</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Ugaritic">
+        <Name lang="en">Ugaritic</Name>
+        <Name lang="fr">Ougaritique</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/ugaritic/" />
+        <CodeRange start="10380" end="1039F">
+          <Range>10380-1039D,1039F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Old Persian">
+        <Name lang="en">Old Persian</Name>
+        <Name lang="fr">Vieux Perse</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/old-persian/" />
+        <CodeRange start="103A0" end="103DF">
+          <Range>103A0-103C3,103C8-103D5</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Deseret">
+        <Name lang="en">Deseret</Name>
+        <Name lang="fr">Déséret</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/deseret/" />
+        <CodeRange start="10400" end="1044F">
+          <Range>10400-1044F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Shavian">
+        <Name lang="en">Shavian</Name>
+        <Name lang="fr">Shavien</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/shavian/" />
+        <CodeRange start="10450" end="1047F">
+          <Range>10450-1047F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Osmanya">
+        <Name lang="en">Osmanya</Name>
+        <Name lang="fr">Osmanya</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/osmanya/" />
+        <CodeRange start="10480" end="104AF">
+          <Range>10480-1049D,104A0-104A9</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Osage">
+        <Name lang="en">Osage</Name>
+        <Name lang="fr">Osage</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/osage/" />
+        <CodeRange start="104B0" end="104FF">
+          <Range>104B0-104D3,104D8-104FB</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Elbasan">
+        <Name lang="en">Elbasan</Name>
+        <Name lang="fr">Elbasan</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/elbasan/" />
+        <CodeRange start="10500" end="1052F">
+          <Range>10500-10527</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Caucasian Albanian">
+        <Name lang="en">Caucasian Albanian</Name>
+        <Name lang="fr">Albanien</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/caucasian-albanian/" />
+        <CodeRange start="10530" end="1056F">
+          <Range>10530-10563,1056F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Linear A">
+        <Name lang="en">Linear A</Name>
+        <Name lang="fr">Linéaire A</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/linear-a/" />
+        <CodeRange start="10600" end="1077F">
+          <Range>10600-10736,10740-10755,10760-10767</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Cypriot Syllabary">
+        <Name lang="en">Cypriot Syllabary</Name>
+        <Name lang="fr">Chypriote syllabaire</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/cypriot-syllabary/" />
+        <CodeRange start="10800" end="1083F">
+          <Range>10800-10805,10808,1080A-10835</Range>
+          <Range>10837,10838,1083C,1083F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Imperial Aramaic">
+        <Name lang="en">Imperial Aramaic</Name>
+        <Name lang="fr">Araméen impérial</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/imperial-aramaic/" />
+        <CodeRange start="10840" end="1085F">
+          <Range>10840-10855,10857-1085F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Palmyrene">
+        <Name lang="en">Palmyrene</Name>
+        <Name lang="fr">Palmyréen</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="" />
+        <CodeRange start="10860" end="1087F">
+          <Range>10860-1087F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Nabataean">
+        <Name lang="en">Nabataean</Name>
+        <Name lang="fr">Nabatéen</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/nabataean/" />
+        <CodeRange start="10880" end="108AF">
+          <Range>10880-1089E,108A7-108AF</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Hatran">
+        <Name lang="en">Hatran</Name>
+        <Name lang="fr">Hatréen</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/hatran/" />
+        <CodeRange start="108E0" end="108FF">
+          <Range>108E0-108F2,108F4,108F5,108FB-108FF</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Phoenician">
+        <Name lang="en">Phoenician</Name>
+        <Name lang="fr">Phénicien</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/phoenician/" />
+        <CodeRange start="10900" end="1091F">
+          <Range>10900-1091B,1091F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Lydian">
+        <Name lang="en">Lydian</Name>
+        <Name lang="fr">Lydien</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/lydian/" />
+        <CodeRange start="10920" end="1093F">
+          <Range>10920-10939,1093F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Meroitic Hieroglyphs">
+        <Name lang="en">Meroitic Hieroglyphs</Name>
+        <Name lang="fr">Hiéroglyphes méroïtiques</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/meroitic-hieroglyphs/" />
+        <CodeRange start="10980" end="1099F">
+          <Range>10980-1099F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Meroitic Cursive">
+        <Name lang="en">Meroitic Cursive</Name>
+        <Name lang="fr">Cursif Méroïtique</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/meroitic-cursive/" />
+        <CodeRange start="109A0" end="109FF">
+          <Range>109A0-109B7,109BC-109CF,109D2-109FF</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Kharoshthi">
+        <Name lang="en">Kharoshthi</Name>
+        <Name lang="fr">Kharochthî</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/kharoshthi/" />
+        <CodeRange start="10A00" end="10A5F">
+          <Range>10A00-10A03,10A05,10A06,10A0C-10A13</Range>
+          <Range>10A15-10A17,10A19-10A33,10A38-10A3A</Range>
+          <Range>10A3F-10A47,10A50-10A58</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Old South Arabian">
+        <Name lang="en">Old South Arabian</Name>
+        <Name lang="fr">Vieux Sud-Arabique</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/old-south-arabian/" />
+        <CodeRange start="10A60" end="10A7F">
+          <Range>10A60-10A7F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Old North Arabian">
+        <Name lang="en">Old North Arabian</Name>
+        <Name lang="fr">Vieux Nord-Arabique</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/old-north-arabian/" />
+        <CodeRange start="10A80" end="10A9F">
+          <Range>10A80-10A9F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Manichaean">
+        <Name lang="en">Manichaean</Name>
+        <Name lang="fr">Manichéen</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/manichaean/" />
+        <CodeRange start="10AC0" end="10AFF">
+          <Range>10AC0-10AE6,10AEB-10AF6</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Avestan">
+        <Name lang="en">Avestan</Name>
+        <Name lang="fr">Avestique</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/avestan/" />
+        <CodeRange start="10B00" end="10B3F">
+          <Range>10B00-10B35,10B39-10B3F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Inscriptional Parthian">
+        <Name lang="en">Inscriptional Parthian</Name>
+        <Name lang="fr">Parthe des inscriptions</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/inscriptional-parthian/" />
+        <CodeRange start="10B40" end="10B5F">
+          <Range>10B40-10B55,10B58-10B5F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Inscriptional Pahlavi">
+        <Name lang="en">Inscriptional Pahlavi</Name>
+        <Name lang="fr">Pehlvi des inscriptions</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/inscriptional-pahlavi/" />
+        <CodeRange start="10B60" end="10B7F">
+          <Range>10B60-10B72,10B78-10B7F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Psalter Pahlavi">
+        <Name lang="en">Psalter Pahlavi</Name>
+        <Name lang="fr">Pehlvi des psautiers</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/psalter-pahlavi/" />
+        <CodeRange start="10B80" end="10BAF">
+          <Range>10B80-10B91,10B99-10B9C,10BA9-10BAF</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Old Turkic">
+        <Name lang="en">Old Turkic</Name>
+        <Name lang="fr">Orkhon</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/old-turkic/" />
+        <CodeRange start="10C00" end="10C4F">
+          <Range>10C00-10C48</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Old Hungarian">
+        <Name lang="en">Old Hungarian</Name>
+        <Name lang="fr">Runes hongroises</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/old-hungarian/" />
+        <CodeRange start="10C80" end="10CFF">
+          <Range>10C80-10CB2,10CC0-10CF2,10CFA-10CFF</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Rumi Numeral Symbols">
+        <Name lang="en">Rumi Numeral Symbols</Name>
+        <Name lang="fr">Symboles numéraux rûmî</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/rumi-numeral-symbols/" />
+        <CodeRange start="10E60" end="10E7F">
+          <Range>10E60-10E7E</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Brahmi">
+        <Name lang="en">Brahmi</Name>
+        <Name lang="fr">Brahmi</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/brahmi/" />
+        <CodeRange start="11000" end="1107F">
+          <Range>11000-1104D,11052-1106F,1107F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Kaithi">
+        <Name lang="en">Kaithi</Name>
+        <Name lang="fr">Kayathi</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/kaithi/" />
+        <CodeRange start="11080" end="110CF">
+          <Range>11080-110C1</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Sora Sompeng">
+        <Name lang="en">Sora Sompeng</Name>
+        <Name lang="fr">Sora sompeng</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/sora-sompeng/" />
+        <CodeRange start="110D0" end="110FF">
+          <Range>110D0-110E8,110F0-110F9</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Chakma">
+        <Name lang="en">Chakma</Name>
+        <Name lang="fr">Chakma</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/chakma/" />
+        <CodeRange start="11100" end="1114F">
+          <Range>11100-11134,11136-11143</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Mahajani">
+        <Name lang="en">Mahajani</Name>
+        <Name lang="fr">Mahajani</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/mahajani/" />
+        <CodeRange start="11150" end="1117F">
+          <Range>11150-11176</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Sharada">
+        <Name lang="en">Sharada</Name>
+        <Name lang="fr">Charada</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/sharada/" />
+        <CodeRange start="11180" end="111DF">
+          <Range>11180-111CD,111D0-111DF</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Sinhala Archaic Numbers">
+        <Name lang="en">Sinhala Archaic Numbers</Name>
+        <Name lang="fr">Nombres archaïques Singhalais</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/sinhala-archaic-numbers/" />
+        <CodeRange start="111E0" end="111FF">
+          <Range>111E1-111F4</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Khojki">
+        <Name lang="en">Khojki</Name>
+        <Name lang="fr">Khojki</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/khojki/" />
+        <CodeRange start="11200" end="1124F">
+          <Range>11200-11211,11213-1123E</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Multani">
+        <Name lang="en">Multani</Name>
+        <Name lang="fr">Multanais</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/multani/" />
+        <CodeRange start="11280" end="112AF">
+          <Range>11280-11286,11288,1128A-1128D</Range>
+          <Range>1128F-1129D,1129F-112A9</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Khudawadi">
+        <Name lang="en">Khudawadi</Name>
+        <Name lang="fr">Khudawadi</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/khudawadi/" />
+        <CodeRange start="112B0" end="112FF">
+          <Range>112B0-112EA,112F0-112F9</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Grantha">
+        <Name lang="en">Grantha</Name>
+        <Name lang="fr">Grantha</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/grantha/" />
+        <CodeRange start="11300" end="1137F">
+          <Range>11300-11303,11305-1130C,1130F,11310</Range>
+          <Range>11313-11328,1132A-11330,11332,11333</Range>
+          <Range>11335-11339,1133C-11344,11347,11348</Range>
+          <Range>1134B-1134D,11350,11357,1135D-11363</Range>
+          <Range>11366-1136C,11370-11374</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Newa">
+        <Name lang="en">Newa</Name>
+        <Name lang="fr">Néwar</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/newa/" />
+        <CodeRange start="11400" end="1147F">
+          <Range>11400-11459,1145B,1145D</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Tirhuta">
+        <Name lang="en">Tirhuta</Name>
+        <Name lang="fr">Tirhuta</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/tirhuta/" />
+        <CodeRange start="11480" end="1000F">
+          <Range>11480-114C7,114D0-114D9</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Siddham">
+        <Name lang="en">Siddham</Name>
+        <Name lang="fr">Siddham</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/siddham/" />
+        <CodeRange start="11580" end="115FF">
+          <Range>11580-115B5,115B8-115DD</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Modi">
+        <Name lang="en">Modi</Name>
+        <Name lang="fr">Modi</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/modi/" />
+        <CodeRange start="11600" end="1165F">
+          <Range>11600-11644,11650-11659</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Mongolian Supplement">
+        <Name lang="en">Mongolian Supplement</Name>
+        <Name lang="fr">Mongol supplémentaire</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/mongolian-supplement/" />
+        <CodeRange start="11660" end="1167F">
+          <Range>11660-1166C</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Takri">
+        <Name lang="en">Takri</Name>
+        <Name lang="fr">Takri</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/takri/" />
+        <CodeRange start="11680" end="116CF">
+          <Range>11680-116B7,116C0-116C9</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Ahom">
+        <Name lang="en">Ahom</Name>
+        <Name lang="fr">Âhom</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/ahom/" />
+        <CodeRange start="11700" end="1173F">
+          <Range>11700-11719,1171D-1172B,11730-1173F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Warang Citi">
+        <Name lang="en">Warang Citi</Name>
+        <Name lang="fr">Varang kchiti</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/warang-citi/" />
+        <CodeRange start="118A0" end="118FF">
+          <Range>118A0-118F2,118FF</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Zanabazar Square">
+        <Name lang="en">Zanabazar Square</Name>
+        <Name lang="fr">Zanabazar carré</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/zanabazar-square/" />
+        <CodeRange start="11A00" end="11A4F">
+          <Range>11A00-11A47</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Soyombo">
+        <Name lang="en">Soyombo</Name>
+        <Name lang="fr">Soyombo</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/soyombo/" />
+        <CodeRange start="11A50" end="11AAF">
+          <Range>11A50-11A83,11A86-11A9C,11A9E-11AA2</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Pau Cin Hau">
+        <Name lang="en">Pau Cin Hau</Name>
+        <Name lang="fr">Pau Cin Hau</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/pau-cin-hau/" />
+        <CodeRange start="11AC0" end="11AFF">
+          <Range>11AC0-11AF8</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Bhaiksuki">
+        <Name lang="en">Bhaiksuki</Name>
+        <Name lang="fr">Bhaiksuki</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/bhaiksuki/" />
+        <CodeRange start="11C00" end="11C6F">
+          <Range>11C00-11C08,11C0A-11C36</Range>
+          <Range>11C38-11C45,11C50-11C6C</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Marchen">
+        <Name lang="en">Marchen</Name>
+        <Name lang="fr">Marchen</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/marchen/" />
+        <CodeRange start="11C70" end="11CBF">
+          <Range>11C70-11C8F,11C92-11CA7,11CA9-11CB6</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Masaram Gondi">
+        <Name lang="en">Masaram Gondi</Name>
+        <Name lang="fr">Gondi de Masaram</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/masaram-gondi/" />
+        <CodeRange start="11D00" end="11D5F">
+          <Range>11D00-11D06,11D08,11D09</Range>
+          <Range>11D0B-11D36,11D3A,11D3C</Range>
+          <Range>11D3D,11D40-11D47,11D50-11D59</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Cuneiform">
+        <Name lang="en">Cuneiform</Name>
+        <Name lang="fr">Cunéiforme</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/cuneiform/" />
+        <CodeRange start="12000" end="123FF">
+          <Range>12000-12399</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Cuneiform Numbers and Punctuation">
+        <Name lang="en">Cuneiform Numbers and Punctuation</Name>
+        <Name lang="fr">Cunéiforme ponctuation et nombres</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/cuneiform-numbers-and-punctuation/" />
+        <CodeRange start="12400" end="1247F">
+          <Range>12400-1246E,12470-12474</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Cuneiform Early Dynastic">
+        <Name lang="en">Cuneiform Early Dynastic</Name>
+        <Name lang="fr">Cunéiforme proto-dynastique</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/early-dynastic-cuneiform/" />
+        <CodeRange start="12480" end="1254F">
+          <Range>12480-12543</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Egyptian Hieroglyphs">
+        <Name lang="en">Egyptian Hieroglyphs</Name>
+        <Name lang="fr">Hiéroglyphes égyptiens</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/egyptian-hieroglyphs/" />
+        <CodeRange start="13000" end="1342F">
+          <Range>13000-1342E</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Anatolian Hieroglyphs">
+        <Name lang="en">Anatolian Hieroglyphs</Name>
+        <Name lang="fr">Hiéroglyphes anatoliens</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/anatolian-hieroglyphs/" />
+        <CodeRange start="14400" end="1467F">
+          <Range>14400-14646</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Bamum Supplement">
+        <Name lang="en">Bamum Supplement</Name>
+        <Name lang="fr">Bamoum supplémentaire</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/bamum-supplement/" />
+        <CodeRange start="16800" end="16A3F">
+          <Range>16800-16A38</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Mro">
+        <Name lang="en">Mro</Name>
+        <Name lang="fr">Mro</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/mro/" />
+        <CodeRange start="16A40" end="16A6F">
+          <Range>16A40-16A5E,16A60-16A69,16A6E,16A6F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Bassa Vah">
+        <Name lang="en">Bassa Vah</Name>
+        <Name lang="fr">Vah bassa</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/bassa-vah/" />
+        <CodeRange start="16AD0" end="16AFF">
+          <Range>16AD0-16AED,16AF0-16AF5</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Pahawh Hmong">
+        <Name lang="en">Pahawh Hmong</Name>
+        <Name lang="fr">Pahawh hmong</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/pahawh-hmong/" />
+        <CodeRange start="16B00" end="16B8F">
+          <Range>16B00-16B45,16B50-16B59,16B5B-16B61</Range>
+          <Range>16B63-16B77,16B7D-16B8F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Miao">
+        <Name lang="en">Miao</Name>
+        <Name lang="fr">Miao</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/miao/" />
+        <CodeRange start="16F00" end="16F9F">
+          <Range>16FE0-16F44,16F50-16F7E,16F8F-16F9F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Ideographic Symbols and Punctuation">
+        <Name lang="en">Ideographic Symbols and Punctuation</Name>
+        <Name lang="fr">Symboles et ponctuation idéographiques</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/ideographic-symbols-and-punctuation/" />
+        <CodeRange start="16FE0" end="16FFF">
+          <Range>16FE0,16FE1</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Tangut">
+        <Name lang="en">Tangut</Name>
+        <Name lang="fr">Tangoute</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/tangut/" />
+        <CodeRange start="17000" end="187FF">
+          <Range>17000-187EC</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Tangut Components">
+        <Name lang="en">Tangut Components</Name>
+        <Name lang="fr">Tangoute composants</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/tangut-components/" />
+        <CodeRange start="18800" end="18AFF">
+          <Range>18800-18AF2</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Kana Supplement">
+        <Name lang="en">Kana Supplement</Name>
+        <Name lang="fr">Kana supplémentaire</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/kana-supplement/" />
+        <CodeRange start="1B000" end="1B0FF">
+          <Range>1B000-1B0FF</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Kana Extended-A">
+        <Name lang="en">Kana Extended-A</Name>
+        <Name lang="fr">Kana complémentaires A</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/kana-extended-a/" />
+        <CodeRange start="1B100" end="1B12F">
+          <Range>1B100-1B11E</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Nushu">
+        <Name lang="en">Nushu</Name>
+        <Name lang="fr">Nüshu</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/nushu/" />
+        <CodeRange start="1B170" end="1B2FF">
+          <Range>1B170-1B2FB</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Duployan">
+        <Name lang="en">Duployan</Name>
+        <Name lang="fr">Sténographie Duployé</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/duployan/" />
+        <CodeRange start="1BC00" end="1BC9F">
+          <Range>1BC00-1BC6A,1BC70-1BC7C,1BC80-1BC88</Range>
+          <Range>1BC90-1BC99,1BC9C-1BC9F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Shorthand Format Controls">
+        <Name lang="en">Shorthand Format Controls</Name>
+        <Name lang="fr">Formatage de sténographie</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/shorthand-format-controls/" />
+        <CodeRange start="1BCA0" end="1BCAF">
+          <Range>1BCA0-1BCA3</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Byzantine Musical Symbols">
+        <Name lang="en">Byzantine Musical Symbols</Name>
+        <Name lang="fr">Symboles musicaux byzantins</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/byzantine-musical-symbols/" />
+        <CodeRange start="1D000" end="1D0FF">
+          <Range>1D000-1D0F5</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Musical Symbols">
+        <Name lang="en">Musical Symbols</Name>
+        <Name lang="fr">Symboles musicaux</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/musical-symbols/" />
+        <CodeRange start="1D100" end="1D1FF">
+          <Range>1D100-1D126,1D129-1D1E8</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Ancient Greek Musical Notation">
+        <Name lang="en">Ancient Greek Musical Notation</Name>
+        <Name lang="fr">Notation musicale grecque ancienne</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/ancient-greek-musical-notation/" />
+        <CodeRange start="1D200" end="1D24F">
+          <Range>1D200-1D245</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Tai Xuan Jing Symbols">
+        <Name lang="en">Tai Xuan Jing Symbols</Name>
+        <Name lang="fr">Symboles du Classique du mystère suprême</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/tai-xuan-jing-symbols/" />
+        <CodeRange start="1D300" end="1D35F">
+          <Range>1D300-1D356</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Counting Rod Numerals">
+        <Name lang="en">Counting Rod Numerals</Name>
+        <Name lang="fr">Chiffres-bâtonnets chinois</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/counting-rod-numerals/" />
+        <CodeRange start="1D360" end="1D37F">
+          <Range>1D360-1D371</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Mathematical Alphanumeric Symbols">
+        <Name lang="en">Mathematical Alphanumeric Symbols</Name>
+        <Name lang="fr">Symboles mathématiques alphanumériques</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/mathematical-alphanumeric-symbols/" />
+        <CodeRange start="1D400" end="1D7FF">
+          <Range>1D400-1D454,1D456-1D49C,1D49E</Range>
+          <Range>1D49F,1D4A2,1D4A5,1D4A6,1D4A9-1D4AC</Range>
+          <Range>1D4AE-1D4B9,1D4BB,1D4BD-1D4C3</Range>
+          <Range>1D4C5-1D505,1D507-1D50A,1D50D-1D514</Range>
+          <Range>1D516-1D51C,1D51E-1D539,1D53B-1D53E</Range>
+          <Range>1D540-1D544,1D546,1D54A-1D550</Range>
+          <Range>1D552-1D6A5,1D6A8-1D7CB,1D7CE-1D7FF</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Sutton SignWriting">
+        <Name lang="en">Sutton SignWriting</Name>
+        <Name lang="fr">SignWriting de Sutton</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/sutton-sign-writing/" />
+        <CodeRange start="1D800" end="1DAAF">
+          <Range>1D800-1DA8B,1DA9B-1DA9F,1DAA1-1DAAF</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Glagolitic Supplement">
+        <Name lang="en">Glagolitic Supplement</Name>
+        <Name lang="fr">Glagolitique supplémentaire</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/glagolitic-supplement/" />
+        <CodeRange start="1E000" end="1E02F">
+          <Range>1E000-1E006,1E008-1E018,1E01B-1E021</Range>
+          <Range>1E023,1E024,1E026-1E02A</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Mende Kikakui">
+        <Name lang="en">Mende Kikakui</Name>
+        <Name lang="fr">Mendé kikakui</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/mende-kikakui/" />
+        <CodeRange start="1E800" end="1E8DF">
+          <Range>1E800-1E8C4,1E8C7-1E8D6</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Adlam">
+        <Name lang="en">Adlam</Name>
+        <Name lang="fr">Adlam</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/adlam/" />
+        <CodeRange start="1E900" end="1E95F">
+          <Range>1E900-1E94A,1E950-1E959,1E95E-1E95F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Arabic Mathematical Alphabetic Symbols">
+        <Name lang="en">Arabic Mathematical Alphabetic Symbols</Name>
+        <Name lang="fr">Symboles mathématiques alphabétiques Arabes</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/arabic-mathematical-alphabetic-symbols/" />
+        <CodeRange start="1EE00" end="1EEFF">
+          <Range>1EE00-1EE03,1EE05-1EE1F,1EE21</Range>
+          <Range>1EE22,1EE24,1EE27,1EE29-1EE32</Range>
+          <Range>1EE34-1EE37,1EE39,1EE3B,1EE42</Range>
+          <Range>1EE47,1EE49,1EE4B,1EE4D-1EE4F</Range>
+          <Range>1EE51,1EE52,1EE54,1EE57,1EE59</Range>
+          <Range>1EE5B,1EE5D,1EE5F,1EE61,1EE62</Range>
+          <Range>1EE64,1EE67-1EE6A,1EE6C-1EE72</Range>
+          <Range>1EE74-1EE77,1EE79-1EE7C,1EE7E</Range>
+          <Range>1EE80-1EE89,1EE8B-1EE9B,1EEA1-1EEA3</Range>
+          <Range>1EEA5-1EEA9,1EEAB-1EEBB,1EEF0,1EEF1</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Mahjong Tiles">
+        <Name lang="en">Mahjong Tiles</Name>
+        <Name lang="fr">Tuiles de Majong</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/mahjong-tiles/" />
+        <CodeRange start="1F000" end="1F02F">
+          <Range>1F000-1F02B</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Domino Tiles">
+        <Name lang="en">Domino Tiles</Name>
+        <Name lang="fr">Dominos</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/domino-tiles/" />
+        <CodeRange start="1F030" end="1F09F">
+          <Range>1F030-1F093</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Playing Cards">
+        <Name lang="en">Playing Cards</Name>
+        <Name lang="fr">Cartes à jouer</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/playing-cards/" />
+        <CodeRange start="1F0A0" end="1F0FF">
+          <Range>1F0A0-1F0AE,1F0B1-1F0BF</Range>
+          <Range>1F0C1-1F0CF,1F0D1-1F0F5</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Enclosed Alphanumeric Supplement">
+        <Name lang="en">Enclosed Alphanumeric Supplement</Name>
+        <Name lang="fr">Symboles alphanumériques entourés supplémentaire</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/enclosed-alphanumeric-supplement/" />
+        <CodeRange start="1F100" end="1F1FF">
+          <Range>1F100-1F10C,1F110-1F12E,1F130-1F16B</Range>
+          <Range>1F170-1F1AC,1F1E6-1F1FF</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Enclosed Ideographic Supplement">
+        <Name lang="en">Enclosed Ideographic Supplement</Name>
+        <Name lang="fr">Supplément d’idéogrammes entourés</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/enclosed-ideographic-supplement/" />
+        <CodeRange start="1F200" end="1F2FF">
+          <Range>1F200-1F202,1F210-1F23B,1F240-1F248</Range>
+          <Range>1F250,1F251,1F260-1F265</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Symbols and Pictographs Miscellaneous">
+        <Name lang="en">Symbols and Pictographs Miscellaneous</Name>
+        <Name lang="fr">Divers symboles et pictogrammes</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/miscellaneous-symbols-and-pictographs/" />
+        <CodeRange start="1F300" end="1F5FF">
+          <Range>1F300-1F5FF</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Emoticons">
+        <Name lang="en">Emoticons</Name>
+        <Name lang="fr">Émoticônes</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/emoticons/" />
+        <CodeRange start="1F600" end="1F64F">
+          <Range>1F600-1F64F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Dingbats Ornamental">
+        <Name lang="en">Dingbats Ornamental</Name>
+        <Name lang="fr">Casseau ornemental</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/ornamental-dingbats/" />
+        <CodeRange start="1F650" end="1F67F">
+          <Range>1F650-1F67F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Transport and Map Symbols">
+        <Name lang="en">Transport and Map Symbols</Name>
+        <Name lang="fr">Symboles cartographiques ou de transport</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/transport-and-map-symbols/" />
+        <CodeRange start="1F680" end="1F6FF">
+          <Range>1F680-1F6D4,1F6E0-1F6EC,1F6F0-1F6F8</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Alchemical Symbols">
+        <Name lang="en">Alchemical Symbols</Name>
+        <Name lang="fr">Symboles alchimiques</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/alchemical-symbols/" />
+        <CodeRange start="1F700" end="1F77F">
+          <Range>1F700-1F773</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Geometric Shapes Extended">
+        <Name lang="en">Geometric Shapes Extended</Name>
+        <Name lang="fr">Supplément de formes géométriques</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/geometric-shapes-extended/" />
+        <CodeRange start="1F780" end="1F7FF">
+          <Range>1F780-1F7D4</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Arrows Supplemental-C">
+        <Name lang="en">Arrows Supplemental-C</Name>
+        <Name lang="fr">Flèches supplémentaire C</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/supplemental-arrows-c/" />
+        <CodeRange start="1F800" end="1F8FF">
+          <Range>1F800-1F80B,1F810-1F847,1F850-1F859</Range>
+          <Range>1F860-1F887,1F890-1F8AD</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Symbols and Pictographs Supplemental">
+        <Name lang="en">Symbols and Pictographs Supplemental</Name>
+        <Name lang="fr">Symboles et pictogrammes supplémentaire</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="https://unicode-table.com/en/blocks/supplemental-symbols-and-pictographs/" />
+        <CodeRange start="1F900" end="1F9FF">
+          <Range>1F900-1F90B,1F910-1F93E,1F940-1F94C</Range>
+          <Range>1F950-1F96B,1F980-1F997,1F9C0</Range>
+          <Range>1F9D0-1F9E6</Range>
+        </CodeRange>
+      </Block>
+    </Plane>
+
+    <Plane nameID="Supplementary Ideographic Plane">
+      <Name lang="en">Supplementary Ideographic Plane</Name>
+      <Name lang="fr">Plan idéographique complémentaire</Name>
+      <Description lang="en"></Description>
+
+      <Block nameID="CJK Unified Ideographs Extension B">
+        <Name lang="en">CJK Extension B</Name>
+        <Name lang="fr">CJC supplémentaire B</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Chinese, Japanese, Korean, Vietnamese</Languages>
+          <Countries lang="en">Peru, Laos, North Korea, China, Cambodia, Japan, Guam, Taiwan, South Korea, Vietnam, Somalia, Sudan, Israel, Singapore, Philippines, Malaysia, Indonesia, Thailand</Countries>
+        </Localisable>
+        <WebCharTable url="" />
+        <CodeRange start="20000" end="2A6DF">
+          <Range>20000-2A6D6</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="CJK Unified Ideographs Extension C">
+        <Name lang="en">CJK Extension C</Name>
+        <Name lang="fr">CJC supplémentaire C</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Chinese, Japanese, Korean, Vietnamese</Languages>
+          <Countries lang="en">Peru, Laos, North Korea, China, Cambodia, Japan, Guam, Taiwan, South Korea, Vietnam, Somalia, Sudan, Israel, Singapore, Philippines, Malaysia, Indonesia, Thailand</Countries>
+        </Localisable>
+        <WebCharTable url="" />
+        <CodeRange start="2A700" end="2B73F">
+          <Range>2A700-2B734</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="CJK Unified Ideographs Extension D">
+        <Name lang="en">CJK Extension D</Name>
+        <Name lang="fr">CJC supplémentaire D</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Chinese, Japanese, Korean, Vietnamese</Languages>
+          <Countries lang="en">Peru, Laos, North Korea, China, Cambodia, Japan, Guam, Taiwan, South Korea, Vietnam, Somalia, Sudan, Israel, Singapore, Philippines, Malaysia, Indonesia, Thailand</Countries>
+        </Localisable>
+        <WebCharTable url="" />
+        <CodeRange start="2B740" end="2B81F">
+          <Range>2B740-2B81D</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="CJK Unified Ideographs Extension E">
+        <Name lang="en">CJK Extension E</Name>
+        <Name lang="fr">CJC supplémentaire E</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Chinese, Japanese, Korean, Vietnamese</Languages>
+          <Countries lang="en">Peru, Laos, North Korea, China, Cambodia, Japan, Guam, Taiwan, South Korea, Vietnam, Somalia, Sudan, Israel, Singapore, Philippines, Malaysia, Indonesia, Thailand</Countries>
+        </Localisable>
+        <WebCharTable url="" />
+        <CodeRange start="2B820" end="2CEAF">
+          <Range>2B820-2CEA1</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="CJK Unified Ideographs Extension F">
+        <Name lang="en">CJK Extension F</Name>
+        <Name lang="fr">CJC supplémentaire F</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Chinese, Japanese, Korean, Vietnamese</Languages>
+          <Countries lang="en">Peru, Laos, North Korea, China, Cambodia, Japan, Guam, Taiwan, South Korea, Vietnam, Somalia, Sudan, Israel, Singapore, Philippines, Malaysia, Indonesia, Thailand</Countries>
+        </Localisable>
+        <WebCharTable url="" />
+        <CodeRange start="2CEB0" end="2EBEF">
+          <Range>2CEB0-2EBE0</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="CJK Compatibility Supplement">
+        <Name lang="en">CJK Compatibility Supplement</Name>
+        <Name lang="fr">CJC Compatibilité supplémentaire</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en">Chinese, Japanese, Korean, Vietnamese</Languages>
+          <Countries lang="en">Peru, Laos, North Korea, China, Cambodia, Japan, Guam, Taiwan, South Korea, Vietnam, Somalia, Sudan, Israel, Singapore, Philippines, Malaysia, Indonesia, Thailand</Countries>
+        </Localisable>
+        <WebCharTable url="" />
+        <CodeRange start="2F800" end="2FA1F">
+          <Range>2F800-2FA1D</Range>
+        </CodeRange>
+      </Block>
+      
+    </Plane>
+
+    <Plane nameID="Tertiary Ideographic Plane">
+      <Name lang="en">Tertiary Ideographic Plane</Name>
+      <Name lang="fr">Plan idéographique tertiaire</Name>
+      <Description lang="en"></Description>
+
+    </Plane>
+
+    <Plane nameID="Supplementary Special-purpose Plane">
+      <Name lang="en">Supplementary Special-purpose Plane</Name>
+      <Name lang="fr">Plan supplémentaire à usage spécial</Name>
+      <Description lang="en"></Description>
+
+      <Block nameID="Tags">
+        <Name lang="en">Tags</Name>
+        <Name lang="fr">Étiquettes</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="" />
+        <CodeRange start="E0000" end="E007F">
+          <Range>E0001,E0020-E007F</Range>
+        </CodeRange>
+      </Block>
+      <Block nameID="Variation Selectors Supplement">
+        <Name lang="en">Variation Selectors Supplement</Name>
+        <Name lang="fr">Sélecteurs de variante supplémentaire</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="" />
+        <CodeRange start="E0100" end="E01EF">
+          <Range>E0100-E01EF</Range>
+        </CodeRange>
+      </Block>
+    </Plane>
+
+    <Plane nameID="Supplementary Private Use Area-A">
+      <Name lang="en">Supplementary Private Use Area-A</Name>
+      <Name lang="fr">Plans à usage privé supplémentaire A</Name>
+      <Description lang="en"></Description>
+
+      <Block nameID="Supplementary Private Use Area-A">
+        <Name lang="en">Supplementary Private Use Area-A</Name>
+        <Name lang="fr">Plans à usage privé supplémentaire A</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="" />
+        <CodeRange start="F0000" end="FFFFF">
+          <Range>F0000-FFFFF</Range>
+        </CodeRange>
+      </Block>
+    </Plane>
+
+    <Plane nameID="Supplementary Private Use Area-B">
+      <Name lang="en">Supplementary Private Use Area-B</Name>
+      <Name lang="fr">Plans à usage privé supplémentaire B</Name>
+      <Description lang="en"></Description>
+
+      <Block nameID="Supplementary Private Use Area-B">
+        <Name lang="en">Supplementary Private Use Area-B</Name>
+        <Name lang="fr">Plans à usage privé supplémentaire B</Name>
+        <Description lang="en"></Description>
+        <Localisable>
+          <Languages lang="en"></Languages>
+          <Countries lang="en"></Countries>
+        </Localisable>
+        <WebCharTable url="" />
+        <CodeRange start="100000" end="10FFFF">
+          <Range>100000-10FFFF</Range>
+        </CodeRange>
+      </Block>
+    </Plane>
+    
+  </Unicode>
+</XML>
