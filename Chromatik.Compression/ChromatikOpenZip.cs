@@ -6,6 +6,9 @@ using System.IO.Compression;
 
 namespace Chromatik.Compression
 {
+    /// <summary>
+    /// Test
+    /// </summary>
     static public class ChromatikZIP
     {
         static public ZipArchive GetArchive(string ZipPath)
