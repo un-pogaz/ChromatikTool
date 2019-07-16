@@ -9,7 +9,7 @@ namespace System.Linq
     static public class ArrayExtension
     {
         /// <summary>
-        /// Get a fusion with this array
+        /// Concatenate two array
         /// </summary>
         static public T[] Concat<T>(this T[] tbl, T[] addition)
         {
@@ -22,7 +22,7 @@ namespace System.Linq
             return Enumerable.Concat(tbl, addition).ToArray();
         }
         /// <summary>
-        /// Get a fusion with all arrays
+        /// Concatenate a jagged array
         /// </summary>
         static public T[] Concat<T>(this T[] tbl, T[][] array)
         {

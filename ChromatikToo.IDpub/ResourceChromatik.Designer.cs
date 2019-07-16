@@ -22,7 +22,7 @@ namespace Chromatik {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class ResourceChromatik {
+    internal class ResourceChromatik {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace Chromatik {
         ///   Retourne l'instance ResourceManager mise en cache utilisée par cette classe.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Resources.ResourceManager ResourceManager {
+        internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Chromatik.ResourceChromatik", typeof(ResourceChromatik).Assembly);
@@ -51,7 +51,7 @@ namespace Chromatik {
         ///   les recherches de ressources à l'aide de cette classe de ressource fortement typée.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Globalization.CultureInfo Culture {
+        internal static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -78,9 +78,9 @@ namespace Chromatik {
         ///    &lt;/Charset&gt;
         ///    &lt;Charset nameID=&quot;Latin-1&quot;&gt;
         ///      &lt;Name lang=&quot;en&quot;&gt;Latin-1&lt;/Name&gt;
-        ///      &lt;Description lang=&quot;en&quot;&gt;Latin-1 Western E [le reste de la chaîne a été tronqué]&quot;;.
+        ///      &lt;Description lang=&quot;en&quot;&gt;Latin-1 Western European&lt;/Descript [le reste de la chaîne a été tronqué]&quot;;.
         /// </summary>
-        public static string Charsets_XML {
+        internal static string Charsets_XML {
             get {
                 return ResourceManager.GetString("Charsets_XML", resourceCulture);
             }
@@ -101,9 +101,9 @@ namespace Chromatik {
         ///        &lt;Description lang=&quot;en&quot;&gt;&lt;/Description&gt;
         ///        &lt;Localisable&gt;
         ///          &lt;Languages&gt;&lt;/Languages&gt;
-        ///          &lt;Coun [le reste de la chaîne a été tronqué]&quot;;.
+        ///          &lt;Countries&gt;&lt;/Countr [le reste de la chaîne a été tronqué]&quot;;.
         /// </summary>
-        public static string Unicode_XML {
+        internal static string Unicode_XML {
             get {
                 return ResourceManager.GetString("Unicode_XML", resourceCulture);
             }

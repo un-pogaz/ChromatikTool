@@ -1,17 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Xml;
 using System.IO;
+using System.Xml.Linq;
 
-namespace Chromatik.Xml
+namespace System.Xml
 {
+    /// <summary>
+    /// Static
+    /// </summary>
     static public class XmlWriterTool
     {
         /// <summary>
-        /// Setting pour XmlWriter
+        /// Default setting for XmlWriter
         /// </summary>
-        static public XmlWriterSettings WriterSetting { get; } = new XmlWriterSettings()
+        static public XmlWriterSettings DefaultSetting { get; } = new XmlWriterSettings()
         {
             OmitXmlDeclaration = false,
             Encoding = new UTF8Encoding(false),
@@ -28,69 +31,90 @@ namespace Chromatik.Xml
             CloseOutput = true
         };
 
-        static XmlWriter XMLwriter;
-
         /// <summary>
-        /// Écrie le document XML a l'enplacement spécifier
+        /// Write the XML document
         /// </summary>
-        /// <param name="Path"></param>
-        /// <param name="Document"></param>
-        static public void Document(string filePath, XmlDocument Document)
+        /// <param name="filePath"></param>
+        /// <param name="document"></param>
+        static public void Document(string filePath, XmlDocument document)
         {
-            Directory.CreateDirectory(Path.GetDirectoryName(filePath));
-            XMLwriter = XmlWriter.Create(filePath, WriterSetting);
-            
-            foreach (XmlNode item in Document.ChildNodes)
+            Document(filePath, document, DefaultSetting);
+        }
+        /// <summary>
+        /// Write the XML document with the specified settings
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <param name="document"></param>
+        /// <param name="settings"></param>
+        static public void Document(string filePath, XmlDocument document, XmlWriterSettings settings)
+        {
+            if (filePath == null)
+                throw new ArgumentNullException("filePath");
+
+            if (document == null)
+                throw new ArgumentNullException("document");
+
+            if (settings == null)
+                throw new ArgumentNullException("settings");
+
+            foreach (XmlNode item in document.ChildNodes)
                 if (item is XmlDeclaration)
-                {
-                    Document.RemoveChild(item);
-                    break;
-                }
-            
-            XMLwriter.WriteStartDocument();
+                    document.RemoveChild(item);
 
-            Document.WriteTo(XMLwriter);
-
-            XMLwriter.Close();
-            XMLwriter.Flush();
+            writeXML(filePath, document, settings);
         }
 
         /// <summary>
-        /// Écrie le nœud dans un XML a l'enplacement spécifier
+        /// Write the XML element
         /// </summary>
-        /// <param name="Path">Enplacement du fichier</param>
-        /// <param name="Node">Nœud a écrire</param>
-        static public void Document(string filePath, XmlElement Element)
+        /// <param name="filePath"></param>
+        /// <param name="element"></param>
+        static public void Document(string filePath, XmlElement element)
         {
-            Directory.CreateDirectory(Path.GetDirectoryName(filePath));
-            XMLwriter = XmlWriter.Create(filePath, WriterSetting);
+            Document(filePath, element, DefaultSetting);
+        }
+        /// <summary>
+        /// Write the XML element with the specified settings
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <param name="element"></param>
+        /// <param name="settings"></param>
+        static public void Document(string filePath, XmlElement element, XmlWriterSettings settings)
+        {
+            if (filePath == null)
+                throw new ArgumentNullException("filePath");
 
-            XMLwriter.WriteStartDocument();
+            if (element == null)
+                throw new ArgumentNullException("element");
 
-            Element.WriteTo(XMLwriter);
+            if (settings == null)
+                throw new ArgumentNullException("settings");
 
-            XMLwriter.Close();
-            XMLwriter.Flush();
+            writeXML(filePath, element, settings);
         }
 
-        /// <summary>
-        /// Écrie le nœud dans un XML a l'enplacement spécifier
-        /// </summary>
-        /// <param name="filePath">Enplacement du fichier</param>
-        /// <param name="Node">Nœud a écrire</param>
-        /// <param name="Parent">Parent du document XML</param>
-        static public void Document(string filePath, XmlElement Element, string NamespaceURI)
+        static private void writeXML(string filePath, XmlNode node, XmlWriterSettings settings)
         {
+            if (filePath == null)
+                throw new ArgumentNullException("filePath");
+
+            if (node == null)
+                throw new ArgumentNullException("node");
+
+            if (settings == null)
+                throw new ArgumentNullException("settings");
+
             Directory.CreateDirectory(Path.GetDirectoryName(filePath));
-            XMLwriter = XmlWriter.Create(filePath, WriterSetting);           
+            XmlWriter XMLwriter = XmlWriter.Create(filePath, settings);
 
             XMLwriter.WriteStartDocument();
 
-            if (Element.LocalName != "XML")
-                XMLwriter.WriteStartElement("XML", NamespaceURI);
-
-
-            Element.WriteTo(XMLwriter);
+            if (node is XmlDocument)
+                ((XmlDocument)node).WriteTo(XMLwriter);
+            else if(node is XmlElement)
+                ((XmlElement)node).WriteTo(XMLwriter);
+            else
+                node.WriteTo(XMLwriter);
 
             XMLwriter.Close();
             XMLwriter.Flush();

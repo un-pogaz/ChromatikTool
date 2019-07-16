@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Chromatik</RootNamespace>
-    <AssemblyName>Chromatik</AssemblyName>
+    <AssemblyName>ChromatikTool.IDpub</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -31,6 +31,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\bin\Release\ChromatikTool.IDpub.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Ionic.Zip">
@@ -75,7 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ResourceChromatik.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
+      <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ResourceChromatik.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>

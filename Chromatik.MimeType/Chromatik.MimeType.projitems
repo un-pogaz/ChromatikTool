@@ -9,7 +9,7 @@
     <Import_RootNamespace>Chromatik.MimeType</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)Base64\Base64.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)MimeType\MimeTypes.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Base64.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MimeTypes.cs" />
   </ItemGroup>
 </Project>

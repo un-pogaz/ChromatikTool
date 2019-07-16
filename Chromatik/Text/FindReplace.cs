@@ -5,10 +5,13 @@ using System.Text.RegularExpressions;
 
 namespace System.Text
 {
+    /// <summary>
+    /// Extension class for advanced Search and Replace in a string
+    /// </summary>
     static public class FindReplace
     {
         /// <summary>
-        /// Executera une fois un Cherché/Remplacé simple
+        /// Execute a simple Search/Replace.
         /// </summary>
         /// <param name="pattern"></param>
         /// <param name="replacement"></param>
@@ -19,16 +22,20 @@ namespace System.Text
         }
 
         /// <summary>
-        /// Executera le Cherché/Remplacé simple en boucle jusqu'a disparition du pattern
+        /// Execute a simple Search/Replace loop until the pattern disappears.
         /// </summary>
         /// <param name="pattern"></param>
         /// <param name="replacement"></param>
         /// <returns></returns>
         static public string ReplaceBoucle(this string input, string pattern, string replacement)
         {
+            DateTime dt = DateTime.Now + Timeout;
             string rslt = input;
             do
             {
+                if (dt > DateTime.Now)
+                    throw new TimeoutException();
+                
                 rslt = ReplaceOnce(rslt, pattern, replacement);
             } while (rslt.Contains(pattern));
 
@@ -36,49 +43,56 @@ namespace System.Text
         }
 
         /// <summary>
-        /// Temps d'exectution des Cherché/Remplacé Regex (1 minute)
+        /// Execution time for Regex Search/Replace. 
         /// </summary>
-        static public TimeSpan tRrgex { get; set; } = new TimeSpan(0, 1, 0);
+        static public TimeSpan Timeout { get; set; } = new TimeSpan(0, 1, 0);
 
+        /// <summary>
+        /// <see cref="RegexOptions"/> for regex operations.
+        /// </summary>
         static public RegexOptions RegexOptions { get; set; } = (RegexOptions.Singleline|RegexOptions.CultureInvariant);
 
         /// <summary>
-        /// Executera une fois le Cherché/Remplacé Regex
+        /// Execute a Regex Search/Replace 
         /// </summary>
         /// <param name="pattern"></param>
         /// <param name="replacement"></param>
         /// <returns></returns>
         static public string RegexOnce(this string input, string pattern, string replacement)
         {
-            return Regex.Replace(input, pattern, replacement, RegexOptions, tRrgex);
+            return Regex.Replace(input, pattern, replacement, RegexOptions, Timeout);
         }
 
         /// <summary>
-        /// Executera le Cherché/Remplacé Regex en boucle jusqu'a disparition du pattern
+        /// Execute a Regex Search/Replace loop until the pattern disappears.
         /// </summary>
         /// <param name="pattern"></param>
         /// <param name="replacement"></param>
         /// <returns></returns>
         static public string RegexBoucle(this string input, string pattern, string replacement)
         {
+            DateTime dt = DateTime.Now + Timeout;
             string rslt = input;
             do
             {
+                if (dt > DateTime.Now)
+                    throw new TimeoutException();
+
                 rslt = RegexOnce(rslt, pattern, replacement);
-            } while (Regex.Matches(rslt, pattern, RegexOptions, tRrgex).Count > 0);
+            } while (Regex.Matches(rslt, pattern, RegexOptions, Timeout).Count > 0);
 
             return rslt;
         }
 
         /// <summary>
-        /// Executera le Cherché/Remplacé Regex en boucle jusqu'a disparition du pattern
+        /// Test if the Regex pattern exist.
         /// </summary>
         /// <param name="pattern"></param>
         /// <param name="replacement"></param>
         /// <returns></returns>
         static public bool RegexIsMatch(this string input, string pattern)
         {
-            return Regex.IsMatch(input, pattern, RegexOptions, tRrgex);
+            return Regex.IsMatch(input, pattern, RegexOptions, Timeout);
         }
 
     }

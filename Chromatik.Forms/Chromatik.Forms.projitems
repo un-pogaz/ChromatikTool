@@ -10,17 +10,5 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)TransparentLabel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)uscXmlTextBox.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)uscXmlTextBox.Designer.cs">
-      <DependentUpon>uscXmlTextBox.cs</DependentUpon>
-    </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)XmlStateMachine.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)uscXmlTextBox.resx">
-      <DependentUpon>uscXmlTextBox.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
 </Project>
