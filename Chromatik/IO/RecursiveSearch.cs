@@ -4,67 +4,49 @@ using System.Linq;
 
 namespace System.IO
 {
+    /// <summary>
+    /// Static class for a safely search in a folder
+    /// </summary>
     sealed public class RecursiveSearch
     {
         /// <summary>
-        /// Obtient de maniére sûr la liste des fichiers du dossier cible ainsi que ses sous dossiers
+        /// Obtains safely all file in the target folder.
         /// </summary>
-        /// <param name="path">Chemin</param>
+        /// <param name="path">Target folder</param>
         static public string[] GetFiles(string path) { return GetFiles(path, "*"); }
         /// <summary>
-        /// Obtient de maniére sûr la liste des fichiers correspondent à un modèle de recherche du dossier cible ainsi que ses sous dossiers
+        /// Obtains safely file correspond to the research pattern in the target folder.
         /// </summary>
-        /// <param name="path">Dossier cible</param>
-        /// <param name="searchPattern">Modèle de recherche (non Regex)</param>
+        /// <param name="path">Target folder</param>
+        /// <param name="searchPattern">Search string to find among the file names in path. This parameter can contain a combination of literal and generic characters * and ? (see Remarks), but does not support regular expressions.</param>
         static public string[] GetFiles(string path, string searchPattern) { return GetFiles(path, searchPattern, SearchOption.AllDirectories); }
         /// <summary>
-        /// Obtient de maniére sûr la liste des fichiers correspondent à un modèle de recherche du dossier cible ainsi que ses sous dossiers
+        /// Obtains safely file correspond to the research pattern in the target folder.
         /// </summary>
-        /// <param name="path">Dossier cible</param>
-        /// <param name="searchPattern">Modèle de recherche (non Regex)</param>
+        /// <param name="path">Target folder</param>
+        /// <param name="searchPattern">Search string to find among the file names in path. This parameter can contain a combination of literal and generic characters * and ? (see Remarks), but does not support regular expressions.</param>
         /// <param name="searchOption"></param>
         static public string[] GetFiles(string path, string searchPattern, SearchOption searchOption)
         {
             return EnumerateFiles(path, searchPattern, searchOption).ToArray();
         }
-        /// <summary>
-        /// Obtient de maniére sûr la liste des fichiers des dossiers cibles ainsi que leurs sous dossiers
-        /// </summary>
-        /// <param name="paths">Dossiers cibles</param>
-        static public string[] GetFiles(string[] paths) { return GetFiles(paths, "*"); }
-        /// <summary>
-        /// Obtient de maniére sûr la liste des fichiers correspondent à un modèle de recherche des dossiers cibles ainsi que leurs sous dossiers
-        /// </summary>
-        /// <param name="paths">Dossiers cibles</param>
-        /// <param name="searchPattern">Modèle de recherche (non Regex)</param>
-        static public string[] GetFiles(string[] paths, string searchPattern) { return GetFiles(paths, searchPattern, SearchOption.AllDirectories); }
-        /// <summary>
-        /// Obtient de maniére sûr la liste des fichiers correspondent à un modèle de recherche des dossiers cibles ainsi que leurs sous dossiers
-        /// </summary>
-        /// <param name="paths">Dossiers cibles</param>
-        /// <param name="searchPattern">Modèle de recherche (non Regex)</param>
-        /// <param name="searchOption"></param>
-        static public string[] GetFiles(string[] paths, string searchPattern, SearchOption searchOption)
-        {
-            return EnumerateFiles(paths, searchPattern, searchOption).ToArray();
-        }
 
         /// <summary>
-        /// Énumére de maniére sûr tous les fichiers du dossier cible ainsi que ses sous dossiers
+        /// Enumerable safely all files in the target folder.
         /// </summary>
-        /// <param name="path">Chemin</param>
+        /// <param name="path">Target folder</param>
         static public IEnumerable<string> EnumerateFiles(string path) { return EnumerateFiles(path, "*"); }
         /// <summary>
-        /// Énumére de maniére sûr les fichiers correspondent à un modèle de recherche du dossier cible
+        /// Enumerable safely files correspond to the research pattern in the target folder.
         /// </summary>
-        /// <param name="path">Dossier cible</param>
-        /// <param name="searchPattern">Modèle de recherche (non Regex)</param>
+        /// <param name="path">Target folder</param>
+        /// <param name="searchPattern">Search string to find among the file names in path. This parameter can contain a combination of literal and generic characters * and ? (see Remarks), but does not support regular expressions.</param>
         static public IEnumerable<string> EnumerateFiles(string path, string searchPattern) { return EnumerateFiles(path, searchPattern, SearchOption.AllDirectories); }
         /// <summary>
-        /// Énumére de maniére sûr les fichiers correspondent à un modèle de recherche du dossier cible
+        /// Enumerable safely files correspond to the research pattern in the target folder.
         /// </summary>
-        /// <param name="path">Dossier cible</param>
-        /// <param name="searchPattern">Modèle de recherche (non Regex)</param>
+        /// <param name="path">Target folder</param>
+        /// <param name="searchPattern">Search string to find among the file names in path. This parameter can contain a combination of literal and generic characters * and ? (see Remarks), but does not support regular expressions.</param>
         /// <param name="searchOption"></param>
         static public IEnumerable<string> EnumerateFiles(string path, string searchPattern, SearchOption searchOption)
         {
@@ -84,60 +66,49 @@ namespace System.IO
                             yield return item;
             }
         }
-        /// <summary>
-        /// Énumére de maniére sûr tous les fichiers des dossiers cibles ainsi que leurs sous dossiers
-        /// </summary>
-        /// <param name="paths">Dossiers cibles</param>
-        static public IEnumerable<string> EnumerateFiles(string[] paths) { return EnumerateFiles(paths, "*"); }
-        /// <summary>
-        /// Énumére de maniére sûr les fichiers correspondent à un modèle de recherche des dossiers cibles ainsi que leurs sous dossiers
-        /// </summary>
-        /// <param name="paths">Dossiers cibles</param>
-        /// <param name="searchPattern">Modèle de recherche (non Regex)</param>
-        static public IEnumerable<string> EnumerateFiles(string[] paths, string searchPattern) { return EnumerateFiles(paths, "*", SearchOption.AllDirectories); }
-        /// <summary>
-        /// Énumére de maniére sûr les fichiers correspondent à un modèle de recherche des dossiers cibles ainsi que leurs sous dossiers
-        /// </summary>
-        /// <param name="paths">Dossiers cibles</param>
-        /// <param name="searchPattern">Modèle de recherche (non Regex)</param>
-        static public IEnumerable<string> EnumerateFiles(string[] paths, string searchPattern, SearchOption searchOption)
-        {
-            foreach (string path in paths)
-                foreach (var item in EnumerateFiles(path, searchPattern, searchOption))
-                    yield return item;
-        }
 
         /// <summary>
-        /// Obtient de maniére sûr la liste des sous dossiers du dossier cible 
+        /// Obtains safely all directory in the target folder.
         /// </summary>
-        /// <param name="path">Dossier cible</param>
+        /// <param name="path">Target folder</param>
         static public string[] GetDirectorys(string path) { return GetDirectorys(path, "*"); }
         /// <summary>
-        /// Obtient de maniére sûr la liste des sous dossiers correspondent à un modèle de recherche du dossier cible 
+        /// Obtains safely directory correspond to the research pattern in the target folder.
         /// </summary>
-        /// <param name="path">Dossier cible</param>
-        /// <param name="searchPattern">Modèle de recherche (non Regex)</param>
+        /// <param name="path">Target folder</param>
+        /// <param name="searchPattern">Search string to find among the file names in path. This parameter can contain a combination of literal and generic characters * and ? (see Remarks), but does not support regular expressions.</param>
         static public string[] GetDirectorys(string path, string searchPattern)
         {
             return EnumerateDirectory(path, searchPattern).ToArray();
         }
+        /// <summary>
+        /// Obtains safely directory correspond to the research pattern in the target folder.
+        /// </summary>
+        /// <param name="path">Target folder</param>
+        /// <param name="searchPattern">Search string to find among the file names in path. This parameter can contain a combination of literal and generic characters * and ? (see Remarks), but does not support regular expressions.</param>
+        /// <param name="searchOption"></param>
+        static public string[] GetDirectorys(string path, string searchPattern, SearchOption searchOption)
+        {
+            return EnumerateDirectory(path, searchPattern, searchOption).ToArray();
+        }
 
         /// <summary>
-        /// Énumére de maniére sûr les sous dossiers du dossier cible 
+        /// Enumerable safely all directory in the target folder.
         /// </summary>
-        /// <param name="path">Dossier cible</param>
+        /// <param name="path">Target folder</param>
         static public IEnumerable<string> EnumerateDirectory(string path) { return EnumerateDirectory(path, "*"); }
         /// <summary>
-        /// Énumére de maniére sûr les sous dossiers correspondent à un modèle de recherche du dossier cible 
+        /// Enumerable safely directory correspond to the research pattern in the target folder.
         /// </summary>
-        /// <param name="path">Dossier cible</param>
-        /// <param name="searchPattern">Modèle de recherche (non Regex)</param>
+        /// <param name="path">Target folder</param>
+        /// <param name="searchPattern">Search string to find among the file names in path. This parameter can contain a combination of literal and generic characters * and ? (see Remarks), but does not support regular expressions.</param>
         static public IEnumerable<string> EnumerateDirectory(string path, string searchPattern) { return EnumerateDirectory(path, searchPattern, SearchOption.AllDirectories); }
         /// <summary>
-        /// Énumére de maniére sûr les sous dossiers correspondent à un modèle de recherche du dossier cible 
+        /// Enumerable safely directory correspond to the research pattern in the target folder.
         /// </summary>
-        /// <param name="path">Dossier cible</param>
-        /// <param name="searchPattern">Modèle de recherche (non Regex)</param>
+        /// <param name="path">Target folder</param>
+        /// <param name="searchPattern">Search string to find among the file names in path. This parameter can contain a combination of literal and generic characters * and ? (see Remarks), but does not support regular expressions.</param>
+        /// <param name="searchOption"></param>
         static public IEnumerable<string> EnumerateDirectory(string path, string searchPattern, SearchOption searchOption)
         {
             if (string.IsNullOrWhiteSpace(searchPattern))
@@ -156,14 +127,10 @@ namespace System.IO
                             yield return item;
             }
         }
+        
 
-        /// <summary>
-        /// Énumére de maniére sûr les fichiers du dossier cible 
-        /// </summary>
         static private IEnumerable<string> EnumerateTopFiles(string path) { return EnumerateTopFiles(path, "*"); }
-        /// <summary>
-        /// Énumére de maniére sûr les fichiers correspondent à un modèle de recherche du dossier cible
-        /// </summary>
+
         static private IEnumerable<string> EnumerateTopFiles(string path, string searchPattern)
         {
             if (string.IsNullOrWhiteSpace(searchPattern))
@@ -191,13 +158,10 @@ namespace System.IO
 
             yield break;
         }
-        /// <summary>
-        /// Énumére de maniére sûr les dossiers du dossier cible 
-        /// </summary>
+
+
         static private IEnumerable<string> EnumerateTopDirectory(string path) { return EnumerateTopDirectory(path, "*"); }
-        /// <summary>
-        /// Énumére de maniére sûr les dossiers correspondent à un modèle de recherche du dossier cible 
-        /// </summary>
+
         static private IEnumerable<string> EnumerateTopDirectory(string path, string searchPattern)
         {
             if (string.IsNullOrWhiteSpace(searchPattern))
@@ -229,7 +193,7 @@ namespace System.IO
         static private bool IsRECYCLE_BIN(string path)
         {
             if (Path.GetFullPath(path).ToUpper().Substring(3).StartsWith("$RECYCLE.BIN") ||
-                Path.GetFullPath(path).ToLower().StartsWith("~/.local/share/trash/files/"))
+                Path.GetFullPath(path).ToLower().StartsWith("~/.local/share/trash/files"))
                 return true;
             else
                 return false;

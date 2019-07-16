@@ -7,12 +7,12 @@ using System.Security.Cryptography;
 namespace System.Security.Cryptography
 {
     /// <summary>
-    /// Class pour permetre l'obtention rapide des empreintes de hachage 
+    /// Static <see cref="class"/> to get quick a hash 
     /// </summary>
     static public partial class HashKey
     {
         /// <summary>
-        /// Énumeration des algorithmes de hachage supporté
+        /// Supported algorithm for the hash
         /// </summary>
         public enum Algorithm
         {
@@ -36,9 +36,9 @@ namespace System.Security.Cryptography
         static private byte[] UTF8(string text) { return Encoding.UTF8.GetBytes(text); }
 
         /// <summary>
-        /// Obtient le <see cref="HashAlgorithm"/> correspondant a <see cref="Algorithm"/>
+        /// Get the <see cref="HashAlgorithm"/> associated to the <see cref="Algorithm"/>
         /// </summary>
-        /// <param name="algorithm">Algorithme demandé</param>
+        /// <param name="algorithm">Algorithm request</param>
         /// <returns></returns>
         static public HashAlgorithm GetAlgorithm(Algorithm algorithm)
         {
@@ -71,21 +71,21 @@ namespace System.Security.Cryptography
         }
 
         /// <summary>
-        /// Obtient l'empreinte d'un <see cref="string"/> en fontion de l'algorithme spécifier
+        /// Get the hash of a string with the <see cref="Algorithm"/>
         /// </summary>
-        /// <param name="text">Texte a haché</param>
-        /// <param name="algorithm">Algorithme de hachage</param>
-        /// <returns>Hash du texte</returns>
+        /// <param name="text">string to hash</param>
+        /// <param name="algorithm">Hash algorithme</param>
+        /// <returns></returns>
         static public string FromAlgorithm(Algorithm algorithm, string text)
         {
             return FromAlgorithm(algorithm, UTF8(text));
         }
         /// <summary>
-        /// Obtient l'empreinte d'une collection de byte en fontion de l'algorithme spécifier
+        /// Get the hash of a <see cref="byte"/> array with the <see cref="Algorithm"/>
         /// </summary>
-        /// <param name="arrayByte">Collection de byte a haché</param>
-        /// <param name="algorithm">Algorithme de hachage</param>
-        /// <returns>Hash de la collection de byte</returns>
+        /// <param name="arrayByte"><see cref="byte"/> array to hash</param>
+        /// <param name="algorithm">Hash algorithme</param>
+        /// <returns></returns>
         static public string FromAlgorithm(Algorithm algorithm, byte[] arrayByte)
         {
             HashAlgorithm a = GetAlgorithm(algorithm);
@@ -95,11 +95,11 @@ namespace System.Security.Cryptography
             return HexToString(h);
         }
         /// <summary>
-        /// Obtient l'empreinte d'un <see cref="Stream" /> en fontion de l'algorithme spécifier
+        /// Get the hash of a <see cref="Stream" /> with the <see cref="Algorithm"/>
         /// </summary>
-        /// <param name="stream"><see cref="Stream" /> a haché</param>
-        /// <param name="algorithm">Algorithme de hachage</param>
-        /// <returns>Hash du <see cref="Stream" /></returns>
+        /// <param name="stream"><see cref="Stream" /> to hash</param>
+        /// <param name="algorithm">Hash algorithme</param>
+        /// <returns></returns>
         static public string FromAlgorithm(Algorithm algorithm, Stream stream)
         {
             HashAlgorithm a = GetAlgorithm(algorithm);
@@ -110,138 +110,136 @@ namespace System.Security.Cryptography
         }
 
         /// <summary>
-        /// Obtient l'empreinte MD5 d'un <see cref="string"/>
+        /// Get the hash of a string with MD5 algorithm
         /// </summary>
-        /// <param name="text">Texte a haché</param>
-        /// <returns>Hash du texte</returns>
+        /// <param name="text">string to hash</param>
+        /// <returns></returns>
         static public string FromMD5(string text) { return FromMD5(UTF8(text)); }
         /// <summary>
-        /// Obtient l'empreinte MD5 d'une collection de byte
+        /// Get the hash of a <see cref="byte"/> arr with MD5 algorithm
         /// </summary>
-        /// <param name="arrayByte">Collection de byte a haché</param>
-        /// <returns>Hash de la collection de byte</returns>
+        /// <param name="arrayByte"><see cref="byte"/> array to hash</param>
+        /// <returns></returns>
         static public string FromMD5(byte[] arrayByte) { return FromAlgorithm(Algorithm.MD5, arrayByte); }
         /// <summary>
-        /// Obtient l'empreinte MD5 d'un <see cref="Stream" />
+        /// Get the hash of a <see cref="Stream" /> with MD5 algorithm
         /// </summary>
-        /// <param name="stream"><see cref="Stream" /> a haché</param>
-        /// <returns>Hash du <see cref="Stream" /></returns>
+        /// <param name="stream"><see cref="Stream"/> to hash</param>
+        /// <returns></returns>
         static public string FromMD5(Stream stream) { return FromAlgorithm(Algorithm.MD5, stream); }
 
         /// <summary>
-        /// Obtient l'empreinte SHA1 d'un <see cref="string"/>
+        /// Get the hash of a string with SHA1 algorithm
         /// </summary>
-        /// <param name="text">Texte a haché</param>
-        /// <returns>Hash du texte</returns>
+        /// <param name="text">string to hash</param>
+        /// <returns></returns>
         static public string FromSHA1(string text) { return FromSHA1(UTF8(text)); }
         /// <summary>
-        /// Obtient l'empreinte SHA1 d'une collection de byte
+        /// Get the hash of a <see cref="byte"/> array with SHA1 algorithm
         /// </summary>
-        /// <param name="arrayByte">Collection de byte a haché</param>
-        /// <returns>Hash de la collection de byte</returns>
+        /// <param name="arrayByte"><see cref="byte"/> array to hash</param>
+        /// <returns></returns>
         static public string FromSHA1(byte[] arrayByte) { return FromAlgorithm(Algorithm.SHA1, arrayByte); }
         /// <summary>
-        /// Obtient l'empreinte SHA1 d'un <see cref="Stream" />
+        /// Get the hash of a <see cref="Stream" /> with SHA1 algorithm
         /// </summary>
-        /// <param name="stream"><see cref="Stream" /> a haché</param>
-        /// <returns>Hash du <see cref="Stream" /></returns>
+        /// <param name="stream"><see cref="Stream"/> to hash</param>
+        /// <returns></returns>
         static public string FromSHA1(Stream stream) { return FromAlgorithm(Algorithm.SHA1, stream); }
 
         /// <summary>
-        /// Obtient l'empreinte SHA256 d'un <see cref="string"/>
+        /// Get the hash of a string with SHA256 algorithm
         /// </summary>
-        /// <param name="text">Texte a haché</param>
-        /// <returns>Hash du texte</returns>
+        /// <param name="text">string to hash</param>
+        /// <returns></returns>
         static public string FromSHA256(string text) { return FromSHA256(UTF8(text)); }
         /// <summary>
-        /// Obtient l'empreinte SHA256 d'une collection de byte
+        /// Get the hash of a <see cref="byte"/> array with SHA256 algorithm
         /// </summary>
-        /// <param name="arrayByte">Collection de byte a haché</param>
-        /// <returns>Hash de la collection de byte</returns>
+        /// <param name="arrayByte"><see cref="byte"/> array to hash</param>
+        /// <returns></returns>
         static public string FromSHA256(byte[] arrayByte) { return FromAlgorithm(Algorithm.SHA256, arrayByte); }
         /// <summary>
-        /// Obtient l'empreinte SHA256 d'un <see cref="Stream" />
+        /// Get the hash of a <see cref="Stream" /> with SHA1 algorithm
         /// </summary>
-        /// <param name="stream"><see cref="Stream" /> a haché</param>
-        /// <returns>Hash du <see cref="Stream" /></returns>
+        /// <param name="stream"><see cref="Stream"/> to hash</param>
+        /// <returns></returns>
         static public string FromSHA256(Stream stream) { return FromAlgorithm(Algorithm.SHA256, stream); }
 
         /// <summary>
-        /// Obtient l'empreinte SHA384 d'un <see cref="string"/>
+        /// Get the hash of a string with SHA384 algorithm
         /// </summary>
-        /// <param name="text">Texte a haché</param>
-        /// <returns>Hash du texte</returns>
+        /// <param name="text">string to hash</param>
+        /// <returns></returns>
         static public string FromSHA384(string text) { return FromSHA384(UTF8(text)); }
         /// <summary>
-        /// Obtient l'empreinte SHA384 d'une collection de byte
+        /// Get the hash of a <see cref="byte"/> array with SHA384 algorithm
         /// </summary>
-        /// <param name="arrayByte">Collection de byte a haché</param>
-        /// <returns>Hash de la collection de byte</returns>
+        /// <param name="arrayByte"><see cref="byte"/> array to hash</param>
+        /// <returns></returns>
         static public string FromSHA384(byte[] arrayByte) { return FromAlgorithm(Algorithm.SHA384, arrayByte); }
         /// <summary>
-        /// Obtient l'empreinte SHA384 d'un <see cref="Stream" />
+        /// Get the hash of a <see cref="Stream" /> with SHA384 algorithm
         /// </summary>
-        /// <param name="stream"><see cref="Stream" /> a haché</param>
-        /// <returns>Hash du <see cref="Stream" /></returns>
+        /// <param name="stream"><see cref="Stream"/> to hash</param>
+        /// <returns></returns>
         static public string FromSHA384(Stream stream) { return FromAlgorithm(Algorithm.SHA384, stream); }
 
         /// <summary>
-        /// Obtient l'empreinte SHA512 d'un <see cref="string"/>
+        /// Get the hash of a string with SHA512 algorithm
         /// </summary>
-        /// <param name="text">Texte a haché</param>
-        /// <returns>Hash du texte</returns>
+        /// <param name="text">string to hash</param>
+        /// <returns></returns>
         static public string FromSHA512(string text) { return FromSHA512(UTF8(text)); }
         /// <summary>
-        /// Obtient l'empreinte SHA512 d'une collection de byte
+        /// Get the hash of a <see cref="byte"/> array with SHA512 algorithm
         /// </summary>
-        /// <param name="arrayByte">Collection de byte a haché</param>
-        /// <returns>Hash de la collection de byte</returns>
+        /// <param name="arrayByte"><see cref="byte"/> array to hash</param>
+        /// <returns></returns>
         static public string FromSHA512(byte[] arrayByte) { return FromAlgorithm(Algorithm.SHA512, arrayByte); }
         /// <summary>
-        /// Obtient l'empreinte SHA512 d'un <see cref="Stream" />
+        /// Get the hash of a <see cref="Stream" /> with SHA512 algorithm
         /// </summary>
-        /// <param name="stream"><see cref="Stream" /> a haché</param>
-        /// <returns>Hash du <see cref="Stream" /></returns>
+        /// <param name="stream"><see cref="Stream"/> to hash</param>
+        /// <returns></returns>
         static public string FromSHA512(Stream stream) { return FromAlgorithm(Algorithm.SHA512, stream); }
 
         /// <summary>
-        /// Obtient l'empreinte RIPEMD160 d'un <see cref="string"/>
+        /// Get the hash of a string with RIPEMD160 algorithm
         /// </summary>
-        /// <param name="text">Texte a haché</param>
-        /// <returns>Hash du texte</returns>
+        /// <param name="text">string to hash</param>
+        /// <returns></returns>
         static public string FromRIPEMD160(string text) { return FromRIPEMD160(UTF8(text)); }
         /// <summary>
-        /// Obtient l'empreinte RIPEMD160 d'une collection de byte
+        /// Get the hash of a string array with RIPEMD160 algorithm
         /// </summary>
-        /// <param name="arrayByte">Collection de byte a haché</param>
-        /// <returns>Hash de la collection de byte</returns>
+        /// <param name="arrayByte">string array to hash</param>
+        /// <returns></returns>
         static public string FromRIPEMD160(byte[] arrayByte) { return FromAlgorithm(Algorithm.RIPEMD160, arrayByte); }
         /// <summary>
-        /// Obtient l'empreinte RIPEMD160 d'un <see cref="Stream" />
+        /// Get the hash of a <see cref="Stream" /> with RIPEMD160 algorithm
         /// </summary>
-        /// <param name="stream"><see cref="Stream" /> a haché</param>
-        /// <returns>Hash du <see cref="Stream" /></returns>
+        /// <param name="stream"><see cref="Stream"/> to hash</param>
+        /// <returns></returns>
         static public string FromRIPEMD160(Stream stream) { return FromAlgorithm(Algorithm.RIPEMD160, stream); }
 
         /// <summary>
-        /// Obtient l'empreinte KeyedHashAlgorithm d'un <see cref="string"/>
+        /// Get the hash of a string with KeyedHashAlgorithm algorithm
         /// </summary>
-        /// <param name="text">Texte a haché</param>
-        /// <returns>Hash du texte</returns>
+        /// <param name="text">string to hash</param>
+        /// <returns></returns>
         static public string FromKeyedHashAlgorithm(string text) { return FromKeyedHashAlgorithm(UTF8(text)); }
         /// <summary>
-        /// Obtient l'empreinte KeyedHashAlgorithm d'une collection de byte
+        /// Get the hash of a <see cref="byte"/> array with KeyedHashAlgorithm algorithm
         /// </summary>
-        /// <param name="arrayByte">Collection de byte a haché</param>
-        /// <returns>Hash de la collection de byte</returns>
+        /// <param name="arrayByte"><see cref="byte"/> array to hash</param>
+        /// <returns></returns>
         static public string FromKeyedHashAlgorithm(byte[] arrayByte) { return FromAlgorithm(Algorithm.KeyedHashAlgorithm, arrayByte); }
         /// <summary>
-        /// Obtient l'empreinte KeyedHashAlgorithm d'un <see cref="Stream" />
+        /// Get the hash of a <see cref="Stream" /> with KeyedHashAlgorithm algorithm
         /// </summary>
-        /// <param name="stream"><see cref="Stream" /> a haché</param>
-        /// <returns>Hash du <see cref="Stream" /></returns>
-        static public string FromKeyedHashAlgorithm(Stream stream) { return FromAlgorithm(Algorithm.KeyedHashAlgorithm, stream); }
-
-        
+        /// <param name="stream"><see cref="Stream"/> to hash</param>
+        /// <returns></returns>
+        static public string FromKeyedHashAlgorithm(Stream stream) { return FromAlgorithm(Algorithm.SHA1, stream); }
     }
 }

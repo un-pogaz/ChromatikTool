@@ -76,6 +76,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ChromatikToo.IDpub\ChromatikTool.IDpub.csproj">
+      <Project>{8a18b5f6-8b80-45f7-9ed4-6923dedbf4d6}</Project>
+      <Name>ChromatikTool.IDpub</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

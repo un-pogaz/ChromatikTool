@@ -6,7 +6,7 @@ using System.Xml.Linq;
 
 namespace System.Xml
 {
-    static public class _XmlExtension
+    static public class XmlExtension
     {
         /// <summary>
         /// Ajoute un Namespace a l'Element
