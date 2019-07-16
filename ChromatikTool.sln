@@ -31,6 +31,8 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Chromatik.SQLite", "Chromat
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Chromatik.Sequence", "Chromatik.Sequence\Chromatik.Sequence.shproj", "{84E88843-7AD5-4B04-A72B-747BDC43AD4D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{22FD5684-B516-49F3-8F99-3C13F16719D5}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Chromatik.Sequence\Chromatik.Sequence.projitems*{84e88843-7ad5-4b04-a72b-747bdc43ad4d}*SharedItemsImports = 13
@@ -43,12 +45,12 @@ Global
 		Chromatik.Csv\Chromatik.Csv.projitems*{5aad3ffb-f1e9-4daa-abb2-8df48ba8d91d}*SharedItemsImports = 13
 		Chromatik.Unicode\Chromatik.Unicode.projitems*{010804b0-74f5-4362-a574-3e552221ab30}*SharedItemsImports = 13
 		Chromatik.ToolBox\Chromatik.ToolBox.projitems*{01cd2cc5-0985-46e7-b029-5c3bb2315b70}*SharedItemsImports = 13
-		Chromatik.Sequence\Chromatik.Sequence.projitems*{8a18b5f6-8b80-45f7-9ed4-6923dedbf4d6}*SharedItemsImports = 4
-		Chromatik.Zip\Chromatik.Zip.projitems*{8a18b5f6-8b80-45f7-9ed4-6923dedbf4d6}*SharedItemsImports = 4
 		Chromatik.Forms\Chromatik.Forms.projitems*{8a18b5f6-8b80-45f7-9ed4-6923dedbf4d6}*SharedItemsImports = 4
+		Chromatik.Zip\Chromatik.Zip.projitems*{8a18b5f6-8b80-45f7-9ed4-6923dedbf4d6}*SharedItemsImports = 4
+		Chromatik.Sequence\Chromatik.Sequence.projitems*{8a18b5f6-8b80-45f7-9ed4-6923dedbf4d6}*SharedItemsImports = 4
+		Chromatik\Chromatik.projitems*{8a18b5f6-8b80-45f7-9ed4-6923dedbf4d6}*SharedItemsImports = 4
 		Chromatik.Drawing\Chromatik.Drawing.projitems*{8a18b5f6-8b80-45f7-9ed4-6923dedbf4d6}*SharedItemsImports = 4
 		Chromatik.Unicode\Chromatik.Unicode.projitems*{8a18b5f6-8b80-45f7-9ed4-6923dedbf4d6}*SharedItemsImports = 4
-		Chromatik\Chromatik.projitems*{8a18b5f6-8b80-45f7-9ed4-6923dedbf4d6}*SharedItemsImports = 4
 		Chromatik.RAmen\Chromatik.RAmen.projitems*{381aaaa2-6761-4711-82bf-2d3932f34c92}*SharedItemsImports = 13
 		Chromatik.Compression\Chromatik.Compression.projitems*{01c2a431-8549-4a94-9c51-f1a60621c2a0}*SharedItemsImports = 13
 	EndGlobalSection
@@ -65,6 +67,10 @@ Global
 		{8A18B5F6-8B80-45F7-9ED4-6923DEDBF4D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A18B5F6-8B80-45F7-9ED4-6923DEDBF4D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A18B5F6-8B80-45F7-9ED4-6923DEDBF4D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22FD5684-B516-49F3-8F99-3C13F16719D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22FD5684-B516-49F3-8F99-3C13F16719D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22FD5684-B516-49F3-8F99-3C13F16719D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22FD5684-B516-49F3-8F99-3C13F16719D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
