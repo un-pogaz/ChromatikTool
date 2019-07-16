@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChromatikTool", "ChromatikTool\ChromatikTool.csproj", "{1B81048C-2F5F-4F46-8AC4-492D100C0824}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Chromatik", "Chromatik\Chromatik.shproj", "{7E078EC5-80B5-40A3-A55F-08B97E642325}"
+EndProject
+Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Chromatik\Chromatik.projitems*{7e078ec5-80b5-40a3-a55f-08b97e642325}*SharedItemsImports = 13
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1B81048C-2F5F-4F46-8AC4-492D100C0824}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B81048C-2F5F-4F46-8AC4-492D100C0824}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B81048C-2F5F-4F46-8AC4-492D100C0824}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B81048C-2F5F-4F46-8AC4-492D100C0824}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
