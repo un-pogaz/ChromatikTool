@@ -16,4 +16,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)SQLiteTable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SQLrequest.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)DLL\SQLite.dll" />
+    <None Include="$(MSBuildThisFileDirectory)DLL\SQLite.EF6.dll" />
+    <None Include="$(MSBuildThisFileDirectory)DLL\SQLite.Linq.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)DLL\SQLite.xml" />
+  </ItemGroup>
 </Project>

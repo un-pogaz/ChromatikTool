@@ -17,7 +17,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)IO\PathTool.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IO\PathToolException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IO\RecursiveSearch.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)IO\StreamTool.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Text\FindReplace.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Xml\XmlExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Xml\XmlCreate.cs" />

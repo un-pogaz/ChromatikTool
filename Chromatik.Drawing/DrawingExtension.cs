@@ -8,39 +8,56 @@ using System.Text;
 
 namespace System.Drawing
 {
+    /// <summary>
+    /// Static extension class for <see cref="Image"/>
+    /// </summary>
     static public class DrawingExtension
     {
         /// <summary>
-        /// 
+        /// Save a PNG image.
         /// </summary>
-        /// <exception cref="ArgumentNullException"></exception>
-        /// <exception cref="Runtime.InteropServices.ExternalException"></exception>
-        static public void SavePNG(this Bitmap bmp, string path)
+        /// <param name="img"></param>
+        /// <param name="path"></param>
+        static public void SavePNG(this Image img, string path)
         {
-            bmp.Save(path, ImageFormat.Png);
+            img.Save(path, ImageFormat.Png);
         }
 
         /// <summary>
-        /// 
+        /// Save a JPG image with 90% compression.
         /// </summary>
-        /// <exception cref="ArgumentNullException"></exception>
-        /// <exception cref="ArgumentOutOfRangeException"></exception>
-        /// <exception cref="Runtime.InteropServices.ExternalException"></exception>
-        static public void SaveJPG(this Bitmap bmp, string path, int percent)
+        /// <param name="img"></param>
+        /// <param name="path"></param>
+        static public void SaveJPG(this Image img, string path)
         {
-            if (percent < 0)
-                throw new ArgumentOutOfRangeException("percent");
-            if (percent > 100)
-                throw new ArgumentOutOfRangeException("percent");
+            img.SaveJPG(path, 90);
+        }
+        /// <summary>
+        /// Save a JPG image with a specified percentage compression.
+        /// </summary>
+        /// <param name="img"></param>
+        /// <param name="path"></param>
+        /// <param name="compression">Percentage of compression</param>
+        static public void SaveJPG(this Image img, string path, int compression)
+        {
+            if (compression < 1)
+                compression = 1;
+            if (compression > 100)
+                compression = 100;
             
             path = Path.GetDirectoryName(path) + Path.DirectorySeparatorChar + Path.GetFileNameWithoutExtension(path) + ".jpg";
 
             EncoderParameters myEncoderParameters = new EncoderParameters(1);
-            myEncoderParameters.Param[0] = new EncoderParameter(Imaging.Encoder.Quality, percent);
+            myEncoderParameters.Param[0] = new EncoderParameter(Imaging.Encoder.Quality, compression);
 
-            bmp.Save(path, GetImageCodec(ImageFormat.Jpeg), myEncoderParameters);
+            img.Save(path, GetImageCodec(ImageFormat.Jpeg), myEncoderParameters);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="format"></param>
+        /// <returns></returns>
         static public ImageCodecInfo GetImageCodec(ImageFormat format)
         {
             ImageCodecInfo[] codecs = ImageCodecInfo.GetImageDecoders();

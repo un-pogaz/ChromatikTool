@@ -84,7 +84,6 @@
   <Import Project="..\..\ChromatikTool\Chromatik\Chromatik.projitems" Label="Shared" />
   <Import Project="..\..\ChromatikTool\Chromatik.Drawing\Chromatik.Drawing.projitems" Label="Shared" />
   <Import Project="..\..\ChromatikTool\Chromatik.Forms\Chromatik.Forms.projitems" Label="Shared" />
-  <Import Project="..\..\ChromatikTool\Chromatik.Sequence\Chromatik.Sequence.projitems" Label="Shared" />
   <Import Project="..\..\ChromatikTool\Chromatik.Unicode\Chromatik.Unicode.projitems" Label="Shared" />
   <Import Project="..\..\ChromatikTool\Chromatik.Zip\Chromatik.Zip.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

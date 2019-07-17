@@ -7,7 +7,7 @@ using System.Security.Cryptography;
 namespace System.Security.Cryptography
 {
     /// <summary>
-    /// Static <see cref="class"/> to get quick a hash 
+    /// Static class to get quick a hash 
     /// </summary>
     static public partial class HashKey
     {
@@ -16,12 +16,33 @@ namespace System.Security.Cryptography
         /// </summary>
         public enum Algorithm
         {
+            /// <summary>
+            /// https://en.wikipedia.org/wiki/MD5
+            /// </summary>
             MD5,
+            /// <summary>
+            /// https://en.wikipedia.org/wiki/SHA-1
+            /// </summary>
             SHA1,
+            /// <summary>
+            /// https://en.wikipedia.org/wiki/SHA-2
+            /// </summary>
             SHA256,
+            /// <summary>
+            /// https://en.wikipedia.org/wiki/SHA-2
+            /// </summary>
             SHA384,
+            /// <summary>
+            /// https://en.wikipedia.org/wiki/SHA-2
+            /// </summary>
             SHA512,
+            /// <summary>
+            /// https://en.wikipedia.org/wiki/HMAC
+            /// </summary>
             KeyedHashAlgorithm,
+            /// <summary>
+            /// https://en.wikipedia.org/wiki/RIPEMD
+            /// </summary>
             RIPEMD160,
         }
 
