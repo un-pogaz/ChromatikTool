@@ -9,7 +9,7 @@ namespace Chromatik.Zip
     public partial class ZipFile
     {
         /// <summary>
-        /// 
+        /// Parse the string to valide entry name for ZIP archive.
         /// </summary>
         /// <param name="text"></param>
         /// <returns></returns>
@@ -33,18 +33,18 @@ namespace Chromatik.Zip
         }
 
         /// <summary>
-        /// The MIME type of the zip file
+        /// The MIME type for ZIP archive file.
         /// </summary>
         public const string Mimetype = "application/zip";
 
         /// <summary>
-        /// Supprime le dossier "__MACOSX" de l'archive ZIP
+        /// Delete the "__MACOSX" folder from the ZIP archive.
         /// </summary>
-        /// <param name="ZipPath">zip cible</param>
-        /// <returns>Retour true si l'ePub a était modifier; sinon false</returns>
-        static public bool Delete__MACOSX(string ZipPath)
+        /// <param name="zipPath">ZIP target</param>
+        /// <returns>Return true if the ZIP archive a was modified</returns>
+        static public bool Delete__MACOSX(string zipPath)
         {
-            using (ZipFile zip = new ZipFile(ZipPath))
+            using (ZipFile zip = new ZipFile(zipPath))
                 if (Delete__MACOSX(zip))
                 {
                     zip.Save();
@@ -55,10 +55,10 @@ namespace Chromatik.Zip
         }
 
         /// <summary>
-        /// Supprime le dossier "__MACOSX" de l'archive ZIP
+        /// Delete the "__MACOSX" folder from the ZIP archive.
         /// </summary>
-        /// <param name="zip">zip cible</param>
-        /// <returns>Retour true si l'ePub a était modifier; sinon false</returns>
+        /// <param name="zip">ZIP target</param>
+        /// <returns>Return true if the ZIP archive a was modified</returns>
         static public bool Delete__MACOSX(ZipFile zip)
         {
             List<ZipEntry> lst = new List<ZipEntry>();
@@ -72,6 +72,11 @@ namespace Chromatik.Zip
             return (lst.Count > 0);
         }
 
+        /// <summary>
+        /// Read and load a ZIP from file.
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
         static public ZipFile Read(string fileName)
         {
             try
@@ -91,6 +96,11 @@ namespace Chromatik.Zip
                 throw ex;
             }
         }
+        /// <summary>
+        /// Read and load a ZIP from stream.
+        /// </summary>
+        /// <param name="zipStream"></param>
+        /// <returns></returns>
         static public ZipFile Read(Stream zipStream)
         {
             try
@@ -110,6 +120,11 @@ namespace Chromatik.Zip
                 throw ex;
             }
         }
+        /// <summary>
+        /// Read and load a ZIP from <see cref="byte"/>[].
+        /// </summary>
+        /// <param name="buffer"></param>
+        /// <returns></returns>
         static public ZipFile Read(byte[] buffer)
         {
             try
@@ -130,7 +145,11 @@ namespace Chromatik.Zip
             }
         }
 
-
+        /// <summary>
+        /// Checks the ZIP file to see if its directory is consistent.
+        /// </summary>
+        /// <param name="zipFileName"></param>
+        /// <returns></returns>
         public static bool CheckZip(string zipFileName)
         {
             try
@@ -150,6 +169,10 @@ namespace Chromatik.Zip
                 throw ex;
             }
         }
+        /// <summary>
+        /// Rewrite the directory within a ZIP file.
+        /// </summary>
+        /// <param name="zipFileName"></param>
         public static void FixZipDirectory(string zipFileName)
         {
             try
@@ -169,7 +192,11 @@ namespace Chromatik.Zip
                 throw ex;
             }
         }
-
+        /// <summary>
+        /// Checks a file to see if it is a valid ZIP file.
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
         public static bool IsZipFile(string fileName)
         {
             try
@@ -189,11 +216,17 @@ namespace Chromatik.Zip
                 throw ex;
             }
         }
+        /// <summary>
+        /// Checks a stream to see if it contains a valid ZIP archive.
+        /// </summary>
+        /// <param name="stream"></param>
+        /// <param name="testExtract"></param>
+        /// <returns></returns>
         public static bool IsZipFile(Stream stream, bool testExtract)
         {
             try
             {
-                return Ionic.Zip.ZipFile.IsZipFile(stream, true);
+                return Ionic.Zip.ZipFile.IsZipFile(stream, testExtract);
             }
             catch (Ionic.Zip.ZipException ex)
             {

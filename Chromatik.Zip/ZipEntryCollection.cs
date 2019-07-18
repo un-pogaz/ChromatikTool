@@ -70,7 +70,7 @@ namespace Chromatik.Zip
         /// <summary>
         /// Gets the index of the specified FileName.
         /// </summary>
-        /// <param name="entry"></param>
+        /// <param name="entryName"></param>
         /// <returns></returns>
         public int IndexOf(string entryName)
         {

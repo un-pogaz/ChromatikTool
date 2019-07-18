@@ -7,16 +7,23 @@ using System.IO;
 
 namespace Chromatik.Zip
 {
+    /// <summary>
+    /// The ZipFile type represents a zip archive file. This class reads and
+    /// writes zip files, as definedin the format for zip described by PKWare.
+    /// </summary>
     public partial class ZipFile : IEnumerable<ZipEntry>, IEnumerable, IDisposable
     {
+        /// <summary>
+        /// Base <see cref="Ionic.Zip.ZipFile"/>
+        /// </summary>
         protected Ionic.Zip.ZipFile zipFile;
 
         /// <summary>
-        /// Create a new empty <see cref="ZipFile"/>
+        /// Create a new empty <see cref="ZipFile"/>.
         /// </summary>
         public ZipFile() : this(new Ionic.Zip.ZipFile(Encoding.UTF8))
         { }
-
+        
         static private Ionic.Zip.ZipFile GetZipFile(Stream stream)
         {
             try
@@ -37,7 +44,7 @@ namespace Chromatik.Zip
             }
         }
         /// <summary>
-        /// Load a <see cref="ZipFile"/> from a  <see cref="Stream"/>
+        /// Load a <see cref="ZipFile"/> from a  stream.
         /// </summary>
         public ZipFile(Stream stream) : this(GetZipFile(stream))
         { }
@@ -65,7 +72,7 @@ namespace Chromatik.Zip
             }
         }
         /// <summary>
-        /// Load a <see cref="ZipFile"/> from a file, or create a new if it does not exist
+        /// Load a <see cref="ZipFile"/> from a file, or create a new if it does not exist.
         /// </summary>
         public ZipFile(string path) : this(GetZipFile(path))
         { }
@@ -90,36 +97,10 @@ namespace Chromatik.Zip
             ///////////////////
 
             Delete__MACOSX(this);
-            DelDirectory();
         }
 
-        private void DelDirectory()
-        {
-            try
-            {
-                List<string> lstDir = new List<string>();
-                foreach (var item in zipFile.Entries)
-                    if (item.IsDirectory)
-                        lstDir.Add(item.FileName);
-
-                foreach (var item in lstDir)
-                    zipFile.RemoveEntry(item);
-            }
-            catch (Ionic.Zip.ZipException ex)
-            {
-                throw ZipException.FromIonic(ex);
-            }
-            catch (Ionic.Zlib.ZlibException ex)
-            {
-                throw ZipException.FromIonic(ex);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
         /// <summary>
-        /// The name of the ZipFile, on disk.
+        /// The name of this ZIP archive, on disk.
         /// </summary>
         public string ZipFileName {
             get { return zipFile.Name; }
@@ -144,7 +125,7 @@ namespace Chromatik.Zip
             }
         }
         /// <summary>
-        /// A comment attached to the zip archive.
+        /// A comment attached to the ZIP archive.
         /// </summary>
         public string Comment {
             get { return zipFile.Comment; }
@@ -169,7 +150,7 @@ namespace Chromatik.Zip
             }
         }
         /// <summary>
-        /// Obtains the number of elements contained in the collection
+        /// Obtains the number of elements contained in the collection.
         /// </summary>
         public int Count { get { return Entries.Count; } }
         /// <summary>
@@ -185,6 +166,10 @@ namespace Chromatik.Zip
         /// <returns>null if not found</returns>
         public ZipEntry this[string entryName] { get { return Entries[entryName]; } }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         protected virtual IList<ZipEntry> CreateEntries()
         {
             try
@@ -209,12 +194,14 @@ namespace Chromatik.Zip
             }
         }
         /// <summary>
-        /// 
+        /// List of entries in the ZIP archive.
         /// </summary>
         public ZipEntryCollection Entries { get { return new ZipEntryCollection(CreateEntries()); } }
 
-        public ZipEntry GetEntry(string entyName) { return Entries[entyName]; }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         protected virtual IList<ZipEntry> CreateEntriesSorted()
         {
             try
@@ -241,11 +228,18 @@ namespace Chromatik.Zip
             }
         }
         /// <summary>
-        /// 
+        /// Sorted list of entries in the ZIP archive.
         /// </summary>
         public ZipEntryCollection EntriesSorted { get { return new ZipEntryCollection(CreateEntriesSorted()); } }
+
         /// <summary>
         /// 
+        /// </summary>
+        /// <param name="entyName"></param>
+        /// <returns></returns>
+        public ZipEntry GetEntry(string entyName) { return Entries[entyName]; }
+        /// <summary>
+        /// List only the entries name in the ZIP archive.
         /// </summary>
         public IReadOnlyList<string> EntriesNames
         {
@@ -259,8 +253,7 @@ namespace Chromatik.Zip
         }
 
         /// <summary>
-        /// Adds a named entry into the zip archive, taking content for the entry from a
-        /// string.
+        /// Add a text entrie in the ZIP archive.
         /// </summary>
         /// <param name="entryName"></param>
         /// <param name="content"></param>
@@ -270,8 +263,7 @@ namespace Chromatik.Zip
             AddEntry(entryName, "", Encoding.UTF8);
         }
         /// <summary>
-        /// Adds a named entry into the zip archive, taking content for the entry from a
-        /// string, and using the specified text encoding.
+        /// Add a text entrie with encoding in the ZIP archive.
         /// </summary>
         /// <param name="entryName"></param>
         /// <param name="content"></param>
@@ -287,9 +279,7 @@ namespace Chromatik.Zip
             AddEntry(entryName, ms);
         }
         /// <summary>
-        /// Add an entry into the zip archive using the given filename and directory path
-        /// within the archive, and the given content for the file. No file is created in
-        /// the filesystem.
+        /// Add a entrie in the ZIP archive from <see cref="byte"/>[]
         /// </summary>
         /// <param name="entryName"></param>
         /// <param name="byteContent"></param>
@@ -299,7 +289,7 @@ namespace Chromatik.Zip
             AddEntry(entryName, new MemoryStream(byteContent));
         }
         /// <summary>
-        /// Create an entry in the ZipFile using the given Stream as input. The entry will have the given filename.
+        /// Add a entrie in the ZIP archive from <see cref="byte"/>[]
         /// </summary>
         /// <param name="entryName"></param>
         /// <param name="stream"></param>
@@ -324,7 +314,7 @@ namespace Chromatik.Zip
             }
         }
         /// <summary>
-        /// Create an entry in the ZipFile using the specified file.
+        /// Add a entrie in the ZIP archive from file.
         /// </summary>
         /// <param name="entryName"></param>
         /// <param name="filePath"></param>
@@ -334,7 +324,7 @@ namespace Chromatik.Zip
             AddEntry(entryName, new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read));
         }
         /// <summary>
-        /// 
+        /// Add all files of the directory in the ZIP archive.
         /// </summary>
         /// <param name="directoryPath"></param>
         public void AddEntryFromDirectory(string directoryPath)
@@ -342,7 +332,7 @@ namespace Chromatik.Zip
             AddEntryFromDirectory(directoryPath, "*");
         }
         /// <summary>
-        /// 
+        /// Add all matched file of the directory in the ZIP archive.
         /// </summary>
         /// <param name="directoryPath"></param>
         /// <param name="searchPattern"></param>
@@ -354,7 +344,7 @@ namespace Chromatik.Zip
         }
 
         /// <summary>
-        /// Removes the ZipEntry from the zip archive.
+        /// Remove the entrie from the ZIP archive.
         /// </summary>
         /// <param name="entry"></param>
         /// <returns></returns>
@@ -363,7 +353,7 @@ namespace Chromatik.Zip
             return RemoveEntry(entry.FileName);
         }
         /// <summary>
-        /// Removes the ZipEntry with the given filename from the zip archive.
+        /// Remove the entrie with the given filename from the ZIP archive.
         /// </summary>
         /// <param name="entryName"></param>
         /// <returns></returns>
@@ -393,7 +383,7 @@ namespace Chromatik.Zip
             return false;
         }
         /// <summary>
-        /// Remove all entry from the zip archive.
+        /// Remove all entrie from the ZIP archive.
         /// </summary>
         public void RemoveAllEntry()
         {
@@ -401,33 +391,71 @@ namespace Chromatik.Zip
                 RemoveEntry(item);
         }
 
+        /// <summary>
+        /// Update a text entrie in the ZIP archive
+        /// </summary>
+        /// <param name="entryName"></param>
+        /// <param name="content"></param>
         public void UpdateEntry(string entryName, string content)
         {
             RemoveEntry(entryName);
             AddEntry(entryName, content);
         }
+        /// <summary>
+        /// Update a text entrie with encoding in the ZIP archive
+        /// </summary>
+        /// <param name="entryName"></param>
+        /// <param name="content"></param>
+        /// <param name="encoding"></param>
         public void UpdateEntry(string entryName, string content, Encoding encoding)
         {
             RemoveEntry(entryName);
             AddEntry(entryName, content, encoding);
         }
+        /// <summary>
+        /// Update entrie in the ZIP archive from <see cref="byte"/>[]
+        /// </summary>
+        /// <param name="entryName"></param>
+        /// <param name="byteContent"></param>
         public void UpdateEntry(string entryName, byte[] byteContent)
         {
             RemoveEntry(entryName);
             AddEntry(entryName, byteContent);
         }
+        /// <summary>
+        /// Update a  entrie in the ZIP archive from a stream.
+        /// </summary>
+        /// <param name="entryName"></param>
+        /// <param name="stream"></param>
         public void UpdateEntry(string entryName, Stream stream)
         {
             RemoveEntry(entryName);
             AddEntry(entryName, stream);
         }
 
+        /// <summary>
+        /// Update a entrie in the ZIP archive from a file.
+        /// </summary>
+        /// <param name="entryName"></param>
+        /// <param name="filePath"></param>
         public void UpdateEntryFromFile(string entryName, string filePath)
         {
             RemoveEntry(entryName);
             AddEntryFromFile(entryName, filePath);
         }
-        public void UpdateEntryFromDirectory(string directoryPath) { UpdateEntryFromDirectory(directoryPath, "*"); }
+        /// <summary>
+        /// Update and add all files of the directory in the ZIP archive.
+        /// </summary>
+        /// <param name="directoryPath"></param>
+        public void UpdateEntryFromDirectory(string directoryPath)
+        {
+            UpdateEntryFromDirectory(directoryPath, "*");
+        }
+        /// <summary>
+        /// Update and add all matched file of the directory in the ZIP archive.
+        /// </summary>
+        /// <param name="directoryPath"></param>
+        /// <param name="searchPattern"></param>
         public void UpdateEntryFromDirectory(string directoryPath, string searchPattern)
         {
             directoryPath = Path.GetFullPath(directoryPath);
@@ -436,16 +464,15 @@ namespace Chromatik.Zip
         }
 
         /// <summary>
-        /// Saves the Zip archive to a file, specified by the Name property of the ZipFile.
+        /// Saves the ZIP archive to a file, specified by the Name property.
         /// </summary>
         public void Save() { Save(ZipFileName); }
         /// <summary>
-        ///  Save the file to a new zipfile, with the given name.
+        ///  Save the ZIP archive to a file.
         /// </summary>
         /// <param name="fileName">The name of the zip archive to save to. Existing files will be overwritten with great prejudice.</param>
         public void Save(string fileName)
         {
-            DelDirectory();
             try
             {
                 zipFile.Save(fileName);
@@ -464,10 +491,19 @@ namespace Chromatik.Zip
             }
         }
 
+        /// <summary>
+        /// Extract all file in the specified directory
+        /// </summary>
+        /// <param name="path"></param>
         public void ExtractAll(string path)
         {
             ExtractAll(path, false);
         }
+        /// <summary>
+        /// Extract and overwrite all file in the specified directory.
+        /// </summary>
+        /// <param name="directoryPath"></param>
+        /// <param name="overwrite"></param>
         public void ExtractAll(string directoryPath, bool overwrite)
         {
             directoryPath = Path.GetFullPath(directoryPath);
@@ -478,18 +514,26 @@ namespace Chromatik.Zip
                 item.Extract(Path.Combine(directoryPath, item.FileName), overwrite);
         }
 
-
-
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public System.Collections.Generic.IEnumerator<ZipEntry> GetEnumerator()
         {
             return Entries.GetEnumerator();
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
             return Entries.GetEnumerator();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void Dispose()
         {
             zipFile.Dispose();

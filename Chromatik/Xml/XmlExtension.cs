@@ -6,6 +6,9 @@ using System.Xml.Linq;
 
 namespace System.Xml
 {
+    /// <summary>
+    /// Static class extension pour <see cref="XmlElement"/>
+    /// </summary>
     static public class XmlExtension
     {
         /// <summary>
@@ -31,7 +34,7 @@ namespace System.Xml
         /// <summary>
         /// Ajoute un <see cref="XmlElement"/> à la fin de la liste des nœuds enfants de ce nœud. 
         /// </summary>
-        /// <param name="node">Nœud parent</param>
+        /// <param name="node">Nœud cible</param>
         /// <param name="name">Nom de l'élément ajouté</param>
         /// <returns>Élément ajouté</returns>
         static public XmlElement AppendElement(this XmlNode node, string name)
@@ -41,7 +44,7 @@ namespace System.Xml
         /// <summary>
         /// Ajoute un <see cref="XmlElement"/> à la fin de la liste des nœuds enfants de ce nœud. 
         /// </summary>
-        /// <param name="node">Nœud parent</param>
+        /// <param name="node">Nœud cible</param>
         /// <param name="name">Nom de l'élément ajouté</param>
         /// <param name="namespaceURI">Namespace du <see cref="XmlElement"/></param>
         /// <returns>Élément ajouté</returns>
@@ -52,7 +55,7 @@ namespace System.Xml
         /// <summary>
         /// Ajoute un <see cref="XmlElement"/> à la fin de la liste des nœuds enfants de ce nœud. 
         /// </summary>
-        /// <param name="node">Nœud parent</param>
+        /// <param name="node">Nœud cible</param>
         /// <param name="localName">Nom de l'élément ajouté</param>
         /// <param name="ns"><see cref="XmlNamespace"/> de l'attribut ajouté</param>
         /// <returns>Élément ajouté</returns>
@@ -63,7 +66,7 @@ namespace System.Xml
         /// <summary>
         /// Ajoute un <see cref="XmlElement"/> à la fin de la liste des nœuds enfants de ce nœud. 
         /// </summary>
-        /// <param name="node">Nœud parent</param>
+        /// <param name="node">Nœud cible</param>
         /// <param name="prefix">Prefix l'élément ajouté</param>
         /// <param name="localName">Nom local de l'élément ajouté</param>
         /// <param name="namespaceURI">Namespace du <see cref="XmlElement"/></param>
@@ -78,12 +81,12 @@ namespace System.Xml
             else
                 return (XmlElement)node.AppendChild(node.OwnerDocument.CreateElement(prefix, localName, namespaceURI));
         }
-        
+
         /// <summary>
         /// Ajoute un <see cref="XmlElement"/> à la fin de la liste des nœuds enfants de ce nœud. 
         /// </summary>
-        /// <param name="node">Nœud parent</param>
-        /// <param name="name">Nom de l'élément ajouté</param>
+        /// <param name="node">Nœud cible</param>
+        /// <param name="text">Texte a ajouté</param>
         /// <returns>Élément ajouté</returns>
         static public XmlText AppendText(this XmlNode node, string text)
         {

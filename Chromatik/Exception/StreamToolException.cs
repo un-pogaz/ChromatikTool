@@ -14,6 +14,9 @@ namespace System.IO
         /// </summary>
         public StreamToolException() : base() { }
         
+        /// <summary>
+        /// 
+        /// </summary>
         static public StreamToolException NoEmpty { get { return new StreamToolException("Le Stream de destination n'est pas vide"); } }
 
         /// <summary>

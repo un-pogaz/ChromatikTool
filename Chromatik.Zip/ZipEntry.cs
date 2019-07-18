@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Text;
 using System.IO;
 using System.Runtime.InteropServices;
@@ -8,21 +9,24 @@ using Ionic.Zlib;
 namespace Chromatik.Zip
 {
     /// <summary>
-    /// Represents a single entry in a ZipFile. Typically, applications get a ZipEntry
-    /// by enumerating the entries within a ZipFile, or by adding an entry to a ZipFile.
+    /// Represents a entry in a ZipFile.
     /// </summary>
     [ComVisible(true)]
     public class ZipEntry
     {
+        /// <summary>
+        /// Base <see cref="Ionic.Zip.ZipEntry"/>
+        /// </summary>
         protected Ionic.Zip.ZipEntry zipEntry { get; }
 
-        protected Ionic.Zip.ZipEntry GetIonic() { return zipEntry; }
-        static protected Ionic.Zip.ZipEntry GetIonic(ZipEntry entry) { return entry.zipEntry; }
-
+        /// <summary>
+        /// Create a <see cref="ZipEntry"/>
+        /// </summary>
+        /// <param name="entry"></param>
         internal ZipEntry(Ionic.Zip.ZipEntry entry)
         {
             zipEntry = entry;
-            ////////////////
+            /////////////////
 
             zipEntry.ProvisionalAlternateEncoding = Encoding.UTF8;
             zipEntry.UseUnicodeAsNecessary = true;
@@ -48,6 +52,10 @@ namespace Chromatik.Zip
             }
         }
 
+        /// <summary>
+        /// Provides a string representation of the instance.
+        /// </summary>
+        /// <returns></returns>
         new public string ToString() { return FileName; }
 
         /// <summary>
@@ -87,10 +95,6 @@ namespace Chromatik.Zip
         /// </summary>
         public double CompressionRatio { get { return zipEntry.CompressionRatio; } }
 
-        /// <summary>
-        ///// The stream that provides content for the ZipEntry.
-        ///// </summary>
-        //public Stream InputStream { get { return zipEntry.InputStream; } set { zipEntry.InputStream = value; } }
         /// <summary>
         /// Indicates whether the entry was included in the most recent save.
         /// </summary>
@@ -143,14 +147,76 @@ namespace Chromatik.Zip
 
             using (FileStream fileStream = new FileStream(destinationFileName, fm, FileAccess.ReadWrite, FileShare.Read))
             {
-                Extract(fileStream);
+                using (Stream stream = GetStream())
+                    stream.CopyTo(fileStream);
             }
         }
+
         /// <summary>
-        /// Extracts the entry to the specified stream.
+        /// Get a clone stream of the entry content.
         /// </summary>
-        /// <param name="stream">the stream to which the entry should be extracted.</param>
-        public void Extract(Stream stream) { zipEntry.Extract(stream); }
+        /// <returns></returns>
+        public Stream GetStream()
+        {
+            MemoryStream loadMemory = new MemoryStream();
+            zipEntry.Extract(loadMemory);
+            loadMemory.Position = 0;
+            MemoryStream stream = new MemoryStream();
+            loadMemory.CopyTo(stream);
+            stream.Position = 0;
+            loadMemory.Position = 0;
+            return stream;
+        }
+        /// <summary>
+        /// Get the content text of the entry.
+        /// </summary>
+        /// <returns></returns>
+        public string GetText()
+        {
+            using (StreamReader reader = new StreamReader(GetStream()))
+                return reader.ReadToEnd();
+        }
+        /// <summary>
+        /// Get the content line of the entry.
+        /// </summary>
+        /// <returns></returns>
+        public string[] GetLines()
+        {
+            string[] rslt = null;
+            using (StreamReader reader = new StreamReader(GetStream()))
+            {
+                string line = reader.ReadLine();
+                if (line != null)
+                    rslt = new string[0];
+                while (line != null)
+                {
+                    rslt = rslt.Concat(new string[] { line });
+                    line = reader.ReadLine();
+                }
+            }
+            return rslt;
+        }
+        /// <summary>
+        /// Get the content <see cref="byte"/>[] of the entry.
+        /// </summary>
+        /// <returns></returns>
+        public byte[] GetByte()
+        {
+            using (MemoryStream memory = (MemoryStream)GetStream())
+                return memory.ToArray();
+        }
+
+        
+        ///// <summary>
+        ///// The stream that provides content for the ZipEntry.
+        ///// </summary>
+        //public Stream InputStream { get { return zipEntry.InputStream; } set { zipEntry.InputStream = value; } }
+
+        ///// <summary>
+        ///// Extracts the entry to the specified stream.
+        ///// </summary>
+        ///// <param name="stream">the stream to which the entry should be extracted.</param>
+        //public void Extract(Stream stream) { zipEntry.Extract(stream); }
 
     }
 }

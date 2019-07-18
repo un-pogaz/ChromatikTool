@@ -17,7 +17,7 @@ namespace Chromatik.Unicode
         static private string NameID = "Charsets";
 
         static public CodePlane Charsets { get; private set; } = new CodePlane(NameID);
-
+        
         static public string Name { get; } = Charsets.Name;
 
         static public string Description { get; } = Charsets.Description;

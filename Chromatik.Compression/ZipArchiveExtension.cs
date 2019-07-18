@@ -1,12 +1,23 @@
 ﻿using System;
+using System.Linq;
 using System.Text;
 using System.IO;
 using System.IO.Compression;
 
 namespace System.IO.Compression
 {
+    /// <summary>
+    /// 
+    /// </summary>
     static public class ZipArchiveExtension
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="archive"></param>
+        /// <param name="entryName"></param>
+        /// <param name="stringComparison"></param>
+        /// <returns></returns>
         static public ZipArchiveEntry GetEntry(this ZipArchive archive, string entryName, StringComparison stringComparison)
         {
             foreach (ZipArchiveEntry item in archive.Entries)
@@ -16,11 +27,21 @@ namespace System.IO.Compression
             return null;
         }
 
+        /// <summary>
+        /// Obtiens le texte
+        /// </summary>
+        /// <param name="entry"></param>
+        /// <returns></returns>
         static public string GetContentText(this ZipArchiveEntry entry)
         {
             using (StreamReader reader = new StreamReader(entry.Open()))
                 return reader.ReadToEnd();
         }
+        /// <summary>
+        /// Obtiens les lignes du texte
+        /// </summary>
+        /// <param name="entry"></param>
+        /// <returns></returns>
         static public string[] GetContentLines(this ZipArchiveEntry entry)
         {
             string[] rslt = null;
@@ -32,13 +53,18 @@ namespace System.IO.Compression
                     rslt = new string[0];
                 while (line != null)
                 {
-                    rslt = rslt.Append(new string[] { line });
+                    rslt = rslt.Concat(new string[] { line });
                     line = reader.ReadLine();
                 }
             }
 
             return rslt;
         }
+        /// <summary>
+        /// Obtiens le contenues de l'entrée
+        /// </summary>
+        /// <param name="entry"></param>
+        /// <returns></returns>
         static public byte[] GetContentBytes(this ZipArchiveEntry entry)
         {
             byte[] rslt = null;
@@ -50,7 +76,7 @@ namespace System.IO.Compression
                     rslt = new byte[0];
                 while (b >= 0)
                 {
-                    rslt = rslt.Append(new byte[] { (byte)b });
+                    rslt = rslt.Concat(new byte[] { (byte)b });
                     b = reader.ReadByte();
                 }
             }

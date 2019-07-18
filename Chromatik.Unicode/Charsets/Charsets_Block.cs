@@ -5,8 +5,17 @@ using System.Xml;
 
 namespace Chromatik.Unicode
 {
+    /// <summary>
+    /// Represent a Charset collection
+    /// </summary>
     partial class Charset
     {
+        /// <summary>
+        /// Load a Charset collection from a XML file
+        /// </summary>
+        /// <param name="Element"></param>
+        /// <param name="lang"></param>
+        /// <returns></returns>
         static public CodeBlock CharsetFromXml(XmlElement Element, string lang)
         {
             if (Element.Name != "Charset" || string.IsNullOrWhiteSpace(Element.GetAttribute("nameID")))
@@ -80,7 +89,7 @@ namespace Chromatik.Unicode
             else
                 throw XmlUnicodeException.NoLoaded;
         }
-
+        
         public struct Sets
         {
             static public CodeBlock ASCII

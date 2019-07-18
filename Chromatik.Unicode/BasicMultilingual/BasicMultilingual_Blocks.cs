@@ -7,6 +7,9 @@ namespace Chromatik.Unicode
 {
     partial class BasicMultilingual
     {
+        /// <summary>
+        /// <see cref="CodeBlock"/> of the Basic Multilingual plane
+        /// </summary>
         public struct BMP
         {
             #region 0000

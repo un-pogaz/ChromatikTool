@@ -6,16 +6,37 @@ using System.IO.Compression;
 
 namespace Chromatik.Compression
 {
+    /// <summary>
+    /// 
+    /// </summary>
     static public class ChromatikZIP
     {
+        /// <summary>
+        /// Obtient un <see cref="ZipArchive"/>
+        /// </summary>
+        /// <param name="ZipPath"></param>
+        /// <returns></returns>
         static public ZipArchive GetArchive(string ZipPath)
         {
             return GetArchive(ZipPath, FileAccess.ReadWrite, FileShare.ReadWrite);
         }
+        /// <summary>
+        /// Obtient un <see cref="ZipArchive"/>
+        /// </summary>
+        /// <param name="ZipPath"></param>
+        /// <param name="access"></param>
+        /// <returns></returns>
         static public ZipArchive GetArchive(string ZipPath, FileAccess access)
         {
             return GetArchive(ZipPath, access, FileShare.ReadWrite);
         }
+        /// <summary>
+        /// Obtient un <see cref="ZipArchive"/>
+        /// </summary>
+        /// <param name="ZipPath"></param>
+        /// <param name="access"></param>
+        /// <param name="share"></param>
+        /// <returns></returns>
         static public ZipArchive GetArchive(string ZipPath, FileAccess access, FileShare share)
         {
             ZipArchiveMode ZipMode = ZipArchiveMode.Update;
@@ -25,12 +46,11 @@ namespace Chromatik.Compression
             return new ZipArchive(new FileStream(ZipPath, FileMode.OpenOrCreate, access, share), ZipMode, false);
         }
 
-
         /// <summary>
         /// Supprime le dossier "__MACOSX" de l'archive ZIP
         /// </summary>
-        /// <param name="EPUBpath">ePub cible</param>
-        /// <returns>Retour true si l'ePub a était modifier; sinon false</returns>
+        /// <param name="ZipPath">ZIP cible</param>
+        /// <returns>Retour true si le ZIP a était modifier; sinon false</returns>
         static public bool Delete__MACOSX(string ZipPath)
         {
             bool edited = false;
@@ -52,8 +72,8 @@ namespace Chromatik.Compression
         /// <summary>
         /// Supprime le dossier "__MACOSX" de l'archive ZIP
         /// </summary>
-        /// <param name="EPUBpath">ePub cible</param>
-        /// <returns>Retour true si l'ePub a était modifier; sinon false</returns>
+        /// <param name="zip">ZIP cible</param>
+        /// <returns>Retour true si le ZIP a était modifier; sinon false</returns>
         static public bool Delete__MACOSX(ZipArchive zip)
         {
             bool edited = false;

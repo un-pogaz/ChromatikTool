@@ -1398,7 +1398,7 @@ namespace System.MimeType
         /// <summary>
         /// Get the extensions associated with the MINE type
         /// </summary>
-        /// <param name="extension"></param>
+        /// <param name="mimeType"></param>
         /// <returns>String array of extensions associated with the MINE type</returns>
         public static string[] GetExtension(string mimeType) { return GetExtension(mimeType, false); }
         /// <summary>

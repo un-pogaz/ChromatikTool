@@ -6,10 +6,23 @@ using System.MimeType;
 
 namespace System.Base64
 {
+    /// <summary>
+    /// Static class for parse file in base 64
+    /// </summary>
     static public class Base64file
     {
+        /// <summary>
+        /// Get Base64 from a file, in web format
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <returns></returns>
         static public string FromFile(string filePath) { return FromFile(filePath, true); }
-
+        /// <summary>
+        /// Get Base64 from a file
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <param name="WebFormat"></param>
+        /// <returns></returns>
         static public string FromFile(string filePath, bool WebFormat)
         {
             if (File.Exists(filePath))
@@ -24,10 +37,15 @@ namespace System.Base64
                 return null;
         }
 
+        /// <summary>
+        /// Create file from a Base64
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <param name="base64"></param>
         static public void Create(string filePath, string base64)
         {
             // One line
-            string b64 = base64.Replace(Environment.NewLine, string.Empty).Trim();
+            string b64 = base64.RegexBoucle("(\r|\n)", string.Empty).Trim();
 
             // Suppresion des metadonées base64url
             while (b64.Contains(","))

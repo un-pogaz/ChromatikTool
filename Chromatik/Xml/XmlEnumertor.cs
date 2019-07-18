@@ -97,7 +97,7 @@ namespace System.Xml
         /// <summary>
         /// Enumerate the <see cref="XmlElement"/> with the corresponding name and and with the corresponding value attribute in the <see cref="XmlNodeList"/>
         /// </summary>
-        /// <param name="node"></param>
+        /// <param name="nodeList"></param>
         /// <param name="name"></param>
         /// <param name="attribute"></param>
         /// <param name="value"></param>
