@@ -5,6 +5,9 @@ using System.Xml;
 
 namespace Chromatik.Unicode
 {
+    /// <summary>
+    /// Represent the Basic Multilingual plane
+    /// </summary>
     static public partial class BasicMultilingual
     {
         /// <summary>
@@ -16,10 +19,19 @@ namespace Chromatik.Unicode
 
         static private string NameID = "Basic Multilingual Plane";
 
+        /// <summary>
+        /// All <see cref="CodeBlock"/> of the Basic Multilingual plane
+        /// </summary>
         static public CodePlane Blocks { get; private set; } = new CodePlane(NameID);
 
+        /// <summary>
+        /// Local name of the Basic Multilingual plane
+        /// </summary>
         static public string Name { get; } = Blocks.Name;
 
+        /// <summary>
+        /// Local description of the Basic Multilingual plane
+        /// </summary>
         static public string Description { get; } = Blocks.Description;
 
         /// <summary>

@@ -145,7 +145,11 @@ namespace Chromatik.Zip
             }
         }
 
-
+        /// <summary>
+        /// Checks the ZIP file to see if its directory is consistent.
+        /// </summary>
+        /// <param name="zipFileName"></param>
+        /// <returns></returns>
         public static bool CheckZip(string zipFileName)
         {
             try
@@ -165,6 +169,10 @@ namespace Chromatik.Zip
                 throw ex;
             }
         }
+        /// <summary>
+        /// Rewrite the directory within a ZIP file.
+        /// </summary>
+        /// <param name="zipFileName"></param>
         public static void FixZipDirectory(string zipFileName)
         {
             try
@@ -184,7 +192,11 @@ namespace Chromatik.Zip
                 throw ex;
             }
         }
-
+        /// <summary>
+        /// Checks a file to see if it is a valid ZIP file.
+        /// </summary>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
         public static bool IsZipFile(string fileName)
         {
             try
@@ -204,11 +216,17 @@ namespace Chromatik.Zip
                 throw ex;
             }
         }
+        /// <summary>
+        /// Checks a stream to see if it contains a valid ZIP archive.
+        /// </summary>
+        /// <param name="stream"></param>
+        /// <param name="testExtract"></param>
+        /// <returns></returns>
         public static bool IsZipFile(Stream stream, bool testExtract)
         {
             try
             {
-                return Ionic.Zip.ZipFile.IsZipFile(stream, true);
+                return Ionic.Zip.ZipFile.IsZipFile(stream, testExtract);
             }
             catch (Ionic.Zip.ZipException ex)
             {

@@ -51,6 +51,10 @@ namespace System.Windows.Forms
             DrawText();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="m"></param>
         protected override void WndProc(ref Message m)
         {
             base.WndProc(ref m);
