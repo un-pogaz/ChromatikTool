@@ -61,12 +61,12 @@ namespace Chromatik.SlimDX
         /// <summary>
         /// Dead zone value for the different axes
         /// </summary>
-        public JoystickDeadZone DeadZone { get; } = new JoystickDeadZone(0);
+        public DeadZone DeadZone { get; } = new JoystickDeadZone(0);
 
         /// <summary>
         /// Inversed axes of the joystick
         /// </summary>
-        public JoystickInversedAxe InversedAxe { get; } = new JoystickInversedAxe();
+        public InversedAxe InversedAxe { get; } = new JoystickInversedAxe();
         
         protected JoystickState JoystickState
         {
@@ -374,7 +374,7 @@ namespace Chromatik.SlimDX
     /// <summary>
     /// Class to define the inversed axes.
     /// </summary>
-    public class JoystickInversedAxe
+    public class InversedAxe
     {
         public bool AxeX { get; set; }
         public bool AxeY { get; set; }
@@ -412,18 +412,18 @@ namespace Chromatik.SlimDX
     /// <summary>
     /// Class to define the dead zone for different axes.
     /// </summary>
-    public class JoystickDeadZone
+    public class DeadZone
     {
         /// <summary>
         /// Create a clas with no dead zone
         /// </summary>
-        public JoystickDeadZone() : this(0)
+        public DeadZone() : this(0)
         { }
         /// <summary>
         /// Create a clas with the specified value.
         /// </summary>
         /// <param name="value"></param>
-        public JoystickDeadZone(int value)
+        public DeadZone(int value)
         {
             SetAll(value);
         }
