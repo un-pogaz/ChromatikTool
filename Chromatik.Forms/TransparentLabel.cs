@@ -4,7 +4,7 @@ using System.Windows.Forms;
 using System.ComponentModel;
 using System.Drawing.Design;
 
-namespace System.Windows.Forms
+namespace Chromatik.Forms
 {
     /// <summary>
     /// A label that can be transparent.

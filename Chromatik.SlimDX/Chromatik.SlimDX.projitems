@@ -3,15 +3,16 @@
   <PropertyGroup>
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
     <HasSharedItems>true</HasSharedItems>
-    <SharedGUID>9c65a1f9-699c-45a7-b724-24d706e31637</SharedGUID>
+    <SharedGUID>748d4242-3809-4a88-ae97-a4360a535fdd</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
-    <Import_RootNamespace>Chromatik.Forms</Import_RootNamespace>
+    <Import_RootNamespace>Chromatik.SlimDX</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)ChromatikToolStrip.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)TransparentLabel.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <None Include="$(MSBuildThisFileDirectory)SlimDX.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)GenericJoystick.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)JoystickDevice.cs" />
   </ItemGroup>
 </Project>

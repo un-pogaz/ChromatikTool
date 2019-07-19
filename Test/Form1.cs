@@ -15,6 +15,9 @@ namespace Test
         public Form1()
         {
             InitializeComponent();
+
+            contextMenuStrip1.Renderer = Chromatik.Forms.ChromatikToolStrip.Defaut;
+            menuStrip1.Renderer = Chromatik.Forms.ChromatikToolStrip.Defaut;
         }
     }
 }
