@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChromatikTool", "ChromatikTool\ChromatikTool.csproj", "{1B81048C-2F5F-4F46-8AC4-492D100C0824}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChromatikTool.IDpub", "ChromatikToo.IDpub\ChromatikTool.IDpub.csproj", "{8A18B5F6-8B80-45F7-9ED4-6923DEDBF4D6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChromatikTool.IDpub", "ChromatikTool.IDpub\ChromatikTool.IDpub.csproj", "{8A18B5F6-8B80-45F7-9ED4-6923DEDBF4D6}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Chromatik", "Chromatik\Chromatik.shproj", "{7E078EC5-80B5-40A3-A55F-08B97E642325}"
 EndProject
