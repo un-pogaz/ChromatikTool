@@ -73,11 +73,6 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="ResourceForms\close_cross.png" />
-    <None Include="ResourceForms\cross.svg" />
-    <None Include="ResourceForms\close_cross.svg" />
-  </ItemGroup>
   <Import Project="..\Chromatik\Chromatik.projitems" Label="Shared" />
   <Import Project="..\Chromatik.Drawing\Chromatik.Drawing.projitems" Label="Shared" />
   <Import Project="..\Chromatik.Zip\Chromatik.Zip.projitems" Label="Shared" />
