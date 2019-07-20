@@ -46,7 +46,8 @@ namespace Chromatik.Unicode
         {
             List<int> srt = new List<int>();
             foreach (string item in CodePoints)
-                srt.Add(IntFromHex(item));
+                if (!string.IsNullOrWhiteSpace(item))
+                    srt.Add(IntFromHex(item));
             srt.Sort();
 
             List<string> lst = new List<string>();
