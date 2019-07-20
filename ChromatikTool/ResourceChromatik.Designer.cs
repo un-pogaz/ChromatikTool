@@ -78,7 +78,7 @@ namespace Chromatik {
         ///    &lt;/Charset&gt;
         ///    &lt;Charset nameID=&quot;Latin-1&quot;&gt;
         ///      &lt;Name lang=&quot;en&quot;&gt;Latin-1&lt;/Name&gt;
-        ///      &lt;Description lang=&quot;en&quot;&gt;Latin-1 Western European&lt;/Descript [le reste de la chaîne a été tronqué]&quot;;.
+        ///      &lt;Description lang=&quot;en&quot;&gt;Latin-1 Western E [le reste de la chaîne a été tronqué]&quot;;.
         /// </summary>
         internal static string Charsets_XML {
             get {
@@ -89,8 +89,30 @@ namespace Chromatik {
         /// <summary>
         ///   Recherche une chaîne localisée semblable à &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
         ///&lt;XML&gt;
+        ///  &lt;ConScript&gt;
+        ///    &lt;Plane nameID=&quot;ConScript Unicode Registry&quot;&gt;
+        ///      &lt;Name lang=&quot;en&quot;&gt;ConScript Unicode Registry&lt;/Name&gt;
+        ///      &lt;Description lang=&quot;en&quot;&gt;&lt;/Description&gt;
+        ///      
+        ///      &lt;Block nameID=&quot;Tengwar&quot;&gt;
+        ///        &lt;Name lang=&quot;en&quot;&gt;Tengwar&lt;/Name&gt;
+        ///        &lt;Description lang=&quot;en&quot;&gt;&lt;/Description&gt;
+        ///        &lt;Localisable&gt;
+        ///          &lt;Languages lang=&quot;en&quot;&gt;&lt;/Languages&gt;
+        ///          &lt;Countries lang=&quot;en&quot;&gt;&lt;/Countries&gt;
+        ///        &lt;/Localisable&gt;
+        ///        &lt;WebCharTable url=&quot;https:// [le reste de la chaîne a été tronqué]&quot;;.
+        /// </summary>
+        internal static string ConScript_XML {
+            get {
+                return ResourceManager.GetString("ConScript_XML", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+        ///&lt;XML&gt;
         ///  &lt;Unicode&gt;
-        ///    
         ///    &lt;Plane nameID=&quot;Basic Multilingual Plane&quot;&gt;
         ///      &lt;Name lang=&quot;en&quot;&gt;Basic Multilingual Plane&lt;/Name&gt;
         ///      &lt;Name lang=&quot;fr&quot;&gt;Plan multilingue de base&lt;/Name&gt;
@@ -101,7 +123,7 @@ namespace Chromatik {
         ///        &lt;Description lang=&quot;en&quot;&gt;&lt;/Description&gt;
         ///        &lt;Localisable&gt;
         ///          &lt;Languages&gt;&lt;/Languages&gt;
-        ///          &lt;Countries&gt;&lt;/Countr [le reste de la chaîne a été tronqué]&quot;;.
+        ///          &lt;Countries&gt; [le reste de la chaîne a été tronqué]&quot;;.
         /// </summary>
         internal static string Unicode_XML {
             get {

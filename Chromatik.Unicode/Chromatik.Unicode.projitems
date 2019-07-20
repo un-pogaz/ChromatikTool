@@ -35,9 +35,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)UnicodeExceptions.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="$(MSBuildThisFileDirectory)Chromatik.Unicode.xml" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)unicode.ConScript.xml" />
     <None Include="$(MSBuildThisFileDirectory)unicode.Charsets.xml" />
     <None Include="$(MSBuildThisFileDirectory)unicode.Unicode.xml" />

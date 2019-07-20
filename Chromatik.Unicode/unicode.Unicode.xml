@@ -128,13 +128,13 @@
         <Description lang="en"></Description>
         <Localisable>
           <Languages lang="en">Greek, Coptic</Languages>
-        <Name lang="fr"></Name>
+          <Name lang="fr"></Name>
           <Countries lang="en">Greece</Countries>
         </Localisable>
         <WebCharTable url="https://unicode-table.com/en/blocks/greek-coptic/" />
         <CodeRange start="0370" end="03FF">
           <Range>0370-0377,037A-037F,0384-038A</Range>
-            <Range>038C,038E-03A1,03A3-03FF</Range>
+          <Range>038C,038E-03A1,03A3-03FF</Range>
         </CodeRange>
       </Block>
       <Block nameID="Cyrillic">
@@ -348,9 +348,9 @@
         <CodeRange start="0A00" end="0A7F">
           <Range>0A01-0A03,0A05-0A0A,0A0F,0A10</Range>
           <Range>0A13-0A28,0A2A-0A30,0A32,0A33</Range>
-      <Range>0A35,0A36,0A38,0A39,0A3C,0A3E-0A42</Range>
-      <Range>0A47,0A48,0A4B-0A4D,0A51,0A59-0A5C</Range>
-      <Range>0A5E,0A66-0A75</Range>
+          <Range>0A35,0A36,0A38,0A39,0A3C,0A3E-0A42</Range>
+          <Range>0A47,0A48,0A4B-0A4D,0A51,0A59-0A5C</Range>
+          <Range>0A5E,0A66-0A75</Range>
         </CodeRange>
       </Block>
       <Block nameID="Gujarati">
@@ -364,10 +364,10 @@
         <WebCharTable url="https://unicode-table.com/en/blocks/gujarati/" />
         <CodeRange start="0A80" end="0AFF">
           <Range>0A81-0A83,0A85-0A8D,0A8F-0A91</Range>
-      <Range>0A93-0AA8,0AAA-0AB0,0AB2,0AB3</Range>
-      <Range>0AB5-0AB9,0ABC-0AC5,0AC7-0AC9</Range>
-      <Range>0ACB-0ACD,0AD0,0AE0-0AE3,0AE6-0AF1</Range>
-      <Range>0AF9-0AFF</Range>
+          <Range>0A93-0AA8,0AAA-0AB0,0AB2,0AB3</Range>
+          <Range>0AB5-0AB9,0ABC-0AC5,0AC7-0AC9</Range>
+          <Range>0ACB-0ACD,0AD0,0AE0-0AE3,0AE6-0AF1</Range>
+          <Range>0AF9-0AFF</Range>
         </CodeRange>
       </Block>
       <Block nameID="Oriya">
@@ -381,10 +381,10 @@
         <WebCharTable url="https://unicode-table.com/en/blocks/oriya/" />
         <CodeRange start="0B00" end="0B7F">
           <Range>0B01-0B03,0B05-0B0C,0B0F,0B10</Range>
-      <Range>0B13-0B28,0B2A-0B30,0B32,0B33</Range>
-      <Range>0B35-0B39,0B3C-0B44,0B47,0B48</Range>
-      <Range>0B4B-0B4D,0B56,0B57,0B5C,0B5D</Range>
-      <Range>0B5F-0B63,0B66-0B77</Range>
+          <Range>0B13-0B28,0B2A-0B30,0B32,0B33</Range>
+          <Range>0B35-0B39,0B3C-0B44,0B47,0B48</Range>
+          <Range>0B4B-0B4D,0B56,0B57,0B5C,0B5D</Range>
+          <Range>0B5F-0B63,0B66-0B77</Range>
         </CodeRange>
       </Block>
       <Block nameID="Tamil">
@@ -398,10 +398,10 @@
         <WebCharTable url="https://unicode-table.com/en/blocks/tamil/" />
         <CodeRange start="0B80" end="0BFF">
           <Range>0B82,0B83,0B85-0B8A,0B8E-0B90</Range>
-      <Range>0B92-0B95,0B99,0B9A,0B9C,0B9E,0B9F</Range>
-      <Range>0BA3,0BA4,0BA8-0BAA,0BAE-0BB9</Range>
-      <Range>0BBE-0BC2,0BC6-0BC8,0BCA-0BCD</Range>
-      <Range>0BD0,0BE6-0BFA</Range>
+          <Range>0B92-0B95,0B99,0B9A,0B9C,0B9E,0B9F</Range>
+          <Range>0BA3,0BA4,0BA8-0BAA,0BAE-0BB9</Range>
+          <Range>0BBE-0BC2,0BC6-0BC8,0BCA-0BCD</Range>
+          <Range>0BD0,0BE6-0BFA</Range>
         </CodeRange>
       </Block>
       <Block nameID="Telugu">
@@ -415,10 +415,10 @@
         <WebCharTable url="https://unicode-table.com/en/blocks/telugu/" />
         <CodeRange start="0C00" end="0C7F">
           <Range>0C00-0C03,0C05-0C0C,0C0E-0C10</Range>
-      <Range>0C12-0C28,0C2A-0C39,0C3D-0C44</Range>
-      <Range>0C46-0C48,0C4A-0C4D,0C55,0C56</Range>
-      <Range>0C58-0C5A,0C60-0C63,0C66-0C6F</Range>
-      <Range>0C78-0C7F</Range>
+          <Range>0C12-0C28,0C2A-0C39,0C3D-0C44</Range>
+          <Range>0C46-0C48,0C4A-0C4D,0C55,0C56</Range>
+          <Range>0C58-0C5A,0C60-0C63,0C66-0C6F</Range>
+          <Range>0C78-0C7F</Range>
         </CodeRange>
       </Block>
       <Block nameID="Kannada">
@@ -432,10 +432,10 @@
         <WebCharTable url="https://unicode-table.com/en/blocks/kannada/" />
         <CodeRange start="0C80" end="0CFF">
           <Range>0C80-0C83,0C85-0C8C,0C8E-0C90</Range>
-      <Range>0C92-0CA8,0CAA-0CB3,0CB5-0CB9</Range>
-      <Range>0CBC-0CC4,0CC6-0CC8,0CCA-0CCD</Range>
-      <Range>0CD5,0CD6,0CDE,0CE0-0CE3,0CE6-0CEF</Range>
-      <Range>0CF1,0CF2</Range>
+          <Range>0C92-0CA8,0CAA-0CB3,0CB5-0CB9</Range>
+          <Range>0CBC-0CC4,0CC6-0CC8,0CCA-0CCD</Range>
+          <Range>0CD5,0CD6,0CDE,0CE0-0CE3,0CE6-0CEF</Range>
+          <Range>0CF1,0CF2</Range>
         </CodeRange>
       </Block>
       <Block nameID="Malayalam">
@@ -449,8 +449,8 @@
         <WebCharTable url="https://unicode-table.com/en/blocks/malayalam/" />
         <CodeRange start="0D00" end="0D7F">
           <Range>0D00-0D03,0D05-0D0C,0D0E-0D10</Range>
-      <Range>0D12-0D44,0D46-0D48,0D4A-0D4F</Range>
-      <Rabge>0D54-0D63,0D66-0D7F</Rabge>
+          <Range>0D12-0D44,0D46-0D48,0D4A-0D4F</Range>
+          <Rabge>0D54-0D63,0D66-0D7F</Rabge>
         </CodeRange>
       </Block>
       <Block nameID="Sinhala">
@@ -464,9 +464,9 @@
         <WebCharTable url="https://unicode-table.com/en/blocks/sinhala/" />
         <CodeRange start="0D80" end="0DFF">
           <Range>0D82,0D83,0D85-0D96,0D9A-0DB1</Range>
-      <Range>0DB3-0DBB,0DBD,0DC0-0DC6,0DCA</Range>
-      <Range>0DD0-0DD4,0DD6,0DD8-0DDF,0DE6-0DEF</Range>
-      <Range>0DF2-0DF4</Range>
+          <Range>0DB3-0DBB,0DBD,0DC0-0DC6,0DCA</Range>
+          <Range>0DD0-0DD4,0DD6,0DD8-0DDF,0DE6-0DEF</Range>
+          <Range>0DF2-0DF4</Range>
         </CodeRange>
       </Block>
       <Block nameID="Thai">
@@ -493,10 +493,10 @@
         <WebCharTable url="https://unicode-table.com/en/blocks/lao/" />
         <CodeRange start="0E80" end="0EFF">
           <Range>0E81,0E82,0E84,0E87,0E88,0E8A</Range>
-      <Range>0E8D,0E94-0E97,0E99-0E9F,0EA1-0EA3</Range>
-      <Range>0EA5,0EAA,0EAB,0EAD-0EB9,0EBB-0EBD</Range>
-      <Range>0EC0-0EC4,0EC6,0EC8-0ECD,0ED0-0ED9</Range>
-      <Range>0EDC-0EDF</Range>
+          <Range>0E8D,0E94-0E97,0E99-0E9F,0EA1-0EA3</Range>
+          <Range>0EA5,0EAA,0EAB,0EAD-0EB9,0EBB-0EBD</Range>
+          <Range>0EC0-0EC4,0EC6,0EC8-0ECD,0ED0-0ED9</Range>
+          <Range>0EDC-0EDF</Range>
         </CodeRange>
       </Block>
       <Block nameID="Tibetan">
@@ -510,7 +510,7 @@
         <WebCharTable url="https://unicode-table.com/en/blocks/tibetan/" />
         <CodeRange start="0F00" end="0FFF">
           <Range>0F00-0F47,0F49-0F6C,0F71-0F97</Range>
-      <Range>0F99-0FBC,0FBE-0FCC,0FCE-0FDA</Range>
+          <Range>0F99-0FBC,0FBE-0FCC,0FCE-0FDA</Range>
         </CodeRange>
       </Block>
       <Block nameID="Myanmar">
@@ -2055,7 +2055,7 @@
           <Range>FD92-FDC7</Range>
           <Range>FDF0-FDFD</Range>
         </CodeRange>
-    </Block>
+      </Block>
       <Block nameID="Variation Selectors">
         <Name lang="en">Variation Selectors</Name>
         <Name lang="fr">Sélecteurs de variante</Name>
@@ -3693,7 +3693,7 @@
           <Range>2F800-2FA1D</Range>
         </CodeRange>
       </Block>
-      
+
     </Plane>
 
     <Plane nameID="Tertiary Ideographic Plane">
@@ -3775,6 +3775,6 @@
         </CodeRange>
       </Block>
     </Plane>
-    
+
   </Unicode>
 </XML>

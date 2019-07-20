@@ -7,7 +7,7 @@
     <ProjectGuid>{298887BB-31CB-490B-9351-980981EDC545}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ChromatikTool.Alone</RootNamespace>
+    <RootNamespace>Chromatik</RootNamespace>
     <AssemblyName>ChromatikTool.Alone</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -28,6 +28,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\bin\Release\ChromatikTool.Alone.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -43,17 +44,17 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResourceChromatik.Designer.cs">
-      <DependentUpon>ResourceChromatik.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>ResourceChromatik.resx</DependentUpon>
     </Compile>
     <Compile Include="Unicode.Initialisation.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ResourceChromatik.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>ResourceChromatik.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>ResourceChromatik.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="..\Chromatik\Chromatik.projitems" Label="Shared" />
