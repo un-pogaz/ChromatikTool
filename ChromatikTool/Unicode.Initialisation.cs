@@ -22,7 +22,7 @@ namespace Chromatik.Unicode
         {
             LoadFromXml(ResourceChromatik.Unicode_XML, lang);
             Charset.LoadFromXml(ResourceChromatik.Charsets_XML, lang);
-            ConScript.LoadFromXml(ResourceChromatik.Charsets_XML, lang);
+            ConScript.LoadFromXml(ResourceChromatik.ConScript_XML, lang);
         }
     }
 }

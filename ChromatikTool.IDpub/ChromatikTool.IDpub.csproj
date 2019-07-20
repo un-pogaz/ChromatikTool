@@ -68,16 +68,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Unicode.Initialisation.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ResourceChromatik.Designer.cs">
+    <Compile Include="..\ChromatikTool\ResourceChromatik.Designer.cs">
+      <Link>ResourceChromatik.Designer.cs</Link>
+      <DependentUpon>ResourceChromatik.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ResourceChromatik.resx</DependentUpon>
     </Compile>
+    <Compile Include="..\ChromatikTool\Unicode.Initialisation.cs">
+      <Link>Unicode.Initialisation.cs</Link>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ResourceChromatik.resx">
+    <EmbeddedResource Include="..\ChromatikTool\ResourceChromatik.resx">
+      <Link>ResourceChromatik.resx</Link>
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ResourceChromatik.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>

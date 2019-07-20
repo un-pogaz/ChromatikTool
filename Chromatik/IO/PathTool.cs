@@ -36,47 +36,6 @@ namespace System.IO
                 "con", "nul", "prn"};
 
         /// <summary>
-        /// Default char array for <see cref="string.Trim()"/>
-        /// </summary>
-        static public char[] CharForTrim { get; } = new char[] {          
-            //Latin
-            ' ',
-            '\n',
-            '\r',
-            '\t',
-            '\v',
-            '\x000a', //LINE FEED
-            '\x000c', //FORM FEED
-            '\x00a0', //NO-BREAK SPACE
-            
-            //Unicode SpaceSeparator
-            '\x1680', // Ogham Space Mark
-            '\x2000', // En Quad
-            '\x2001', // Em Quad
-            '\x2002', // En Space
-            '\x2003', // Em Space
-            '\x2004', // Three-Per-Em Space
-            '\x2005', // Four-Per-Em Space
-            '\x2006', // Six-Per-Em Space
-            '\x2007', // Figure Space
-            '\x2008', // Punctuation Space
-            '\x2009', // Thin Space
-            '\x200A', // Hair Space
-            '\x202F', // Narrow No-Break Space
-            '\x205F', // Medium Mathematical Space
-            '\x3000', // Ideographic Space
-            
-            //Unicode LineSeparator
-            '\x2028',
-            //Unicode ParagraphSeparator
-            '\x2029',
-            
-            //Perso
-            '\x200B', // Zero Width Space
-            '\x200C', // Zero Width Non-Joiner
-        };
-
-        /// <summary>
         /// Verifie que le nom de fichier est valide
         /// </summary>
         /// <param name="path"></param>
@@ -156,7 +115,7 @@ namespace System.IO
             string ext = Path.GetExtension(filePath);
             if (newExtension == null)
                 newExtension = string.Empty;
-            newExtension = newExtension.Trim(CharForTrim.Concat(InvalidFileNameChars).Concat(new char[] { '.' }));
+            newExtension = newExtension.Trim(StringExtension.TrimChar.Concat(InvalidFileNameChars).Concat(new char[] { '.' }));
 
             if (ext.Length > 0)
                 filePath = filePath.Remove(filePath.Length - ext.Length);
