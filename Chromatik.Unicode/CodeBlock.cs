@@ -44,7 +44,8 @@ namespace Chromatik.Unicode
 
                 List<string> lst = new List<string>();
                 foreach (string item in _CodePoints)
-                    lst.Add(CodePoint.CharFromHex(item));
+                    if (!string.IsNullOrWhiteSpace(item))
+                        lst.Add(CodePoint.CharFromHex(item));
 
                 Characters = lst.ToArray();
             }
