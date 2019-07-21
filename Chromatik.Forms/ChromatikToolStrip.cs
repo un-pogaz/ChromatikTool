@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
 using System.Windows.Forms.VisualStyles;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -19,10 +18,11 @@ namespace Chromatik.Forms
         public static ChromatikToolStrip Defaut { get; } = new ChromatikToolStrip();
         
 
-        public ChromatikToolStrip()
+        public ChromatikToolStrip() : base()
         {
         }
         
+
         private void RenderStatusStripBorder(ToolStripRenderEventArgs e)
         {
             if (!Application.RenderWithVisualStyles)
@@ -30,6 +30,9 @@ namespace Chromatik.Forms
                 e.Graphics.DrawLine(SystemPens.ButtonHighlight, 0, 0, e.ToolStrip.Width, 0);
             }
         }
+        /// <devdoc>
+        /// Draw the border around the ToolStrip.  This should be done as the last step.
+        /// </devdoc>
         protected override void OnRenderToolStripBorder(ToolStripRenderEventArgs e)
         {
             ToolStrip toolStrip = e.ToolStrip;
@@ -55,7 +58,7 @@ namespace Chromatik.Forms
                     e.Graphics.DrawRectangle(new Pen(SystemColors.ControlDark), bounds);
                 }
                 else {
-                    ControlPaint.DrawBorder3D(e.Graphics, bounds, Border3DStyle.Raised);
+                    ControlPaint.DrawBorder3D(e.Graphics, bounds, Border3DStyle.Flat);
                 }
             }
             else {
