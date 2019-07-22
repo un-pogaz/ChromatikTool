@@ -83,7 +83,7 @@ namespace System
         /// <returns></returns>
         static public string[] SplitLine(this string input, StringSplitOptions splitOptions)
         {
-            return input.Split(EndLineChar, splitOptions);
+            return input.Replace("\r\n","\n").Split(EndLineChar, splitOptions);
         }
 
     }

@@ -7,50 +7,51 @@ using System.Xml.Linq;
 namespace System.Xml
 {
     /// <summary>
-    /// Static class extension pour <see cref="XmlElement"/>
+    /// Static class extension for <see cref="XmlElement"/>
     /// </summary>
     static public class XmlExtension
     {
+        #region Element
         /// <summary>
-        /// Ajoute un <see cref="XmlElement"/> à la fin de la liste des nœuds enfants de ce nœud. 
+        /// Append a <see cref="XmlElement"/> to the node.
         /// </summary>
-        /// <param name="node">Nœud cible</param>
-        /// <param name="name">Nom de l'élément ajouté</param>
-        /// <returns>Élément ajouté</returns>
+        /// <param name="node"></param>
+        /// <param name="name"></param>
+        /// <returns></returns>
         static public XmlElement AppendElement(this XmlNode node, string name)
         {
             return node.AppendElement(node.Prefix, name, node.NamespaceURI);
         }
         /// <summary>
-        /// Ajoute un <see cref="XmlElement"/> à la fin de la liste des nœuds enfants de ce nœud. 
+        /// Append a <see cref="XmlElement"/> to the node.
         /// </summary>
-        /// <param name="node">Nœud cible</param>
-        /// <param name="name">Nom de l'élément ajouté</param>
-        /// <param name="namespaceURI">Namespace du <see cref="XmlElement"/></param>
-        /// <returns>Élément ajouté</returns>
+        /// <param name="node"></param>
+        /// <param name="name"></param>
+        /// <param name="namespaceURI">Namespace of the element</param>
+        /// <returns></returns>
         static public XmlElement AppendElement(this XmlNode node, string name, string namespaceURI)
         {
             return node.AppendElement(node.Prefix, name, namespaceURI);
         }
         /// <summary>
-        /// Ajoute un <see cref="XmlElement"/> à la fin de la liste des nœuds enfants de ce nœud. 
+        /// Append a <see cref="XmlElement"/> to the node.
         /// </summary>
-        /// <param name="node">Nœud cible</param>
-        /// <param name="localName">Nom de l'élément ajouté</param>
-        /// <param name="ns"><see cref="XmlNamespace"/> de l'attribut ajouté</param>
-        /// <returns>Élément ajouté</returns>
+        /// <param name="node"></param>
+        /// <param name="localName"></param>
+        /// <param name="ns"><see cref="XmlNamespace"/> of this element</param>
+        /// <returns></returns>
         static public XmlElement AppendElement(this XmlNode node, string localName, XmlNamespace ns)
         {
             return node.AppendElement(ns.Prefix, localName, ns.URI);
         }
         /// <summary>
-        /// Ajoute un <see cref="XmlElement"/> à la fin de la liste des nœuds enfants de ce nœud. 
+        /// Append a <see cref="XmlElement"/> to the node.
         /// </summary>
-        /// <param name="node">Nœud cible</param>
-        /// <param name="prefix">Prefix l'élément ajouté</param>
-        /// <param name="localName">Nom local de l'élément ajouté</param>
-        /// <param name="namespaceURI">Namespace du <see cref="XmlElement"/></param>
-        /// <returns>Élément ajouté</returns>
+        /// <param name="node"></param>
+        /// <param name="prefix">Prefix of the element</param>
+        /// <param name="localName"></param>
+        /// <param name="namespaceURI">Namespace of the element</param>
+        /// <returns></returns>
         static public XmlElement AppendElement(this XmlNode node, string prefix, string localName, string namespaceURI)
         {
             if (node is XmlDocument)
@@ -62,38 +63,41 @@ namespace System.Xml
                 return (XmlElement)node.AppendChild(node.OwnerDocument.CreateElement(prefix, localName, namespaceURI));
         }
 
+        #endregion
+
+        #region Text
         /// <summary>
-        /// Ajoute un <see cref="XmlText"/> à la fin de la liste des nœuds enfants de ce nœud. 
+        /// Append a <see cref="XmlText"/> to the node.
         /// </summary>
-        /// <param name="node">Nœud cible</param>
-        /// <param name="text">Texte a ajouté</param>
-        /// <returns>Text ajouté</returns>
+        /// <param name="node"></param>
+        /// <param name="text"></param>
+        /// <returns></returns>
         static public XmlText AppendText(this XmlNode node, string text)
         {
             return node.AppendText("", text);
         }
 
         /// <summary>
-        /// Ajoute un <see cref="XmlText"/> encapsulé dans un <see cref="XmlElement"/> à la fin de la liste des nœuds enfants de ce nœud. 
+        /// Append a <see cref="XmlText"/> encapsulated in a <see cref="XmlElement"/> to the node.
         /// </summary>
-        /// <param name="node">Nœud cible</param>
-        /// <param name="tag">Tag de l'élement qui encapsule le text</param>
-        /// <param name="text">Texte a ajouté</param>
-        /// <returns>Text ajouté</returns>
+        /// <param name="node"></param>
+        /// <param name="tag"></param>
+        /// <param name="text"></param>
+        /// <returns></returns>
         static public XmlText AppendText(this XmlNode node, string tag, string text)
         {
             return node.AppendText(tag, "", "", text);
         }
 
         /// <summary>
-        /// Ajoute un <see cref="XmlText"/> encapsulé dans un <see cref="XmlElement"/> avec les attribut spécifier a à la fin de la liste des nœuds enfants de ce nœud. 
+        /// Append a <see cref="XmlText"/> encapsulated in a <see cref="XmlElement"/> with the specified attribut to the node.
         /// </summary>
-        /// <param name="node">Nœud cible</param>
-        /// <param name="tag">Tag de l'élement qui encapsule le text</param>
-        /// <param name="text">Texte a ajouté</param>
-        /// <param name="attribut">Attribut de l'élement qui encapsule le text</param>
-        /// <param name="value">Valeur de l'attribut de l'élement qui encapsule le text</param>
-        /// <returns>Text ajouté</returns>
+        /// <param name="node"></param>
+        /// <param name="tag"></param>
+        /// <param name="text"></param>
+        /// <param name="attribut"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
         static public XmlText AppendText(this XmlNode node, string tag, string attribut, string value, string text)
         {
             if (node is XmlDocument)
@@ -102,7 +106,17 @@ namespace System.Xml
                 if (element != null)
                     return element.AppendText(tag, attribut, value, text);
                 else
+                {
+                    if (!string.IsNullOrWhiteSpace(tag))
+                    {
+                        node.AppendElement(tag);
+                        if (!string.IsNullOrWhiteSpace(attribut))
+                            node.FirstElement().SetAttribute(attribut, value);
+
+                        return node.FirstElement().AppendText(text);
+                    }
                     return null;
+                }
             }
             else
             {
@@ -115,61 +129,42 @@ namespace System.Xml
                 return (XmlText)node.AppendChild(node.OwnerDocument.CreateTextNode(text));
             }
         }
+        #endregion
 
+        #region Attribut and Namespace
         /// <summary>
-        /// Ajoute un Namespace a l'Element
+        /// Set a attribut with the value and the specified Namespace
         /// </summary>
-        /// <param name="node">Nœud cible</param>
-        /// <param name="localName">Prefix associé a ce Namespace</param>
-        /// <param name="namespaceURI">URI du Namespace</param>
-        static public void AddNamespace(this XmlElement node, string localName, string namespaceURI)
-        {
-            node.SetAttributeNode(localName, namespaceURI);
-        }
-        /// <summary>
-        /// Ajoute un <see cref="XmlNamespace"/> a l'Element
-        /// </summary>
-        /// <param name="node">Nœud cible</param>
-        /// <param name="ns"><see cref="XmlNamespace"/> a ajouté</param>
-        static public void AddNamespace(this XmlElement node, XmlNamespace ns)
-        {
-            node.AddNamespace(ns.Prefix, ns.URI);
-        }
-
-        /// <summary>
-        /// Définit la valeur de l'attribut avec le nom local et le Namespace
-        /// </summary>
-        /// <param name="node">Nœud cible</param>
-        /// <param name="localName">Nom local de l'attribut</param>
-        /// <param name="ns">Namespace du de l'attribut</param>
-        /// <param name="value">Valeur à définir pour l'attribut</param>
+        /// <param name="node"></param>
+        /// <param name="localName"></param>
+        /// <param name="ns"><see cref="XmlNamespace"/> of this element</param>
+        /// <param name="value"></param>
         static public void SetAttribute(this XmlElement node, string localName, XmlNamespace ns, string value)
         {
-            node.AddNamespace(ns);
-            node.SetAttribute(localName, ns.URI, value);
+            node.SetAttribute(localName, ns.Prefix, ns.URI, value);
         }
         /// <summary>
-        /// Définit la valeur de l'attribut avec le nom local, le prefix et le Namespace
+        /// Set a attribut with the value and the specified Namespace
         /// </summary>
-        /// <param name="node">Nœud cible</param>
-        /// <param name="prefix">Prefix de l'attribut</param>
-        /// <param name="localName">Nom local de l'attribut</param>
-        /// <param name="namespaceURI">Namespace URI de l'attribut</param>
-        /// <param name="value">Valeur à définir pour l'attribut</param>
+        /// <param name="node"></param>
+        /// <param name="prefix">Prefix of the element</param>
+        /// <param name="localName"></param>
+        /// <param name="namespaceURI">Namespace of the element</param>
+        /// <param name="value"></param>
         static public void SetAttribute(this XmlElement node, string prefix, string localName, string namespaceURI, string value)
         {
-            if (string.IsNullOrWhiteSpace(prefix))
-                node.SetAttribute(localName, value);
-            else
-                node.SetAttribute(localName, prefix, namespaceURI, value);
+            if (!string.IsNullOrWhiteSpace(prefix))
+                node.AddNamespace(prefix, namespaceURI);
+            
+            node.SetAttribute(localName, namespaceURI, value);
         }
 
         /// <summary>
-        /// Transfére un <see cref="XmlAttribute"/> entre 2 nœud de contexte différent (si il existe)
+        /// Transfer a attribute between 2 nodes of different context (if existe)
         /// </summary>
-        /// <param name="destination">Nœud de destination</param>
-        /// <param name="source">Nœud source</param>
-        /// <param name="attribut">Attribut a transféré</param>
+        /// <param name="destination"></param>
+        /// <param name="source"></param>
+        /// <param name="attribut">Attribut to transfer</param>
         /// <returns></returns>
         static public bool TransferAttribut(this XmlNode destination, XmlNode source, string attribut)
         {
@@ -180,5 +175,65 @@ namespace System.Xml
             }
             return false;
         }
+
+        /// <summary>
+        /// Add a Namespace composed of a prefix and a URI to the node
+        /// </summary>
+        /// <param name="node"></param>
+        /// <param name="ns"><see cref="XmlNamespace"/> to add</param>
+        static public void AddNamespace(this XmlElement node, XmlNamespace ns)
+        {
+            node.AddNamespace(ns.Prefix, ns.URI);
+        }
+
+        /// <summary>
+        /// Add a Namespace composed of a prefix and a URI to the node
+        /// </summary>
+        /// <param name="node"></param>
+        /// <param name="localName">Prefix associated of this namespace</param>
+        /// <param name="namespaceURI">URI associated of this namespace</param>
+        static public void AddNamespace(this XmlElement node, string localName, string namespaceURI)
+        {
+            node.SetAttributeNode(localName, namespaceURI);
+        }
+        #endregion
+        
+        #region Others
+        /// <summary>
+        /// Append a <see cref="XmlCDataSection"/> to the node
+        /// </summary>
+        /// <param name="node"></param>
+        /// <param name="text"></param>
+        /// <returns></returns>
+        static public XmlCDataSection AppendCDataSection(this XmlNode node, string text)
+        {
+            if (node is XmlDocument)
+            {
+                return (XmlCDataSection)node.AppendChild((node as XmlDocument).CreateCDataSection(text));
+            }
+            else
+            {
+                return (XmlCDataSection)node.AppendChild(node.OwnerDocument.CreateCDataSection(text));
+            }
+        }
+
+        /// <summary>
+        /// Append a <see cref="XmlComment"/> to the node
+        /// </summary>
+        /// <param name="node"></param>
+        /// <param name="text"></param>
+        /// <returns></returns>
+        static public XmlComment AppendComment(this XmlNode node, string text)
+        {
+            if (node is XmlDocument)
+            {
+                return (XmlComment)node.AppendChild((node as XmlDocument).CreateComment(text));
+            }
+            else
+            {
+                return (XmlComment)node.AppendChild(node.OwnerDocument.CreateComment(text));
+            }
+        }
+        #endregion
     }
 }

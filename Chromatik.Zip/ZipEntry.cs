@@ -182,19 +182,7 @@ namespace Chromatik.Zip
         /// <returns></returns>
         public string[] GetLines()
         {
-            string[] rslt = null;
-            using (StreamReader reader = new StreamReader(GetStream()))
-            {
-                string line = reader.ReadLine();
-                if (line != null)
-                    rslt = new string[0];
-                while (line != null)
-                {
-                    rslt = rslt.Concat(new string[] { line });
-                    line = reader.ReadLine();
-                }
-            }
-            return rslt;
+            return GetText().SplitLine();
         }
         /// <summary>
         /// Get the content <see cref="byte"/>[] of the entry.
