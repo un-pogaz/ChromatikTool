@@ -74,61 +74,16 @@ namespace System.Xml
         /// <returns></returns>
         static public XmlText AppendText(this XmlNode node, string text)
         {
-            return node.AppendText("", text);
-        }
-
-        /// <summary>
-        /// Append a <see cref="XmlText"/> encapsulated in a <see cref="XmlElement"/> to the node.
-        /// </summary>
-        /// <param name="node"></param>
-        /// <param name="tag"></param>
-        /// <param name="text"></param>
-        /// <returns></returns>
-        static public XmlText AppendText(this XmlNode node, string tag, string text)
-        {
-            return node.AppendText(tag, "", "", text);
-        }
-
-        /// <summary>
-        /// Append a <see cref="XmlText"/> encapsulated in a <see cref="XmlElement"/> with the specified attribut to the node.
-        /// </summary>
-        /// <param name="node"></param>
-        /// <param name="tag"></param>
-        /// <param name="text"></param>
-        /// <param name="attribut"></param>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        static public XmlText AppendText(this XmlNode node, string tag, string attribut, string value, string text)
-        {
             if (node is XmlDocument)
             {
-                XmlElement element = node.FirstElement();
-                if (element != null)
-                    return element.AppendText(tag, attribut, value, text);
-                else
-                {
-                    if (!string.IsNullOrWhiteSpace(tag))
-                    {
-                        node.AppendElement(tag);
-                        if (!string.IsNullOrWhiteSpace(attribut))
-                            node.FirstElement().SetAttribute(attribut, value);
-
-                        return node.FirstElement().AppendText(text);
-                    }
-                    return null;
-                }
+                return (XmlText)node.AppendChild((node as XmlDocument).CreateTextNode(text));
             }
             else
             {
-                if (!string.IsNullOrWhiteSpace(tag))
-                    node = node.AppendElement(tag);
-
-                if (node is XmlElement && !string.IsNullOrWhiteSpace(attribut))
-                    (node as XmlElement).SetAttribute(attribut, value);
-
                 return (XmlText)node.AppendChild(node.OwnerDocument.CreateTextNode(text));
             }
         }
+        
         #endregion
 
         #region Attribut and Namespace

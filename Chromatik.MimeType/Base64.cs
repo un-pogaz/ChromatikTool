@@ -45,7 +45,7 @@ namespace System.Base64
         static public void Create(string filePath, string base64)
         {
             // One line
-            string b64 = base64.RegexBoucle("(\r|\n)", string.Empty).Trim();
+            string b64 = base64.RegexLoop("(\r|\n)", string.Empty).Trim();
 
             // Suppresion des metadonées base64url
             while (b64.Contains(","))

@@ -64,9 +64,9 @@ namespace Svg
 
                     XmlWriterTool.Document(svg_minifed, Document(load), WriterSetting(indent));
 
-                    string text = System.IO.File.ReadAllText(svg_minifed).ReplaceBoucle(" />", "/>");
+                    string text = System.IO.File.ReadAllText(svg_minifed).ReplaceLoop(" />", "/>");
                     if (!indent)
-                        text = text.RegexOnce("(\r|\n)", "");
+                        text = text.Regex("(\r|\n)", "");
                     System.IO.File.WriteAllText(svg_minifed, text, Encoding.UTF8);
                 }
             }
@@ -130,7 +130,7 @@ namespace Svg
                                 }
                             }
                             else if (item.Name == "aria-label")
-                                element.SetAttribute(item.LocalName, item.NamespaceURI, item.Value.RegexOnce("(\r\n|\r|\n)", " "));
+                                element.SetAttribute(item.LocalName, item.NamespaceURI, item.Value.Regex("(\r\n|\r|\n)", " "));
                             else
                                 element.SetAttribute(item.LocalName, item.NamespaceURI, item.Value);
                         }
@@ -152,7 +152,7 @@ namespace Svg
 
                                     split[i] = split[i].Trim();
                                 }
-                                if (split[i].RegexOnce("[0-9.-]", "") == "")
+                                if (split[i].Regex("[0-9.-]", "") == "")
                                 {
 
                                     if (split[i].Contains("-"))
@@ -189,7 +189,7 @@ namespace Svg
                                 else
                                     rslt += " " + sub + " ";
 
-                            rslt = rslt.RegexBoucle("([A-z]) ", "$1").RegexBoucle(" ([A-z])", "$1").RegexBoucle("  -([0-9])", "-$1").ReplaceBoucle("  ", " ").Trim();
+                            rslt = rslt.RegexLoop("([A-z]) ", "$1").RegexLoop(" ([A-z])", "$1").RegexLoop("  -([0-9])", "-$1").ReplaceLoop("  ", " ").Trim();
 
                             element.SetAttribute(item.LocalName, item.NamespaceURI, rslt);
                         }
