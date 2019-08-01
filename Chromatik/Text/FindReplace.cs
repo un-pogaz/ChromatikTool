@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 namespace System.Text
 {
     /// <summary>
-    /// Extension class for advanced Search and Replace in a string
+    /// Extension class for advanced Search and Replace in a string.
     /// </summary>
     static public class FindReplace
     {
@@ -25,7 +25,7 @@ namespace System.Text
             {
                 if (dt < DateTime.Now)
                     throw new TimeoutException();
-                
+
                 rslt = rslt.Replace(pattern, replacement);
             } while (rslt.Contains(pattern));
 
@@ -40,11 +40,10 @@ namespace System.Text
         /// <summary>
         /// <see cref="RegularExpressions.RegexOptions"/> for regex operations.
         /// </summary>
-        static public RegexOptions RegexOptions { get; set; } = (RegexOptions.Singleline|RegexOptions.CultureInvariant);
-
+        static public RegexOptions RegexOptions { get; set; } = (RegexOptions.Singleline | RegexOptions.CultureInvariant);
 
         /// <summary>
-        /// Execute a single regex Search/Replace
+        /// Execute a single regex Search/Replace.
         /// </summary>
         /// <param name="input"></param>
         /// <param name="pattern"></param>
@@ -55,7 +54,7 @@ namespace System.Text
             return RegularExpressions.Regex.Replace(input, pattern, replacement, RegexOptions);
         }
         /// <summary>
-        /// Execute a single regex Search/Replace
+        /// Execute a single regex Search/Replace.
         /// </summary>
         /// <param name="input"></param>
         /// <param name="pattern"></param>
@@ -67,7 +66,7 @@ namespace System.Text
             return RegularExpressions.Regex.Replace(input, pattern, replacement, options, Timeout);
         }
         /// <summary>
-        /// Execute a single regex Search/Replace
+        /// Execute a single regex Search/Replace.
         /// </summary>
         /// <param name="input"></param>
         /// <param name="pattern"></param>
@@ -81,7 +80,7 @@ namespace System.Text
         }
 
         /// <summary>
-        /// Execute a regex Search/Replace loop until the pattern disappears
+        /// Execute a regex Search/Replace loop until the pattern disappears.
         /// </summary>
         /// <param name="input"></param>
         /// <param name="pattern"></param>
@@ -92,7 +91,7 @@ namespace System.Text
             return input.RegexLoop(pattern, replacement, RegexOptions);
         }
         /// <summary>
-        /// Execute a regex Search/Replace loop until the pattern disappears
+        /// Execute a regex Search/Replace loop until the pattern disappears.
         /// </summary>
         /// <param name="input"></param>
         /// <param name="pattern"></param>
@@ -104,7 +103,7 @@ namespace System.Text
             return input.RegexLoop(pattern, replacement, options, Timeout);
         }
         /// <summary>
-        /// Execute a regex Search/Replace loop until the pattern disappears
+        /// Execute a regex Search/Replace loop until the pattern disappears.
         /// </summary>
         /// <param name="input"></param>
         /// <param name="pattern"></param>
@@ -127,6 +126,39 @@ namespace System.Text
             return rslt;
         }
 
+        /// <summary>
+        /// Split a string wiht a regex the pattern.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="pattern"></param>
+        /// <returns></returns>
+        static public string[] RegexSplit(this string input, string pattern)
+        {
+            return input.RegexSplit(pattern, RegexOptions);
+        }
+        /// <summary>
+        /// Split a string wiht a regex the pattern.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="pattern"></param>
+        /// <param name="options"></param>
+        /// <returns></returns>
+        static public string[] RegexSplit(this string input, string pattern, RegexOptions options)
+        {
+            return input.RegexSplit(pattern, options, Timeout);
+        }
+        /// <summary>
+        /// Split a string wiht a regex the pattern.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="pattern"></param>
+        /// <param name="options"></param>
+        /// <param name="matchTimeout"></param>
+        /// <returns></returns>
+        static public string[] RegexSplit(this string input, string pattern, RegexOptions options, TimeSpan matchTimeout)
+        {
+            return RegularExpressions.Regex.Split(input, pattern, options, matchTimeout);
+        }
 
         /// <summary> 
         /// Test if the Regex pattern exist.
