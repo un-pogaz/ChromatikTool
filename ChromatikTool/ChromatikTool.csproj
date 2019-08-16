@@ -33,22 +33,6 @@
     <DocumentationFile>..\bin\Release\ChromatikTool.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Ionic.Zip, Version=1.9.1.5, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Chromatik.Zip\Ionic.Zip.dll</HintPath>
-    </Reference>
-    <Reference Include="SQLite, Version=1.0.111.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Chromatik.SQLite\DLL\SQLite.dll</HintPath>
-    </Reference>
-    <Reference Include="SQLite.Linq, Version=1.0.111.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Chromatik.SQLite\DLL\SQLite.Linq.dll</HintPath>
-    </Reference>
-    <Reference Include="Svg, Version=3.0.0.0, Culture=neutral, PublicKeyToken=12a0bac221edeae2, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Chromatik.Svg\Svg.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -77,10 +61,8 @@
   </ItemGroup>
   <Import Project="..\Chromatik\Chromatik.projitems" Label="Shared" />
   <Import Project="..\Chromatik.Drawing\Chromatik.Drawing.projitems" Label="Shared" />
-  <Import Project="..\Chromatik.Zip\Chromatik.Zip.projitems" Label="Shared" />
   <Import Project="..\Chromatik.Forms\Chromatik.Forms.projitems" Label="Shared" />
   <Import Project="..\Chromatik.MimeType\Chromatik.MimeType.projitems" Label="Shared" />
-  <Import Project="..\Chromatik.Svg\Chromatik.Svg.projitems" Label="Shared" />
   <Import Project="..\Chromatik.Unicode\Chromatik.Unicode.projitems" Label="Shared" />
   <Import Project="..\Chromatik.Sequence\Chromatik.Sequence.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

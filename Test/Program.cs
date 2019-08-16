@@ -5,7 +5,6 @@ using System.Text;
 using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Chromatik.Zip;
 using System.Xml;
 
 namespace Test
