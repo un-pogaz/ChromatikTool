@@ -22,7 +22,6 @@ namespace Chromatik.SQLite
     /// </summary>
     sealed public class SQLiteColumns : List<SQLiteColumns.Column>
     {
-
         /// <summary>
         /// Collection of columns for a <see cref="SQLiteDataBase"/>
         /// </summary>
@@ -91,31 +90,7 @@ namespace Chromatik.SQLite
 
             override public string ToString()
             {
-                string rslt = Name;
-                switch (Type)
-                {
-                    case SQLiteColumnsType.Integer:
-                        rslt += " INTEGER";
-                        break;
-                    case SQLiteColumnsType.Numerique:
-                        rslt += " NUMERIQUE";
-                        break;
-                    case SQLiteColumnsType.TimeStamp:
-                        rslt += " TIMESTAMP";
-                        break;
-                    case SQLiteColumnsType.Real:
-                        rslt += " REAL";
-                        break;
-                    case SQLiteColumnsType.Text:
-                        rslt += " TEXT";
-                        break;
-                    case SQLiteColumnsType.BLOB:
-                        rslt += " BLOB";
-                        break;
-                    default:
-                        rslt += " BLOB";
-                        break;
-                }
+                string rslt = "'" + Name + "' " + GetTypeString(Type);
 
                 if (DefaultValue != null)
                 {
@@ -128,7 +103,7 @@ namespace Chromatik.SQLite
                             rslt += " " + DefaultValue.ToString();
                             break;
                         case SQLiteColumnsType.TimeStamp:
-                            rslt += " " + ((DateTime)DefaultValue).ToString("yyyy-MM-dd hh:mm:ss");
+                            rslt += " " + ((DateTime)DefaultValue).ToString("yyyy-MM-dd hh:mm:ss.ffffff");
                             break;
                         case SQLiteColumnsType.Real:
                             rslt += " " + DefaultValue.ToString();
@@ -143,11 +118,54 @@ namespace Chromatik.SQLite
                             rslt += " " + DefaultValue;
                             break;
                     }
-
                 }
 
                 return rslt;
             }
+        }
+        
+        /// <summary>
+        /// Obtains the string of the type
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        static public string GetTypeString(SQLiteColumnsType type)
+        {
+            string rslt = "BLOB";
+            switch (type)
+            {
+                case SQLiteColumnsType.Integer:
+                    rslt = "INTEGER";
+                    break;
+                case SQLiteColumnsType.Numerique:
+                    rslt = "NUMERIQUE";
+                    break;
+                case SQLiteColumnsType.TimeStamp:
+                    rslt = "TIMESTAMP";
+                    break;
+                case SQLiteColumnsType.Real:
+                    rslt = "REAL";
+                    break;
+                case SQLiteColumnsType.Text:
+                    rslt = "TEXT";
+                    break;
+                case SQLiteColumnsType.BLOB:
+                    rslt = "BLOB";
+                    break;
+                default:
+                    rslt = "BLOB";
+                    break;
+            }
+
+            return rslt;
+        }
+
+        public string GetFullString()
+        {
+            string rslt = this[0].ToString();
+            for (int i = 1; i < this.Count; i++)
+                rslt += " , " + this[i].ToString();
+            return rslt;
         }
     }
 }

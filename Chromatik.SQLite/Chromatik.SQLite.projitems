@@ -10,13 +10,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)SQLiteColumns.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)SQLiteDataReaderExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SQLiteMaster.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SQLiteData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SQLiteEdit.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SQLiteDataBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SQLiteTable.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)SQLrequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SQLlog.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)SQLite.Interop.dll.x86">

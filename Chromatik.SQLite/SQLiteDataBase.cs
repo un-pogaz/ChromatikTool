@@ -107,15 +107,7 @@ namespace Chromatik.SQLite
             if (ConnectionIsOpen)
                 DBconnect.Close();
         }
-
-        private CommandBehavior CloseBehavior()
-        {
-            if (ConnectionIsOpen)
-                return CommandBehavior.CloseConnection;
-
-            return CommandBehavior.Default;
-        }
-
+        
         /// <summary>
         /// Execute the SQL command and return the number of rows inserted/updated affected by it.
         /// </summary>
@@ -131,7 +123,7 @@ namespace Chromatik.SQLite
             int rslt = -1;
             try
             {
-                rslt = CreatDBcommand(SQL).ExecuteNonQuery(CloseBehavior());
+                rslt = CreatDBcommand(SQL).ExecuteNonQuery(CommandBehavior.Default);
                 msgErr = new SQLlog(null, SQL);
             }
             catch (Exception ex)
@@ -158,7 +150,7 @@ namespace Chromatik.SQLite
             DataTable rslt = new DataTable();
             try
             {
-                rslt = CreatDBcommand(SQL).ExecuteReader(CloseBehavior()).GetDataTable();
+                rslt = CreatDBcommand(SQL).ExecuteReader(CommandBehavior.Default).GetDataTable();
                 msgErr = new SQLlog(null, SQL);
             }
             catch (Exception ex)
@@ -213,7 +205,6 @@ namespace Chromatik.SQLite
             return lst.ToArray();
         }
 
-
         ////////////
         // STATIC //
         ////////////
@@ -264,7 +255,7 @@ namespace Chromatik.SQLite
         {
             try {
                 if (File.Exists(fileDB))
-                    File.Delete(fileDB);
+                    throw new InvalidPathException();
 
                 SQLiteConnection.CreateFile(fileDB);
                 SQLiteDataBase db = new SQLiteDataBase(fileDB);
@@ -284,5 +275,26 @@ namespace Chromatik.SQLite
             }
         }
         
+    }
+    
+    static internal class SQLiteDataReaderExtension
+    {
+        static internal DataTable GetDataTable(this SQLiteDataReader dataReader)
+        {
+            DataTable rslt = new DataTable(dataReader.GetTableName(0));
+            foreach (DataRow item in dataReader.GetSchemaTable().Rows)
+                rslt.Columns.Add(item[0].ToString(), item[12] as Type);
+
+            while (dataReader.Read())
+            {
+                object[] tbl = new object[dataReader.FieldCount];
+                for (int i = 0; i < dataReader.FieldCount; i++)
+                    tbl[i] = dataReader[i];
+
+                rslt.Rows.Add(tbl);
+            }
+
+            return rslt;
+        }
     }
 }

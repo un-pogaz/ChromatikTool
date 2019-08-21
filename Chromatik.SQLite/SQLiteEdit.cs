@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Data;
+using System.IO;
 
 namespace Chromatik.SQLite
 {
@@ -10,12 +11,12 @@ namespace Chromatik.SQLite
     /// </summary>
     public class SQLiteEdit : IDisposable
     {
-        private SQLiteDataBase _DB;
+        private SQLiteDataBase _dataBase;
         /// <summary>
-        /// The <see cref="Chromatik.SQLite.SQLiteDataBase"/> used by this instance
+        /// The <see cref="SQLiteDataBase"/> used by this instance
         /// </summary>
         /// <returns></returns>
-        public SQLiteDataBase DataBase { get { return _DB; } }
+        public SQLiteDataBase DataBase { get { return _dataBase; } }
 
         /// <summary>
         /// State of connection with the database
@@ -49,41 +50,26 @@ namespace Chromatik.SQLite
         /// Class name for <see cref="IsDisposed()"/>
         /// </summary>
         protected string clsName = "SQLiteEdit";
-
+        
         /// <summary>
-        /// Create a basic instance for work with <see cref="DataBase"/>
-        /// </summary>
-        /// <param name="dbPath">Path of the target database</param>
-        public SQLiteEdit(string dbPath) : this(dbPath, false)
-        { }
-        /// <summary>
-        /// Create a basic instance for work with <see cref="DataBase"/>
+        /// Create a basic instance for work with <see cref="SQLiteDataBase"/>
         /// </summary>
         /// <remarks>If the connection is opened by this constructor, they will be closed if the instance is dispose.</remarks>
         /// <param name="dbPath">Path of the target database</param>
-        /// <param name="OpenConnection">If this constructor must also open the connection</param>
-        public SQLiteEdit(string dbPath, bool OpenConnection) : this(SQLiteDataBase.LoadDataBase(dbPath), OpenConnection)
-        { }
-
-        /// <summary>
-        /// Create a basic instance for work with <see cref="DataBase"/>
-        /// </summary>
-        /// <param name="db">The target database</param>
-        public SQLiteEdit(SQLiteDataBase db) : this(db, false)
+        public SQLiteEdit(string dbPath) : this(SQLiteDataBase.LoadDataBase(dbPath))
         { }
         /// <summary>
-        /// Create a basic instance for work with <see cref="DataBase"/>
+        /// Create a basic instance for work with <see cref="SQLiteDataBase"/>
         /// </summary>
         /// <remarks>If the connection is opened by this constructor, they will be closed if the instance is dispose.</remarks>
         /// <param name="db">The target database</param>
-        /// <param name="OpenConnection">If this constructor must also open the connection</param>
-        public SQLiteEdit(SQLiteDataBase db, bool OpenConnection)
+        public SQLiteEdit(SQLiteDataBase db)
         {
             disposed = false;
             clsName = "SQLiteEdit";
-            _DB = db;
-            if (OpenConnection && !ConnectionIsOpen)
-                this.OpenConnection();
+            _dataBase = db;
+            if (!this.OpenConnection())
+                throw new System.Data.SQLite.SQLiteException(System.Data.SQLite.SQLiteErrorCode.CantOpen, "Database is not open");
         }
 
         protected bool disposed = true;

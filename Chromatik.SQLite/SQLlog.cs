@@ -5,7 +5,7 @@ using System.Text;
 namespace Chromatik.SQLite
 {
     /// <summary>
-    /// 
+    /// Represente a SQL request run in a <see cref="SQLiteDataBase"/>
     /// </summary>
     public class SQLlog
     {
@@ -20,7 +20,7 @@ namespace Chromatik.SQLite
         }
 
         /// <summary>
-        /// 
+        /// State of the SQL request of the log
         /// </summary>
         public bool Succes { get { return e == null; } }
         

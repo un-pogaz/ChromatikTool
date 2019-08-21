@@ -34,9 +34,9 @@ namespace Test
             ;
             using (Chromatik.SQLite.SQLiteDataBase db_lite = Chromatik.SQLite.SQLiteDataBase.LoadDataBase(@"D:\other\Calibre Portable\metadata.db"))
             {
-                using (Chromatik.SQLite.SQLiteData data = new Chromatik.SQLite.SQLiteData(db_lite, true))
+                Chromatik.SQLite.SQLlog err;
+                using (Chromatik.SQLite.SQLiteData data = new Chromatik.SQLite.SQLiteData(db_lite))
                 {
-                    Chromatik.SQLite.SQLlog err;
                     DataTable dt1 = data.GetTable("comments", out err);
                     DataTable dt2 = data.GetTable("books", out err);
                     DataTable dt3 = data.GetTable("book", out err);

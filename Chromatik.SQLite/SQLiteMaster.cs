@@ -28,28 +28,13 @@ namespace Chromatik.SQLite
         /// Create a specialized instance for work with the "sqlite_master" of a <see cref="SQLiteDataBase"/>
         /// </summary>
         /// <param name="dbPath">Path if the taget database</param>
-        public SQLiteMaster(string dbPath) : this(dbPath, false)
-        { }
-        /// <summary>
-        /// Create a specialized instance for work with the "sqlite_master" of a <see cref="SQLiteDataBase"/>
-        /// </summary>
-        /// <param name="dbPath">Path if the taget database</param>
-        /// <param name="OpenConnection">If this constructor must also open the connection</param>
-        public SQLiteMaster(string dbPath, bool OpenConnection) : this(SQLiteDataBase.LoadDataBase(dbPath), OpenConnection)
-        { }
-
-        /// <summary>
-        /// Create a specialized instance for work with the "sqlite_master" of a <see cref="SQLiteDataBase"/>
-        /// </summary>
-        /// <param name="db">Taget database</param>
-        public SQLiteMaster(SQLiteDataBase db) : this(db, false)
+        public SQLiteMaster(string dbPath) : this(SQLiteDataBase.LoadDataBase(dbPath))
         { }
         /// <summary>
         /// Create a specialized instance for work with the "sqlite_master" of a <see cref="SQLiteDataBase"/>
         /// </summary>
         /// <param name="db">Taget database</param>
-        /// <param name="OpenConnection">If this constructor must also open the connection</param>
-        public SQLiteMaster(SQLiteDataBase db, bool OpenConnection) : base(db, OpenConnection)
+        public SQLiteMaster(SQLiteDataBase db) : base(db)
         {
             clsName = "SQLiteMaster";
         }
@@ -104,9 +89,9 @@ namespace Chromatik.SQLite
         static public string SQL_master(string whereValues, string onlyColumns, string orderColumns, bool temp)
         {
             if (temp)
-                return SQLiteData.CreatSQL_GetTableWhere("sqlite_temp_master", whereValues, onlyColumns, orderColumns);
+                return SQLiteData.SQL_GetTableWhere("sqlite_temp_master", whereValues, onlyColumns, orderColumns);
             else
-                return SQLiteData.CreatSQL_GetTableWhere("sqlite_master", whereValues, onlyColumns, orderColumns);
+                return SQLiteData.SQL_GetTableWhere("sqlite_master", whereValues, onlyColumns, orderColumns);
         }
 
         /// <summary>
@@ -168,9 +153,5 @@ namespace Chromatik.SQLite
 
             return lst.ToArray();
         }
-
-
-
-
     }
 }
