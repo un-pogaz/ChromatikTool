@@ -5,7 +5,7 @@ using System.IO;
 using System.Windows.Forms;
 using System.Xml;
 
-namespace Chromatik
+namespace System
 {
     public static class Settings
     {
@@ -52,7 +52,7 @@ namespace Chromatik
         {
             get
             {
-                string folder = Path.Combine(Path.GetTempPath(), _tempFolderName) + DSC;
+                string folder = Path.Combine(Path.GetTempPath(), TempFolderName) + DSC;
 
                 Directory.CreateDirectory(folder);
 
@@ -103,7 +103,7 @@ namespace Chromatik
 
             do
             {
-                rslt = TempFolder + _tempFolderName + "_" + DateTime.Now.ToString("HH-mm-ss") + " (" + ran.Next(0, 1000).ToString("D3") + ")" + Path.DirectorySeparatorChar;
+                rslt = TempFolder + TempFolderName + "_" + DateTime.Now.ToString("HH-mm-ss") + " (" + ran.Next(0, 1000).ToString("D3") + ")" + Path.DirectorySeparatorChar;
             }
             while (Directory.Exists(rslt));
 

@@ -6,12 +6,18 @@ using System.Data;
 namespace Chromatik.SQLite
 {
     /// <summary>
-    /// Specialized instance for work with the table content of a SQLite database
+    /// Specialized instance for work with the table content of a <see cref="SQLiteDataBase"/>
     /// </summary>
     public sealed class SQLiteData : SQLiteEdit
     {
         /// <summary>
-        /// Create a specialized instance for work with the table content of a SQLite database
+        /// Create a specialized instance for work with the table content of a <see cref="SQLiteDataBase"/>
+        /// </summary>
+        /// <param name="db">Taget database</param>
+        public SQLiteData(SQLiteDataBase db) : this(db, false)
+        { }
+        /// <summary>
+        /// Create a specialized instance for work with the table content of a <see cref="SQLiteDataBase"/>
         /// </summary>
         /// <param name="db">Taget database</param>
         /// <param name="OpenConnection">If this constructor must also open the connection</param>
@@ -19,24 +25,19 @@ namespace Chromatik.SQLite
         {
             clsName = "SQLiteData";
         }
+
         /// <summary>
-        /// Create a specialized instance for work with the table content of a SQLite database
+        /// Create a specialized instance for work with the table content of a <see cref="SQLiteDataBase"/>
         /// </summary>
-        /// <param name="db">Taget database</param>
-        public SQLiteData(SQLiteDataBase db) : this(db, false)
+        /// <param name="dbPath">Path if the taget database</param>
+        public SQLiteData(string dbPath) : this(dbPath, false)
         { }
         /// <summary>
-        /// Create a specialized instance for work with the table content of a SQLite database
+        /// Create a specialized instance for work with the table content of a <see cref="SQLiteDataBase"/>
         /// </summary>
         /// <param name="dbPath">Path if the taget database</param>
         /// <param name="OpenConnection">If this constructor must also open the connection</param>
         public SQLiteData(string dbPath, bool OpenConnection) : this(SQLiteDataBase.LoadDataBase(dbPath), OpenConnection)
-        { }
-        /// <summary>
-        /// Create a specialized instance for work with the table content of a SQLite database
-        /// </summary>
-        /// <param name="dbPath">Path if the taget database</param>
-        public SQLiteData(string dbPath) : this(SQLiteDataBase.LoadDataBase(dbPath), false)
         { }
 
         #region Add/Insert
@@ -47,7 +48,7 @@ namespace Chromatik.SQLite
         /// <param name="tableName">null for 'unknow_table'</param>
         /// <param name="valeurs">Entries to add</param>
         /// <param name="msgErr"></param>
-        public int Add(string tableName, string valeurs, out SQLerr msgErr)
+        public int Add(string tableName, string valeurs, out SQLlog msgErr)
         {
             return Add(tableName, valeurs, null, out msgErr);
         }
@@ -59,9 +60,9 @@ namespace Chromatik.SQLite
         /// <param name="valeurs">Entries to add</param>
         /// <param name="msgErr"></param>
         /// <returns>Number of rows inserted/updated affected by it</returns>
-        public int Add(string tableName, string valeurs, string columns, out SQLerr msgErr)
+        public int Add(string tableName, string valeurs, string columns, out SQLlog msgErr)
         {
-            return SQLcommand(CreatSQL_Add(tableName, valeurs, columns), out msgErr);
+            return ExecuteSQLcommand(CreatSQL_Add(tableName, valeurs, columns), out msgErr);
         }
 
         /// <summary>
@@ -131,9 +132,9 @@ namespace Chromatik.SQLite
         /// <param name="condition">Can be null or empty</param>
         /// <param name="msgErr"></param>
         /// <returns>Number of rows inserted/updated affected by it</returns>
-        public int Update(string tableName, string valeurs, string condition, out SQLerr msgErr)
+        public int Update(string tableName, string valeurs, string condition, out SQLlog msgErr)
         {
-            return SQLcommand(CreatSQL_Update(tableName, valeurs, condition), out msgErr);
+            return ExecuteSQLcommand(CreatSQL_Update(tableName, valeurs, condition), out msgErr);
         }
 
         #endregion
@@ -165,9 +166,9 @@ namespace Chromatik.SQLite
         /// <param name="condition">Can be null or empty</param>
         /// <param name="msgErr"></param>
         /// <returns>Number of rows inserted/updated affected by it</returns>
-        public int Delete(string tableName, string condition, out SQLerr msgErr)
+        public int Delete(string tableName, string condition, out SQLlog msgErr)
         {
-            return SQLcommand(CreatSQL_Delete(tableName, condition), out msgErr);
+            return ExecuteSQLcommand(CreatSQL_Delete(tableName, condition), out msgErr);
         }
 
         #endregion
@@ -182,7 +183,7 @@ namespace Chromatik.SQLite
         /// <param name="orderColumns">null for the default order</param>
         /// <param name="msgErr"></param>
         /// <returns>The DataTable request</returns>
-        public DataTable GetTable(string tableName, out SQLerr msgErr)
+        public DataTable GetTable(string tableName, out SQLlog msgErr)
         {
             return GetTable(tableName, null, null, out msgErr);
         }
@@ -194,7 +195,7 @@ namespace Chromatik.SQLite
         /// <param name="orderColumns">null for the default order</param>
         /// <param name="msgErr"></param>
         /// <returns>The DataTable request</returns>
-        public DataTable GetTable(string tableName, string onlyColumns, out SQLerr msgErr)
+        public DataTable GetTable(string tableName, string onlyColumns, out SQLlog msgErr)
         {
             return GetTable(tableName, onlyColumns, null, out msgErr);
         }
@@ -206,7 +207,7 @@ namespace Chromatik.SQLite
         /// <param name="orderColumns">null for the default order</param>
         /// <param name="msgErr"></param>
         /// <returns>The DataTable request</returns>
-        public DataTable GetTable(string tableName, string onlyColumns, string orderColumns, out SQLerr msgErr)
+        public DataTable GetTable(string tableName, string onlyColumns, string orderColumns, out SQLlog msgErr)
         {
             return GetTableWhere(tableName, null, onlyColumns, orderColumns, out msgErr);
         }
@@ -220,7 +221,7 @@ namespace Chromatik.SQLite
         /// <param name="orderColumns">null for the default order</param>
         /// <param name="msgErr"></param>
         /// <returns>The DataTable request</returns>
-        public DataTable GetTableWhere(string tableName, string whereValues, out SQLerr msgErr)
+        public DataTable GetTableWhere(string tableName, string whereValues, out SQLlog msgErr)
         {
             return GetTableWhere(tableName, whereValues, null, null, out msgErr);
         }
@@ -233,7 +234,7 @@ namespace Chromatik.SQLite
         /// <param name="orderColumns">null for the default order</param>
         /// <param name="msgErr"></param>
         /// <returns>The DataTable request</returns>
-        public DataTable GetTableWhere(string tableName, string whereValues, string onlyColumns, out SQLerr msgErr)
+        public DataTable GetTableWhere(string tableName, string whereValues, string onlyColumns, out SQLlog msgErr)
         {
             return GetTableWhere(tableName, whereValues, onlyColumns, null, out msgErr);
         }
@@ -246,9 +247,9 @@ namespace Chromatik.SQLite
         /// <param name="orderColumns">null for the default order</param>
         /// <param name="msgErr"></param>
         /// <returns>The DataTable request</returns>
-       public DataTable GetTableWhere(string tableName, string whereValues, string onlyColumns, string orderColumns, out SQLerr msgErr)
+       public DataTable GetTableWhere(string tableName, string whereValues, string onlyColumns, string orderColumns, out SQLlog msgErr)
         {
-            return SQLdataTable(CreatSQL_GetTableWhere(tableName, whereValues, onlyColumns, orderColumns), out msgErr);
+            return ExecuteSQLdataTable(CreatSQL_GetTableWhere(tableName, whereValues, onlyColumns, orderColumns), out msgErr);
         }
 
         #endregion
@@ -296,7 +297,7 @@ namespace Chromatik.SQLite
         /// </summary>
         /// <param name="tableName">null for 'unknow_table'</param>
         /// <param name="whereValues">null to retrieve all values</param>
-        /// <param name="OnlyColumns">null for all columns</param>
+        /// <param name="orderColumns">null for all columns</param>
         static public string CreatSQL_GetTableWhere(string tableName, string whereValues, string orderColumns)
         {
             return CreatSQL_GetTableWhere(tableName, whereValues, orderColumns, null);

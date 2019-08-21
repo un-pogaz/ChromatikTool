@@ -12,12 +12,19 @@ using System.Windows.Forms.Layout;
 
 namespace Chromatik.Forms
 {
-
+    /// <summary>
+    /// 
+    /// </summary>
     public class ChromatikToolStrip : ToolStripSystemRenderer
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public static ChromatikToolStrip Defaut { get; } = new ChromatikToolStrip();
         
-
+        /// <summary>
+        /// 
+        /// </summary>
         public ChromatikToolStrip() : base()
         {
         }

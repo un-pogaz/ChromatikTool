@@ -9,6 +9,8 @@
     <Import_RootNamespace>Chromatik.SQLite</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)SQLiteColumns.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SQLiteDataReaderExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SQLiteMaster.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SQLiteData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SQLiteEdit.cs" />
@@ -17,11 +19,17 @@
     <Compile Include="$(MSBuildThisFileDirectory)SQLrequest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="$(MSBuildThisFileDirectory)DLL\SQLite.dll" />
-    <None Include="$(MSBuildThisFileDirectory)DLL\SQLite.EF6.dll" />
-    <None Include="$(MSBuildThisFileDirectory)DLL\SQLite.Linq.dll" />
+    <None Include="$(MSBuildThisFileDirectory)SQLite.Interop.dll.x86">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)SQLite.Interop.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)SQLite.Interop.dll.x64" />
+    <None Include="$(MSBuildThisFileDirectory)System.Data.SQLite.dll" />
+    <None Include="$(MSBuildThisFileDirectory)System.Data.SQLite.Linq.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="$(MSBuildThisFileDirectory)DLL\SQLite.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)System.Data.SQLite.xml" />
   </ItemGroup>
 </Project>

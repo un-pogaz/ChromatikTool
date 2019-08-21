@@ -5,7 +5,6 @@ using System.Text;
 using System.IO;
 using System.Data;
 using System.Data.SQLite;
-using System.Data.SQLite.Linq;
 using System.Data.SQLite.Generic;
 
 namespace Chromatik.SQLite
@@ -15,10 +14,19 @@ namespace Chromatik.SQLite
     /// </summary>
     public sealed class SQLiteDataBase : IDisposable
     {
+        /// <summary>
+        /// Path of this database
+        /// </summary>
         public string filePath { get; }
+        /// <summary>
+        /// Full path of this database
+        /// </summary>
         public string fullPath { get { return Path.GetFullPath(filePath); } }
 
-        public string ConnectionSting { get { IsDisposed(); return "Data Source="+ fullPath + ";Version=3;"; } }
+        /// <summary>
+        /// Connection string of this database
+        /// </summary>
+        public string ConnectionString { get { return "Data Source="+ fullPath + ";Version=3;"; } }
 
         /// <summary>
         /// The basic instance for manipuled SQLite database
@@ -29,10 +37,10 @@ namespace Chromatik.SQLite
             filePath = dbPath.Trim();
         }
 
-
         private bool disposed = true;
         public void Dispose()
         {
+            CloseConnection();
             DBconnect.Dispose();
             disposed = true;
         }
@@ -47,29 +55,26 @@ namespace Chromatik.SQLite
         {
             IsDisposed();
 
-            SQLiteCommand rslt;
-            if (DBconnect == null || !ConnectionIsOpen)
-            {
-                if (DBconnect != null)
-                    DBconnect.Dispose();
-
-                DBconnect = new SQLiteConnection(ConnectionSting).OpenAndReturn();
-            }
-            else
-            {
-                if (DBconnect == null)
-                    OpenConnection();
-            }
-
-            rslt =  new SQLiteCommand(DBconnect);
+            SQLiteCommand rslt = new SQLiteCommand(DBconnect);
             rslt.CommandType = CommandType.Text;
             rslt.CommandTimeout = 30; // seconde
-            rslt.CommandText = SQL.Trim();
+            rslt.CommandText = SQL;
 
             return rslt;
         }
-        
-        public bool ConnectionIsOpen { get { IsDisposed(); return (DBconnect.State == ConnectionState.Open); } }
+
+        /// <summary>
+        /// State of connection with this database
+        /// </summary>
+        public bool ConnectionIsOpen {
+            get {
+                IsDisposed();
+                if (DBconnect == null)
+                    return false;
+                else
+                    return (DBconnect.State == ConnectionState.Open);
+            }
+        }
 
         /// <summary>
         /// Open the connection with the database
@@ -82,10 +87,16 @@ namespace Chromatik.SQLite
             {
                 if (DBconnect != null)
                     DBconnect.Dispose();
-                DBconnect = new SQLiteConnection(ConnectionSting).OpenAndReturn();
+                DBconnect = new SQLiteConnection(ConnectionString).OpenAndReturn();
                 return ConnectionIsOpen;
             }
-            return false;
+            else
+            {
+                if (DBconnect != null)
+                    DBconnect.Dispose();
+                DBconnect = new SQLiteConnection(ConnectionString);
+                return ConnectionIsOpen;
+            }
         }
         /// <summary>
         /// Close the connection with the database
@@ -112,25 +123,24 @@ namespace Chromatik.SQLite
         /// <param name="msgErr">Advanced error message</param>
         /// <remarks>Will automatically open and close a new connection if it is not opened</remarks>
         /// <returns>Number of rows inserted/updated affected by it</returns>
-        internal int _SQLcommand(string SQL, out SQLerr msgErr)
+        internal int _SQLcommand(string SQL, out SQLlog msgErr)
         {
             IsDisposed();
 
-            SQLrequest request;
+            msgErr = SQLlog.Empty;
             int rslt = -1;
             try
             {
                 rslt = CreatDBcommand(SQL).ExecuteNonQuery(CloseBehavior());
-                request = new SQLrequestSucces(null, SQL);
+                msgErr = new SQLlog(null, SQL);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
                 rslt = - 1;
-                request = new SQLrequestFailed(e, SQL);
+                msgErr = new SQLlog(ex, SQL);
             }
-
-            msgErr = request.SQLerr;
-            AddLogEnty(request);
+            
+            AddLogEnty(msgErr);
             return rslt;
         }
         /// <summary>
@@ -140,62 +150,45 @@ namespace Chromatik.SQLite
         /// <param name="msgErr">Advanced error message</param>
         /// <remarks>Will automatically open and close a new connection if it is not opened</remarks>
         /// <returns>The DataTable request</returns>
-        internal DataTable _SQLdataTable(string SQL, out SQLerr msgErr)
+        internal DataTable _SQLdataTable(string SQL, out SQLlog msgErr)
         {
             IsDisposed();
 
-            SQLrequest request;
+            msgErr = SQLlog.Empty;
             DataTable rslt = new DataTable();
             try
             {
-                SQLiteDataReader data = CreatDBcommand(SQL).ExecuteReader(CloseBehavior());
-
-                DataTable dt = new DataTable(data.GetTableName(0));
-                foreach (DataRow item in data.GetSchemaTable().Rows)
-                    dt.Columns.Add(item[0].ToString(), item[12] as Type);
-
-                while (data.Read())
-                {
-                    object[] tbl = new object[data.FieldCount];
-                    for (int i = 0; i < data.FieldCount; i++)
-                        tbl[i] = data[i];
-
-                    dt.Rows.Add(tbl);
-                }
-                
-                rslt = dt;
-                request = new SQLrequestSucces(null, SQL);
+                rslt = CreatDBcommand(SQL).ExecuteReader(CloseBehavior()).GetDataTable();
+                msgErr = new SQLlog(null, SQL);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
                 rslt = new DataTable();
-                request = new SQLrequestFailed(e, SQL);
+                msgErr = new SQLlog(ex, SQL);
             }
-
-            msgErr = request.SQLerr;
-            AddLogEnty(request);
+            
+            AddLogEnty(msgErr);
             return rslt;
         }
-        
+
         /// <summary>
         /// List of all SQL request executed with this instance
         /// </summary>
-        public SQLrequest[] Logs { get { IsDisposed(); return _Logs.ToArray(); } }
+        public SQLlog[] Logs { get { return _Logs.ToArray(); } }
         /// <summary>
         /// List of all SQL request executed with this instance
         /// </summary>
         public string[] LogsSQL
         {
             get {
-                IsDisposed();
                 List<string> lst = new List<string>();
-                foreach (SQLrequest item in _Logs)
+                foreach (SQLlog item in _Logs)
                     lst.Add(item.SQL);
                 return lst.ToArray();
             }
         }
-        private List<SQLrequest> _Logs = new List<SQLrequest>();
-        private void AddLogEnty(SQLrequest SQLrequest)
+        private List<SQLlog> _Logs = new List<SQLlog>();
+        private void AddLogEnty(SQLlog SQLrequest)
         {
             _Logs.Insert(0, SQLrequest);
 
@@ -210,9 +203,9 @@ namespace Chromatik.SQLite
         /// <returns></returns>
         public string[] GetTables()
         {
-            SQLerr msgErr;
+            SQLlog msgErr;
             List<string> lst = new List<string>();
-            DataTable dt = _SQLdataTable(SQLiteMaster.CreatSQL_master("type='table'", "name", "name"), out msgErr);
+            DataTable dt = _SQLdataTable(SQLiteMaster.SQL_master("type='table'", "name", "name"), out msgErr);
             foreach (DataRow r in dt.Rows)
                 lst.Add(r["name"].ToString());
 
@@ -239,59 +232,55 @@ namespace Chromatik.SQLite
             using (FileStream fileStream = new FileStream(fileDB, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
             {
                 byte[] sql3 = Encoding.ASCII.GetBytes("SQLite format 3");
-
-                List<byte> test = new List<byte>();
+                
                 for (int i = 0; i < sql3.Length; i++)
                     if (sql3[i] != fileStream.ReadByte())
                         throw new FileLoadException();
-
+                
+                using (db = new SQLiteDataBase(fileDB))
+                {
+                    db.OpenConnection();
+                    if (db.GetTables().Length <= 0)
+                        throw new FileLoadException();
+                }
+                db = null;
                 db = new SQLiteDataBase(fileDB);
-                if (db.GetTables().Length <= 0)
-                    throw new FileLoadException();
+                db.CloseConnection();
             }
             if (db == null)
                 throw new FileLoadException();
 
             return db;
         }
-
-
-        /// <summary>
-        /// Create a empty file
-        /// </summary>
-        /// <returns>Returns the path</returns>
-        static public void CreateFile(string fileDB)
-        {
-            SQLiteConnection.CreateFile(fileDB);
-        }
-
+        
         /// <summary>
         /// Create a new database with the Table containing the columns specify
         /// </summary>
         /// <param name="fileDB"></param>
         /// <param name="tableName">Table to create</param>
         /// <param name="columns">Columns of the Table</param>
-        /// <param name="msgErr"></param>
         /// <returns></returns>
-        static public SQLiteDataBase CreatDataBase(string fileDB, string tableName, string columns)
+        static public SQLiteDataBase CreateDataBase(string fileDB, string tableName, SQLiteColumns columns)
         {
             try {
                 if (File.Exists(fileDB))
                     File.Delete(fileDB);
-                
-                CreateFile(fileDB);
+
+                SQLiteConnection.CreateFile(fileDB);
                 SQLiteDataBase db = new SQLiteDataBase(fileDB);
-                SQLerr err = SQLerr.Empty;
-                db._SQLcommand(SQLiteTable.CreatSQL_AddTable(tableName, columns), out err);
+                SQLlog err = SQLlog.Empty;
+                
+                db.OpenConnection();
+                db._SQLcommand(SQLiteTable.SQL_AddTable(tableName, columns), out err);
                 
                 if (!string.IsNullOrWhiteSpace(err.msgErr))
                     throw err.e;
-
+                db.CloseConnection();
                 return db;
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                throw e;
+                throw ex;
             }
         }
         
