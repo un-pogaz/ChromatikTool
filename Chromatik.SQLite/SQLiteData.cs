@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Data;
 using System.Collections.Generic;
 using System.Text;
-using System.Data;
 
 namespace Chromatik.SQLite
 {
@@ -11,16 +11,19 @@ namespace Chromatik.SQLite
     public sealed class SQLiteData : SQLiteEdit
     {
         /// <summary>
-        /// Create a specialized instance for work with the table content of a <see cref="SQLiteDataBase"/>
+        /// Create a basic instance for work with <see cref="SQLiteDataBase"/>
         /// </summary>
-        /// <param name="dbPath">Path if the taget database</param>
-        public SQLiteData(string dbPath) : this(SQLiteDataBase.LoadDataBase(dbPath))
+        /// <remarks>If the connection is opened by this constructor, they will be closed if the instance is dispose.</remarks>
+        /// <param name="db">The target database</param>
+        public SQLiteData(SQLiteDataBase db) : this(db, false)
         { }
         /// <summary>
         /// Create a specialized instance for work with the table content of a <see cref="SQLiteDataBase"/>
         /// </summary>
-        /// <param name="db">Taget database</param>
-        public SQLiteData(SQLiteDataBase db) : base(db)
+        /// <remarks>If the connection is opened by this constructor, they will be closed if the instance is dispose.</remarks>
+        /// <param name="db">The target database</param>
+        /// <param name="openConnection">Open the connection with the data base</param>
+        public SQLiteData(SQLiteDataBase db, bool openConnection) : base(db, openConnection)
         {
             clsName = "SQLiteData";
         }
@@ -31,11 +34,11 @@ namespace Chromatik.SQLite
         /// Add entries to the table
         /// </summary>
         /// <param name="tableName">null for 'unknow_table'</param>
-        /// <param name="valeurs">Entries to add</param>
+        /// <param name="values">Entries to add</param>
         /// <param name="msgErr"></param>
-        public int Add(string tableName, string valeurs, out SQLlog msgErr)
+        public int Add(string tableName, string values, out SQLlog msgErr)
         {
-            return Add(tableName, valeurs, null, out msgErr);
+            return Add(tableName, values, null, out msgErr);
         }
         /// <summary>
         /// Add entries to the table
@@ -91,22 +94,22 @@ namespace Chromatik.SQLite
         /// Updates the table entries corresponding to the condition
         /// </summary>
         /// <param name="tableName">null for 'unknow_table'</param>
-        /// <param name="valeurs">Entries to updates</param>
-        /// <param name="condition">Can be null or empty</param>
+        /// <param name="whereValues">Can be null or empty</param>
+        /// <param name="values">Values to updates</param>
         /// <param name="msgErr"></param>
         /// <returns>Number of rows inserted/updated affected by it</returns>
-        public int Update(string tableName, string valeurs, string condition, out SQLlog msgErr)
+        public int Update(string tableName, string whereValues, string values, out SQLlog msgErr)
         {
-            return ExecuteSQLcommand(SQL_Update(tableName, valeurs, condition), out msgErr);
+            return ExecuteSQLcommand(SQL_Update(tableName, whereValues, values), out msgErr);
         }
         /// <summary>
         /// Create a SQL request for updates a table entries corresponding to the condition
         /// </summary>
         /// <param name="tableName">null for 'unknow_table'</param>
-        /// <param name="valeurs">Entries to updates</param>
-        /// <param name="condition">Can be null or empty</param>
+        /// <param name="whereValues">Can be null or empty</param>
+        /// <param name="values">Values to updates</param>
         /// <returns></returns>
-        static public string SQL_Update(string tableName, string valeurs, string condition)
+        static public string SQL_Update(string tableName, string whereValues, string values)
         {
             string SQL = "UPDATE ";
             if (string.IsNullOrWhiteSpace(tableName))
@@ -115,10 +118,10 @@ namespace Chromatik.SQLite
                 SQL += " '" + tableName.Trim() + "' ";
 
             if (!string.IsNullOrWhiteSpace(tableName))
-                SQL += " SET " + valeurs.Trim() + " ";
+                SQL += " SET " + values.Trim() + " ";
 
-            if (!string.IsNullOrWhiteSpace(condition))
-                SQL += " WHERE " + condition.Trim();
+            if (!string.IsNullOrWhiteSpace(whereValues))
+                SQL += " WHERE " + whereValues.Trim();
 
             return SQL.Trim() + ";";
         }
@@ -131,20 +134,20 @@ namespace Chromatik.SQLite
         /// Delete the table entries corresponding to the condition
         /// </summary>
         /// <param name="tableName">null for 'unknow_table'</param>
-        /// <param name="condition">Can be null or empty</param>
+        /// <param name="whereValues">Can be null or empty</param>
         /// <param name="msgErr"></param>
         /// <returns>Number of rows inserted/updated affected by it</returns>
-        public int Delete(string tableName, string condition, out SQLlog msgErr)
+        public int Delete(string tableName, string whereValues, out SQLlog msgErr)
         {
-            return ExecuteSQLcommand(SQL_Delete(tableName, condition), out msgErr);
+            return ExecuteSQLcommand(SQL_Delete(tableName, whereValues), out msgErr);
         }
         /// <summary>
         /// Create a SQL request for deleted a table entries corresponding to the condition
         /// </summary>
         /// <param name="tableName">null for 'unknow_table'</param>
-        /// <param name="condition">Can be null or empty</param>
+        /// <param name="whereValues">Can be null or empty</param>
         /// <returns></returns>
-        static public string SQL_Delete(string tableName, string condition)
+        static public string SQL_Delete(string tableName, string whereValues)
         {
             string SQL = "DELETE FROM ";
             if (string.IsNullOrWhiteSpace(tableName))
@@ -152,7 +155,7 @@ namespace Chromatik.SQLite
             else
                 SQL += " '" + tableName.Trim() + "' ";
 
-            SQL += " WHERE " + condition.Trim();
+            SQL += " WHERE " + whereValues.Trim();
 
             return SQL.Trim() + ";";
         }
@@ -165,8 +168,6 @@ namespace Chromatik.SQLite
         /// Obtains the table with only the requested columns, in the desired order and with the values corresponding to the condition.
         /// </summary>
         /// <param name="tableName">null for 'unknow_table'</param>
-        /// <param name="onlyColumns">null for all columns</param>
-        /// <param name="orderColumns">null for the default order</param>
         /// <param name="msgErr"></param>
         /// <returns>The DataTable request</returns>
         public DataTable GetTable(string tableName, out SQLlog msgErr)
@@ -178,7 +179,6 @@ namespace Chromatik.SQLite
         /// </summary>
         /// <param name="tableName">null for 'unknow_table'</param>
         /// <param name="onlyColumns">null for all columns</param>
-        /// <param name="orderColumns">null for the default order</param>
         /// <param name="msgErr"></param>
         /// <returns>The DataTable request</returns>
         public DataTable GetTable(string tableName, string onlyColumns, out SQLlog msgErr)
@@ -203,8 +203,6 @@ namespace Chromatik.SQLite
         /// </summary>
         /// <param name="tableName">null for 'unknow_table'</param>
         /// <param name="whereValues">null to retrieve all values</param>
-        /// <param name="onlyColumns">null for all columns</param>
-        /// <param name="orderColumns">null for the default order</param>
         /// <param name="msgErr"></param>
         /// <returns>The DataTable request</returns>
         public DataTable GetTableWhere(string tableName, string whereValues, out SQLlog msgErr)
@@ -217,7 +215,6 @@ namespace Chromatik.SQLite
         /// <param name="tableName">null for 'unknow_table'</param>
         /// <param name="whereValues">null to retrieve all values</param>
         /// <param name="onlyColumns">null for all columns</param>
-        /// <param name="orderColumns">null for the default order</param>
         /// <param name="msgErr"></param>
         /// <returns>The DataTable request</returns>
         public DataTable GetTableWhere(string tableName, string whereValues, string onlyColumns, out SQLlog msgErr)

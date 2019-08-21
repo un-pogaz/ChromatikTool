@@ -25,16 +25,19 @@ namespace Chromatik.SQLite
     public sealed class SQLiteMaster : SQLiteEdit
     {
         /// <summary>
-        /// Create a specialized instance for work with the "sqlite_master" of a <see cref="SQLiteDataBase"/>
+        /// Create a basic instance for work with <see cref="SQLiteDataBase"/>
         /// </summary>
-        /// <param name="dbPath">Path if the taget database</param>
-        public SQLiteMaster(string dbPath) : this(SQLiteDataBase.LoadDataBase(dbPath))
+        /// <remarks>If the connection is opened by this constructor, they will be closed if the instance is dispose.</remarks>
+        /// <param name="db">The target database</param>
+        public SQLiteMaster(SQLiteDataBase db) : this(db, false)
         { }
         /// <summary>
         /// Create a specialized instance for work with the "sqlite_master" of a <see cref="SQLiteDataBase"/>
         /// </summary>
-        /// <param name="db">Taget database</param>
-        public SQLiteMaster(SQLiteDataBase db) : base(db)
+        /// <remarks>If the connection is opened by this constructor, they will be closed if the instance is dispose.</remarks>
+        /// <param name="db">The target database</param>
+        /// <param name="openConnection">Open the connection with the data base</param>
+        public SQLiteMaster(SQLiteDataBase db, bool openConnection) : base(db, openConnection)
         {
             clsName = "SQLiteMaster";
         }
@@ -49,15 +52,11 @@ namespace Chromatik.SQLite
         /// </summary>
         /// <remarks>A valide database contain minimum 1 table</remarks>
         /// <returns></returns>
-        public string[] GetTables()
+        new public string[] GetTablesName()
         {
-            SQLlog msgErr;
             List<string> lst = new List<string>();
-            DataTable dt = GetSQLite_master("type='table'", "name", "name", out msgErr);
-            foreach (DataRow r in dt.Rows)
-                lst.Add(r["name"].ToString());
-
-            lst.Sort();
+            foreach (SQLiteAssociateTable table in GetTables_SQL())
+                lst.Add(table.Name);
             return lst.ToArray();
         }
 

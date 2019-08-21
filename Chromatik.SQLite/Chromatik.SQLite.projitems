@@ -19,7 +19,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)SQLite.Interop.dll.x86">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
     <None Include="$(MSBuildThisFileDirectory)SQLite.Interop.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

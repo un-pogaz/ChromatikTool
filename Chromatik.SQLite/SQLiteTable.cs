@@ -12,16 +12,19 @@ namespace Chromatik.SQLite
     public sealed class SQLiteTable : SQLiteEdit
     {
         /// <summary>
-        /// Create a specialized instance for work with the tables of a <see cref="SQLiteDataBase"/>
+        /// Create a basic instance for work with <see cref="SQLiteDataBase"/>
         /// </summary>
-        /// <param name="dbPath">Path if the taget database</param>
-        public SQLiteTable(string dbPath) : this(SQLiteDataBase.LoadDataBase(dbPath))
+        /// <remarks>If the connection is opened by this constructor, they will be closed if the instance is dispose.</remarks>
+        /// <param name="db">The target database</param>
+        public SQLiteTable(SQLiteDataBase db) : this(db, false)
         { }
         /// <summary>
         /// Create a specialized instance for work with the tables of a <see cref="SQLiteDataBase"/>
         /// </summary>
-        /// <param name="db">Taget database</param>
-        public SQLiteTable(SQLiteDataBase db) : base(db)
+        /// <remarks>If the connection is opened by this constructor, they will be closed if the instance is dispose.</remarks>
+        /// <param name="db">The target database</param>
+        /// <param name="openConnection">Open the connection with the data base</param>
+        public SQLiteTable(SQLiteDataBase db, bool openConnection) : base(db, openConnection)
         {
             clsName = "SQLiteTable";
         }

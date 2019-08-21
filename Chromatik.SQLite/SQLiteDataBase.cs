@@ -193,16 +193,12 @@ namespace Chromatik.SQLite
         /// </summary>
         /// <remarks>A valide database contain minimum 1 table</remarks>
         /// <returns></returns>
-        public string[] GetTables()
+        public string[] GetTablesName()
         {
-            SQLlog msgErr;
-            List<string> lst = new List<string>();
-            DataTable dt = _SQLdataTable(SQLiteMaster.SQL_master("type='table'", "name", "name"), out msgErr);
-            foreach (DataRow r in dt.Rows)
-                lst.Add(r["name"].ToString());
-
-            lst.Sort();
-            return lst.ToArray();
+            string[] rslt = new string[0];
+            using (SQLiteMaster master = new SQLiteMaster(this, true))
+                rslt = master.GetTablesName();
+            return rslt;
         }
 
         ////////////
@@ -227,16 +223,11 @@ namespace Chromatik.SQLite
                 for (int i = 0; i < sql3.Length; i++)
                     if (sql3[i] != fileStream.ReadByte())
                         throw new FileLoadException();
+
+                if (new SQLiteDataBase(fileDB).GetTablesName().Length <= 0)
+                    throw new FileLoadException();
                 
-                using (db = new SQLiteDataBase(fileDB))
-                {
-                    db.OpenConnection();
-                    if (db.GetTables().Length <= 0)
-                        throw new FileLoadException();
-                }
-                db = null;
                 db = new SQLiteDataBase(fileDB);
-                db.CloseConnection();
             }
             if (db == null)
                 throw new FileLoadException();

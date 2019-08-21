@@ -20,7 +20,6 @@ namespace Test
         static void Main()
         {
             string f = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss.ffffff");
-            string dd = DateTime.Now.ToString("o");
 
             string s1 = "hello";
             string s2 = "héllo";
@@ -32,12 +31,13 @@ namespace Test
 
             //"D:\other\Calibre Portable\metadata.db"
             ;
-            using (Chromatik.SQLite.SQLiteDataBase db_lite = Chromatik.SQLite.SQLiteDataBase.LoadDataBase(@"D:\other\Calibre Portable\metadata.db"))
+            using (Chromatik.SQLite.SQLiteDataBase db_lite = Chromatik.SQLite.SQLiteDataBase.LoadDataBase(@"sqlite.db"))
             {
                 Chromatik.SQLite.SQLlog err;
-                using (Chromatik.SQLite.SQLiteData data = new Chromatik.SQLite.SQLiteData(db_lite))
+                using (Chromatik.SQLite.SQLiteData data = new Chromatik.SQLite.SQLiteData(db_lite, true))
                 {
                     DataTable dt1 = data.GetTable("comments", out err);
+                    string[] sdfsf = dt1.GetColumnsName();
                     DataTable dt2 = data.GetTable("books", out err);
                     DataTable dt3 = data.GetTable("book", out err);
                     if (err.Succes)
@@ -46,6 +46,7 @@ namespace Test
                     }
                     ;
                 }
+                ;
             }
 
 

@@ -50,32 +50,37 @@ namespace Chromatik.SQLite
         /// Class name for <see cref="IsDisposed()"/>
         /// </summary>
         protected string clsName = "SQLiteEdit";
-        
+
         /// <summary>
         /// Create a basic instance for work with <see cref="SQLiteDataBase"/>
         /// </summary>
         /// <remarks>If the connection is opened by this constructor, they will be closed if the instance is dispose.</remarks>
-        /// <param name="dbPath">Path of the target database</param>
-        public SQLiteEdit(string dbPath) : this(SQLiteDataBase.LoadDataBase(dbPath))
+        /// <param name="db">The target database</param>
+        public SQLiteEdit(SQLiteDataBase db) : this(db, false)
         { }
         /// <summary>
         /// Create a basic instance for work with <see cref="SQLiteDataBase"/>
         /// </summary>
         /// <remarks>If the connection is opened by this constructor, they will be closed if the instance is dispose.</remarks>
         /// <param name="db">The target database</param>
-        public SQLiteEdit(SQLiteDataBase db)
+        /// <param name="openConnection">Open the connection with the data base</param>
+        public SQLiteEdit(SQLiteDataBase db, bool openConnection)
         {
             disposed = false;
             clsName = "SQLiteEdit";
             _dataBase = db;
-            if (!this.OpenConnection())
+
+            OpenOnStart = ConnectionIsOpen;
+            if (openConnection && !ConnectionIsOpen && !this.OpenConnection())
                 throw new System.Data.SQLite.SQLiteException(System.Data.SQLite.SQLiteErrorCode.CantOpen, "Database is not open");
         }
+
+        bool OpenOnStart = false;
 
         protected bool disposed = true;
         public void Dispose()
         {
-            if (ConnectionIsOpen)
+            if (ConnectionIsOpen && !OpenOnStart)
                 CloseConnection();
 
             disposed = true;
@@ -109,9 +114,9 @@ namespace Chromatik.SQLite
         /// Get the Tables of the <see cref="DataBase"/>
         /// </summary>
         /// <remarks>A valide database contain minimum 1 table</remarks>
-        public string[] GetTables()
+        public string[] GetTablesName()
         {
-            return DataBase.GetTables();
+            return DataBase.GetTablesName();
         }
         /// <summary>
         /// Execute the SQL command and return the number of rows inserted/updated affected by it.
