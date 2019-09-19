@@ -19,37 +19,6 @@ namespace Test
         [STAThread]
         static void Main()
         {
-            string f = DateTime.Now.ToString("yyyy-MM-dd hh:mm:ss.ffffff");
-
-            string s1 = "hello";
-            string s2 = "héllo";
-
-            if (string.Compare(s1, s2, CultureInfo.CurrentCulture, CompareOptions.IgnoreNonSpace) == 0)
-            {
-                // both strings are equal
-            }
-
-            //"D:\other\Calibre Portable\metadata.db"
-            ;
-            using (Chromatik.SQLite.SQLiteDataBase db_lite = Chromatik.SQLite.SQLiteDataBase.LoadDataBase(@"sqlite.db"))
-            {
-                Chromatik.SQLite.SQLlog err;
-                using (Chromatik.SQLite.SQLiteData data = new Chromatik.SQLite.SQLiteData(db_lite, true))
-                {
-                    DataTable dt1 = data.GetTable("comments", out err);
-                    string[] sdfsf = dt1.GetColumnsName();
-                    DataTable dt2 = data.GetTable("books", out err);
-                    DataTable dt3 = data.GetTable("book", out err);
-                    if (err.Succes)
-                    {
-
-                    }
-                    ;
-                }
-                ;
-            }
-
-
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
