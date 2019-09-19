@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 using System.Xml;
 
@@ -14,12 +15,23 @@ namespace System
 
         }
 
+
         /// <summary>
         /// Path.DirectorySeparatorChar
         /// </summary>
         static private char DSC { get { return Path.DirectorySeparatorChar; } }
 
-        static public string[] Args { get; set; } = new string[0];
+        static public string[] Args
+        {
+            get
+            {
+                string[] rslt = Environment.GetCommandLineArgs();
+                if (rslt.Length > 0)
+                    return rslt.SubArray(1);
+                else
+                    return new string[0];
+            }
+        }
 
         static public string TempFolderName
         {

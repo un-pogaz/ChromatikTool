@@ -120,30 +120,6 @@ namespace Chromatik.Zip
                 throw ex;
             }
         }
-        /// <summary>
-        /// Read and load a ZIP from <see cref="byte"/>[].
-        /// </summary>
-        /// <param name="buffer"></param>
-        /// <returns></returns>
-        static public ZipFile Read(byte[] buffer)
-        {
-            try
-            {
-                return new ZipFile(Ionic.Zip.ZipFile.Read(buffer));
-            }
-            catch (Ionic.Zip.ZipException ex)
-            {
-                throw ZipException.FromIonic(ex);
-            }
-            catch (Ionic.Zlib.ZlibException ex)
-            {
-                throw ZipException.FromIonic(ex);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
 
         /// <summary>
         /// Checks the ZIP file to see if its directory is consistent.

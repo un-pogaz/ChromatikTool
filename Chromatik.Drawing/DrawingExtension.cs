@@ -44,7 +44,7 @@ namespace System.Drawing
                 compression = 1;
             if (compression > 100)
                 compression = 100;
-            
+
             path = Path.GetDirectoryName(path) + Path.DirectorySeparatorChar + Path.GetFileNameWithoutExtension(path) + ".jpg";
 
             EncoderParameters myEncoderParameters = new EncoderParameters(1);

@@ -28,8 +28,8 @@ namespace Chromatik.Zip
             zipEntry = entry;
             /////////////////
 
-            zipEntry.ProvisionalAlternateEncoding = Encoding.UTF8;
-            zipEntry.UseUnicodeAsNecessary = true;
+            zipEntry.AlternateEncoding = UTF8SansBomEncoding.Default;
+            zipEntry.AlternateEncodingUsage = ZipOption.Always;
 
             if (zipEntry.CompressionLevel != CompressionLevel.BestCompression && zipEntry.CompressionLevel != CompressionLevel.None)
             {
@@ -43,9 +43,11 @@ namespace Chromatik.Zip
         /// <summary>
         /// The name of the file contained in the ZipEntry.
         /// </summary>
-        public string FileName {
+        public string FileName
+        {
             get { return zipEntry.FileName; }
-            set {
+            set
+            {
                 if (string.IsNullOrWhiteSpace(value))
                     throw new ArgumentNullException("FileName");
                 zipEntry.FileName = ZipFile.ToEntryFormat(value);
@@ -57,6 +59,11 @@ namespace Chromatik.Zip
         /// </summary>
         /// <returns></returns>
         new public string ToString() { return FileName; }
+
+        /// <summary>
+        /// True if the entry is a directory (not a file). This is a readonly property on the entry.
+        /// </summary>
+        public bool IsDirectory { get { return zipEntry.IsDirectory; } }
 
         /// <summary>
         /// Last Access time for the file represented by the entry.
@@ -106,7 +113,7 @@ namespace Chromatik.Zip
         /// <param name="accessed">the last access time of the entry.</param>
         /// <param name="modified">the last modified time of the entry.</param>
         public void SetEntryTimes(DateTime created, DateTime accessed, DateTime modified) { zipEntry.SetEntryTimes(created, accessed, modified); }
-        
+
         /// <summary>
         /// Sets if the entry is compresed when saving the zip archive.
         /// </summary>
@@ -137,19 +144,24 @@ namespace Chromatik.Zip
         /// <param name="overwrite">true to replace an existing file with the same name as the destination; otherwise, false.</param>
         public void Extract(string destinationFileName, bool overwrite)
         {
-            FileMode fm = FileMode.CreateNew;
-            if (overwrite)
-                fm = FileMode.Create;
-
-            string dir = Path.GetDirectoryName(Path.GetFullPath(destinationFileName));
-            if (!Directory.Exists(dir))
-                Directory.CreateDirectory(dir);
-
-            using (FileStream fileStream = new FileStream(destinationFileName, fm, FileAccess.ReadWrite, FileShare.Read))
+            if (!IsDirectory)
             {
-                using (Stream stream = GetStream())
-                    stream.CopyTo(fileStream);
+                FileMode fm = FileMode.CreateNew;
+                if (overwrite)
+                    fm = FileMode.Create;
+
+                string dir = Path.GetDirectoryName(Path.GetFullPath(destinationFileName));
+                if (!Directory.Exists(dir))
+                    Directory.CreateDirectory(dir);
+
+                using (FileStream fileStream = new FileStream(destinationFileName, fm, FileAccess.ReadWrite, FileShare.Read))
+                {
+                    using (Stream stream = GetStream())
+                        stream.CopyTo(fileStream);
+                }
             }
+            else
+                Directory.CreateDirectory(destinationFileName);
         }
 
         /// <summary>
@@ -194,7 +206,7 @@ namespace Chromatik.Zip
                 return memory.ToArray();
         }
 
-        
+
         ///// <summary>
         ///// The stream that provides content for the ZipEntry.
         ///// </summary>

@@ -17,7 +17,7 @@ namespace System.Xml
         static public XmlWriterSettings DefaultSetting { get; } = new XmlWriterSettings()
         {
             OmitXmlDeclaration = false,
-            Encoding = new UTF8Encoding(false),
+            Encoding = UTF8SansBomEncoding.Default,
             Indent = true,
             IndentChars = "  ",
             NewLineChars = "\n",

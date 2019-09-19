@@ -11,7 +11,7 @@ namespace System.Xml
     /// </summary>
     static public class XmlEnumertor
     {
-        #region Enumertors
+        #region Last Element
 
         /// <summary>
         /// Enumerate the <see cref="XmlElement"/> in the <see cref="XmlNode"/>

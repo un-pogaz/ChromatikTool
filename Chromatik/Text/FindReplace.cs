@@ -40,7 +40,7 @@ namespace System.Text
         /// <summary>
         /// <see cref="RegularExpressions.RegexOptions"/> for regex operations.
         /// </summary>
-        static public RegexOptions RegexOptions { get; set; } = (RegexOptions.Singleline | RegexOptions.CultureInvariant);
+        static public RegexOptions RegexOptions { get; set; } = (RegexOptions.Singleline | RegexOptions.Multiline | RegexOptions.CultureInvariant);
 
         /// <summary>
         /// Execute a single regex Search/Replace.
@@ -51,6 +51,7 @@ namespace System.Text
         /// <returns></returns>
         static public string Regex(this string input, string pattern, string replacement)
         {
+
             return RegularExpressions.Regex.Replace(input, pattern, replacement, RegexOptions);
         }
         /// <summary>
@@ -63,6 +64,10 @@ namespace System.Text
         /// <returns></returns>
         static public string Regex(this string input, string pattern, string replacement, RegexOptions options)
         {
+            if (pattern == null)
+                pattern = string.Empty;
+            if (replacement == null)
+                replacement = string.Empty;
             return RegularExpressions.Regex.Replace(input, pattern, replacement, options, Timeout);
         }
         /// <summary>

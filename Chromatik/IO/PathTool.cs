@@ -49,7 +49,7 @@ namespace System.IO
                     throw InvalidPathException.End;
                 else
                     return false;
-            
+
             foreach (char item in InvalidFileNameChars)
                 if (path.Contains(item.ToString()))
                     if (exception)
@@ -66,7 +66,7 @@ namespace System.IO
 
             return true;
         }
-        
+
         /// <summary>
         /// Verifie que le chemin est valide
         /// </summary>
@@ -94,11 +94,11 @@ namespace System.IO
                 }
 
                 foreach (string item in InvalidNames)
-                        if (subDir.ToLowerInvariant() == item.ToLowerInvariant())
-                            if (exception)
-                                throw InvalidPathException.Name;
-                            else
-                                return false;
+                    if (subDir.ToLowerInvariant() == item.ToLowerInvariant())
+                        if (exception)
+                            throw InvalidPathException.Name;
+                        else
+                            return false;
             }
 
             return true;
@@ -132,7 +132,7 @@ namespace System.IO
             return path.Replace(Path.AltDirectorySeparatorChar, Path.DirectorySeparatorChar).Trim();
         }
 
-        
+
         /// <summary>
         /// To linux Directory Separator Char
         /// </summary>
@@ -142,6 +142,5 @@ namespace System.IO
         {
             return path.Replace("\\", "/").Trim();
         }
-
     }
 }

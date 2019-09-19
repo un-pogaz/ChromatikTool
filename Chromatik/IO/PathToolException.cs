@@ -41,5 +41,5 @@ namespace System.IO
         /// <param name="innerException"></param>
         public InvalidPathException(string message, Exception innerException) : base(message, innerException) { }
     }
-    
+
 }

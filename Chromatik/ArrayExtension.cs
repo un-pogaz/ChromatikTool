@@ -15,7 +15,7 @@ namespace System.Linq
         {
             if (tbl == null)
                 tbl = new T[0];
-            
+
             if (addition == null)
                 addition = new T[0];
 
@@ -34,7 +34,7 @@ namespace System.Linq
 
             foreach (T[] item in array)
                 tbl = tbl.Concat(item);
-            
+
             return tbl;
         }
 
@@ -68,7 +68,7 @@ namespace System.Linq
 
             for (long i = 0; i < rslt.LongLength; i++)
                 rslt[i] = tbl[startIndex + i];
-            
+
             return rslt;
         }
     }

@@ -127,7 +127,7 @@ namespace System.IO
                             yield return item;
             }
         }
-        
+
 
         static private IEnumerable<string> EnumerateTopFiles(string path) { return EnumerateTopFiles(path, "*"); }
 

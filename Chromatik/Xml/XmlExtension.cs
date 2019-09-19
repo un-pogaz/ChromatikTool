@@ -83,7 +83,6 @@ namespace System.Xml
                 return (XmlText)node.AppendChild(node.OwnerDocument.CreateTextNode(text));
             }
         }
-        
         #endregion
 
         #region Attribut and Namespace

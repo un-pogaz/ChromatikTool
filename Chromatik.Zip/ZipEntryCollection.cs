@@ -43,7 +43,8 @@ namespace Chromatik.Zip
         /// <returns>null if not found</returns>
         public virtual ZipEntry this[string entryName]
         {
-            get {
+            get
+            {
                 int index = IndexOf(entryName);
 
                 if (index < 0)

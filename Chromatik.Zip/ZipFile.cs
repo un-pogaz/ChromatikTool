@@ -21,9 +21,9 @@ namespace Chromatik.Zip
         /// <summary>
         /// Create a new empty <see cref="ZipFile"/>.
         /// </summary>
-        public ZipFile() : this(new Ionic.Zip.ZipFile(Encoding.UTF8))
+        public ZipFile() : this(new Ionic.Zip.ZipFile(UTF8SansBomEncoding.Default))
         { }
-        
+
         static private Ionic.Zip.ZipFile GetZipFile(Stream stream)
         {
             try
@@ -49,6 +49,11 @@ namespace Chromatik.Zip
         public ZipFile(Stream stream) : this(GetZipFile(stream))
         { }
 
+        static internal Ionic.Zip.ReadOptions ReadOption = new Ionic.Zip.ReadOptions()
+        {
+            Encoding = UTF8SansBomEncoding.Default,
+        };
+
         static private Ionic.Zip.ZipFile GetZipFile(string fileName)
         {
             try
@@ -56,7 +61,7 @@ namespace Chromatik.Zip
                 if (File.Exists(fileName))
                     return Ionic.Zip.ZipFile.Read(fileName);
                 else
-                    return Ionic.Zip.ZipFile.Read(fileName, Encoding.UTF8);
+                    return Ionic.Zip.ZipFile.Read(fileName, ReadOption);
             }
             catch (Ionic.Zip.ZipException ex)
             {
@@ -82,14 +87,14 @@ namespace Chromatik.Zip
             IonicZip.CompressionLevel = Ionic.Zlib.CompressionLevel.BestCompression;
             IonicZip.ExtractExistingFile = Ionic.Zip.ExtractExistingFileAction.Throw;
             IonicZip.Strategy = Ionic.Zlib.CompressionStrategy.Default;
-            IonicZip.ProvisionalAlternateEncoding = Encoding.UTF8;
-            IonicZip.UseUnicodeAsNecessary = true;
+            IonicZip.AlternateEncoding = UTF8SansBomEncoding.Default;
+            IonicZip.AlternateEncodingUsage = Ionic.Zip.ZipOption.Always;
             IonicZip.MaxOutputSegmentSize = 0;
 
             foreach (var item in IonicZip.Entries)
             {
-                item.ProvisionalAlternateEncoding = Encoding.UTF8;
-                item.UseUnicodeAsNecessary = true;
+                item.AlternateEncoding = UTF8SansBomEncoding.Default;
+                item.AlternateEncodingUsage = Ionic.Zip.ZipOption.Always;
             }
 
             ///////////////////
@@ -102,7 +107,8 @@ namespace Chromatik.Zip
         /// <summary>
         /// The name of this ZIP archive, on disk.
         /// </summary>
-        public string ZipFileName {
+        public string ZipFileName
+        {
             get { return zipFile.Name; }
             set
             {
@@ -127,7 +133,8 @@ namespace Chromatik.Zip
         /// <summary>
         /// A comment attached to the ZIP archive.
         /// </summary>
-        public string Comment {
+        public string Comment
+        {
             get { return zipFile.Comment; }
             set
             {
@@ -260,7 +267,7 @@ namespace Chromatik.Zip
         /// <returns></returns>
         public void AddEntry(string entryName, string content)
         {
-            AddEntry(entryName, "", Encoding.UTF8);
+            AddEntry(entryName, content, UTF8SansBomEncoding.Default);
         }
         /// <summary>
         /// Add a text entrie with encoding in the ZIP archive.
@@ -271,12 +278,7 @@ namespace Chromatik.Zip
         /// <returns></returns>
         public void AddEntry(string entryName, string content, Encoding encoding)
         {
-            MemoryStream ms = new MemoryStream();
-            StreamWriter sw = new StreamWriter(ms, encoding);
-            sw.Write(content);
-            sw.Flush();
-            ms.Seek(0, SeekOrigin.Begin);
-            AddEntry(entryName, ms);
+            AddEntry(entryName, encoding.GetBytes(content));
         }
         /// <summary>
         /// Add a entrie in the ZIP archive from <see cref="byte"/>[]
@@ -321,7 +323,8 @@ namespace Chromatik.Zip
         /// <returns></returns>
         public void AddEntryFromFile(string entryName, string filePath)
         {
-            AddEntry(entryName, new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read));
+            using (FileStream file = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read))
+                AddEntry(entryName, file.CreateClone());
         }
         /// <summary>
         /// Add all files of the directory in the ZIP archive.
@@ -466,7 +469,25 @@ namespace Chromatik.Zip
         /// <summary>
         /// Saves the ZIP archive to a file, specified by the Name property.
         /// </summary>
-        public void Save() { Save(ZipFileName); }
+        public void Save()
+        {
+            try
+            {
+                zipFile.Save();
+            }
+            catch (Ionic.Zip.ZipException ex)
+            {
+                throw ZipException.FromIonic(ex);
+            }
+            catch (Ionic.Zlib.ZlibException ex)
+            {
+                throw ZipException.FromIonic(ex);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         /// <summary>
         ///  Save the ZIP archive to a file.
         /// </summary>
