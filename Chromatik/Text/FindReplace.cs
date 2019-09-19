@@ -38,9 +38,14 @@ namespace System.Text
         static public TimeSpan Timeout { get; set; } = new TimeSpan(0, 1, 0);
 
         /// <summary>
+        /// Default <see cref="RegularExpressions.RegexOptions"/> for regex operations.
+        /// </summary>
+        static public RegexOptions RegexOptionsDefault { get; } = (RegexOptions.Singleline | RegexOptions.Multiline | RegexOptions.CultureInvariant);
+
+        /// <summary>
         /// <see cref="RegularExpressions.RegexOptions"/> for regex operations.
         /// </summary>
-        static public RegexOptions RegexOptions { get; set; } = (RegexOptions.Singleline | RegexOptions.Multiline | RegexOptions.CultureInvariant);
+        static public RegexOptions RegexOptions { get; set; } = RegexOptions;
 
         /// <summary>
         /// Execute a single regex Search/Replace.
