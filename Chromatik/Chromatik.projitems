@@ -27,6 +27,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Xml\XmlCreate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Xml\XmlEnumertor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Xml\XmlNamespace.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Xml\XmlRacine.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Xml\XmlWriterTool.cs" />
   </ItemGroup>
 </Project>
