@@ -19,6 +19,16 @@ namespace Chromatik.Noise.Internal
 {
     using System;
 
+
+    public enum NoiseRange
+    {
+        Byte = 256,
+        ZeroToOne = 1,
+        nOneToOne = 2,
+        ZeroToHundred = 100,
+        ZeroToThousand = 1000,
+    }
+
     /// <summary>
     /// Libnoise
     /// </summary>
@@ -425,5 +435,28 @@ namespace Chromatik.Noise.Internal
         }
 
         #endregion
+
+        /// <summary>
+        /// Convert a [-1;1] value in a ohter range
+        /// </summary>
+        /// <param name="input">Input value to convert</param>
+        /// <param name="range">Range desired</param>
+        /// <returns>Value converted into the specified range</returns>
+        public static float ConvertRange(float input, NoiseRange range)
+        {
+            switch (range)
+            {
+                case NoiseRange.Byte:
+                    return input * 128 + 128;
+                case NoiseRange.ZeroToOne:
+                    return input * 0.5f + 1;
+                case NoiseRange.ZeroToHundred:
+                    return input * 50 + 100;
+                case NoiseRange.ZeroToThousand:
+                    return input * 500 + 1000;
+                default: // SimplexNoiseRange.nOneToOne
+                    return input;
+            }
+        }
     }
 }
