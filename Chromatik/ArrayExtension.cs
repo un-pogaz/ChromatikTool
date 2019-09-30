@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 
 namespace System.Linq
@@ -15,16 +16,16 @@ namespace System.Linq
         {
             if (tbl == null)
                 tbl = new T[0];
-
+            
             if (addition == null)
                 addition = new T[0];
-
+            
             return Enumerable.Concat(tbl, addition).ToArray();
         }
         /// <summary>
         /// Concatenate a jagged array
         /// </summary>
-        static public T[] Concat<T>(this T[] tbl, T[][] array)
+        static public T[] Concat<T>(this T[] tbl, params T[][] array)
         {
             if (tbl == null)
                 tbl = new T[0];
@@ -32,10 +33,11 @@ namespace System.Linq
             if (array == null)
                 array = new T[0][];
 
+            IEnumerable<T> rslt = tbl;
             foreach (T[] item in array)
-                tbl = tbl.Concat(item);
-
-            return tbl;
+                rslt = rslt.Concat(item);
+            
+            return rslt.ToArray();
         }
 
         /// <summary>
@@ -68,7 +70,7 @@ namespace System.Linq
 
             for (long i = 0; i < rslt.LongLength; i++)
                 rslt[i] = tbl[startIndex + i];
-
+            
             return rslt;
         }
     }

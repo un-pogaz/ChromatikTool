@@ -34,32 +34,35 @@ namespace Chromatik.Unicode
         /// <summary>
         /// Liste of Code Point characters
         /// </summary>
-        public string[] CodePoints
+        public Hexa[] CodePoints
         {
             set {
                 if (value == null)
-                    value = new string[0];
+                    value = new Hexa[0];
 
-                 _CodePoints = CodePoint.RangeFilter(value);
+                 _codePoints = CodePoint.RangeFilter(value);
 
                 List<string> lst = new List<string>();
-                foreach (string item in _CodePoints)
-                    lst.Add(CodePoint.CharFromHex(item));
+                for (int i = 0; i < _codePoints.Length; i++)
+                {
+                    _codePoints[i].MinStringLenght = 4;
+                    lst.Add(CodePoint.CharFromHexa(_codePoints[i].ToString()));
+                }
 
                 Characters = lst.ToArray();
             }
-            get { return _CodePoints; }
+            get { return _codePoints; }
         }
-        private string[] _CodePoints;
+        private Hexa[] _codePoints;
 
-        public string this[int index]
+        public Hexa this[int index]
         {
-            get { return _CodePoints[index]; }
-            set { _CodePoints[index] = value; }
+            get { return _codePoints[index]; }
+            set { _codePoints[index] = value; }
         }
-        public IEnumerator<string> GetEnumerator()
+        public IEnumerator<Hexa> GetEnumerator()
         {
-            foreach (string item in CodePoints)
+            foreach (Hexa item in CodePoints)
                 yield return item;
         }
 
@@ -73,7 +76,7 @@ namespace Chromatik.Unicode
         /// </summary>
         public string CodeRange
         {
-            get { return CodePoint.StringFromRange(_CodePoints); }
+            get { return CodePoint.StringFromRange(_codePoints); }
             set { CodePoints = CodePoint.RangeFromString(value); }
         }
 
@@ -85,12 +88,35 @@ namespace Chromatik.Unicode
         /// <summary>
         /// First CodePoint of the block
         /// </summary>
-        public string CodeStart { get; set; }
-        
+        public Hexa CodeStart {
+            get { return _codeStart; }
+            set
+            {
+                if (value != null)
+                {
+                    _codeStart = value;
+                    _codeStart.MinStringLenght = 4;
+                }
+            }
+        }
+        Hexa _codeStart;
+
         /// <summary>
         /// Ending CodePoint of the block
         /// </summary>
-        public string CodeEnd { get; set; }
+        public Hexa CodeEnd
+        {
+            get { return _codeEnd; }
+            set
+            {
+                if (value != null)
+                {
+                    _codeEnd = value;
+                    _codeEnd.MinStringLenght = 4;
+                }
+            }
+        }
+        Hexa _codeEnd;
 
         /// <summary>
         /// Language used
@@ -145,8 +171,8 @@ namespace Chromatik.Unicode
             if (string.IsNullOrWhiteSpace(CodeRangeXml.GetAttribute("start")) || string.IsNullOrWhiteSpace(CodeRangeXml.GetAttribute("end")))
                 throw InvalidXmlBlockException.DefautMessage;
 
-            result.CodeStart = CodeRangeXml.GetAttribute("start");
-            result.CodeEnd = CodeRangeXml.GetAttribute("end");
+            result.CodeStart = Hexa.New(CodeRangeXml.GetAttribute("start"));
+            result.CodeEnd = Hexa.New(CodeRangeXml.GetAttribute("end"));
 
             string codeRangeTxt = "";
             foreach (XmlElement Range in CodeRangeXml.GetElements("Range"))

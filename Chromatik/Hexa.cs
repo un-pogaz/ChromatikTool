@@ -83,6 +83,19 @@ namespace System
         /// </summary>
         public Hexa(string s, int minStringLenght) : this(Parse(s).AbsolutValue, minStringLenght)
         { }
+
+
+        /// <summary>
+        /// Create new hexadecimal variable
+        /// </summary>
+        public Hexa(long value) : this(value, 0)
+        { }
+        /// <summary>
+        /// Create new hexadecimal variable
+        /// </summary>
+        public Hexa(long value, int minStringLenght) : this((ulong)value, minStringLenght)
+        { }
+
         /// <summary>
         /// Create new hexadecimal variable
         /// </summary>
@@ -124,6 +137,20 @@ namespace System
         /// Create new hexadecimal variable
         /// </summary>
         static public Hexa New(ulong value, int minStringLenght)
+        {
+            return new Hexa(value, minStringLenght);
+        }
+        /// <summary>
+        /// Create new hexadecimal variable
+        /// </summary>
+        static public Hexa New(long value)
+        {
+            return new Hexa(value);
+        }
+        /// <summary>
+        /// Create new hexadecimal variable
+        /// </summary>
+        static public Hexa New(long value, int minStringLenght)
         {
             return new Hexa(value, minStringLenght);
         }
@@ -536,35 +563,35 @@ namespace System
         /// <internalonly/>
         public static bool operator <=(Hexa left, Hexa right)
         {
-            return ((left == right) || (right < left));
+            return ((left == right) || (left < right));
         }
         /// <internalonly/>
         public static bool operator >=(Hexa left, Hexa right)
         {
-            return ((left == right) || (right > left));
+            return ((left == right) || (left > right));
         }
 
 
         /// <internalonly/>
         public static bool operator <=(Hexa left, string right)
         {
-            return ((left == right) || (right < left));
+            return ((left == right) || (left < right));
         }
         /// <internalonly/>
         public static bool operator >=(Hexa left, string right)
         {
-            return ((left == right) || (right > left));
+            return ((left == right) || (left > right));
         }
 
         /// <internalonly/>
         public static bool operator <=(string left, Hexa right)
         {
-            return ((left == right) || (right < left));
+            return ((left == right) || (left < right));
         }
         /// <internalonly/>
         public static bool operator >=(string left, Hexa right)
         {
-            return ((left == right) || (right > left));
+            return ((left == right) || (left > right));
         }
         #endregion
 

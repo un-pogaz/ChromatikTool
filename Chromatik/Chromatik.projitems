@@ -10,6 +10,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)ArrayExtension.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ConvertExtend.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataTableExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Exception\ChromatikException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Exception\StreamToolException.cs" />

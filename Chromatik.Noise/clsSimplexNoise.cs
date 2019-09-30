@@ -12,12 +12,12 @@ namespace Chromatik.Noise
     /// Implementation of the Perlin simplex noise, an improved Perlin noise algorithm.
     /// Based loosely on SimplexNoise1234 by Stefan Gustavson: http://staffwww.itn.liu.se/~stegu/aqsis/aqsis-newnoise/
     /// </summary>
-    public static class _clsSimplexNoise
+    internal static class InternalSimplexNoise
     {
         /// <summary>
         /// Start the instance with the Seed 0
         /// </summary>
-        static _clsSimplexNoise()
+        static InternalSimplexNoise()
         {
             Seed = 0;
         }
@@ -95,7 +95,7 @@ namespace Chromatik.Noise
         /// <returns>The result values are between 0 and 255 (<see cref="byte"/> range).</returns>
         public static float CalcPixel1D(int x, float scale)
         {
-            return ToRange(Generate(x * scale));
+            return InternalNoise.ToRange(Generate(x * scale), NoiseRange.nOneToOne);
         }
         /// <summary>
         /// Calculate the noise value for a X;Y coordinate
@@ -106,7 +106,7 @@ namespace Chromatik.Noise
         /// <returns>The result values are between 0 and 255 (<see cref="byte"/> range).</returns>
         public static float CalcPixel2D(int x, int y, float scale)
         {
-            return ToRange(Generate(x * scale, y * scale));
+            return InternalNoise.ToRange(Generate(x * scale, y * scale), NoiseRange.nOneToOne);
         }
         /// <summary>
         /// Calculate the noise value for a X;Y;Z coordinate
@@ -118,27 +118,7 @@ namespace Chromatik.Noise
         /// <returns>The result values are between 0 and 255 (<see cref="byte"/> range).</returns>
         public static float CalcPixel3D(int x, int y, int z, float scale)
         {
-            return ToRange(Generate(x * scale, y * scale, z * scale)) ;
-        }
-
-
-        private static float ToRange(float input)
-        {
-            return ToRange(input, SimplexNoiseRange.Byte);
-        }
-        private static float ToRange(float input, SimplexNoiseRange range)
-        {
-            switch (range)
-            {
-                case SimplexNoiseRange.Byte:
-                    return input * 128 + 128;
-                case SimplexNoiseRange.ZeroToOne:
-                    return input * 0.5f + 1;
-                case SimplexNoiseRange.ZeroToHundred:
-                    return input * 50 + 100;
-                default: // SimplexNoiseRange.nOneToOne
-                    return input;
-            }
+            return InternalNoise.ToRange(Generate(x * scale, y * scale, z * scale), NoiseRange.nOneToOne) ;
         }
 
 
@@ -397,12 +377,5 @@ namespace Chromatik.Noise
             return ((h & 1) != 0 ? -u : u) + ((h & 2) != 0 ? -v : v) + ((h & 4) != 0 ? -w : w);
         }
     }
-
-    enum SimplexNoiseRange
-    {
-        Byte = 256,
-        ZeroToOne = 1,
-        nOneToOne = 2,
-        ZeroToHundred = 100,
-    }
+    
 }

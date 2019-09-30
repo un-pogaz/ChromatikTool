@@ -14,24 +14,45 @@ namespace Chromatik.Unicode
         /// <summary>
         /// Get the range between two Code Point 
         /// </summary>
-        /// <param name="Start">First Code Point in hexadecimal format</param>
-        /// <param name="Last">Last Code Point (included)</param>
+        /// <param name="start">First Code Point in hexadecimal format</param>
+        /// <param name="last">Last Code Point (included)</param>
         /// <returns></returns>
-        static public string[] Range(string Start, string Last)
+        static public Hexa[] Range(string start, string last)
         {
-            List<string> lst = new List<string>();
-
-            try
+            Hexa hexStart = Hexa.MinValue;
+            Hexa hexLast = Hexa.MinValue;
+            Hexa.TryParse(start, out hexStart);
+            Hexa.TryParse(last, out hexLast);
+            return Range(hexStart, hexLast);
+        }
+        /// <summary>
+        /// Get the range between two Code Point 
+        /// </summary>
+        /// <param name="start">First Code Point in hexadecimal format</param>
+        /// <param name="last">Last Code Point (included)</param>
+        /// <returns></returns>
+        static public Hexa[] Range(Hexa start, Hexa last)
+        {
+            List<Hexa> lst = new List<Hexa>();
+            
+            if (start < last)
             {
-                int hexStart = IntFromHex(Start);
-                int hexLast = IntFromHex(Last);
+                try
+                {
+                    Hexa hexStart = start;
+                    Hexa hexLast = last;
 
-                for (int i = hexStart; i <= hexLast; i++)
-                    lst.Add(HexFromInt(i));
+                    for (Hexa i = hexStart; i <= hexLast; i++)
+                        lst.Add(i);
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
             }
-            catch (Exception e)
+            else
             {
-                throw e;
+
             }
 
             return lst.ToArray();
@@ -42,19 +63,17 @@ namespace Chromatik.Unicode
         /// </summary>
         /// <param name="CodePoints"></param>
         /// <returns></returns>
-        static public string[] RangeFilter(string[] CodePoints)
+        static public Hexa[] RangeFilter(Hexa[] CodePoints)
         {
-            List<int> srt = new List<int>();
-            foreach (string item in CodePoints)
-                if (!string.IsNullOrWhiteSpace(item))
-                    srt.Add(IntFromHex(item));
-            srt.Sort();
+            List<Hexa> rslt = new List<Hexa>();
+            foreach (Hexa item in CodePoints)
+                if (item != null)
+                    rslt.Add(item);
 
-            List<string> lst = new List<string>();
-            foreach (int item in srt.Distinct())
-                lst.Add(HexFromInt(item));
+            rslt = rslt.Distinct().ToList();
+            rslt.Sort();
 
-            return lst.ToArray();
+            return rslt.ToArray();
         }
 
         /// <summary>
@@ -62,9 +81,9 @@ namespace Chromatik.Unicode
         /// </summary>
         /// <param name="CodeRange"></param>
         /// <returns></returns>
-        static public string[] RangeFromString(string CodeRange)
+        static public Hexa[] RangeFromString(string CodeRange)
         {
-            List<string> lst = new List<string>();
+            List<Hexa> lst = new List<Hexa>();
             CodeRange = CleanCoderange(CodeRange);
 
             foreach (string item in CodeRange.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
@@ -73,11 +92,12 @@ namespace Chromatik.Unicode
                 {
                     string[] RangeSplit = item.Split(new char[] { '-' }, StringSplitOptions.RemoveEmptyEntries);
 
-                    foreach (string subitem in Range(RangeSplit[0], RangeSplit[1]))
-                        lst.Add(subitem);
+
+                    foreach (Hexa subitem in Range(RangeSplit[0], RangeSplit[1]))
+                        lst.Add(Hexa.New(subitem));
                 }
                 else
-                    lst.Add(item);
+                    lst.Add(Hexa.New(item));
 
             }
 
@@ -89,9 +109,9 @@ namespace Chromatik.Unicode
         /// </summary>
         /// <param name="Search">Code Point in hexadecimal format</param>
         /// <returns></returns>
-        static public string[] HexFromString(string Search)
+        static public Hexa[] HexaFromString(string Search)
         {
-            List<string> lst = new List<string>();
+            List<Hexa> lst = new List<Hexa>();
             for (int i = 0; i < Search.Length; i++)
             {
                 string cara = "";
@@ -103,7 +123,7 @@ namespace Chromatik.Unicode
                 else
                     cara = Search[i].ToString();
 
-                lst.Add(HexFromChar(cara));
+                lst.Add(HexaFromChar(cara));
             }
             return lst.ToArray();
         }
@@ -113,38 +133,38 @@ namespace Chromatik.Unicode
         /// </summary>
         /// <param name="CodePoints">Array of code points</param>
         /// <returns></returns>
-        static public string StringFromRange(string[] CodePoints)
+        static public string StringFromRange(Hexa[] CodePoints)
         {
             List<string> lst = new List<string>();
 
             if (CodePoints.Length == 1)
-                lst.Add(CodePoints[0]);
+                lst.Add(CodePoints[0].ToString());
             else if (CodePoints.Length > 1)
             {                
-                if (IntFromHex(CodePoints[CodePoints.Length - 1]) - IntFromHex(CodePoints[0]) == CodePoints.Length - 1)
+                if (CodePoints[CodePoints.Length - 1] - CodePoints[0] == CodePoints.Length - 1)
                 {
                     lst.Add(CodePoints[0] + "-" + CodePoints[CodePoints.Length - 1]);
                 }
                 else
                 {
-                    string start = CodePoints[0];
-                    string last = CodePoints[0];
+                    Hexa start = CodePoints[0];
+                    Hexa last = CodePoints[0];
 
                     for (int i = 1; i < CodePoints.Length; i++)
                     {
-                        string next = CodePoints[i];
-                        int I_start = IntFromHex(start);
-                        int I_last = IntFromHex(last);
-                        int I_next = IntFromHex(next);
+                        Hexa next = CodePoints[i];
+                        Hexa I_start = start;
+                        Hexa I_last = last;
+                        Hexa I_next = next;
 
                         if (I_start == I_last && (I_last + 1 < I_next || I_start > I_next))
                         {
-                            lst.Add(start);
+                            lst.Add(start.ToString());
                             start = next;
                             last = next;
 
                             if (i == CodePoints.Length - 1)
-                                lst.Add(start);
+                                lst.Add(start.ToString());
                         }
                         else
                         {
@@ -173,7 +193,7 @@ namespace Chromatik.Unicode
                 if (item.Contains("-"))
                 {
                     string[] split = item.Split(new char[] { '-' }, StringSplitOptions.RemoveEmptyEntries);
-                    if (IntFromHex(split[0]) + 1 == IntFromHex(split[1]))
+                    if (IntFromHexa(split[0]) + 1 == IntFromHexa(split[1]))
                         result += "," + split[0] +"," + split[1];
                     else
                         result += "," + item;
@@ -223,146 +243,69 @@ namespace Chromatik.Unicode
             return CodeRange;
         }
 
+        
+        
 
-        #region FromHex
 
         /// <summary>
-        /// Get the character of the Code Point
+        /// Get the <see cref="int"/> value of the Code Point
         /// </summary>
-        /// <param name="hex">Code Point in hexadecimal format</param>
+        /// <param name="hexa">Code Point in hexadecimal format</param>
         /// <returns></returns>
-        static public string CharFromHex(string hex)
+        static public int IntFromHexa(string hexa)
         {
-            return CharFromInt(IntFromHex(hex));
+            return ConvertExtend.IntFromHexa(hexa);
         }
-
-        /// <summary>
-        /// Get the character of the Code Point
-        /// </summary>
-        /// <param name="hex">Code Point in hexadecimal format</param>
-        /// <returns></returns>
-        static public string[] CharFromHex(string[] hex)
-        {
-            string[] lst = new string[hex.Length];
-            for (int i = 0; i < hex.Length; i++)
-                lst[i] = CharFromHex(hex[i]);
-            return lst;
-        }
-
-        /// <summary>
-        /// Get the Integer of the Code Point
-        /// </summary>
-        /// <param name="hex">Code Point in hexadecimal format</param>
-        /// <returns></returns>
-        static public int IntFromHex(string hex)
-        {
-            int code;
-            try
-            {
-                code = int.Parse(hex.Trim(), System.Globalization.NumberStyles.HexNumber);
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-            return code;
-        }
-
-        /// <summary>
-        /// Get the Integer of the Code Point
-        /// </summary>
-        /// <param name="hex">Code Point in hexadecimal format</param>
-        /// <returns></returns>
-        static public int[] IntFromHex(string[] hex)
-        {
-            int[] lst = new int[hex.Length];
-            for (int i = 0; i < hex.Length; i++)
-                lst[i] = IntFromHex(hex[i]);
-            return lst;
-        }
-
-
-
-        #endregion
-
-        #region FromInt
-
-        /// <summary>
-        /// Get the character of the number
-        /// </summary>
-        /// <param name="code">Code Point in integer number</param>
-        /// <returns></returns>
-        static public string CharFromInt(int code)
-        {
-            string unicodeString = string.Empty;
-            try
-            {
-                unicodeString = char.ConvertFromUtf32(code);
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-            return unicodeString;
-        }
-
         /// <summary>
         /// Get the Code Point of the number
         /// </summary>
         /// <param name="code">Code Point in integer number</param>
         /// <returns></returns>
-        static public string HexFromInt(int code)
+        static public Hexa HexaFromInt(int code)
         {
-            string s = code.ToString("X");
-
-            if (s.Length < 2)
-                s = "0" + s;
-            if (s.Length < 3)
-                s = "0" + s;
-            if (s.Length < 4)
-                s = "0" + s;
-
-            return s;
+            return Hexa.New(code);
         }
-
-        #endregion
-
-        #region FromChar
+        
 
         /// <summary>
         /// Get the Code Point from a character
         /// </summary>
-        /// <param name="Char">Character to convert</param>
+        /// <param name="c">Character to convert</param>
         /// <returns></returns>
-        static public string HexFromChar(string Char)
+        static public Hexa HexaFromChar(string c)
         {
-            return HexFromInt(IntFromChar(Char));
+            return Hexa.New(ConvertExtend.HexaFromChar(c));
+        }
+        /// <summary>
+        /// Get the character of the Code Point
+        /// </summary>
+        /// <param name="hexa">Code Point in hexadecimal format</param>
+        /// <returns></returns>
+        static public string CharFromHexa(string hexa)
+        {
+            return ConvertExtend.CharFromHexa(hexa);
         }
 
+
+        /// <summary>
+        /// Get the character of a <see cref="int"/> value
+        /// </summary>
+        /// <param name="code">Code Point to convert</param>
+        /// <returns></returns>
+        static public string CharFromInt(int code)
+        {
+            return ConvertExtend.CharFromInt(code);
+        }
         /// <summary>
         /// Get the Code Point from a character
         /// </summary>
-        /// <param name="Char">Array of character to convert</param>
+        /// <param name="c">Character to convert</param>
         /// <returns></returns>
-        static public string[] HexFromChar(string[] tblChar)
+        static public int IntFromChar(string c)
         {
-            string[] tbl = new string[tblChar.Length];
-            for (int i = 0; i < tblChar.Length; i++)
-                tbl[i] = HexFromChar(tblChar[i]);
-            return tbl;
+            return ConvertExtend.IntFromChar(c);
         }
-
-        /// <summary>
-        /// Get the Code Point from a character
-        /// </summary>
-        /// <param name="Char">Character to convert</param>
-        /// <returns></returns>
-        static public int IntFromChar(string Char)
-        {
-            return char.ConvertToUtf32(Char, 0);
-        }
-
-        #endregion
+        
         
     }
 }
