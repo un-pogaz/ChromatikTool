@@ -81,16 +81,6 @@ namespace Chromatik.Noise
                         rslt[w, h, l] = GetValue(w, h, l);
             return rslt;
         }
-        public float[,,,] GetHypercube(int width, int height, int lenght, int time)
-        {
-            float[,,,] rslt = new float[width, height, lenght, time];
-            for (int w = 0; w < width; w++)
-                for (int h = 0; h < height; h++)
-                    for (int l = 0; l < lenght; l++)
-                        for (int t = 0; t < time; t++)
-                            rslt[w, h, l, t] = GetValue(w, h, l, t);
-            return rslt;
-        }
 
     }
 
