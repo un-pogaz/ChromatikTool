@@ -6,7 +6,7 @@
 
 using System;
 
-namespace Chromatik.Noise
+namespace Chromatik.Noise.Internal
 {
     /// <summary>
     /// Implementation of the Perlin simplex noise, an improved Perlin noise algorithm.
