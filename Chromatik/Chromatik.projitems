@@ -14,6 +14,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Exception\ChromatikException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Exception\StreamToolException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HashKey.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Hexa.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Ini\IniFile.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IO\PathTool.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IO\PathToolException.cs" />
