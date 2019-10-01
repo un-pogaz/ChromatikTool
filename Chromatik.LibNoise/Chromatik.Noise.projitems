@@ -9,10 +9,6 @@
     <Import_RootNamespace>Chromatik.Noise</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)BevinsValue.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)clsSimplexNoise.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)InternalNoise.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)PerlinNoise.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)SimplexNoise.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LibNoiseExtension.cs" />
   </ItemGroup>
 </Project>

@@ -29,7 +29,7 @@
 
 #define LIBNOISE_VERSION_2
 
-namespace Chromatik.Noise.Internal
+namespace LibNoise.Internal
 {
     /// <summary>
     /// Base class for all value noise generator module

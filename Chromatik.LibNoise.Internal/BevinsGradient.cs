@@ -29,7 +29,7 @@
 
 #define LIBNOISE_VERSION_2
 
-namespace Chromatik.Noise.Internal
+namespace LibNoise.Internal
 {
     /// <summary>
     /// A gradient noise generator. The Jason Bevins's Libnoise ported in c#

@@ -15,7 +15,7 @@
 // 
 // From the original Jason Bevins's Libnoise (http://libnoise.sourceforge.net)
 
-namespace Chromatik.Noise.Internal
+namespace LibNoise.Internal
 {
     /// <summary>
     /// Base class for all noise primitive.

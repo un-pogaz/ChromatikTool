@@ -24,7 +24,7 @@
 #define NOISE_RANDOM_PARANOIA
 #endif
 
-namespace Chromatik.Noise.Internal
+namespace LibNoise.Internal
 {
     using System;
 

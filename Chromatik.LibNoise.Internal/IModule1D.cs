@@ -16,13 +16,13 @@
 // From the original Jason Bevins's Libnoise (http://libnoise.sourceforge.net)
 // From Frédéric Lecointre's c# port (frederic.lecointre@burnweb.net)
 
-namespace Chromatik.Noise.Internal
+namespace LibNoise.Internal
 {
     /// <summary>
     /// Abstract interface for noise modules that calculates and outputs a value
-    /// given a two-dimensional input value.
+    /// given a one-dimensional input value.
     /// </summary>
-    public interface IModule2D : IModule
+    public interface IModule1D : IModule
     {
         #region Interaction
 
@@ -30,9 +30,8 @@ namespace Chromatik.Noise.Internal
         /// Generates an output value given the coordinates of the specified input value.
         /// </summary>
         /// <param name="x">The input coordinate on the x-axis.</param>
-        /// <param name="y">The input coordinate on the y-axis.</param>
         /// <returns>The resulting output value.</returns>
-        float GetValue(float x, float y);
+        float GetValue(float x);
 
         #endregion
     }

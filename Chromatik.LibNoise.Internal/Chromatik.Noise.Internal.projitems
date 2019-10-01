@@ -20,6 +20,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)IModule3D.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IModule4D.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ImprovedPerlin.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LibNoiseExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Libnoise.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NoiseQuality.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PrimitiveModule.cs" />
