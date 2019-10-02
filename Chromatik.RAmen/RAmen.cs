@@ -12,7 +12,7 @@ namespace Chromatik.RAmen
     /// </summary>
     sealed public class RAmen
     {
-        static public string RAmen { get; } = "RAmen";
+        UTF8Encoding UTF8SansBomEncoding = new UTF8Encoding(false);
 
         /// <summary>
         /// Saveur du RAmen (Clée d'obfusquation)
@@ -65,7 +65,7 @@ namespace Chromatik.RAmen
         /// <returns></returns>
         public byte[] GenerateByte(string writeText)
         {
-            return GenerateByte(UTF8SansBomEncoding.Default.GetBytes(writeText));
+            return GenerateByte(UTF8SansBomEncoding.GetBytes(writeText));
         }
         /// <summary>
         /// Prépare un RAmen
@@ -109,7 +109,7 @@ namespace Chromatik.RAmen
         /// <param name="writeText">Texte a écrire</param>
         public void WriteText(string filePath, string writeText)
         {
-            WriteFile(filePath, UTF8SansBomEncoding.Default.GetBytes(writeText));
+            WriteFile(filePath, UTF8SansBomEncoding.GetBytes(writeText));
         }
 
         /// <summary>
@@ -181,7 +181,7 @@ namespace Chromatik.RAmen
         /// <returns></returns>
         public string ReadText(byte[] arrayByte)
         {
-            return UTF8SansBomEncoding.Default.GetString(arrayByte);
+            return UTF8SansBomEncoding.GetString(arrayByte);
         }
 
 
