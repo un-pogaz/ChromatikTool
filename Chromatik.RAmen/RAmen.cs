@@ -90,7 +90,7 @@ namespace Chromatik.RAmen
             MemoryStream rslt = new MemoryStream();
             SimplexPerlin perlin = CreateSimplexPerlin(Taste);
             int b = stream.ReadByte();
-            while (b > 0)
+            while (b >= 0)
             {
                 rslt.WriteByte(GetByte(perlin, Taste, (byte)b, stream.Position - 1));
                 b = stream.ReadByte();
@@ -129,7 +129,7 @@ namespace Chromatik.RAmen
         public byte[] DecodeByte(byte[] arrayByte)
         {
             using (MemoryStream stream = new MemoryStream(arrayByte))
-                return ((MemoryStream)DecodeStream(stream)).ToArray();
+                return DecodeStream(stream).ToArray();
         }
         /// <summary>
         /// Mange et digére un RAmen
@@ -153,7 +153,7 @@ namespace Chromatik.RAmen
             MemoryStream rslt = new MemoryStream();
             SimplexPerlin perlin = CreateSimplexPerlin(Taste);
             int b = stream.ReadByte();
-            while (b > 0)
+            while (b >= 0)
             {
                 rslt.WriteByte(ReadByte(perlin, Taste, (byte)b, stream.Position - 1));
                 b = stream.ReadByte();

@@ -50,7 +50,7 @@ namespace Test
             */
 
             Chromatik.RAmen.RAmen ramen = new Chromatik.RAmen.RAmen("654");
-            ramen.WriteText("RAmen", "map.SavePNG(\"map.png\");");
+            ramen.WriteText("RAmen", "map.SavePNG(\"map.png\"); zqe4f45qrz 24 zre241v q2rz1g2 1qrs");
 
             string dd = ramen.ReadText("RAmen");
 
