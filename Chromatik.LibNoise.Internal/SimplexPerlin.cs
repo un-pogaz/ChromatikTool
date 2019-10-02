@@ -33,7 +33,7 @@ namespace LibNoise.Internal
     /// -1.0 to +1.0, but there are no guarantees that all output values will
     /// exist within that range.
     /// </summary>
-    public class SimplexPerlin : ImprovedPerlin, IModule4D, IModule3D, IModule2D
+    internal class SimplexPerlin : ImprovedPerlin, IModule4D, IModule3D, IModule2D
     {
         #region Fields
 

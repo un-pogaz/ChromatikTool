@@ -27,7 +27,7 @@ namespace LibNoise.Internal
     /// for debugging purposes.
     /// 
     /// </summary>
-    public class Checkerboard : PrimitiveModule, IModule3D
+    internal class Checkerboard : PrimitiveModule, IModule3D
     {
         #region Ctor/Dtor
 

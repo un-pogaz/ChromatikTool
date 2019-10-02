@@ -22,7 +22,7 @@ namespace LibNoise.Internal
     /// Abstract interface for noise modules that calculates and outputs a value
     /// given a four-dimensional input value.
     /// </summary>
-    public interface IModule4D : IModule
+    internal interface IModule4D : IModule
     {
         #region Interaction
 

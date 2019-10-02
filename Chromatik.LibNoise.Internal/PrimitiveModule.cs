@@ -20,7 +20,7 @@ namespace LibNoise.Internal
     /// <summary>
     /// Base class for all noise primitive.
     /// </summary>
-    public abstract class PrimitiveModule : IModule
+    internal abstract class PrimitiveModule : IModule
     {
         #region Constants
 

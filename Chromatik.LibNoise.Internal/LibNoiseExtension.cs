@@ -9,7 +9,7 @@ namespace LibNoise.Internal
     /// <summary>
     /// Enumerates the noise values range
     /// </summary>
-    public enum NoiseRange : int
+    internal enum NoiseRange : int
     {
         /// <summary>
         /// Default range [-1;1]

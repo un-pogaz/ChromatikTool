@@ -22,7 +22,7 @@ namespace LibNoise.Internal
     /// <summary>
     /// Libnoise
     /// </summary>
-    public static class Libnoise
+    internal static class Libnoise
     {
         #region Constants
 

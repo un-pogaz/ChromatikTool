@@ -34,7 +34,7 @@ namespace LibNoise.Internal
     /// - Combining the output values from two noise modules in various ways.
     ///
     /// </summary>
-    public interface IModule
+    internal interface IModule
     {
     }
 }

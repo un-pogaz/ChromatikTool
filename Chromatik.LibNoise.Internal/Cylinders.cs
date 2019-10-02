@@ -43,7 +43,7 @@ namespace LibNoise.Internal
     /// turbulence, is useful for generating wood-like textures.
     /// 
     /// </summary>
-    public class Cylinders : PrimitiveModule, IModule3D
+    internal class Cylinders : PrimitiveModule, IModule3D
     {
         #region Constants
 

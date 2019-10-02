@@ -35,7 +35,7 @@ namespace LibNoise.Internal
     /// -1.0 to +1.0, but there are no guarantees that all output values will
     /// exist within that range.
     /// </summary>
-    public class ImprovedPerlin : PrimitiveModule, IModule3D, IModule2D, IModule1D
+    internal class ImprovedPerlin : PrimitiveModule, IModule3D, IModule2D, IModule1D
     {
         #region Constants
 

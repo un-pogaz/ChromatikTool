@@ -21,7 +21,7 @@ namespace LibNoise.Internal
     /// <summary>
     /// Enumerates the noise quality.
     /// </summary>
-    public enum NoiseQuality : byte
+    internal enum NoiseQuality : byte
     {
         /// Generates coherent noise quickly.  When a coherent-noise function with
         /// this quality setting is used to generate a bump-map image, there are

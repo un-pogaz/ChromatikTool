@@ -22,7 +22,7 @@ namespace LibNoise.Internal
     /// Abstract interface for noise modules that calculates and outputs a value
     /// given a one-dimensional input value.
     /// </summary>
-    public interface IModule1D : IModule
+    internal interface IModule1D : IModule
     {
         #region Interaction
 

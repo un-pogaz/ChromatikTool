@@ -41,7 +41,7 @@ namespace LibNoise.Internal
     /// turbulence, is useful for generating agate-like textures.
     /// 
     /// </summary>
-    public class Spheres : PrimitiveModule, IModule3D
+    internal class Spheres : PrimitiveModule, IModule3D
     {
         #region Constants
 

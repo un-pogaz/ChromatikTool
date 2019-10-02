@@ -23,7 +23,7 @@ namespace LibNoise.Internal
     /// This noise module is not useful by itself, but it is often used as a
     /// source module for other noise modules.
     /// </summary>
-    public class Constant : PrimitiveModule, IModule4D, IModule3D, IModule2D, IModule1D
+    internal class Constant : PrimitiveModule, IModule4D, IModule3D, IModule2D, IModule1D
     {
         #region Constants
 

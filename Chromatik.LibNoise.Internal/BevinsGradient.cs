@@ -34,7 +34,7 @@ namespace LibNoise.Internal
     /// <summary>
     /// A gradient noise generator. The Jason Bevins's Libnoise ported in c#
     /// </summary>
-    public sealed class BevinsGradient : PrimitiveModule, IModule3D
+    internal sealed class BevinsGradient : PrimitiveModule, IModule3D
     {
         #region Constants
 

@@ -34,7 +34,7 @@ namespace LibNoise.Internal
     /// <summary>
     /// Base class for all value noise generator module
     /// </summary>
-    public sealed class BevinsValue : PrimitiveModule, IModule3D, IModule2D, IModule1D
+    internal sealed class BevinsValue : PrimitiveModule, IModule3D, IModule2D, IModule1D
     {
         #region Constants
 
