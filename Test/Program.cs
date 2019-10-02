@@ -20,11 +20,14 @@ namespace Test
         [STAThread]
         static void Main()
         {
+            /*
             Bitmap map = new Bitmap(1000, 1000);
             
             //float scale = 0.0009f; // 3000
             float scale = 0.0025f; // 1000
             //float scale = 0.01f; // 255
+
+
 
             LibNoise.Primitive.SimplexPerlin noise = new LibNoise.Primitive.SimplexPerlin();
 
@@ -44,6 +47,12 @@ namespace Test
                     map.SetPixel(w, h, Color.FromArgb((byte)r[w, h], (byte)g[w, h], (byte)b[w, h]));
 
             map.SavePNG("map.png");
+            */
+
+            Chromatik.RAmen.RAmen ramen = new Chromatik.RAmen.RAmen("654");
+            ramen.WriteText("RAmen", "map.SavePNG(\"map.png\");");
+
+            string dd = ramen.ReadText("RAmen");
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
