@@ -8,21 +8,21 @@ using System.Security.Cryptography;
 namespace Chromatik.RAmen
 {
     /// <summary>
-    /// Une instance pour obfusqué un fichier ou un texte
+    /// Permet de cuisiner des RAmen a partir de fichier ou de text
     /// </summary>
     sealed public class RAmen
     {
-        UTF8Encoding UTF8SansBomEncoding = new UTF8Encoding(false);
+        static UTF8Encoding UTF8SansBomEncoding = new UTF8Encoding(false);
 
         /// <summary>
-        /// Saveur du RAmen (Clée d'obfusquation)
+        /// Saveur du RAmen
         /// </summary>
         public string Taste { get; }
 
         /// <summary>
-        /// Instance pour crée des RAmen a la saveur spécifier
+        /// Convoque un cuisinier de RAmen spécialisé dans la saveur spécifier
         /// </summary>
-        /// <param name="taste">Saveur du RAmen (Clée d'obfusquation)</param>
+        /// <param name="taste">Saveur du RAmen</param>
         public RAmen(string taste)
         {
             if (string.IsNullOrEmpty(taste))
@@ -30,78 +30,51 @@ namespace Chromatik.RAmen
             Taste = taste;
         }
 
+
         /// <summary>
         /// Cuisine un RAmen
         /// </summary>
-        /// <param name="filePath">Fichier cible</param>
-        /// <param name="arrayByte">Byte a écrire</param>
-        public void WriteFile(string filePath, byte[] arrayByte)
-        {
-            using (MemoryStream stream = new MemoryStream(arrayByte))
-                WriteFile(filePath, stream);
-        }
-        /// <summary>
-        /// Cuisine un RAmen
-        /// </summary>
-        /// <param name="filePath"></param>
-        /// <param name="stream"></param>
-        public void WriteFile(string filePath, Stream stream)
-        {
-            long initPosition = stream.Position;
-            stream.Position = 0;
-            using (Stream encode = EncodeStream(stream))
-            {
-                using (FileStream file = new FileStream(filePath, FileMode.Create, FileAccess.ReadWrite, FileShare.ReadWrite))
-                    encode.CopyTo(file);
-            }
-
-            stream.Position = initPosition;
-        }
-
-        /// <summary>
-        /// Prépare un RAmen textuel
-        /// </summary>
-        /// <param name="writeText"></param>
-        /// <returns></returns>
-        public byte[] GenerateByte(string writeText)
-        {
-            return GenerateByte(UTF8SansBomEncoding.GetBytes(writeText));
-        }
-        /// <summary>
-        /// Prépare un RAmen
-        /// </summary>
         /// <param name="arrayByte">Byte a écrire</param>
         /// <returns></returns>
-        public byte[] GenerateByte(byte[] arrayByte)
+        public byte[] EncodeByte(byte[] arrayByte)
         {
             using (MemoryStream stream = new MemoryStream(arrayByte))
                 return EncodeStream(stream).ToArray();
         }
 
         /// <summary>
-        /// Prépare un RAmen
+        /// Cuisine un RAmen
         /// </summary>
-        /// <param name="stream"></param>
-        /// <returns></returns>
-        public MemoryStream EncodeStream(Stream stream)
+        /// <param name="filePath">Fichier cible</param>
+        /// <param name="arrayByte">Byte a écrire</param>
+        public void WriteFileByte(string filePath, byte[] arrayByte)
         {
-            long initPosition = stream.Position;
-            stream.Position = 0;
-            MemoryStream rslt = new MemoryStream();
-            SimplexPerlin perlin = CreateSimplexPerlin(Taste);
-            int b = stream.ReadByte();
-            while (b >= 0)
+            using (MemoryStream stream = new MemoryStream(arrayByte))
+                WriteFileStream(filePath, stream);
+        }
+        /// <summary>
+        /// Cuisine un RAmen
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <param name="stream"></param>
+        public void WriteFileStream(string filePath, Stream stream)
+        {
+            using (Stream encode = EncodeStream(stream))
             {
-                rslt.WriteByte(GetByte(perlin, Taste, (byte)b, stream.Position - 1));
-                b = stream.ReadByte();
+                using (FileStream file = new FileStream(filePath, FileMode.Create, FileAccess.ReadWrite, FileShare.ReadWrite))
+                    encode.CopyTo(file);
             }
-            perlin = null;
-
-            rslt.Position = 0;
-            stream.Position = initPosition;
-            return rslt;
         }
         
+        /// <summary>
+        /// Cuisine un RAmen textuel
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
+        public byte[] EncodeText(string text)
+        {
+            return EncodeByte(UTF8SansBomEncoding.GetBytes(text));
+        }
         /// <summary>
         /// Cuisine un RAmen textuel
         /// </summary>
@@ -109,18 +82,9 @@ namespace Chromatik.RAmen
         /// <param name="writeText">Texte a écrire</param>
         public void WriteText(string filePath, string writeText)
         {
-            WriteFile(filePath, UTF8SansBomEncoding.GetBytes(writeText));
+            WriteFileByte(filePath, UTF8SansBomEncoding.GetBytes(writeText));
         }
 
-        /// <summary>
-        /// Mange et digére un RAmen
-        /// </summary>
-        /// <param name="filePath">Fichier cible</param>
-        /// <returns>Bytes du fichier (null si il n'existe pas)</returns>
-        public byte[] DecodeFile(string filePath)
-        {
-            return DecodeFileStream(filePath).ToArray();
-        }
         /// <summary>
         /// Mange et digére un RAmen
         /// </summary>
@@ -131,16 +95,68 @@ namespace Chromatik.RAmen
             using (MemoryStream stream = new MemoryStream(arrayByte))
                 return DecodeStream(stream).ToArray();
         }
+
+        /// <summary>
+        /// Mange et digére un RAmen
+        /// </summary>
+        /// <param name="filePath">Fichier cible</param>
+        /// <returns>Bytes du fichier (null si il n'existe pas)</returns>
+        public byte[] ReadFileByte(string filePath)
+        {
+            return ReadFileStream(filePath).ToArray();
+        }
         /// <summary>
         /// Mange et digére un RAmen
         /// </summary>
         /// <param name="filePath"></param>
         /// <returns></returns>
-        public MemoryStream DecodeFileStream(string filePath)
+        public MemoryStream ReadFileStream(string filePath)
         {
             using (FileStream file = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read))
                 return DecodeStream(file);
         }
+
+        /// <summary>
+        /// Mange et digére un RAmen textuel
+        /// </summary>
+        /// <param name="arrayByte"></param>
+        /// <returns></returns>
+        public string DecodeText(byte[] arrayByte)
+        {
+            return UTF8SansBomEncoding.GetString(DecodeByte(arrayByte));
+        }
+        /// <summary>
+        /// Mange et digére un RAmen textuel
+        /// </summary>
+        /// <param name="filePath">Fichier cible</param>
+        /// <returns>Texte du fichier (null si il n'existe pas)</returns>
+        public string ReadText(string filePath)
+        {
+            return UTF8SansBomEncoding.GetString(ReadFileByte(filePath));
+        }
+
+
+        /// <summary>
+        /// Cuisine un RAmen
+        /// </summary>
+        /// <param name="stream"></param>
+        /// <returns></returns>
+        public MemoryStream EncodeStream(Stream stream)
+        {
+            long initPosition = stream.Position;
+            MemoryStream rslt = new MemoryStream();
+            for (long i = 0; i < stream.Length; i++)
+            {
+                stream.Position = (stream.Length - 1) - i;
+                int b = stream.ReadByte();
+                rslt.WriteByte(GetByte(Taste, (byte)b, i));
+            }
+
+            rslt.Position = 0;
+            stream.Position = initPosition;
+            return rslt;
+        }
+
         /// <summary>
         /// Mange et digére un RAmen
         /// </summary>
@@ -151,38 +167,18 @@ namespace Chromatik.RAmen
             long initPosition = stream.Position;
             stream.Position = 0;
             MemoryStream rslt = new MemoryStream();
-            SimplexPerlin perlin = CreateSimplexPerlin(Taste);
-            int b = stream.ReadByte();
-            while (b >= 0)
+            for (long i = 0; i < stream.Length; i++)
             {
-                rslt.WriteByte(ReadByte(perlin, Taste, (byte)b, stream.Position - 1));
-                b = stream.ReadByte();
+                stream.Position = (stream.Length - 1) - i;
+                int b = stream.ReadByte();
+                rslt.WriteByte(ReadByte(Taste, (byte)b, (stream.Length - 1) - i));
             }
-            perlin = null;
 
             rslt.Position = 0;
             stream.Position = initPosition;
             return rslt;
         }
 
-        /// <summary>
-        /// Mange et digére un RAmen textuel
-        /// </summary>
-        /// <param name="filePath">Fichier cible</param>
-        /// <returns>Texte du fichier (null si il n'existe pas)</returns>
-        public string ReadText(string filePath)
-        {
-            return ReadText(DecodeFile(filePath));
-        }
-        /// <summary>
-        /// Mange et digére un RAmen textuel
-        /// </summary>
-        /// <param name="arrayByte"></param>
-        /// <returns></returns>
-        public string ReadText(byte[] arrayByte)
-        {
-            return UTF8SansBomEncoding.GetString(arrayByte);
-        }
 
 
         private SimplexPerlin CreateSimplexPerlin(string taste)
@@ -196,26 +192,26 @@ namespace Chromatik.RAmen
             return new SimplexPerlin(s, NoiseQuality.Best);
         }
 
-        private byte Get_X(SimplexPerlin simplexPerlin, string taste, long lenght)
+        private byte Get_X(string taste, long postition)
         {
-            return (byte)simplexPerlin.GetValue(lenght, (lenght / 2), -lenght * 1.5f, NoiseRange.Byte);
+            return (byte)CreateSimplexPerlin(taste).GetValue(postition, (postition / 2), -postition * 1.5f, NoiseRange.Byte);
         }
-        private byte Get_Y(SimplexPerlin simplexPerlin, string taste, long lenght)
+        private byte Get_Y(string taste, long postition)
         {
-            return (byte)simplexPerlin.GetValue(taste.Length, lenght * 2, lenght / 3, NoiseRange.Byte);
+            return (byte)CreateSimplexPerlin(taste).GetValue(taste.Length, postition * 2, postition / 3, NoiseRange.Byte);
         }
 
-        private byte GetByte(SimplexPerlin simplexPerlin, string taste, byte b, long lenght)
+        private byte GetByte(string taste, byte b, long postition)
         {
-            byte x = Get_X(simplexPerlin, taste, lenght);
-            byte y = Get_Y(simplexPerlin, taste, lenght);
+            byte x = Get_X(taste, postition);
+            byte y = Get_Y(taste, postition);
 
             return (byte)(x + y + b);
         }
-        private byte ReadByte(SimplexPerlin simplexPerlin, string taste, byte b, long lenght)
+        private byte ReadByte(string taste, byte b, long postition)
         {
-            byte x = Get_X(simplexPerlin, taste, lenght);
-            byte y = Get_Y(simplexPerlin, taste, lenght);
+            byte x = Get_X(taste, postition);
+            byte y = Get_Y(taste, postition);
 
             return (byte)(b - y - x);
         }
