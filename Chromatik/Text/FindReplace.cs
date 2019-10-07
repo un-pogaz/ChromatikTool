@@ -40,7 +40,7 @@ namespace System.Text
         /// <summary>
         /// Default <see cref="RegularExpressions.RegexOptions"/> for regex operations.
         /// </summary>
-        static public RegexOptions RegexOptionsDefault { get; } = (RegexOptions.Singleline | RegexOptions.Multiline | RegexOptions.CultureInvariant);
+        static public RegexOptions RegexOptionsDefault { get; } = (RegexOptions.Singleline|RegexOptions.Multiline| RegexOptions.CultureInvariant);
 
         /// <summary>
         /// <see cref="RegularExpressions.RegexOptions"/> for regex operations.
@@ -56,8 +56,7 @@ namespace System.Text
         /// <returns></returns>
         static public string Regex(this string input, string pattern, string replacement)
         {
-
-            return RegularExpressions.Regex.Replace(input, pattern, replacement, RegexOptions);
+            return input.Regex(pattern, replacement, RegexOptions);
         }
         /// <summary>
         /// Execute a single regex Search/Replace.
@@ -69,11 +68,7 @@ namespace System.Text
         /// <returns></returns>
         static public string Regex(this string input, string pattern, string replacement, RegexOptions options)
         {
-            if (pattern == null)
-                pattern = string.Empty;
-            if (replacement == null)
-                replacement = string.Empty;
-            return RegularExpressions.Regex.Replace(input, pattern, replacement, options, Timeout);
+            return input.Regex(pattern, replacement, options, Timeout);
         }
         /// <summary>
         /// Execute a single regex Search/Replace.
@@ -86,6 +81,10 @@ namespace System.Text
         /// <returns></returns>
         static public string Regex(this string input, string pattern, string replacement, RegexOptions options, TimeSpan matchTimeout)
         {
+            if (pattern == null)
+                pattern = string.Empty;
+            if (replacement == null)
+                replacement = string.Empty;
             return RegularExpressions.Regex.Replace(input, pattern, replacement, options, matchTimeout);
         }
 
@@ -136,6 +135,40 @@ namespace System.Text
             return rslt;
         }
 
+        /// <summary> 
+        /// Test if the Regex pattern exist.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="pattern"></param>
+        /// <returns></returns>
+        static public bool RegexIsMatch(this string input, string pattern)
+        {
+            return input.RegexIsMatch(pattern, RegexOptions);
+        }
+        /// <summary>
+        /// Test if the Regex pattern exist.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="pattern"></param>
+        /// <param name="options"></param>
+        /// <returns></returns>
+        static public bool RegexIsMatch(this string input, string pattern, RegexOptions options)
+        {
+            return input.RegexIsMatch(pattern, options, Timeout);
+        }
+        /// <summary>
+        /// Test if the Regex pattern exist.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="pattern"></param>
+        /// <param name="options"></param>
+        /// <param name="matchTimeout"></param>
+        /// <returns></returns>
+        static public bool RegexIsMatch(this string input, string pattern, RegexOptions options, TimeSpan matchTimeout)
+        {
+            return RegularExpressions.Regex.IsMatch(input, pattern, options, matchTimeout);
+        }
+
         /// <summary>
         /// Split a string wiht a regex the pattern.
         /// </summary>
@@ -168,40 +201,6 @@ namespace System.Text
         static public string[] RegexSplit(this string input, string pattern, RegexOptions options, TimeSpan matchTimeout)
         {
             return RegularExpressions.Regex.Split(input, pattern, options, matchTimeout);
-        }
-
-        /// <summary> 
-        /// Test if the Regex pattern exist.
-        /// </summary>
-        /// <param name="input"></param>
-        /// <param name="pattern"></param>
-        /// <returns></returns>
-        static public bool RegexIsMatch(this string input, string pattern)
-        {
-            return RegularExpressions.Regex.IsMatch(input, pattern, RegexOptions);
-        }
-        /// <summary>
-        /// Test if the Regex pattern exist.
-        /// </summary>
-        /// <param name="input"></param>
-        /// <param name="pattern"></param>
-        /// <param name="options"></param>
-        /// <returns></returns>
-        static public bool RegexIsMatch(this string input, string pattern, RegexOptions options)
-        {
-            return RegularExpressions.Regex.IsMatch(input, pattern, options, Timeout);
-        }
-        /// <summary>
-        /// Test if the Regex pattern exist.
-        /// </summary>
-        /// <param name="input"></param>
-        /// <param name="pattern"></param>
-        /// <param name="options"></param>
-        /// <param name="matchTimeout"></param>
-        /// <returns></returns>
-        static public bool RegexIsMatch(this string input, string pattern, RegexOptions options, TimeSpan matchTimeout)
-        {
-            return RegularExpressions.Regex.IsMatch(input, pattern, options, matchTimeout);
         }
 
     }

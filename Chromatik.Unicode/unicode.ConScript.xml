@@ -519,9 +519,9 @@
           <Languages lang="en"></Languages>
           <Countries lang="en"></Countries>
         </Localisable>
-        <WebCharTable url="http://www.kreativekorp.com/ucsur/charts/PDF/UE900.pdf" />
+        <WebCharTable url="http://www.kreativekorp.com/ucsur/charts/PDF/UE980.pdf" />
         <CodeRange start="E980" end="E9DF">
-          <Range>E97F-E97F</Range>
+          <Range>E980-E9DF</Range>
         </CodeRange>
       </Block>
       <Block nameID="Lhenazi">

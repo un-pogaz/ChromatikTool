@@ -107,7 +107,7 @@ namespace System.Linq
         {
             return input.ToLinux().Split(new string[] { "\n" }, splitOptions);
         }
-
+        
         /// <summary>
         /// Parse the <see cref="string"/> to Linux End of Line char
         /// </summary>

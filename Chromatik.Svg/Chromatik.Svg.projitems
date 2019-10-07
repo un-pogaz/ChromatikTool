@@ -9,12 +9,6 @@
     <Import_RootNamespace>Chromatik.Svg</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="$(MSBuildThisFileDirectory)Svg.dll" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="$(MSBuildThisFileDirectory)Svg.xml" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Minified.cs" />
   </ItemGroup>
 </Project>

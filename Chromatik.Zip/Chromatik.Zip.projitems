@@ -15,7 +15,4 @@
     <Compile Include="$(MSBuildThisFileDirectory)ZipFile.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ZipFileStatic.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="$(MSBuildThisFileDirectory)Ionic.Zip.dll" />
-  </ItemGroup>
 </Project>

@@ -645,7 +645,7 @@
         </Localisable>
         <WebCharTable url="https://unicode-table.com/en/blocks/tagalog/" />
         <CodeRange start="1700" end="171F">
-          <Range>1720-170C,170E-1714</Range>
+          <Range>1700-170C,170E-1714</Range>
         </CodeRange>
       </Block>
       <Block nameID="Hanunoo">
@@ -791,7 +791,7 @@
         </Localisable>
         <WebCharTable url="https://unicode-table.com/en/blocks/buginese/" />
         <CodeRange start="1A00" end="1A1F">
-          <Range>1A20-1A1B,1A1E,1A1F</Range>
+          <Range>1A00-1A1B,1A1E,1A1F</Range>
         </CodeRange>
       </Block>
       <Block nameID="Tai Tham">
@@ -818,7 +818,7 @@
         </Localisable>
         <WebCharTable url="https://unicode-table.com/en/blocks/combining-diacritical-marks-extended/" />
         <CodeRange start="1AB0" end="1AFF">
-          <Range>1AB0-1AB0</Range>
+          <Range>1AB0-1ABE</Range>
         </CodeRange>
       </Block>
       <Block nameID="Balinese">
@@ -987,7 +987,7 @@
         </Localisable>
         <WebCharTable url="https://unicode-table.com/en/blocks/greek-extended/" />
         <CodeRange start="1FF0" end="1FFF">
-          <Range>1FF0-1F15,1F18-1F1D,1F20-1F45</Range>
+          <Range>1F00-1F15,1F18-1F1D,1F20-1F45</Range>
           <Range>1F48-1F4D,1F50-1F57,1F59,1F5B</Range>
           <Range>1F5D,1F5F-1F7D,1F80-1FB4</Range>
           <Range>1FB6-1FC4,1FC6-1FD3,1FD6-1FDB</Range>
@@ -1878,7 +1878,7 @@
         </Localisable>
         <WebCharTable url="https://unicode-table.com/en/blocks/cham-alphabet/" />
         <CodeRange start="AA00" end="AA5F">
-          <Range>AA60-AA36,AA40-AA4D,AA50-AA59</Range>
+          <Range>AA00-AA36,AA40-AA4D,AA50-AA59</Range>
           <Range>AA5C-AA5F</Range>
         </CodeRange>
       </Block>
@@ -1932,7 +1932,7 @@
         <WebCharTable url="https://unicode-table.com/en/blocks/ethiopic-extended-a/" />
         <CodeRange start="AB00" end="AB2F">
           <Range>AB01-AB06,AB09-AB0E,AB11-AB16</Range>
-          <Range>AB20-AB26,AB28-AB28</Range>
+          <Range>AB20-AB26,AB28-AB2E</Range>
         </CodeRange>
       </Block>
       <Block nameID="Latin Extended-E">
@@ -2178,7 +2178,7 @@
         </Localisable>
         <WebCharTable url="https://unicode-table.com/en/blocks/linear-b-syllabary/" />
         <CodeRange start="10000" end="1007F">
-          <Range>10080-1000B,1000D-10026,10028-1003A</Range>
+          <Range>10000-1000B,1000D-10026,10028-1003A</Range>
           <Range>1003C,1003D,1003F-1004D,10050-1005D</Range>
         </CodeRange>
       </Block>
@@ -3166,7 +3166,7 @@
         </Localisable>
         <WebCharTable url="https://unicode-table.com/en/blocks/miao/" />
         <CodeRange start="16F00" end="16F9F">
-          <Range>16FE0-16F44,16F50-16F7E,16F8F-16F9F</Range>
+          <Range>16F00-16F44,16F50-16F7E,16F8F-16F9F</Range>
         </CodeRange>
       </Block>
       <Block nameID="Ideographic Symbols and Punctuation">
