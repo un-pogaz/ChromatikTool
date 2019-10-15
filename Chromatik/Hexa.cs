@@ -313,7 +313,7 @@ namespace System
         }
 
         /// <internalonly/>
-        public new int GetHashCode()
+        public override int GetHashCode()
         {
             return AbsolutValue.GetHashCode();
         }
