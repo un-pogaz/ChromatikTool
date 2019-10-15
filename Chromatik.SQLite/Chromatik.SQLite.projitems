@@ -16,6 +16,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)SQLiteDataBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SQLiteTable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SQLlog.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)StackLog.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)SQLite.Interop.dll.x86">

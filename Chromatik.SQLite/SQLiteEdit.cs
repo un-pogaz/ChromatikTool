@@ -25,11 +25,7 @@ namespace Chromatik.SQLite
         /// <summary>
         /// List of all SQL request executed of the database
         /// </summary>
-        public SQLlog[] Logs { get { return DataBase.Logs; } }
-        /// <summary>
-        /// List of all SQL request executed of the database
-        /// </summary>
-        public string[] LogsSQL { get { return DataBase.LogsSQL; } }
+        public StackLogSQL Logs { get { return DataBase.Logs; } }
 
         /// <summary>
         /// Path of the database

@@ -131,8 +131,8 @@ namespace Chromatik.SQLite
                 rslt = - 1;
                 msgErr = new SQLlog(ex, SQL);
             }
-            
-            AddLogEnty(msgErr);
+
+            _logs.AddEntry(msgErr);
             return rslt;
         }
         /// <summary>
@@ -158,35 +158,16 @@ namespace Chromatik.SQLite
                 rslt = new DataTable();
                 msgErr = new SQLlog(ex, SQL);
             }
-            
-            AddLogEnty(msgErr);
+
+            _logs.AddEntry(msgErr);
             return rslt;
         }
 
         /// <summary>
         /// List of all SQL request executed with this instance
         /// </summary>
-        public SQLlog[] Logs { get { return _Logs.ToArray(); } }
-        /// <summary>
-        /// List of all SQL request executed with this instance
-        /// </summary>
-        public string[] LogsSQL
-        {
-            get {
-                List<string> lst = new List<string>();
-                foreach (SQLlog item in _Logs)
-                    lst.Add(item.SQL);
-                return lst.ToArray();
-            }
-        }
-        private List<SQLlog> _Logs = new List<SQLlog>();
-        private void AddLogEnty(SQLlog SQLrequest)
-        {
-            _Logs.Insert(0, SQLrequest);
-
-            while (_Logs.Count > ushort.MaxValue)
-                _Logs.RemoveAt(_Logs.Count - 1);
-        }
+        public StackLogSQL Logs { get { return _logs; } }
+        private StackLogSQL _logs = new StackLogSQL();
 
         /// <summary>
         /// Get the Tables of the database
