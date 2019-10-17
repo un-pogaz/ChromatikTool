@@ -12,7 +12,7 @@ namespace System.Linq
         /// <summary>
         /// Concatenate two array
         /// </summary>
-        static public T[] Concat<T>(this T[] tbl, T[] addition)
+        static public T[] Concat<T>(this T[] tbl, params T[] addition)
         {
             if (tbl == null)
                 tbl = new T[0];

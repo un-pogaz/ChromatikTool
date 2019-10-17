@@ -22,6 +22,15 @@ namespace Chromatik.SQLite
     sealed public class SQLiteColumns : List<SQLiteColumns.Column>
     {
         /// <summary>
+        /// String format for TimeStamp column (yyyy-MM-dd hh:mm:ss.ffffff)
+        /// </summary>
+        static public string TimeStampFormat { get; } = "yyyy-MM-dd hh:mm:ss.ffffff";
+        /// <summary>
+        /// String format for TimeStamp column (yyyy-MM-dd hh:mm:ss)
+        /// </summary>
+        static public string TimeStampBasicFormat { get; } = "yyyy-MM-dd hh:mm:ss";
+
+        /// <summary>
         /// Collection of columns for a <see cref="SQLiteDataBase"/>
         /// </summary>
         public SQLiteColumns() : base()
@@ -99,7 +108,7 @@ namespace Chromatik.SQLite
                             rslt += " " + DefaultValue.ToString();
                             break;
                         case SQLiteColumnsType.TimeStamp:
-                            rslt += " " + ((DateTime)DefaultValue).ToString("yyyy-MM-dd hh:mm:ss.ffffff");
+                            rslt += " " + ((DateTime)DefaultValue).ToString(TimeStampFormat);
                             break;
                         case SQLiteColumnsType.Real:
                             rslt += " " + DefaultValue.ToString();
