@@ -25,7 +25,7 @@ namespace Chromatik.SQLite
         /// <param name="openConnection">Open the connection with the data base</param>
         public SQLiteData(SQLiteDataBase db, bool openConnection) : base(db, openConnection)
         {
-            clsName = "SQLiteData";
+            clsName = nameof(SQLiteData);
         }
 
         #region Add/Insert

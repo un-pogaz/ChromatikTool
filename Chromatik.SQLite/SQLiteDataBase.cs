@@ -17,16 +17,16 @@ namespace Chromatik.SQLite
         /// <summary>
         /// Path of this database
         /// </summary>
-        public string filePath { get; }
+        public string FilePath { get; }
         /// <summary>
         /// Full path of this database
         /// </summary>
-        public string fullPath { get { return Path.GetFullPath(filePath); } }
+        public string FullPath { get { return Path.GetFullPath(FilePath); } }
 
         /// <summary>
         /// Connection string of this database
         /// </summary>
-        public string ConnectionString { get { return "Data Source="+ fullPath + ";Version=3;"; } }
+        public string ConnectionString { get { return "Data Source="+ FullPath + ";Version=3;"; } }
 
         /// <summary>
         /// The basic instance for manipuled SQLite database
@@ -34,7 +34,12 @@ namespace Chromatik.SQLite
         private SQLiteDataBase(string dbPath)
         {
             disposed = false;
-            filePath = dbPath.Trim();
+            FilePath = dbPath.Trim();
+        }
+
+        public override string ToString()
+        {
+            return "\""+Path.GetFileName(FilePath)+"\"; Conneting: " + ConnectionIsOpen.ToString().ToLower() + "; Requests: " +Logs.Count+";"; 
         }
 
         private bool disposed = true;
@@ -88,15 +93,9 @@ namespace Chromatik.SQLite
                 if (DBconnect != null)
                     DBconnect.Dispose();
                 DBconnect = new SQLiteConnection(ConnectionString).OpenAndReturn();
-                return ConnectionIsOpen;
             }
-            else
-            {
-                if (DBconnect != null)
-                    DBconnect.Dispose();
-                DBconnect = new SQLiteConnection(ConnectionString);
-                return ConnectionIsOpen;
-            }
+
+            return ConnectionIsOpen;
         }
         /// <summary>
         /// Close the connection with the database
@@ -105,7 +104,10 @@ namespace Chromatik.SQLite
         {
             IsDisposed();
             if (ConnectionIsOpen)
+            {
+                DBconnect.ReleaseMemory();
                 DBconnect.Close();
+            }
         }
         
         /// <summary>
@@ -225,17 +227,31 @@ namespace Chromatik.SQLite
         /// <returns></returns>
         static public SQLiteDataBase CreateDataBase(string fileDB, string tableName, SQLiteColumns columns)
         {
-            try {
-                if (File.Exists(fileDB))
-                    throw new InvalidPathException();
+            return CreateDataBase(fileDB, tableName, columns, false);
+        }
+
+        /// <summary>
+        /// Create a new database with the Table containing the columns specify
+        /// </summary>
+        /// <param name="fileDB"></param>
+        /// <param name="tableName">Table to create</param>
+        /// <param name="columns">Columns of the Table</param>
+        /// <param name="truncate">Erase the target DB file</param>
+        /// <returns></returns>
+        static public SQLiteDataBase CreateDataBase(string fileDB, string tableName, SQLiteColumns columns, bool truncate)
+        {
+            try
+            {
+                if (File.Exists(fileDB) && !truncate)
+                    throw new InvalidPathException("The target file already exist!");
 
                 SQLiteConnection.CreateFile(fileDB);
                 SQLiteDataBase db = new SQLiteDataBase(fileDB);
                 SQLlog err = SQLlog.Empty;
-                
+
                 db.OpenConnection();
                 db._SQLcommand(SQLiteTable.SQL_AddTable(tableName, columns), out err);
-                
+
                 if (!string.IsNullOrWhiteSpace(err.msgErr))
                     throw err.e;
                 db.CloseConnection();
@@ -246,9 +262,9 @@ namespace Chromatik.SQLite
                 throw ex;
             }
         }
-        
+
     }
-    
+
     static internal class SQLiteDataReaderExtension
     {
         static internal DataTable GetDataTable(this SQLiteDataReader dataReader)

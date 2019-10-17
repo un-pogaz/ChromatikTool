@@ -39,7 +39,7 @@ namespace Chromatik.SQLite
         /// <param name="openConnection">Open the connection with the data base</param>
         public SQLiteMaster(SQLiteDataBase db, bool openConnection) : base(db, openConnection)
         {
-            clsName = "SQLiteMaster";
+            clsName = nameof(SQLiteMaster);
         }
 
         /// <summary>

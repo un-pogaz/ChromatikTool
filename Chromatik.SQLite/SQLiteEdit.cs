@@ -11,12 +11,11 @@ namespace Chromatik.SQLite
     /// </summary>
     public class SQLiteEdit : IDisposable
     {
-        private SQLiteDataBase _dataBase;
         /// <summary>
         /// The <see cref="SQLiteDataBase"/> used by this instance
         /// </summary>
         /// <returns></returns>
-        public SQLiteDataBase DataBase { get { return _dataBase; } }
+        public SQLiteDataBase DataBase { get; }
 
         /// <summary>
         /// State of connection with the database
@@ -30,12 +29,12 @@ namespace Chromatik.SQLite
         /// <summary>
         /// Path of the database
         /// </summary>
-        public string filePath { get { return DataBase.filePath; } }
+        public string FilePath { get { return DataBase.FilePath; } }
 
         /// <summary>
         /// Full path of the database
         /// </summary>
-        public string fullPath { get { return DataBase.fullPath; } }
+        public string FullPath { get { return DataBase.FullPath; } }
 
         /// <summary>
         /// Connection string of the database
@@ -45,7 +44,7 @@ namespace Chromatik.SQLite
         /// <summary>
         /// Class name for <see cref="IsDisposed()"/>
         /// </summary>
-        protected string clsName = "SQLiteEdit";
+        protected string clsName = nameof(SQLiteEdit);
 
         /// <summary>
         /// Create a basic instance for work with <see cref="SQLiteDataBase"/>
@@ -63,12 +62,16 @@ namespace Chromatik.SQLite
         public SQLiteEdit(SQLiteDataBase db, bool openConnection)
         {
             disposed = false;
-            clsName = "SQLiteEdit";
-            _dataBase = db;
+            DataBase = db;
 
             OpenOnStart = ConnectionIsOpen;
             if (openConnection && !ConnectionIsOpen && !this.OpenConnection())
                 throw new System.Data.SQLite.SQLiteException(System.Data.SQLite.SQLiteErrorCode.CantOpen, "Database is not open");
+        }
+
+        public override string ToString()
+        {
+            return DataBase.ToString() + " {"+clsName+"}";
         }
 
         bool OpenOnStart = false;
@@ -114,6 +117,7 @@ namespace Chromatik.SQLite
         {
             return DataBase.GetTablesName();
         }
+
         /// <summary>
         /// Execute the SQL command and return the number of rows inserted/updated affected by it.
         /// </summary>

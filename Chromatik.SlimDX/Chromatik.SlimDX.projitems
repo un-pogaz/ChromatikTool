@@ -12,6 +12,8 @@
     <None Include="$(MSBuildThisFileDirectory)SlimDX.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)DeadZone.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)InversedAxe.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GenericJoystick.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)JoystickDevice.cs" />
   </ItemGroup>

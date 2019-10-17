@@ -44,19 +44,14 @@
       <HintPath>..\packages\SlimDX.4.0.13.44\lib\NET40\SlimDX.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Svg, Version=3.0.0.0, Culture=neutral, PublicKeyToken=12a0bac221edeae2, processorArchitecture=MSIL">
+    <Reference Include="Svg">
       <HintPath>..\packages\Svg.3.0.49\lib\net452\Svg.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.SQLite, Version=1.0.111.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Chromatik.SQLite\System.Data.SQLite.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Data.SQLite.Linq, Version=1.0.111.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Chromatik.SQLite\System.Data.SQLite.Linq.dll</HintPath>
     </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Numerics" />
@@ -92,8 +87,12 @@
   <Import Project="..\Chromatik.MimeType\Chromatik.MimeType.projitems" Label="Shared" />
   <Import Project="..\Chromatik.Unicode\Chromatik.Unicode.projitems" Label="Shared" />
   <Import Project="..\Chromatik.SQLite\Chromatik.SQLite.projitems" Label="Shared" />
-  <Import Project="..\Chromatik.Svg\Chromatik.Svg.projitems" Label="Shared" />
   <Import Project="..\Chromatik.Zip\Chromatik.Zip.projitems" Label="Shared" />
+  <Import Project="..\Chromatik.LibNoise\Chromatik.Noise.projitems" Label="Shared" />
+  <Import Project="..\Chromatik.RAmen\Chromatik.RAmen.projitems" Label="Shared" />
+  <Import Project="..\Chromatik.Sequence\Chromatik.Sequence.projitems" Label="Shared" />
+  <Import Project="..\Chromatik.SlimDX\Chromatik.SlimDX.projitems" Label="Shared" />
+  <Import Project="..\Chromatik.Svg\Chromatik.Svg.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

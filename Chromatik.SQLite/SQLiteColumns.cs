@@ -10,7 +10,6 @@ namespace Chromatik.SQLite
     public enum SQLiteColumnsType
     {
         Integer,
-        Numerique,
         TimeStamp,
         Real,
         Text,
@@ -99,9 +98,6 @@ namespace Chromatik.SQLite
                         case SQLiteColumnsType.Integer:
                             rslt += " " + DefaultValue.ToString();
                             break;
-                        case SQLiteColumnsType.Numerique:
-                            rslt += " " + DefaultValue.ToString();
-                            break;
                         case SQLiteColumnsType.TimeStamp:
                             rslt += " " + ((DateTime)DefaultValue).ToString("yyyy-MM-dd hh:mm:ss.ffffff");
                             break;
@@ -136,9 +132,6 @@ namespace Chromatik.SQLite
             {
                 case SQLiteColumnsType.Integer:
                     rslt = "INTEGER";
-                    break;
-                case SQLiteColumnsType.Numerique:
-                    rslt = "NUMERIQUE";
                     break;
                 case SQLiteColumnsType.TimeStamp:
                     rslt = "TIMESTAMP";

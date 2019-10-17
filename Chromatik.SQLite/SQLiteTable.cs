@@ -26,14 +26,14 @@ namespace Chromatik.SQLite
         /// <param name="openConnection">Open the connection with the data base</param>
         public SQLiteTable(SQLiteDataBase db, bool openConnection) : base(db, openConnection)
         {
-            clsName = "SQLiteTable";
+            clsName = nameof(SQLiteTable);
         }
 
         /// <summary>
         /// Create new table with the specified columns
         /// </summary>
         /// <param name="tableName">table to affect</param>
-        /// <param name="Columns">Name and typing of columns</param>
+        /// <param name="columns">Name and typing of columns</param>
         /// <param name="msgErr"></param>
         /// <returns></returns>
         public int AddTable(string tableName, SQLiteColumns columns, out SQLlog msgErr)
@@ -44,7 +44,7 @@ namespace Chromatik.SQLite
         /// Create a SQL request for a new table with the specified columns
         /// </summary>
         /// <param name="tableName">table to affect</param>
-        /// <param name="Columns">Name and typing of columns</param>
+        /// <param name="columns">Name and typing of columns</param>
         static public string SQL_AddTable(string tableName, SQLiteColumns columns)
         {
             if (columns.Count == 0)
@@ -124,7 +124,7 @@ namespace Chromatik.SQLite
             msgErr = SQLlog.Empty;
             for (int i = 0; i < columns.Count; i++)
             {
-                AddColumns(tableName, columns[i], out msgErr);
+                AddColumn(tableName, columns[i], out msgErr);
                 if (!msgErr.Succes)
                     return i+1;
             }
@@ -134,20 +134,20 @@ namespace Chromatik.SQLite
         /// Add column to the table
         /// </summary>
         /// <param name="tableName">table to affect</param>
-        /// <param name="columns">column to add</param>
+        /// <param name="column">column to add</param>
         /// <param name="msgErr"></param>
         /// <returns></returns>
-        public int AddColumns(string tableName, SQLiteColumns.Column column, out SQLlog msgErr)
+        public int AddColumn(string tableName, SQLiteColumns.Column column, out SQLlog msgErr)
         {
-            return ExecuteSQLcommand(SQL_EditTable_AddColumns(tableName, column), out msgErr); ;
+            return ExecuteSQLcommand(SQL_EditTable_AddColumn(tableName, column), out msgErr); ;
         }
         /// <summary>
         /// Create a SQL request for add column in a table
         /// </summary>
         /// <param name="tableName">table to affect</param>
-        /// <param name="columns">column to add</param>
+        /// <param name="column">column to add</param>
         /// <returns></returns>
-        static public string SQL_EditTable_AddColumns(string tableName, SQLiteColumns.Column column)
+        static public string SQL_EditTable_AddColumn(string tableName, SQLiteColumns.Column column)
         {
             return SQL_EditTable(tableName, " ADD '" + column.Name.Trim() + "' " + SQLiteColumns.GetTypeString(column.Type));
         }
@@ -156,22 +156,22 @@ namespace Chromatik.SQLite
         /// Delete a column to the table
         /// </summary>
         /// <param name="tableName">table to affect</param>
-        /// <param name="name">name of column to delete</param>
+        /// <param name="columnName">name of column to delete</param>
         /// <param name="msgErr"></param>
         /// <returns></returns>
-        public int DeleteColumns(string tableName, string name, out SQLlog msgErr)
+        public int DeleteColumn(string tableName, string columnName, out SQLlog msgErr)
         {
-            return ExecuteSQLcommand(SQL_EditTable_DeleteColumns(tableName, name), out msgErr);
+            return ExecuteSQLcommand(SQL_EditTable_DeleteColumn(tableName, columnName), out msgErr);
         }
         /// <summary>
         /// Create a SQL request for delete columns in a table
         /// </summary>
         /// <param name="tableName">table to affect</param>
-        /// <param name="name">name of column to delete</param>
+        /// <param name="columnName">name of column to delete</param>
         /// <returns></returns>
-        static public string SQL_EditTable_DeleteColumns(string tableName, string name)
+        static public string SQL_EditTable_DeleteColumn(string tableName, string columnName)
         {
-            return SQL_EditTable(tableName, " DROP '" + name.Trim() + "'");
+            return SQL_EditTable(tableName, " DROP '" + columnName.Trim() + "'");
         }
 
     }

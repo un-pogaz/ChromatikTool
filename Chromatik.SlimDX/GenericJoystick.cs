@@ -61,12 +61,12 @@ namespace Chromatik.SlimDX
         /// <summary>
         /// Dead zone value for the different axes
         /// </summary>
-        public DeadZone DeadZone { get; } = new JoystickDeadZone(0);
+        public DeadZone DeadZone { get; } = new DeadZone(0);
 
         /// <summary>
         /// Inversed axes of the joystick
         /// </summary>
-        public InversedAxe InversedAxe { get; } = new JoystickInversedAxe();
+        public InversedAxe InversedAxe { get; } = new InversedAxe();
         
         protected JoystickState JoystickState
         {
@@ -127,9 +127,9 @@ namespace Chromatik.SlimDX
             get
             {
                 if (InversedAxe.AxeX)
-                    return JoystickDeadZone.Calc(-JoystickState.X, DeadZone.AxeX);
+                    return DeadZone.Calc(-JoystickState.X, DeadZone.AxeX);
                 else
-                    return JoystickDeadZone.Calc(JoystickState.X, DeadZone.AxeX);
+                    return DeadZone.Calc(JoystickState.X, DeadZone.AxeX);
             }
         }
         public int AxeY
@@ -137,9 +137,9 @@ namespace Chromatik.SlimDX
             get
             {
                 if (InversedAxe.AxeY)
-                    return JoystickDeadZone.Calc(-JoystickState.Y, DeadZone.AxeY);
+                    return DeadZone.Calc(-JoystickState.Y, DeadZone.AxeY);
                 else
-                    return JoystickDeadZone.Calc(JoystickState.Y, DeadZone.AxeY);
+                    return DeadZone.Calc(JoystickState.Y, DeadZone.AxeY);
             }
         }
         public int AxeZ
@@ -147,9 +147,9 @@ namespace Chromatik.SlimDX
             get
             {
                 if (InversedAxe.AxeZ)
-                    return JoystickDeadZone.Calc(-JoystickState.Z, DeadZone.AxeZ);
+                    return DeadZone.Calc(-JoystickState.Z, DeadZone.AxeZ);
                 else
-                    return JoystickDeadZone.Calc(JoystickState.Z, DeadZone.AxeZ);
+                    return DeadZone.Calc(JoystickState.Z, DeadZone.AxeZ);
             }
         }
 
@@ -158,9 +158,9 @@ namespace Chromatik.SlimDX
             get
             {
                 if (InversedAxe.AccelerationX)
-                    return JoystickDeadZone.Calc(-JoystickState.AccelerationX, DeadZone.AccelerationX);
+                    return DeadZone.Calc(-JoystickState.AccelerationX, DeadZone.AccelerationX);
                 else
-                    return JoystickDeadZone.Calc(JoystickState.AccelerationX, DeadZone.AccelerationX);
+                    return DeadZone.Calc(JoystickState.AccelerationX, DeadZone.AccelerationX);
             }
         }
         public int AccelerationY
@@ -168,9 +168,9 @@ namespace Chromatik.SlimDX
             get
             {
                 if (InversedAxe.AccelerationY)
-                    return JoystickDeadZone.Calc(-JoystickState.AccelerationY, DeadZone.AccelerationY);
+                    return DeadZone.Calc(-JoystickState.AccelerationY, DeadZone.AccelerationY);
                 else
-                    return JoystickDeadZone.Calc(JoystickState.AccelerationY, DeadZone.AccelerationY);
+                    return DeadZone.Calc(JoystickState.AccelerationY, DeadZone.AccelerationY);
             }
         }
         public int AccelerationZ
@@ -178,9 +178,9 @@ namespace Chromatik.SlimDX
             get
             {
                 if (InversedAxe.AccelerationZ)
-                    return JoystickDeadZone.Calc(-JoystickState.AccelerationZ, DeadZone.AccelerationZ);
+                    return DeadZone.Calc(-JoystickState.AccelerationZ, DeadZone.AccelerationZ);
                 else
-                    return JoystickDeadZone.Calc(JoystickState.AccelerationZ, DeadZone.AccelerationZ);
+                    return DeadZone.Calc(JoystickState.AccelerationZ, DeadZone.AccelerationZ);
             }
         }
 
@@ -189,9 +189,9 @@ namespace Chromatik.SlimDX
             get
             {
                 if (InversedAxe.AngularAccelerationX)
-                    return JoystickDeadZone.Calc(-JoystickState.AngularAccelerationX, DeadZone.AngularAccelerationX);
+                    return DeadZone.Calc(-JoystickState.AngularAccelerationX, DeadZone.AngularAccelerationX);
                 else
-                    return JoystickDeadZone.Calc(JoystickState.AngularAccelerationX, DeadZone.AngularAccelerationX);
+                    return DeadZone.Calc(JoystickState.AngularAccelerationX, DeadZone.AngularAccelerationX);
             }
         }
         public int AngularAccelerationY
@@ -199,9 +199,9 @@ namespace Chromatik.SlimDX
             get
             {
                 if (InversedAxe.AngularAccelerationY)
-                    return JoystickDeadZone.Calc(-JoystickState.AngularAccelerationY, DeadZone.AngularAccelerationY);
+                    return DeadZone.Calc(-JoystickState.AngularAccelerationY, DeadZone.AngularAccelerationY);
                 else
-                    return JoystickDeadZone.Calc(JoystickState.AngularAccelerationY, DeadZone.AngularAccelerationY);
+                    return DeadZone.Calc(JoystickState.AngularAccelerationY, DeadZone.AngularAccelerationY);
             }
         }
         public int AngularAccelerationZ
@@ -209,9 +209,9 @@ namespace Chromatik.SlimDX
             get
             {
                 if (InversedAxe.AngularAccelerationZ)
-                    return JoystickDeadZone.Calc(-JoystickState.AngularAccelerationZ, DeadZone.AngularAccelerationZ);
+                    return DeadZone.Calc(-JoystickState.AngularAccelerationZ, DeadZone.AngularAccelerationZ);
                 else
-                    return JoystickDeadZone.Calc(JoystickState.AngularAccelerationZ, DeadZone.AngularAccelerationZ);
+                    return DeadZone.Calc(JoystickState.AngularAccelerationZ, DeadZone.AngularAccelerationZ);
             }
         }
 
@@ -220,9 +220,9 @@ namespace Chromatik.SlimDX
             get
             {
                 if (InversedAxe.AngularVelocityX)
-                    return JoystickDeadZone.Calc(-JoystickState.AngularVelocityX, DeadZone.AngularVelocityX);
+                    return DeadZone.Calc(-JoystickState.AngularVelocityX, DeadZone.AngularVelocityX);
                 else
-                    return JoystickDeadZone.Calc(JoystickState.AngularVelocityX, DeadZone.AngularVelocityX);
+                    return DeadZone.Calc(JoystickState.AngularVelocityX, DeadZone.AngularVelocityX);
             }
         }
         public int AngularVelocityY
@@ -230,9 +230,9 @@ namespace Chromatik.SlimDX
             get
             {
                 if (InversedAxe.AngularVelocityY)
-                    return JoystickDeadZone.Calc(-JoystickState.AngularVelocityY, DeadZone.AngularVelocityY);
+                    return DeadZone.Calc(-JoystickState.AngularVelocityY, DeadZone.AngularVelocityY);
                 else
-                    return JoystickDeadZone.Calc(JoystickState.AngularVelocityY, DeadZone.AngularVelocityY);
+                    return DeadZone.Calc(JoystickState.AngularVelocityY, DeadZone.AngularVelocityY);
             }
         }
         public int AngularVelocityZ
@@ -240,9 +240,9 @@ namespace Chromatik.SlimDX
             get
             {
                 if (InversedAxe.AngularVelocityZ)
-                    return JoystickDeadZone.Calc(-JoystickState.AngularVelocityZ, DeadZone.AngularVelocityZ);
+                    return DeadZone.Calc(-JoystickState.AngularVelocityZ, DeadZone.AngularVelocityZ);
                 else
-                    return JoystickDeadZone.Calc(JoystickState.AngularVelocityZ, DeadZone.AngularVelocityZ);
+                    return DeadZone.Calc(JoystickState.AngularVelocityZ, DeadZone.AngularVelocityZ);
             }
         }
 
@@ -251,9 +251,9 @@ namespace Chromatik.SlimDX
             get
             {
                 if (InversedAxe.ForceX)
-                    return JoystickDeadZone.Calc(-JoystickState.ForceX, DeadZone.ForceX);
+                    return DeadZone.Calc(-JoystickState.ForceX, DeadZone.ForceX);
                 else
-                    return JoystickDeadZone.Calc(JoystickState.ForceX, DeadZone.ForceX);
+                    return DeadZone.Calc(JoystickState.ForceX, DeadZone.ForceX);
             }
         }
         public int ForceY
@@ -261,9 +261,9 @@ namespace Chromatik.SlimDX
             get
             {
                 if (InversedAxe.ForceY)
-                    return JoystickDeadZone.Calc(-JoystickState.ForceY, DeadZone.ForceY);
+                    return DeadZone.Calc(-JoystickState.ForceY, DeadZone.ForceY);
                 else
-                    return JoystickDeadZone.Calc(JoystickState.ForceY, DeadZone.ForceY);
+                    return DeadZone.Calc(JoystickState.ForceY, DeadZone.ForceY);
             }
         }
         public int ForceZ
@@ -271,9 +271,9 @@ namespace Chromatik.SlimDX
             get
             {
                 if (InversedAxe.ForceZ)
-                    return JoystickDeadZone.Calc(-JoystickState.ForceZ, DeadZone.ForceZ);
+                    return DeadZone.Calc(-JoystickState.ForceZ, DeadZone.ForceZ);
                 else
-                    return JoystickDeadZone.Calc(JoystickState.ForceZ, DeadZone.ForceZ);
+                    return DeadZone.Calc(JoystickState.ForceZ, DeadZone.ForceZ);
             }
         }
 
@@ -282,9 +282,9 @@ namespace Chromatik.SlimDX
             get
             {
                 if (InversedAxe.RotationX)
-                    return JoystickDeadZone.Calc(-JoystickState.RotationX, DeadZone.RotationX);
+                    return DeadZone.Calc(-JoystickState.RotationX, DeadZone.RotationX);
                 else
-                    return JoystickDeadZone.Calc(JoystickState.RotationX, DeadZone.RotationX);
+                    return DeadZone.Calc(JoystickState.RotationX, DeadZone.RotationX);
             }
         }
         public int RotationY
@@ -292,9 +292,9 @@ namespace Chromatik.SlimDX
             get
             {
                 if (InversedAxe.RotationY)
-                    return JoystickDeadZone.Calc(-JoystickState.RotationY, DeadZone.RotationY);
+                    return DeadZone.Calc(-JoystickState.RotationY, DeadZone.RotationY);
                 else
-                    return JoystickDeadZone.Calc(JoystickState.RotationY, DeadZone.RotationY);
+                    return DeadZone.Calc(JoystickState.RotationY, DeadZone.RotationY);
             }
         }
         public int RotationZ
@@ -302,9 +302,9 @@ namespace Chromatik.SlimDX
             get
             {
                 if (InversedAxe.RotationZ)
-                    return JoystickDeadZone.Calc(-JoystickState.RotationZ, DeadZone.RotationZ);
+                    return DeadZone.Calc(-JoystickState.RotationZ, DeadZone.RotationZ);
                 else
-                    return JoystickDeadZone.Calc(JoystickState.RotationZ, DeadZone.RotationZ);
+                    return DeadZone.Calc(JoystickState.RotationZ, DeadZone.RotationZ);
             }
         }
 
@@ -313,9 +313,9 @@ namespace Chromatik.SlimDX
             get
             {
                 if (InversedAxe.TorqueX)
-                    return JoystickDeadZone.Calc(-JoystickState.TorqueX, DeadZone.TorqueX);
+                    return DeadZone.Calc(-JoystickState.TorqueX, DeadZone.TorqueX);
                 else
-                    return JoystickDeadZone.Calc(JoystickState.TorqueX, DeadZone.TorqueX);
+                    return DeadZone.Calc(JoystickState.TorqueX, DeadZone.TorqueX);
             }
         }
         public int TorqueY
@@ -323,9 +323,9 @@ namespace Chromatik.SlimDX
             get
             {
                 if (InversedAxe.TorqueY)
-                    return JoystickDeadZone.Calc(-JoystickState.TorqueY, DeadZone.TorqueY);
+                    return DeadZone.Calc(-JoystickState.TorqueY, DeadZone.TorqueY);
                 else
-                    return JoystickDeadZone.Calc(JoystickState.TorqueY, DeadZone.TorqueY);
+                    return DeadZone.Calc(JoystickState.TorqueY, DeadZone.TorqueY);
             }
         }
         public int TorqueZ
@@ -333,9 +333,9 @@ namespace Chromatik.SlimDX
             get
             {
                 if (InversedAxe.TorqueZ)
-                    return JoystickDeadZone.Calc(-JoystickState.TorqueZ, DeadZone.TorqueZ);
+                    return DeadZone.Calc(-JoystickState.TorqueZ, DeadZone.TorqueZ);
                 else
-                    return JoystickDeadZone.Calc(JoystickState.TorqueZ, DeadZone.TorqueZ);
+                    return DeadZone.Calc(JoystickState.TorqueZ, DeadZone.TorqueZ);
             }
         }
 
@@ -344,9 +344,9 @@ namespace Chromatik.SlimDX
             get
             {
                 if (InversedAxe.VelocityX)
-                    return JoystickDeadZone.Calc(-JoystickState.VelocityX, DeadZone.VelocityX);
+                    return DeadZone.Calc(-JoystickState.VelocityX, DeadZone.VelocityX);
                 else
-                    return JoystickDeadZone.Calc(JoystickState.VelocityX, DeadZone.VelocityX);
+                    return DeadZone.Calc(JoystickState.VelocityX, DeadZone.VelocityX);
             }
         }
         public int VelocityY
@@ -354,9 +354,9 @@ namespace Chromatik.SlimDX
             get
             {
                 if (InversedAxe.VelocityY)
-                    return JoystickDeadZone.Calc(-JoystickState.VelocityY, DeadZone.VelocityY);
+                    return DeadZone.Calc(-JoystickState.VelocityY, DeadZone.VelocityY);
                 else
-                    return JoystickDeadZone.Calc(JoystickState.VelocityY, DeadZone.VelocityY);
+                    return DeadZone.Calc(JoystickState.VelocityY, DeadZone.VelocityY);
             }
         }
         public int VelocityZ
@@ -364,167 +364,11 @@ namespace Chromatik.SlimDX
             get
             {
                 if (InversedAxe.VelocityZ)
-                    return JoystickDeadZone.Calc(-JoystickState.VelocityZ, DeadZone.VelocityZ);
+                    return DeadZone.Calc(-JoystickState.VelocityZ, DeadZone.VelocityZ);
                 else
-                    return JoystickDeadZone.Calc(JoystickState.VelocityZ, DeadZone.VelocityZ);
+                    return DeadZone.Calc(JoystickState.VelocityZ, DeadZone.VelocityZ);
             }
         }
     }
 
-    /// <summary>
-    /// Class to define the inversed axes.
-    /// </summary>
-    public class InversedAxe
-    {
-        public bool AxeX { get; set; }
-        public bool AxeY { get; set; }
-        public bool AxeZ { get; set; }
-
-        public bool AccelerationX { get; set; }
-        public bool AccelerationY { get; set; }
-        public bool AccelerationZ { get; set; }
-
-        public bool AngularAccelerationX { get; set; }
-        public bool AngularAccelerationY { get; set; }
-        public bool AngularAccelerationZ { get; set; }
-
-        public bool AngularVelocityX { get; set; }
-        public bool AngularVelocityY { get; set; }
-        public bool AngularVelocityZ { get; set; }
-
-        public bool ForceX { get; set; }
-        public bool ForceY { get; set; }
-        public bool ForceZ { get; set; }
-
-        public bool RotationX { get; set; }
-        public bool RotationY { get; set; }
-        public bool RotationZ { get; set; }
-
-        public bool TorqueX { get; set; }
-        public bool TorqueY { get; set; }
-        public bool TorqueZ { get; set; }
-
-        public bool VelocityX { get; set; }
-        public bool VelocityY { get; set; }
-        public bool VelocityZ { get; set; }
-    }
-
-    /// <summary>
-    /// Class to define the dead zone for different axes.
-    /// </summary>
-    public class DeadZone
-    {
-        /// <summary>
-        /// Create a clas with no dead zone
-        /// </summary>
-        public DeadZone() : this(0)
-        { }
-        /// <summary>
-        /// Create a clas with the specified value.
-        /// </summary>
-        /// <param name="value"></param>
-        public DeadZone(int value)
-        {
-            SetAll(value);
-        }
-        /// <summary>
-        /// Set the dead zone of all axe.
-        /// </summary>
-        /// <param name="value"></param>
-        public void SetAll(int value)
-        {
-            if (value < 0)
-                value = 0;
-            else if (value >= JoystickDevice.Range)
-                value = JoystickDevice.Range - 1;
-
-            AxeX = value;
-            AxeY = value;
-            AxeZ = value;
-            AccelerationX = value;
-            AccelerationY = value;
-            AccelerationZ = value;
-            AngularAccelerationX = value;
-            AngularAccelerationY = value;
-            AngularAccelerationZ = value;
-            AngularAccelerationX = value;
-            AngularAccelerationY = value;
-            AngularAccelerationZ = value;
-            AngularVelocityX = value;
-            AngularVelocityY = value;
-            AngularVelocityZ = value;
-            ForceX = value;
-            ForceY = value;
-            ForceZ = value;
-            RotationX = value;
-            RotationY = value;
-            RotationZ = value;
-            TorqueX = value;
-            TorqueY = value;
-            TorqueZ = value;
-            VelocityX = value;
-            VelocityY = value;
-            VelocityZ = value;
-        }
-
-        /// <summary>
-        /// Calculation of a new value proportional to the dead zone.
-        /// </summary>
-        /// <param name="value"></param>
-        /// <param name="dead"></param>
-        /// <returns></returns>
-        static public int Calc(int value, int dead)
-        {
-            bool nega = false;
-            if (value < 0)
-            {
-                nega = true;
-                value = value * -1;
-            }
-
-            if (value <= dead)
-                value = 0;
-            else
-            {
-                double perc = (value - dead) / (double)(JoystickDevice.Range - dead);
-                value = (int)Math.Round(JoystickDevice.Range * perc);
-            }
-
-            if (nega)
-                value = value * -1;
-            return value;
-        }
-
-        public int AxeX { get; set; }
-        public int AxeY { get; set; }
-        public int AxeZ { get; set; }
-
-        public int AccelerationX { get; set; }
-        public int AccelerationY { get; set; }
-        public int AccelerationZ { get; set; }
-
-        public int AngularAccelerationX { get; set; }
-        public int AngularAccelerationY { get; set; }
-        public int AngularAccelerationZ { get; set; }
-
-        public int AngularVelocityX { get; set; }
-        public int AngularVelocityY { get; set; }
-        public int AngularVelocityZ { get; set; }
-
-        public int ForceX { get; set; }
-        public int ForceY { get; set; }
-        public int ForceZ { get; set; }
-
-        public int RotationX { get; set; }
-        public int RotationY { get; set; }
-        public int RotationZ { get; set; }
-
-        public int TorqueX { get; set; }
-        public int TorqueY { get; set; }
-        public int TorqueZ { get; set; }
-
-        public int VelocityX { get; set; }
-        public int VelocityY { get; set; }
-        public int VelocityZ { get; set; }
-    }
 }
