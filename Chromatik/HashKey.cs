@@ -54,7 +54,7 @@ namespace System.Security.Cryptography
             return rslt;
         }
 
-        static private byte[] UTF8(string text) { return Encoding.UTF8.GetBytes(text); }
+        static private byte[] UTF8(string text) { return UTF8SansBomEncoding.Default.GetBytes(text); }
 
         /// <summary>
         /// Get the <see cref="HashAlgorithm"/> associated to the <see cref="Algorithm"/>
@@ -97,7 +97,7 @@ namespace System.Security.Cryptography
         /// <param name="text">string to hash</param>
         /// <param name="algorithm">Hash algorithme</param>
         /// <returns></returns>
-        static public string FromAlgorithm(Algorithm algorithm, string text)
+        static public string FileHash(Algorithm algorithm, string text)
         {
             return FromAlgorithm(algorithm, UTF8(text));
         }
@@ -109,11 +109,8 @@ namespace System.Security.Cryptography
         /// <returns></returns>
         static public string FromAlgorithm(Algorithm algorithm, byte[] arrayByte)
         {
-            HashAlgorithm a = GetAlgorithm(algorithm);
-            byte[] h = a.ComputeHash(arrayByte);
-            a.Clear();
-            a.Dispose();
-            return HexToString(h);
+            using (HashAlgorithm algo = GetAlgorithm(algorithm))
+                return HexToString(algo.ComputeHash(arrayByte));
         }
         /// <summary>
         /// Get the hash of a <see cref="Stream" /> with the <see cref="Algorithm"/>
@@ -123,11 +120,19 @@ namespace System.Security.Cryptography
         /// <returns></returns>
         static public string FromAlgorithm(Algorithm algorithm, Stream stream)
         {
-            HashAlgorithm a = GetAlgorithm(algorithm);
-            byte[] h = a.ComputeHash(stream);
-            a.Clear();
-            a.Dispose();
-            return HexToString(h);
+            using (HashAlgorithm algo = GetAlgorithm(algorithm))
+                return HexToString(algo.ComputeHash(stream));
+        }
+        /// <summary>
+        /// Get the hash of a <see cref="Stream" /> with the <see cref="Algorithm"/>
+        /// </summary>
+        /// <param name="filePath">Path of the file to get hash</param>
+        /// <param name="algorithm">Hash algorithme</param>
+        /// <returns></returns>
+        static public string FileHashAlgorithm(Algorithm algorithm, string filePath)
+        {
+            using (FileStream file = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read))
+                return FromAlgorithm(algorithm, file);
         }
 
         /// <summary>
@@ -148,6 +153,12 @@ namespace System.Security.Cryptography
         /// <param name="stream"><see cref="Stream"/> to hash</param>
         /// <returns></returns>
         static public string FromMD5(Stream stream) { return FromAlgorithm(Algorithm.MD5, stream); }
+        /// <summary>
+        /// Get the hash of a file with MD5 algorithm
+        /// </summary>
+        /// <param name="filePath">Path of the file to get hash</param>
+        /// <returns></returns>
+        static public string FileMD5(string filePath) { return FileHash(Algorithm.MD5, filePath); }
 
         /// <summary>
         /// Get the hash of a string with SHA1 algorithm
@@ -167,6 +178,12 @@ namespace System.Security.Cryptography
         /// <param name="stream"><see cref="Stream"/> to hash</param>
         /// <returns></returns>
         static public string FromSHA1(Stream stream) { return FromAlgorithm(Algorithm.SHA1, stream); }
+        /// <summary>
+        /// Get the hash of a file with SHA1 algorithm
+        /// </summary>
+        /// <param name="filePath">Path of the file to get hash</param>
+        /// <returns></returns>
+        static public string FileSHA1(string filePath) { return FileHash(Algorithm.SHA1, filePath); }
 
         /// <summary>
         /// Get the hash of a string with SHA256 algorithm
@@ -181,11 +198,17 @@ namespace System.Security.Cryptography
         /// <returns></returns>
         static public string FromSHA256(byte[] arrayByte) { return FromAlgorithm(Algorithm.SHA256, arrayByte); }
         /// <summary>
-        /// Get the hash of a <see cref="Stream" /> with SHA1 algorithm
+        /// Get the hash of a <see cref="Stream" /> with SHA256 algorithm
         /// </summary>
         /// <param name="stream"><see cref="Stream"/> to hash</param>
         /// <returns></returns>
         static public string FromSHA256(Stream stream) { return FromAlgorithm(Algorithm.SHA256, stream); }
+        /// <summary>
+        /// Get the hash of a file with SHA256 algorithm
+        /// </summary>
+        /// <param name="filePath">Path of the file to get hash</param>
+        /// <returns></returns>
+        static public string FileSHA256(string filePath) { return FileHash(Algorithm.SHA256, filePath); }
 
         /// <summary>
         /// Get the hash of a string with SHA384 algorithm
@@ -205,6 +228,12 @@ namespace System.Security.Cryptography
         /// <param name="stream"><see cref="Stream"/> to hash</param>
         /// <returns></returns>
         static public string FromSHA384(Stream stream) { return FromAlgorithm(Algorithm.SHA384, stream); }
+        /// <summary>
+        /// Get the hash of a file with SHA384 algorithm
+        /// </summary>
+        /// <param name="filePath">Path of the file to get hash</param>
+        /// <returns></returns>
+        static public string FileSHA384(string filePath) { return FileHash(Algorithm.SHA384, filePath); }
 
         /// <summary>
         /// Get the hash of a string with SHA512 algorithm
@@ -224,6 +253,12 @@ namespace System.Security.Cryptography
         /// <param name="stream"><see cref="Stream"/> to hash</param>
         /// <returns></returns>
         static public string FromSHA512(Stream stream) { return FromAlgorithm(Algorithm.SHA512, stream); }
+        /// <summary>
+        /// Get the hash of a file with SHA512 algorithm
+        /// </summary>
+        /// <param name="filePath">Path of the file to get hash</param>
+        /// <returns></returns>
+        static public string FileSHA512(string filePath) { return FileHash(Algorithm.SHA512, filePath); }
 
         /// <summary>
         /// Get the hash of a string with RIPEMD160 algorithm
@@ -243,6 +278,12 @@ namespace System.Security.Cryptography
         /// <param name="stream"><see cref="Stream"/> to hash</param>
         /// <returns></returns>
         static public string FromRIPEMD160(Stream stream) { return FromAlgorithm(Algorithm.RIPEMD160, stream); }
+        /// <summary>
+        /// Get the hash of a file with RIPEMD160 algorithm
+        /// </summary>
+        /// <param name="filePath">Path of the file to get hash</param>
+        /// <returns></returns>
+        static public string FileRIPEMD160(string filePath) { return FileHash(Algorithm.RIPEMD160, filePath); }
 
         /// <summary>
         /// Get the hash of a string with KeyedHashAlgorithm algorithm
@@ -261,6 +302,12 @@ namespace System.Security.Cryptography
         /// </summary>
         /// <param name="stream"><see cref="Stream"/> to hash</param>
         /// <returns></returns>
-        static public string FromKeyedHashAlgorithm(Stream stream) { return FromAlgorithm(Algorithm.SHA1, stream); }
+        static public string FromKeyedHashAlgorithm(Stream stream) { return FromAlgorithm(Algorithm.KeyedHashAlgorithm, stream); }
+        /// <summary>
+        /// Get the hash of a file with KeyedHashAlgorithm algorithm
+        /// </summary>
+        /// <param name="filePath">Path of the file to get hash</param>
+        /// <returns></returns>
+        static public string FileKeyedHashAlgorithm(string filePath) { return FileHash(Algorithm.KeyedHashAlgorithm, filePath); }
     }
 }

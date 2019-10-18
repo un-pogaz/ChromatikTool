@@ -5,7 +5,7 @@ using System.Globalization;
 namespace System.Linq
 {
     /// <summary>
-    /// Allows to Get a merged Array
+    /// Class to extend System.Linq methods
     /// </summary>
     static public class ArrayExtension
     {

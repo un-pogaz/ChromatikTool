@@ -45,7 +45,6 @@ Global
 		Chromatik.MimeType\Chromatik.MimeType.projitems*{fe5827ae-897b-48e1-9ad3-e536134ee7bb}*SharedItemsImports = 13
 		Chromatik.Zip\Chromatik.Zip.projitems*{e4c23370-c288-4b45-92d2-80b29b8decdd}*SharedItemsImports = 13
 		Chromatik.LibNoise\Chromatik.Noise.projitems*{7701fd2d-6c9e-4a06-baa3-b214d0f82eaf}*SharedItemsImports = 13
-		Chromatik.RAmen\Chromatik.RAmen.projitems*{22fd5684-b516-49f3-8f99-3c13f16719d5}*SharedItemsImports = 4
 		Chromatik.SQLite\Chromatik.SQLite.projitems*{db77794d-a9ee-476c-a553-bdda2849b878}*SharedItemsImports = 13
 		Chromatik.Forms\Chromatik.Forms.projitems*{9c65a1f9-699c-45a7-b724-24d706e31637}*SharedItemsImports = 13
 		Chromatik.SlimDX\Chromatik.SlimDX.projitems*{748d4242-3809-4a88-ae97-a4360a535fdd}*SharedItemsImports = 13
@@ -58,13 +57,13 @@ Global
 		Chromatik.Svg\Chromatik.Svg.projitems*{80c2e08e-798e-462f-9e63-a73f9f53c1dd}*SharedItemsImports = 13
 		Chromatik.RAmen\Chromatik.RAmen.projitems*{381aaaa2-6761-4711-82bf-2d3932f34c92}*SharedItemsImports = 13
 		Chromatik.Compression\Chromatik.Compression.projitems*{01c2a431-8549-4a94-9c51-f1a60621c2a0}*SharedItemsImports = 13
-		Chromatik.Svg\Chromatik.Svg.projitems*{1b81048c-2f5f-4f46-8ac4-492d100c0824}*SharedItemsImports = 4
 		Chromatik.RAmen\Chromatik.RAmen.projitems*{1b81048c-2f5f-4f46-8ac4-492d100c0824}*SharedItemsImports = 4
 		Chromatik.Sequence\Chromatik.Sequence.projitems*{1b81048c-2f5f-4f46-8ac4-492d100c0824}*SharedItemsImports = 4
 		Chromatik.Forms\Chromatik.Forms.projitems*{1b81048c-2f5f-4f46-8ac4-492d100c0824}*SharedItemsImports = 4
 		Chromatik.SQLite\Chromatik.SQLite.projitems*{1b81048c-2f5f-4f46-8ac4-492d100c0824}*SharedItemsImports = 4
 		Chromatik\Chromatik.projitems*{1b81048c-2f5f-4f46-8ac4-492d100c0824}*SharedItemsImports = 4
 		Chromatik.LibNoise\Chromatik.Noise.projitems*{1b81048c-2f5f-4f46-8ac4-492d100c0824}*SharedItemsImports = 4
+		Chromatik.Svg\Chromatik.Svg.projitems*{1b81048c-2f5f-4f46-8ac4-492d100c0824}*SharedItemsImports = 4
 		Chromatik.SlimDX\Chromatik.SlimDX.projitems*{1b81048c-2f5f-4f46-8ac4-492d100c0824}*SharedItemsImports = 4
 		Chromatik.Unicode\Chromatik.Unicode.projitems*{1b81048c-2f5f-4f46-8ac4-492d100c0824}*SharedItemsImports = 4
 		Chromatik.MimeType\Chromatik.MimeType.projitems*{1b81048c-2f5f-4f46-8ac4-492d100c0824}*SharedItemsImports = 4

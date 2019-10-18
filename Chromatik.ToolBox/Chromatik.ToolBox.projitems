@@ -9,8 +9,8 @@
     <Import_RootNamespace>ChromatikTool.ToolBox</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Data\clsErr.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\clsNum.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Data\clsTxt.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Env\clsCalendrier.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Env\clsDataEnv.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Env\clsDT.cs" />
@@ -18,19 +18,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Env\clsStack.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Fichier\clsCopieFichiers.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Fichier\clsDatagridViewTools.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Fichier\clsEffacerFichiers.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Fichier\clsFichierTrace.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Fichier\clsMultiLangue.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Fichier\clsOutilsFichier.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Fichier\clsRegistre.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Fichier\clsSortFiles.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Tools\clsCmd.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Tools\clsCrypto.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Tools\clsScreenShot.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Win\clsBureau.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Win\clsFenetre.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Win\clsMsgWindows.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Win\clsUser32.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Win\clsVerrouillage.cs" />
   </ItemGroup>
 </Project>

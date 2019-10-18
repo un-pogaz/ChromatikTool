@@ -66,10 +66,6 @@ namespace Chromatik.Win
       //private static extern int SetForegroundWindow(IntPtr hwnd);
 
       /// <summary> </summary>
-      [DllImport("user32.dll", EntryPoint = "SystemParametersInfoA")]
-      public static extern int SystemParametersInfo(int uAction, int uParam, RECTbureau lpvParam, int fuWinIni);
-
-      /// <summary> </summary>
       [DllImport("user32.dll")]
       public static extern bool ShowWindowAsync(HandleRef hWnd, int nCmdShow);
 

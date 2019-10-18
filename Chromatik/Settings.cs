@@ -19,7 +19,7 @@ namespace System
         /// <summary>
         /// Path.DirectorySeparatorChar
         /// </summary>
-        static private char DSC { get { return Path.DirectorySeparatorChar; } }
+        static private char DSC { get; } = Path.DirectorySeparatorChar;
 
         static public string[] Args
         {

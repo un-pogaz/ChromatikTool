@@ -175,9 +175,9 @@ namespace Chromatik.Fichier
          foreach (DataGridViewRow r in dtg.Rows)
          {
             if (r.HeaderCell.Value != null)
-               s += clsTxt.NL() + r.HeaderCell.Value + '\t';
+               s += "\n" + r.HeaderCell.Value + '\t';
             else
-               s += clsTxt.NL() + '\t';
+               s += "\n\t";
             for (int i = 0; i < r.Cells.Count; i++)
             {
                if (r.Cells[i].Value != null)  //sm18/06/2018

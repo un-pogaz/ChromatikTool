@@ -70,7 +70,7 @@ namespace Chromatik.Fichier
       /// <returns>Valeur, ou null si erreur</returns>
       public static object LectReg(string IdentificationLogiciel, string IdValeur)
       {
-         clsErr Err;
+         clsErr Err = new clsErr();
          object obj = null;
 
          try
@@ -118,18 +118,18 @@ namespace Chromatik.Fichier
                if (RegProj != null)
                {
                   RegProj.SetValue(IdValeur, Valeur);
-                  clsErr ErrVerif;
+                  clsErr ErrVerif = new clsErr();
                   object verif = LectReg(RegProj, IdValeur, out ErrVerif, null);
                   if (Valeur.ToString() == verif.ToString())
                      OK = true;
                   else
-                     Err.msgErr = IdValeur + " = " + Valeur + clsTxt.NL()+ "Registry write error.";
+                     Err.msgErr = IdValeur + " = " + Valeur + "\nRegistry write error.";
                }
             }
          }
          catch (Exception e)
          {
-            Err.msgErr = IdValeur + " = " + Valeur + clsTxt.NL()+ e.Message;
+            Err.msgErr = IdValeur + " = " + Valeur + "\n" + e.Message;
          }
          return OK;
       }
@@ -156,19 +156,17 @@ namespace Chromatik.Fichier
             if (RegProj != null)
             {
                RegProj.SetValue(IdValeur, Valeur);
-               clsErr ErrVerif;
+               clsErr ErrVerif = new clsErr();
                object verif = LectReg(RegProj, IdValeur, out ErrVerif, null);
                if (Valeur.ToString() == verif.ToString())
                   OK = true;
                else
-                  Err.msgErr = IdValeur + " = " + Valeur + clsTxt.NL()
-                        + "Registry write error.";
+                  Err.msgErr = IdValeur + " = " + Valeur + "\nRegistry write error.";
             }
          }
          catch (Exception e)
          {
-            Err.msgErr = IdValeur + " = " + Valeur + clsTxt.NL()
-                  + e.Message;
+            Err.msgErr = IdValeur + " = " + Valeur + "\n" + e.Message;
          }
          return OK;
       }

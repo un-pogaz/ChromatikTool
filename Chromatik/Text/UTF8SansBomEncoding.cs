@@ -8,10 +8,16 @@ namespace System.Text
 {
     public class UTF8SansBomEncoding : UTF8Encoding
     {
+
         /// <summary>
         /// <see cref="Encoding"/> pour de l'UTF8 sans BOM
         /// </summary>
-        new static public UTF8SansBomEncoding Default { get; } = new UTF8SansBomEncoding();
+        static public UTF8SansBomEncoding UTF8SansBom { get; } = new UTF8SansBomEncoding();
+
+        /// <summary>
+        /// <see cref="Encoding"/> pour de l'UTF8 sans BOM
+        /// </summary>
+        new static public UTF8SansBomEncoding Default { get; } = UTF8SansBom;
 
         /// <summary>
         /// <see cref="Encoding"/> pour de l'UTF8 sans BOM

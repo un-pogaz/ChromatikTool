@@ -41,8 +41,7 @@ namespace Chromatik.Env
                   strLigne = "   " + l.ToString();
 
                string version = mException.ReflectedType.Assembly.GetName().Version.ToString();
-               infoStack ="Exception : "+ mException.ReflectedType.FullName + " (" + version + ")" + " / " + mException.Name + strLigne +
-                           clsTxt.NL();
+               infoStack ="Exception : "+ mException.ReflectedType.FullName + " (" + version + ")" + " / " + mException.Name + strLigne + "\n";
 
             }
 
@@ -66,8 +65,7 @@ namespace Chromatik.Env
                   strLigne = "   " + l.ToString();
 
                string version = mApplication.ReflectedType.Assembly.GetName().Version.ToString();
-               string ligne = mApplication.ReflectedType.FullName + " (" + version + ")" + " / " + mApplication.Name + strLigne +
-                              clsTxt.NL();
+               string ligne = mApplication.ReflectedType.FullName + " (" + version + ")" + " / " + mApplication.Name + strLigne + "\n";
                if (i == NiveauDeb)
                   methodeEnCours = mApplication.ReflectedType.FullName + "." + mApplication.Name;
 

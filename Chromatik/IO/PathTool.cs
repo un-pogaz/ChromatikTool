@@ -115,7 +115,7 @@ namespace System.IO
             string ext = Path.GetExtension(filePath);
             if (newExtension == null)
                 newExtension = string.Empty;
-            newExtension = newExtension.Trim(StringExtension.TrimChar.Concat(InvalidFileNameChars).Concat(new char[] { '.' }));
+            newExtension = newExtension.Trim(WhiteCharacter.TrimChar.Concat(InvalidFileNameChars).Concat('.'));
 
             if (ext.Length > 0)
                 filePath = filePath.Remove(filePath.Length - ext.Length);
