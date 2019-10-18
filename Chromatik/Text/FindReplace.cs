@@ -20,7 +20,7 @@ namespace System.Text
         static public string ReplaceLoop(this string input, string pattern, string replacement)
         {
             DateTime dt = DateTime.Now + Timeout;
-            string rslt = input;
+            string rslt = input + "\a";
             do
             {
                 if (dt < DateTime.Now)

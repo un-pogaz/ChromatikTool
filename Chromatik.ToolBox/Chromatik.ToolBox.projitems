@@ -9,7 +9,6 @@
     <Import_RootNamespace>ChromatikTool.ToolBox</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)Data\clsErr.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\clsNum.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\clsTxt.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Env\clsCalendrier.cs" />
