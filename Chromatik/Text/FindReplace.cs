@@ -33,19 +33,22 @@ namespace System.Text
         }
 
         /// <summary>
+        /// Default execution time for Regex Search/Replace. 
+        /// </summary>
+        static public TimeSpan DefaultTimeout { get; set; } = new TimeSpan(0, 1, 0);
+        /// <summary>
         /// Execution time for Regex Search/Replace. 
         /// </summary>
-        static public TimeSpan Timeout { get; set; } = new TimeSpan(0, 1, 0);
+        static public TimeSpan Timeout { get; set; } = DefaultTimeout;
 
         /// <summary>
         /// Default <see cref="RegularExpressions.RegexOptions"/> for regex operations.
         /// </summary>
-        static public RegexOptions RegexOptionsDefault { get; } = (RegexOptions.Singleline|RegexOptions.Multiline| RegexOptions.CultureInvariant);
-
+        static public RegexOptions DefaultRegexOptions { get; } = (RegexOptions.Singleline|RegexOptions.Multiline| RegexOptions.CultureInvariant);
         /// <summary>
         /// <see cref="RegularExpressions.RegexOptions"/> for regex operations.
         /// </summary>
-        static public RegexOptions RegexOptions { get; set; } = RegexOptions;
+        static public RegexOptions RegexOptions { get; set; } = DefaultRegexOptions;
 
         /// <summary>
         /// Execute a single regex Search/Replace.
@@ -169,6 +172,78 @@ namespace System.Text
             return RegularExpressions.Regex.IsMatch(input, pattern, options, matchTimeout);
         }
 
+
+        /// <summary>
+        /// Get the first Regex match.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="pattern"></param>
+        static public string RegexGetMatch(this string input, string pattern)
+        {
+            return input.RegexGetMatch(pattern, RegexOptions);
+        }
+        /// <summary>
+        /// Get the first Regex match.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="pattern"></param>
+        /// <param name="options"></param>
+        static public string RegexGetMatch(this string input, string pattern, RegexOptions options)
+        {
+            return input.RegexGetMatch(pattern, options, Timeout);
+        }
+        /// <summary>
+        /// Get the first Regex match.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="pattern"></param>
+        /// <param name="options"></param>
+        /// <param name="matchTimeout"></param>
+        static public string RegexGetMatch(this string input, string pattern, RegexOptions options, TimeSpan matchTimeout)
+        {
+            string[] rslt = input.RegexGetMatches(pattern, options, matchTimeout);
+            if (rslt.LongLength > 0)
+                return rslt[0];
+            else
+                return string.Empty;
+        }
+
+        /// <summary>
+        /// Get the Regex matchs patterns.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="pattern"></param>
+        static public string[] RegexGetMatches(this string input, string pattern)
+        {
+            return input.RegexGetMatches(pattern, RegexOptions);
+        }
+        /// <summary>
+        /// Get the Regex matchs patterns.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="pattern"></param>
+        /// <param name="options"></param>
+        static public string[] RegexGetMatches(this string input, string pattern, RegexOptions options)
+        {
+            return input.RegexGetMatches(pattern, options, Timeout);
+        }
+        /// <summary>
+        /// Get the Regex matchs patterns.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="pattern"></param>
+        /// <param name="options"></param>
+        /// <param name="matchTimeout"></param>
+        static public string[] RegexGetMatches(this string input, string pattern, RegexOptions options, TimeSpan matchTimeout)
+        {
+            MatchCollection matchs = RegularExpressions.Regex.Matches(input, pattern, options, matchTimeout);
+            string[] rslt = new string[matchs.Count];
+            for (int i = 0; i < matchs.Count; i++)
+                rslt[i] = matchs[i].Value;
+            return rslt;
+        }
+
+
         /// <summary>
         /// Split a string wiht a regex the pattern.
         /// </summary>
@@ -202,6 +277,5 @@ namespace System.Text
         {
             return RegularExpressions.Regex.Split(input, pattern, options, matchTimeout);
         }
-
     }
 }

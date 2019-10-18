@@ -29,7 +29,6 @@ namespace System.Text
         /// </summary>
         /// <param name="throwOnInvalidBytes">true pour lever une exception quand un encodage non valide est détecté ; sinon, false.</param>
         public UTF8SansBomEncoding(bool throwOnInvalidBytes) : base(false, throwOnInvalidBytes)
-        {
-        }
+        { }
     }
 }

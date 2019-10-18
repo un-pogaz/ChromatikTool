@@ -103,25 +103,7 @@ namespace System.IO
 
             return true;
         }
-
-        /// <summary>
-        /// Change the extension of a file path
-        /// </summary>
-        /// <param name="filePath"></param>
-        /// <param name="newExtension"></param>
-        /// <returns></returns>
-        static public string ChangeExtension(string filePath, string newExtension)
-        {
-            string ext = Path.GetExtension(filePath);
-            if (newExtension == null)
-                newExtension = string.Empty;
-            newExtension = newExtension.Trim(WhiteCharacter.TrimChar.Concat(InvalidFileNameChars).Concat('.'));
-
-            if (ext.Length > 0)
-                filePath = filePath.Remove(filePath.Length - ext.Length);
-            ext = Path.GetExtension(filePath + "." + newExtension);
-            return filePath + "." + newExtension;
-        }
+        
         /// <summary>
         /// To local Directory Separator Char
         /// </summary>
