@@ -4,7 +4,7 @@ using System.Text;
 using System.IO;
 using System.IO.Compression;
 
-namespace Chromatik.Compression
+namespace System.IO.Compression
 {
     /// <summary>
     /// 
