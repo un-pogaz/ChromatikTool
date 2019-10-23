@@ -9,6 +9,7 @@
     <Import_RootNamespace>Chromatik.SQLite</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)SQLitePragma.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SQLiteColumns.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SQLiteMaster.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SQLiteData.cs" />

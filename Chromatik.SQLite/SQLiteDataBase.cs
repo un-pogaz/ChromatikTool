@@ -12,7 +12,7 @@ namespace Chromatik.SQLite
     /// <summary>
     /// The basic instance for represented a SQLite database
     /// </summary>
-    public sealed class SQLiteDataBase : IDisposable
+    public class SQLiteDataBase : IDisposable
     {
         /// <summary>
         /// Path of this database
@@ -121,6 +121,10 @@ namespace Chromatik.SQLite
         {
             IsDisposed();
 
+            SQL = SQL.Trim();
+            if (!SQL.EndsWith(";"))
+                SQL += ";";
+
             msgErr = SQLlog.Empty;
             int rslt = -1;
             try
@@ -148,6 +152,10 @@ namespace Chromatik.SQLite
         {
             IsDisposed();
 
+            SQL = SQL.Trim();
+            if (!SQL.EndsWith(";"))
+                SQL += ";";
+
             msgErr = SQLlog.Empty;
             DataTable rslt = new DataTable();
             try
@@ -165,6 +173,9 @@ namespace Chromatik.SQLite
             return rslt;
         }
 
+
+        
+        
         /// <summary>
         /// List of all SQL request executed with this instance
         /// </summary>
@@ -183,6 +194,14 @@ namespace Chromatik.SQLite
                 rslt = master.GetTablesName();
             return rslt;
         }
+
+        public void ExecuteVaccum()
+        {
+            SQLlog log = SQLlog.Empty;
+            _SQLcommand("VACUUM", out log);
+        }
+
+        public SQLitePragmas Pragmas { get { return new SQLitePragmas(this); } }
 
         ////////////
         // STATIC //

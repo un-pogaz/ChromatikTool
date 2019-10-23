@@ -17,7 +17,8 @@ namespace Test
         [STAThread]
         static void Main()
         {
-
+            object o = null;
+            int i = (int)o;
 
             ;
             Application.EnableVisualStyles();

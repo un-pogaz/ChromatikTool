@@ -22,11 +22,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)IO\RecursiveSearch.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IO\StreamExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Settings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Text\UTF8SansBomEncoding.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Text\WhiteCharacter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Text\ControlCharacter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Text\FindReplace.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Text\StringExtension.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Text\UTF8SansBomEncoding.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Xml\XmlExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Xml\XmlCreate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Xml\XmlEnumertor.cs" />
