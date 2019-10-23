@@ -82,17 +82,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="..\Chromatik\Chromatik.projitems" Label="Shared" />
-  <Import Project="..\Chromatik.Drawing\Chromatik.Drawing.projitems" Label="Shared" />
   <Import Project="..\Chromatik.Forms\Chromatik.Forms.projitems" Label="Shared" />
-  <Import Project="..\Chromatik.MimeType\Chromatik.MimeType.projitems" Label="Shared" />
   <Import Project="..\Chromatik.Unicode\Chromatik.Unicode.projitems" Label="Shared" />
   <Import Project="..\Chromatik.SQLite\Chromatik.SQLite.projitems" Label="Shared" />
-  <Import Project="..\Chromatik.Zip\Chromatik.Zip.projitems" Label="Shared" />
-  <Import Project="..\Chromatik.LibNoise\Chromatik.Noise.projitems" Label="Shared" />
-  <Import Project="..\Chromatik.RAmen\Chromatik.RAmen.projitems" Label="Shared" />
-  <Import Project="..\Chromatik.Sequence\Chromatik.Sequence.projitems" Label="Shared" />
-  <Import Project="..\Chromatik.SlimDX\Chromatik.SlimDX.projitems" Label="Shared" />
-  <Import Project="..\Chromatik.Svg\Chromatik.Svg.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

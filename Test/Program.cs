@@ -6,6 +6,7 @@ using System.Text;
 using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Chromatik.SQLite;
 
 namespace Test
 {
@@ -17,8 +18,6 @@ namespace Test
         [STAThread]
         static void Main()
         {
-            object o = null;
-            int i = (int)o;
 
             ;
             Application.EnableVisualStyles();

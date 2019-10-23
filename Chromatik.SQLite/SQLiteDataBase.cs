@@ -194,7 +194,7 @@ namespace Chromatik.SQLite
                 rslt = master.GetTablesName();
             return rslt;
         }
-
+        
         public void ExecuteVaccum()
         {
             SQLlog log = SQLlog.Empty;
@@ -302,6 +302,23 @@ namespace Chromatik.SQLite
             }
 
             return rslt;
+        }
+    }
+
+    static public class SQLiteStringFormat
+    {
+        /// <summary>
+        /// Parse a <see cref="string"/> to a valide text for <see cref="SQLiteDataBase"/> (useful if it contains a single quote)
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        static public string ToSQLiteFormat(this string s)
+        {
+            string[] split = s.Split('\'');
+            for (long i = 0; i < split.LongLength; i++)
+                split[i] = "'" + split[i]+ "'";
+
+            return split.ToOneString("", StringOneLineOptions.SkipNull);
         }
     }
 }
