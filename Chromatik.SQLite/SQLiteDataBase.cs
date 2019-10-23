@@ -122,8 +122,6 @@ namespace Chromatik.SQLite
             IsDisposed();
 
             SQL = SQL.Trim();
-            if (!SQL.EndsWith(";"))
-                SQL += ";";
 
             msgErr = SQLlog.Empty;
             int rslt = -1;
@@ -153,8 +151,6 @@ namespace Chromatik.SQLite
             IsDisposed();
 
             SQL = SQL.Trim();
-            if (!SQL.EndsWith(";"))
-                SQL += ";";
 
             msgErr = SQLlog.Empty;
             DataTable rslt = new DataTable();
