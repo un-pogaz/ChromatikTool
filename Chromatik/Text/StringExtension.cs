@@ -119,21 +119,45 @@ namespace System.Linq
         /// <returns></returns>
         static public string ToOneString(this string[] input, string join, StringOneLineOptions oneLineOptions)
         {
-            if (input.Length == 0)
+            if (input == null || input.Length == 0)
                 return string.Empty;
+
+            if (join == null)
+                join = string.Empty;
 
             string rslt = input[0];
             for (long i = 1; i < input.LongLength; i++)
             {
                 if (input[i] == null)
-                    switch (oneLineOptions)
+                {
+                    if (oneLineOptions == StringOneLineOptions.SkipNull ||
+                        oneLineOptions == StringOneLineOptions.SkipNullAndEmpty ||
+                        oneLineOptions == StringOneLineOptions.SkipNullAndWhiteSpace)
                     {
-                        case StringOneLineOptions.SkipNull:
-                            break;
-                        default: //StringOneLineOptions.NullToEmpty
-                            rslt += join + string.Empty;
-                            break;
+                        // skip
                     }
+                    else //StringOneLineOptions.NullToEmpty
+                        rslt += join + string.Empty;
+                }
+                else if (string.IsNullOrWhiteSpace(input[i]))
+                {
+                    if (oneLineOptions == StringOneLineOptions.SkipNullAndEmpty ||
+                        oneLineOptions == StringOneLineOptions.SkipNullAndWhiteSpace)
+                    {
+                        // skip
+                    }
+                    else //StringOneLineOptions.NullToEmpty
+                        rslt += join + input[i];
+                }
+                else if (string.IsNullOrEmpty(input[i]))
+                {
+                    if (oneLineOptions == StringOneLineOptions.SkipNullAndEmpty)
+                    {
+                        // skip
+                    }
+                    else //StringOneLineOptions.NullToEmpty
+                        rslt += join + input[i];
+                }
                 else
                     rslt += join + input[i];
             }
@@ -161,18 +185,28 @@ namespace System.Linq
         }
     }
 
+
+
     /// <summary>
     /// Enum for behaviour with a <see langword="null"/> 
     /// </summary>
     public enum StringOneLineOptions
     {
         /// <summary>
-        /// Convert a <see langword="null"/> value to a empty <see cref="string"/>
+        /// Convert a <see langword="null"/> value to a empty
         /// </summary>
         NullToEmpty,
         /// <summary>
         /// Skip a <see langword="null"/> value
         /// </summary>
-        SkipNull
+        SkipNull,
+        /// <summary>
+        /// Skip a <see langword="null"/> and empty value
+        /// </summary>
+        SkipNullAndEmpty,
+        /// <summary>
+        /// Skip a <see langword="null"/>  and WhiteSpace value
+        /// </summary>
+        SkipNullAndWhiteSpace,
     }
 }

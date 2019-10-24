@@ -42,7 +42,7 @@ namespace System.Data.SQLite
         /// <returns></returns>
         static public string ToSQLiteFormat(this string s)
         {
-            string[] split = s.Split('\'');
+            string[] split = s.Trim().Split('\'');
             for (long i = 0; i < split.LongLength; i++)
                 split[i] = "'" + split[i] + "'";
 

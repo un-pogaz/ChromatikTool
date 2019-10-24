@@ -28,12 +28,6 @@ namespace Chromatik
         /// Si le paramètre innerException n'est pas une référence null,
         /// l'exception actuelle est levée dans un bloc catch qui gère l'exception interne</param>
         public ChromatikException(string message, Exception innerException) : base(message, innerException) { }
-
-        /// <summary>
-        /// Initialise une nouvelle instance de la classe avec des données sérialisées
-        /// </summary>
-        /// <param name="info">Objet qui contient les données sérialisées de l'objet</param>
-        /// <param name="context">Informations contextuelles sur la source ou la destination</param>
-        protected ChromatikException(SerializationInfo info, StreamingContext context) : base(info, context) { }
+        
     }
 }
