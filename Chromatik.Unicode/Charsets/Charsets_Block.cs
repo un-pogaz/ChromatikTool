@@ -5,9 +5,6 @@ using System.Xml;
 
 namespace Chromatik.Unicode
 {
-    /// <summary>
-    /// Represent a Charset collection
-    /// </summary>
     partial class Charset
     {
         /// <summary>
@@ -89,24 +86,29 @@ namespace Chromatik.Unicode
             else
                 throw XmlUnicodeException.NoLoaded;
         }
-        
+
+        /// <summary> </summary>
         public struct Sets
         {
+            /// <summary> </summary>
             static public CodeBlock ASCII
             {
-                get { return CharsetFromXml(XmlCharset, XmlLang, "ASCII"); }
+                get { return  CharsetFromXml(XmlCharset, XmlLang, "ASCII"); }
             }
 
+            /// <summary> </summary>
             static public CodeBlock Latin_1
             {
                 get { return CharsetFromXml(XmlCharset, XmlLang, "Latin-1"); }
             }
 
+            /// <summary> </summary>
             static public CodeBlock Latin_9
             {
                 get { return CharsetFromXml(XmlCharset, XmlLang, "Latin-9"); }
             }
 
+            /// <summary> </summary>
             static public CodeBlock Windows_1252
             {
                 get { return CharsetFromXml(XmlCharset, XmlLang, "Windows-1252"); }

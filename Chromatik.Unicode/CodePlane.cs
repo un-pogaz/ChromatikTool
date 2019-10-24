@@ -18,16 +18,20 @@ namespace Chromatik.Unicode
         {
             this.Name = Name;
         }
-        
+
+        /// <summary> </summary>
         public string Name { get; set; }
 
+        /// <summary> </summary>
         public string Description { get; set; }
 
+        /// <summary> </summary>
         public CodeBlockList Blocks
         {
             get { return this; }
         }
 
+        /// <summary> </summary>
         public string[] GetBlocksNames()
         {
             return this.Keys.ToArray();

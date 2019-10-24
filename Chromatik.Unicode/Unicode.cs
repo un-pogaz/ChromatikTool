@@ -16,8 +16,10 @@ namespace Chromatik.Unicode
 
         static private string XmlLang;
 
+        /// <summary> </summary>
         static public CodePlaneList Planes { get; private set; } = new CodePlaneList();
 
+        /// <summary> </summary>
         static public CodeBlockList Blocks { get; private set; } = new CodeBlockList();
 
 
@@ -26,11 +28,13 @@ namespace Chromatik.Unicode
 
         }
 
+        /// <summary> </summary>
         static public string[] GetPlanesNames()
         {
             return Planes.Keys.ToArray();
         }
 
+        /// <summary> </summary>
         static public string[] GetBlocksNames()
         {
             return Blocks.Keys.ToArray();

@@ -6,9 +6,15 @@ using System.Threading.Tasks;
 
 namespace System.IO
 {
+    /// <summary>
+    /// Static clas to extend <see cref="Stream"/>
+    /// </summary>
     static public class StreamExtension
     {
-        static public Stream CreateClone(this Stream stream)
+        /// <summary>
+        /// Create a clone
+        /// </summary>
+        static public Stream Clone(this Stream stream)
         {
             long p = stream.Position;
             MemoryStream rslt = new MemoryStream();

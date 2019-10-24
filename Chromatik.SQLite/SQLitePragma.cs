@@ -5,21 +5,40 @@ using System.Text;
 
 namespace Chromatik.SQLite
 {
+    /// <summary>
+    /// Enumeration for the AutoVaccum pragma
+    /// </summary>
     public enum SQLiteAutoVaccum
     {
+        /// <summary>
+        /// Auto-vacuum is disabled (default)
+        /// </summary>
         None = 0,
+        /// <summary>
+        /// Auto-vacuum is enabled and fully automatic.
+        /// </summary>
         Full = 1,
+        /// <summary>
+        /// Auto-vacuum is enabled but must be manually activated.
+        /// </summary>
         Incremental = 2,
     }
 
+    /// <summary>
+    /// Specialized instance for work with the Pragmas values of a <see cref="SQLiteDataBase"/>
+    /// </summary>
     public sealed class SQLitePragmas : SQLiteEdit
     {
+        /// <summary>
+        /// Create a basic instance for work with <see cref="SQLitePragmas"/>
+        /// </summary>
+        /// <param name="db">The target database</param>
         public SQLitePragmas(SQLiteDataBase db) : base(db, false)
         {
             clsName = nameof(SQLitePragmas);
         }
-        
-        protected object PragmaValue(string pragma, out SQLlog msg)
+
+        object PragmaValue(string pragma, out SQLlog msg)
         {
             DataTable dt = PragmatTable( pragma, out msg);
             if (dt.Rows.Count > 0)
@@ -27,16 +46,27 @@ namespace Chromatik.SQLite
             else
                 return null;
         }
-        protected DataTable PragmatTable(string pragma, out SQLlog msg)
+        DataTable PragmatTable(string pragma, out SQLlog msg)
         {
-            return ExecuteSQLdataTable("PRAGMA " + pragma.Trim(), out msg);
+            bool openStart = ConnectionIsOpen;
+            OpenConnection();
+            DataTable rslt = ExecuteSQLdataTable("PRAGMA " + pragma.Trim(), out msg);
+            if (!openStart)
+                CloseConnection();
+            return rslt;
         }
-        protected void SetPragmatTable(string pragma, string value, out SQLlog msg)
+        void SetPragmatTable(string pragma, string value, out SQLlog msg)
         {
+            bool openStart = ConnectionIsOpen;
+            OpenConnection();
             ExecuteSQLcommand("PRAGMA " + pragma.Trim() + " = " + value, out msg);
+            if (!openStart)
+                CloseConnection();
         }
-
-
+        
+        /// <summary>
+        /// ApplicationID value
+        ///  </summary>
         public int ApplicationID
         {
             get
@@ -58,6 +88,9 @@ namespace Chromatik.SQLite
             }
         }
 
+        /// <summary>
+        /// AutoVaccum value
+        ///  </summary>
         public SQLiteAutoVaccum AutoVaccum {
             get {
                 SQLlog log = SQLlog.Empty;

@@ -49,7 +49,6 @@ namespace Chromatik.SQLite
         /// <summary>
         /// Create a basic instance for work with <see cref="SQLiteDataBase"/>
         /// </summary>
-        /// <remarks>If the connection is opened by this constructor, they will be closed if the instance is dispose.</remarks>
         /// <param name="db">The target database</param>
         public SQLiteEdit(SQLiteDataBase db) : this(db, false)
         { }
@@ -69,6 +68,7 @@ namespace Chromatik.SQLite
                 throw new System.Data.SQLite.SQLiteException(System.Data.SQLite.SQLiteErrorCode.CantOpen, "Database is not open");
         }
 
+        /// <summary> </summary>
         public override string ToString()
         {
             return DataBase.ToString() + " {"+clsName+"}";
@@ -76,7 +76,9 @@ namespace Chromatik.SQLite
 
         bool OpenOnStart = false;
 
+        /// <summary> </summary>
         protected bool disposed = true;
+        /// <summary> </summary>
         public void Dispose()
         {
             if (ConnectionIsOpen && !OpenOnStart)
@@ -84,12 +86,14 @@ namespace Chromatik.SQLite
 
             disposed = true;
         }
+        /// <summary> </summary>
         protected void IsDisposed()
         {
             if (disposed)
                 throw new ObjectDisposedException(clsName);
         }
         
+        /// <summary> </summary>
         ~SQLiteEdit()
         {
 

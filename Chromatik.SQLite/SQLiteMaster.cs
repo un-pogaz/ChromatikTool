@@ -5,10 +5,20 @@ using System.Data;
 
 namespace Chromatik.SQLite
 {
+    /// <summary> </summary>
     public struct SQLiteAssociateTable
     {
+        /// <summary>
+        /// Name of the table, index or trigger
+        /// </summary>
         public string Name { get; }
+        /// <summary>
+        /// Name of the affected table
+        /// </summary>
         public string AssociateTable { get; }
+        /// <summary>
+        /// SQL request of the entrie
+        /// </summary>
         public string SQL { get; }
 
         internal SQLiteAssociateTable(string name, string associateTable, string sql)
@@ -27,7 +37,6 @@ namespace Chromatik.SQLite
         /// <summary>
         /// Create a basic instance for work with <see cref="SQLiteDataBase"/>
         /// </summary>
-        /// <remarks>If the connection is opened by this constructor, they will be closed if the instance is dispose.</remarks>
         /// <param name="db">The target database</param>
         public SQLiteMaster(SQLiteDataBase db) : this(db, false)
         { }

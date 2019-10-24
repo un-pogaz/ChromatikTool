@@ -8,6 +8,9 @@ using System.Xml;
 
 namespace System
 {
+    /// <summary>
+    /// Static class for various setings
+    /// </summary>
     public static class Settings
     {
         static Settings()
@@ -21,6 +24,9 @@ namespace System
         /// </summary>
         static private char DSC { get; } = Path.DirectorySeparatorChar;
 
+        /// <summary>
+        /// Command line arguments of the application
+        /// </summary>
         static public string[] Args
         {
             get
@@ -33,7 +39,11 @@ namespace System
             }
         }
 
-        static public string TempFolderName
+        /// <summary>
+        /// Name used for the temporary work folder; see <see cref="CreateTempWorkFolder()"/>
+        /// </summary>
+        /// <remarks>By default, is the file name of the application</remarks>
+        static public string WorkFolderName
         {
             get
             {
@@ -46,25 +56,21 @@ namespace System
                 if (!string.IsNullOrWhiteSpace(value))
                 {
                     value = value.Trim();
-                    try
-                    {
-                        Path.Combine(Path.GetTempPath(), value);
-                        _tempFolderName = value;
-                    }
-                    catch (Exception)
-                    {
-                    }
+                    Directory.CreateDirectory(Path.Combine(Path.GetTempPath(), value));
+                    _tempFolderName = value;
                 }
             }
         }
         static string _tempFolderName;
 
-
+        /// <summary>
+        /// Temporary folder specific to the application
+        /// </summary>
         static public string TempFolder
         {
             get
             {
-                string folder = Path.Combine(Path.GetTempPath(), TempFolderName) + DSC;
+                string folder = Path.Combine(Path.GetTempPath(), WorkFolderName) + DSC;
 
                 Directory.CreateDirectory(folder);
 
@@ -107,15 +113,18 @@ namespace System
         }
         static private bool TempFolderfirstAcces = true;
 
-        static public string CreateNewTempWorkFolder()
+        /// <summary>
+        /// Create a new subfolder (aka work folder) in the temporary folder
+        /// </summary>
+        /// <returns>Path of the new folder</returns>
+        /// <remarks><see cref="TempFolder"/>/<see cref="WorkFolderName"/>_HH-mm-ss (xxx)</remarks>
+        static public string CreateTempWorkFolder()
         {
             string rslt;
-
             Random ran = new Random();
-
             do
             {
-                rslt = TempFolder + TempFolderName + "_" + DateTime.Now.ToString("HH-mm-ss") + " (" + ran.Next(0, 1000).ToString("D3") + ")" + Path.DirectorySeparatorChar;
+                rslt = TempFolder + WorkFolderName + "_" + DateTime.Now.ToString("HH-mm-ss") + " (" + ran.Next(0, 1000).ToString("D3") + ")" + Path.DirectorySeparatorChar;
             }
             while (Directory.Exists(rslt));
 
@@ -124,6 +133,9 @@ namespace System
             return rslt;
         }
 
+        /// <summary>
+        /// Get the application folder path
+        /// </summary>
         static public string ApplicationPath
         {
             get { return Path.GetDirectoryName(Application.ExecutablePath) + DSC; }

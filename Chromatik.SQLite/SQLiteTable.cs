@@ -36,7 +36,7 @@ namespace Chromatik.SQLite
         /// <param name="columns">Name and typing of columns</param>
         /// <param name="msgErr"></param>
         /// <returns></returns>
-        public int AddTable(string tableName, SQLiteColumns columns, out SQLlog msgErr)
+        public int AddTable(string tableName, SQLiteColumnsCollection columns, out SQLlog msgErr)
         {
             return ExecuteSQLcommand(SQL_AddTable(tableName, columns), out msgErr);
         }
@@ -45,12 +45,12 @@ namespace Chromatik.SQLite
         /// </summary>
         /// <param name="tableName">table to affect</param>
         /// <param name="columns">Name and typing of columns</param>
-        static public string SQL_AddTable(string tableName, SQLiteColumns columns)
+        static public string SQL_AddTable(string tableName, SQLiteColumnsCollection columns)
         {
             if (columns.Count == 0)
                 throw new ArgumentException("SQLiteColumns cannot be empty", "columns");
             
-            return "CREATE TABLE '" + tableName.Trim() + "' (" + columns.GetFullString() + ")" + ";";
+            return "CREATE TABLE '" + tableName.Trim() + "' (" + columns.ToString() + ")" + ";";
         }
 
         /// <summary>
@@ -119,16 +119,21 @@ namespace Chromatik.SQLite
         /// <param name="columns">columns to add</param>
         /// <param name="msgErr"></param>
         /// <returns></returns>
-        public int AddColumns(string tableName, SQLiteColumns columns, out SQLlog msgErr)
+        public int AddColumns(string tableName, SQLiteColumnsCollection columns, out SQLlog msgErr)
         {
             msgErr = SQLlog.Empty;
-            for (int i = 0; i < columns.Count; i++)
+            int i = 0;
+
+            foreach (SQLiteColumn item in columns.Values)
             {
-                AddColumn(tableName, columns[i], out msgErr);
-                if (!msgErr.Succes)
-                    return i+1;
+                AddColumn(tableName, item, out msgErr);
+                if (msgErr.Succes)
+                    i++;
+                else
+                    return i;
+
             }
-            return columns.Count;
+            return i;
         }
         /// <summary>
         /// Add column to the table
@@ -137,7 +142,7 @@ namespace Chromatik.SQLite
         /// <param name="column">column to add</param>
         /// <param name="msgErr"></param>
         /// <returns></returns>
-        public int AddColumn(string tableName, SQLiteColumns.Column column, out SQLlog msgErr)
+        public int AddColumn(string tableName, SQLiteColumn column, out SQLlog msgErr)
         {
             return ExecuteSQLcommand(SQL_EditTable_AddColumn(tableName, column), out msgErr); ;
         }
@@ -147,9 +152,9 @@ namespace Chromatik.SQLite
         /// <param name="tableName">table to affect</param>
         /// <param name="column">column to add</param>
         /// <returns></returns>
-        static public string SQL_EditTable_AddColumn(string tableName, SQLiteColumns.Column column)
+        static public string SQL_EditTable_AddColumn(string tableName, SQLiteColumn column)
         {
-            return SQL_EditTable(tableName, " ADD '" + column.Name.Trim() + "' " + SQLiteColumns.GetTypeString(column.Type));
+            return SQL_EditTable(tableName, " ADD '" + column.Name.Trim() + "' " + SQLiteColumn.GetTypeString(column.Type));
         }
 
         /// <summary>

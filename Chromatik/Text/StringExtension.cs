@@ -4,6 +4,9 @@ using System.Text;
 
 namespace System.Linq
 {
+    /// <summary>
+    /// Static class to extend <see cref="string"/>
+    /// </summary>
     static public class StringExtension
     {
         /// <summary>
@@ -91,6 +94,7 @@ namespace System.Linq
         /// Combine a <see cref="string"/>[] to one line
         /// </summary>
         /// <param name="input"></param>
+        /// <param name="oneLineOptions"></param>
         /// <returns></returns>
         static public string ToOneString(this string[] input, StringOneLineOptions oneLineOptions)
         {
@@ -136,6 +140,25 @@ namespace System.Linq
 
             return rslt;
         }
+        
+        /// <summary>
+        /// Truncate the <see cref="string"/> to the specified lenght. If negative, no change. 
+        /// </summary>
+        /// <param name="s"></param>
+        /// <param name="length"></param>
+        /// <returns></returns>
+        static public string Truncate(this string s, int length)
+        {
+            if (length < 0)
+                return s;
+            else
+            {
+                if (s.Length > length)
+                    return s.Substring(0, length);
+                else
+                    return s;
+            }
+        }
     }
 
     /// <summary>
@@ -144,9 +167,12 @@ namespace System.Linq
     public enum StringOneLineOptions
     {
         /// <summary>
-        /// 
+        /// Convert a <see langword="null"/> value to a empty <see cref="string"/>
         /// </summary>
         NullToEmpty,
+        /// <summary>
+        /// Skip a <see langword="null"/> value
+        /// </summary>
         SkipNull
     }
 }

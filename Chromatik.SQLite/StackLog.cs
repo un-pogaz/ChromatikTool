@@ -5,8 +5,12 @@ using System.Linq;
 
 namespace Chromatik.SQLite
 {
+    /// <summary>
+    /// Represents a collection of <see cref="SQLlog"/> of the last in, first out (LIFO) type for a <see cref="SQLiteDataBase"/>.
+    /// </summary>
     public class StackLogSQL : IReadOnlyList<SQLlog>, IReadOnlyCollection<SQLlog>, IEnumerable<SQLlog>, System.Collections.IEnumerable
     {
+
         List<SQLlog> items = new List<SQLlog>(10);
 
         internal StackLogSQL()
@@ -16,6 +20,7 @@ namespace Chromatik.SQLite
             items = new List<SQLlog>(collection);
         }
 
+        /// <summary> </summary>
         public SQLlog this[int index]
         {
             get { return items[index]; }
@@ -29,8 +34,12 @@ namespace Chromatik.SQLite
                 items.RemoveAt(items.Count - 1);
         }
 
+        /// <summary> </summary>
         public bool ContainFailedRequest { get { return (Failed.Count > 0); } }
 
+        /// <summary>
+        /// Collection of failed request only
+        /// </summary>
         public IReadOnlyCollection<SQLlog> Failed
         {
             get
@@ -72,6 +81,7 @@ namespace Chromatik.SQLite
             }
         }
 
+        /// <summary> </summary>
         public IEnumerator<SQLlog> GetEnumerator()
         {
             return items.GetEnumerator();
@@ -81,6 +91,7 @@ namespace Chromatik.SQLite
             return items.GetEnumerator();
         }
 
+        /// <summary> </summary>
         public int Count { get { return items.Count; } }
     }
 }

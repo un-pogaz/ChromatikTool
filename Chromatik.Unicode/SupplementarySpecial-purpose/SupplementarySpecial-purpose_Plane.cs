@@ -5,6 +5,9 @@ using System.Xml;
 
 namespace Chromatik.Unicode
 {
+    /// <summary>
+    /// Represent the Tertiary Ideographic plane
+    /// </summary>
     static public partial class SupplementarySpecial_purpose
     {
         /// <summary>
@@ -16,10 +19,13 @@ namespace Chromatik.Unicode
 
         static private string NameID = "Supplementary Special-purpose Plane";
 
+        /// <summary> </summary>
         static public CodePlane Blocks { get; private set; } = new CodePlane(NameID);
 
+        /// <summary> </summary>
         static public string Name { get; } = Blocks.Name;
 
+        /// <summary> </summary>
         static public string Description { get; } = Blocks.Description;
 
         /// <summary>

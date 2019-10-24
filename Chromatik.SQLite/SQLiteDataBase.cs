@@ -37,12 +37,14 @@ namespace Chromatik.SQLite
             FilePath = dbPath.Trim();
         }
 
+        /// <summary> </summary>
         public override string ToString()
         {
             return "\""+Path.GetFileName(FilePath)+"\"; Conneting: " + ConnectionIsOpen.ToString().ToLower() + "; Requests: " +Logs.Count+";"; 
         }
 
         private bool disposed = true;
+        /// <summary> </summary>
         public void Dispose()
         {
             CloseConnection();
@@ -190,13 +192,19 @@ namespace Chromatik.SQLite
                 rslt = master.GetTablesName();
             return rslt;
         }
-        
+
+        /// <summary>
+        /// Execute a Vaccum operation (aka compact the database file)
+        /// </summary>
         public void ExecuteVaccum()
         {
             SQLlog log = SQLlog.Empty;
             _SQLcommand("VACUUM", out log);
         }
 
+        /// <summary>
+        /// Get the <see cref="SQLitePragmas"/> of this <see cref="SQLiteDataBase"/>
+        /// </summary>
         public SQLitePragmas Pragmas { get { return new SQLitePragmas(this); } }
 
         ////////////
@@ -240,7 +248,7 @@ namespace Chromatik.SQLite
         /// <param name="tableName">Table to create</param>
         /// <param name="columns">Columns of the Table</param>
         /// <returns></returns>
-        static public SQLiteDataBase CreateDataBase(string fileDB, string tableName, SQLiteColumns columns)
+        static public SQLiteDataBase CreateDataBase(string fileDB, string tableName, SQLiteColumnsCollection columns)
         {
             return CreateDataBase(fileDB, tableName, columns, false);
         }
@@ -253,7 +261,7 @@ namespace Chromatik.SQLite
         /// <param name="columns">Columns of the Table</param>
         /// <param name="truncate">Erase the target DB file</param>
         /// <returns></returns>
-        static public SQLiteDataBase CreateDataBase(string fileDB, string tableName, SQLiteColumns columns, bool truncate)
+        static public SQLiteDataBase CreateDataBase(string fileDB, string tableName, SQLiteColumnsCollection columns, bool truncate)
         {
             try
             {
@@ -280,41 +288,19 @@ namespace Chromatik.SQLite
 
     }
 
-    static internal class SQLiteDataReaderExtension
-    {
-        static internal DataTable GetDataTable(this SQLiteDataReader dataReader)
-        {
-            DataTable rslt = new DataTable(dataReader.GetTableName(0));
-            foreach (DataRow item in dataReader.GetSchemaTable().Rows)
-                rslt.Columns.Add(item[0].ToString(), item[12] as Type);
-
-            while (dataReader.Read())
-            {
-                object[] tbl = new object[dataReader.FieldCount];
-                for (int i = 0; i < dataReader.FieldCount; i++)
-                    tbl[i] = dataReader[i];
-
-                rslt.Rows.Add(tbl);
-            }
-
-            return rslt;
-        }
-    }
-
-    static public class SQLiteStringFormat
+    /// <summary>
+    /// Static class to extend Chromatik.SQLite
+    /// </summary>
+    static public class SQLiteExtension
     {
         /// <summary>
-        /// Parse a <see cref="string"/> to a valide text for <see cref="SQLiteDataBase"/> (useful if it contains a single quote)
+        /// Parse a <see cref="string"/> to a valide text for SQLite request (useful if it contains a single quote)
         /// </summary>
         /// <param name="s"></param>
         /// <returns></returns>
         static public string ToSQLiteFormat(this string s)
         {
-            string[] split = s.Split('\'');
-            for (long i = 0; i < split.LongLength; i++)
-                split[i] = "'" + split[i]+ "'";
-
-            return split.ToOneString("", StringOneLineOptions.SkipNull);
+           return System.Data.SQLite.SQLiteExtension.ToSQLiteFormat(s);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 
@@ -9,32 +10,38 @@ namespace Chromatik.SQLite
     /// </summary>
     public enum SQLiteColumnsType
     {
+        /// <summary> </summary>
         Integer,
-        TimeStamp,
+        /// <summary> </summary>
+        DateTime,
+        /// <summary> </summary>
         Real,
+        /// <summary> </summary>
         Text,
+        /// <summary> </summary>
         BLOB,
     }
 
     /// <summary>
     /// Collection of columns for a <see cref="SQLiteDataBase"/>
     /// </summary>
-    sealed public class SQLiteColumns : List<SQLiteColumns.Column>
+    sealed public class SQLiteColumnsCollection : Dictionary<string, SQLiteColumn>
     {
-        /// <summary>
-        /// String format for TimeStamp column (yyyy-MM-dd hh:mm:ss.ffffff)
-        /// </summary>
-        static public string TimeStampFormat { get; } = "yyyy-MM-dd hh:mm:ss.ffffff";
-        /// <summary>
-        /// String format for TimeStamp column (yyyy-MM-dd hh:mm:ss)
-        /// </summary>
-        static public string TimeStampBasicFormat { get; } = "yyyy-MM-dd hh:mm:ss";
-
         /// <summary>
         /// Collection of columns for a <see cref="SQLiteDataBase"/>
         /// </summary>
-        public SQLiteColumns() : base()
+        public SQLiteColumnsCollection() : base(StringComparer.InvariantCultureIgnoreCase)
         { }
+
+        /// <summary>
+        /// Collection of the columns name of this <see cref="SQLiteColumnsCollection"/>
+        /// </summary>
+        new public string[] Keys { get { return base.Keys.ToArray(); } }
+
+        /// <summary>
+        /// Collection of the <see cref="SQLiteColumn"/> of this <see cref="SQLiteColumnsCollection"/>
+        /// </summary>
+        new public SQLiteColumn[] Values { get { return base.Values.ToArray(); } }
 
         /// <summary>
         /// Add column
@@ -48,87 +55,88 @@ namespace Chromatik.SQLite
         /// </summary>
         public void Add(string name, SQLiteColumnsType type, object defaultValue)
         {
-            Add(new Column(name, type, null));
+            Add(new SQLiteColumn(name, type, null));
         }
         /// <summary>
         /// Add column
         /// </summary>
-        new public void Add(Column column)
+        public void Add(SQLiteColumn column)
         {
-            for (int i = 0; i < Count; i++)
-                if (this[i].Name == column.Name)
-                {
-                    Remove(this[i]);
-                    break;
-                }
-
-            base.Add(column);
+            base.Add(column.Name, column);
         }
-                
         /// <summary>
-        /// Remove column
+        /// Add column
         /// </summary>
-        public void Remove(string name)
+        new public void Add(string name, SQLiteColumn column)
         {
-            for (int i = 0; i < Count; i++)
-                if (this[i].Name == name.Trim())
-                {
-                    Remove(this[i]);
-                    break;
-                }
+            if (name.Equals(column.Name, StringComparison.InvariantCultureIgnoreCase))
+                base.Add(column.Name, column);
+            else
+                throw new ArgumentException("The key name and the column name as not equal.");
         }
+
+        /// <summary> </summary>
+        override public string ToString()
+        {
+            if (Count > 0)
+            {
+                string[] rslt = new string[Count];
+                for (int i = 0; i < Count; i++)
+                    rslt[i] = Values[0].ToString();
+                return rslt.ToOneString(", ");
+            }
+            else
+                return string.Empty;
+        }
+    }
+
+    /// <summary>
+    /// Represent a column
+    /// </summary>
+    sealed public class SQLiteColumn
+    {
+        /// <summary>
+        /// String format for TimeStamp column (yyyy-MM-dd hh:mm:ss.ffffff)
+        /// </summary>
+        static public string DateTimeFormat { get; } = "yyyy-MM-dd hh:mm:ss.ffffff";
+        /// <summary>
+        /// String format for TimeStamp column (yyyy-MM-dd hh:mm:ss)
+        /// </summary>
+        static public string DateTimeBasicFormat { get; } = "yyyy-MM-dd hh:mm:ss";
 
         /// <summary>
-        /// Represent a column
+        /// Name of the column
         /// </summary>
-        sealed public class Column
+        public string Name { get; }
+        /// <summary>
+        /// Type of the column
+        /// </summary>
+        public SQLiteColumnsType Type { get; }
+        /// <summary>
+        /// Default value of the column
+        /// </summary>
+        public object DefaultValue { get; }
+
+        /// <summary>
+        /// Create a new column with the specified name and type
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="type"></param>
+        public SQLiteColumn(string name, SQLiteColumnsType type) : this(name, type, null)
+        { }
+        /// <summary>
+        /// Create a new column with the specified name, type and default value
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="type"></param>
+        /// <param name="defaultValue"></param>
+        public SQLiteColumn(string name, SQLiteColumnsType type, object defaultValue)
         {
-            public string Name { get; }
-            public SQLiteColumnsType Type { get; }
-            public object DefaultValue { get; }
-            
-            public Column(string name, SQLiteColumnsType type) : this(name, type, null)
-            { }
-            public Column(string name, SQLiteColumnsType type, object defaultValue )
-            {
-                Name = name.Trim().Regex("(\n|\r)", "");
-                Type = type;
-                DefaultValue = defaultValue;
-            }
-
-            override public string ToString()
-            {
-                string rslt = "'" + Name + "' " + GetTypeString(Type);
-
-                if (DefaultValue != null)
-                {
-                    switch (Type)
-                    {
-                        case SQLiteColumnsType.Integer:
-                            rslt += " " + DefaultValue.ToString();
-                            break;
-                        case SQLiteColumnsType.TimeStamp:
-                            rslt += " " + ((DateTime)DefaultValue).ToString(TimeStampFormat);
-                            break;
-                        case SQLiteColumnsType.Real:
-                            rslt += " " + DefaultValue.ToString();
-                            break;
-                        case SQLiteColumnsType.Text:
-                            rslt += " " + DefaultValue.ToString();
-                            break;
-                        case SQLiteColumnsType.BLOB:
-                            rslt += " " + DefaultValue;
-                            break;
-                        default:
-                            rslt += " " + DefaultValue;
-                            break;
-                    }
-                }
-
-                return rslt;
-            }
+            Name = name.Trim().Regex("(\n|\r)", "");
+            Type = type;
+            DefaultValue = defaultValue;
         }
-        
+
         /// <summary>
         /// Obtains the string of the type
         /// </summary>
@@ -136,37 +144,51 @@ namespace Chromatik.SQLite
         /// <returns></returns>
         static public string GetTypeString(SQLiteColumnsType type)
         {
-            string rslt = "BLOB";
             switch (type)
             {
                 case SQLiteColumnsType.Integer:
-                    rslt = "INTEGER";
-                    break;
-                case SQLiteColumnsType.TimeStamp:
-                    rslt = "TIMESTAMP";
-                    break;
+                    return "INTEGER";
+                case SQLiteColumnsType.DateTime:
+                    return "DATETIME";
                 case SQLiteColumnsType.Real:
-                    rslt = "REAL";
-                    break;
+                    return "REAL";
                 case SQLiteColumnsType.Text:
-                    rslt = "TEXT";
-                    break;
-                case SQLiteColumnsType.BLOB:
-                    rslt = "BLOB";
-                    break;
-                default:
-                    rslt = "BLOB";
-                    break;
+                    return "TEXT";
+                default: // SQLiteColumnsType.BLOB
+                    return "BLOB";
             }
-
-            return rslt;
         }
 
-        public string GetFullString()
+        /// <summary> </summary>
+        override public string ToString()
         {
-            string rslt = this[0].ToString();
-            for (int i = 1; i < this.Count; i++)
-                rslt += " , " + this[i].ToString();
+            string rslt = "'" + Name + "' " + GetTypeString(Type);
+
+            if (DefaultValue != null)
+            {
+                switch (Type)
+                {
+                    case SQLiteColumnsType.Integer:
+                        rslt += " " + DefaultValue.ToString();
+                        break;
+                    case SQLiteColumnsType.DateTime:
+                        rslt += " " + ((DateTime)DefaultValue).ToString(DateTimeFormat);
+                        break;
+                    case SQLiteColumnsType.Real:
+                        rslt += " " + DefaultValue.ToString();
+                        break;
+                    case SQLiteColumnsType.Text:
+                        rslt += " " + DefaultValue.ToString();
+                        break;
+                    case SQLiteColumnsType.BLOB:
+                        rslt += " " + DefaultValue;
+                        break;
+                    default:
+                        rslt += " " + DefaultValue;
+                        break;
+                }
+            }
+
             return rslt;
         }
     }

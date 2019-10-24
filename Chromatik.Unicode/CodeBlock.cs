@@ -7,15 +7,24 @@ using System.Xml;
 
 namespace Chromatik.Unicode
 {
+    /// <summary> </summary>
     public enum LanguageType
     {
+        /// <summary> </summary>
         Udefined,
+        /// <summary> </summary>
         Systeme,
+        /// <summary> </summary>
         Alphabet,
+        /// <summary> </summary>
         AlphabetSupplement,
+        /// <summary> </summary>
         NotUsed
     }
 
+    /// <summary>
+    /// A collection of characters representing a Unicode subset
+    /// </summary>
     public class CodeBlock
     {
         /// <summary>
@@ -55,11 +64,13 @@ namespace Chromatik.Unicode
         }
         private Hexa[] _codePoints;
 
+        /// <summary> </summary>
         public Hexa this[int index]
         {
             get { return _codePoints[index]; }
             set { _codePoints[index] = value; }
         }
+        /// <summary> </summary>
         public IEnumerator<Hexa> GetEnumerator()
         {
             foreach (Hexa item in CodePoints)
@@ -133,8 +144,10 @@ namespace Chromatik.Unicode
         /// </summary>
         public string WebCharTable { get; set; }
 
+        /// <summary> </summary>
         public LanguageType Type { get; set; }
 
+        /// <summary> </summary>
         public bool RigthToLeft { get; set; }
 
         /// <summary>

@@ -2,6 +2,7 @@
 using System.Data;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace Chromatik.SQLite
 {
@@ -13,7 +14,6 @@ namespace Chromatik.SQLite
         /// <summary>
         /// Create a basic instance for work with <see cref="SQLiteDataBase"/>
         /// </summary>
-        /// <remarks>If the connection is opened by this constructor, they will be closed if the instance is dispose.</remarks>
         /// <param name="db">The target database</param>
         public SQLiteData(SQLiteDataBase db) : this(db, false)
         { }
@@ -28,62 +28,104 @@ namespace Chromatik.SQLite
             clsName = nameof(SQLiteData);
         }
 
-        #region Add/Insert
+        #region Insert
 
         /// <summary>
-        /// Add entries to the table
+        /// Add one entrie to the table
         /// </summary>
         /// <param name="tableName">null for 'unknow_table'</param>
         /// <param name="values">Entries to add</param>
         /// <param name="msgErr"></param>
-        public int Add(string tableName, string values, out SQLlog msgErr)
+        public int Insert(string tableName, string values, out SQLlog msgErr)
         {
-            return Add(tableName, values, null, out msgErr);
+            return Insert(tableName, values, null, out msgErr);
         }
         /// <summary>
-        /// Add entries to the table
+        /// Add multi entries to the table
+        /// </summary>
+        /// <param name="tableName">null for 'unknow_table'</param>
+        /// <param name="values">Entries to add</param>
+        /// <param name="msgErr"></param>
+        public int Insert(string tableName, string[] values, out SQLlog msgErr)
+        {
+            return Insert(tableName, values, null, out msgErr);
+        }
+        /// <summary>
+        /// Add one entries to the table
         /// </summary>
         /// <param name="tableName">null for 'unknow_table'</param>
         /// <param name="columns">null for the default column order</param>
         /// <param name="valeurs">Entries to add</param>
         /// <param name="msgErr"></param>
         /// <returns>Number of rows inserted/updated affected by it</returns>
-        public int Add(string tableName, string valeurs, string columns, out SQLlog msgErr)
+        public int Insert(string tableName, string valeurs, string columns, out SQLlog msgErr)
         {
-            return ExecuteSQLcommand(SQL_Add(tableName, valeurs, columns), out msgErr);
+            return Insert(tableName, new string[] { valeurs }, columns, out msgErr);
+        }
+        /// <summary>
+        /// Add multi entries to the table
+        /// </summary>
+        /// <param name="tableName">null for 'unknow_table'</param>
+        /// <param name="columns">null for the default column order</param>
+        /// <param name="valeurs">Entries to add</param>
+        /// <param name="msgErr"></param>
+        /// <returns>Number of rows inserted/updated affected by it</returns>
+        public int Insert(string tableName, string[] valeurs, string columns, out SQLlog msgErr)
+        {
+            return ExecuteSQLcommand(SQL_Insert(tableName, valeurs, columns), out msgErr);
         }
 
         /// <summary>
-        /// Create a SQL request for add entries to the table
+        /// Create a SQL request for add one entrie to the table
         /// </summary>
         /// <param name="tableName">null for 'unknow_table'</param>
         /// <param name="valeurs">Entries to add</param>
         /// <returns></returns>
-        static public string SQL_Add(string tableName, string valeurs)
+        static public string SQL_Insert(string tableName, string valeurs)
         {
-            return SQL_Add(tableName, valeurs, null);
+            return SQL_Insert(tableName, valeurs, null);
+        }
+
+        /// <summary>
+        /// Create a SQL request for add multi entries to the table
+        /// </summary>
+        /// <param name="tableName">null for 'unknow_table'</param>
+        /// <param name="valeurs">Entries to add</param>
+        static public string SQL_Insert(string tableName, string[] valeurs)
+        {
+            return SQL_Insert(tableName, valeurs, null);
         }
         /// <summary>
-        /// Create a SQL request for add entries to the table
+        /// Create a SQL request for add one entrie to the table
         /// </summary>
         /// <param name="tableName">null for 'unknow_table'</param>
         /// <param name="valeurs">Entries to add</param>
         /// <param name="columns">null for the default column order</param>
         /// <returns></returns>
-        static public string SQL_Add(string tableName, string valeurs, string columns)
+        static public string SQL_Insert(string tableName, string valeurs, string columns)
         {
-            string SQL = "INSERT INTO ";
+            return SQL_Insert(tableName, new string[] { valeurs }, columns);
+        }
+        /// <summary>
+        /// Create a SQL request for add multi entries to the table
+        /// </summary>
+        /// <param name="tableName">null for 'unknow_table'</param>
+        /// <param name="valeurs">Entries to add</param>
+        /// <param name="columns">null for the default column order</param>
+        static public string SQL_Insert(string tableName, string[] valeurs, string columns)
+        {
+            string rslt = "INSERT INTO ";
             if (string.IsNullOrWhiteSpace(tableName))
-                SQL += " unknow_table ";
+                rslt += " unknow_table ";
             else
-                SQL += " '" + tableName.Trim() + "' ";
+                rslt += " '" + tableName.Trim() + "' ";
 
             if (!string.IsNullOrWhiteSpace(columns))
-                SQL += " (" + columns.Trim() + ") ";
+                rslt += " (" + columns.Trim() + ") ";
+            
+            rslt += " VALUES (" + valeurs.ToOneString("),\n\t(", StringOneLineOptions.SkipNull) + ")";
 
-            SQL += " VALUES (" + valeurs.Trim() + ")";
-
-            return SQL.Trim() + ";";
+            return rslt.Trim() + ";";
         }
 
         #endregion
@@ -102,8 +144,10 @@ namespace Chromatik.SQLite
         {
             return ExecuteSQLcommand(SQL_Update(tableName, whereValues, values), out msgErr);
         }
+        
+
         /// <summary>
-        /// Create a SQL request for updates a table entries corresponding to the condition
+        /// Create a SQL request for updates the table entries corresponding to the condition
         /// </summary>
         /// <param name="tableName">null for 'unknow_table'</param>
         /// <param name="whereValues">Can be null or empty</param>
@@ -111,21 +155,45 @@ namespace Chromatik.SQLite
         /// <returns></returns>
         static public string SQL_Update(string tableName, string whereValues, string values)
         {
-            string SQL = "UPDATE ";
+            string rslt = "UPDATE ";
             if (string.IsNullOrWhiteSpace(tableName))
-                SQL += " unknow_table ";
+                rslt += " unknow_table ";
             else
-                SQL += " '" + tableName.Trim() + "' ";
+                rslt += " '" + tableName.Trim() + "' ";
 
             if (!string.IsNullOrWhiteSpace(tableName))
-                SQL += " SET " + values.Trim() + " ";
+                rslt += " SET " + values.Trim() + " ";
 
             if (!string.IsNullOrWhiteSpace(whereValues))
-                SQL += " WHERE " + whereValues.Trim();
+                rslt += " WHERE " + whereValues.Trim();
 
-            return SQL.Trim() + ";";
+            return rslt.Trim() + ";";
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="tableName"></param>
+        /// <param name="multiUpdate"></param>
+        /// <param name="msgErr"></param>
+        /// <returns></returns>
+        public int Update(string tableName, SQLiteMultiCaseValues multiUpdate, out SQLlog msgErr)
+        {
+            return ExecuteSQLcommand(SQL_Update(tableName, multiUpdate), out msgErr);
+        }
+        /// <summary>
+        /// Create a SQL request for updates the table entries corresponding to the condition
+        /// </summary>
+        /// <param name="tableName">null for 'unknow_table'</param>
+        /// <param name="multiUpdate">Values to updates</param>
+        /// <returns></returns>
+        static public string SQL_Update(string tableName, SQLiteMultiCaseValues multiUpdate)
+        {
+            string rslt = "UPDATE "+ multiUpdate.ColumnName + " SET " + multiUpdate.GetCASE() +
+                "\nWHERE " + multiUpdate.GetOR();
+
+            return rslt.Trim() + ";";
+        }
         #endregion
 
         #region Delete
@@ -149,15 +217,15 @@ namespace Chromatik.SQLite
         /// <returns></returns>
         static public string SQL_Delete(string tableName, string whereValues)
         {
-            string SQL = "DELETE FROM ";
+            string rslt = "DELETE FROM ";
             if (string.IsNullOrWhiteSpace(tableName))
-                SQL += " unknow_table ";
+                rslt += " unknow_table ";
             else
-                SQL += " '" + tableName.Trim() + "' ";
+                rslt += " '" + tableName.Trim() + "' ";
 
-            SQL += " WHERE " + whereValues.Trim();
+            rslt += " WHERE " + whereValues.Trim();
 
-            return SQL.Trim() + ";";
+            return rslt.Trim() + ";";
         }
 
         #endregion
@@ -236,7 +304,7 @@ namespace Chromatik.SQLite
         }
 
 
-        #region Create SQL
+        #region GetTable SQL
 
         /// <summary>
         /// Create a SQL request for a table with all columns and in the default order.
@@ -293,25 +361,25 @@ namespace Chromatik.SQLite
         /// <param name="orderColumns">null for the default order</param>
         static public string SQL_GetTableWhere(string tableName, string whereValues, string onlyColumns, string orderColumns)
         {
-            string SQL = "SELECT";
+            string rslt = "SELECT";
             if (string.IsNullOrWhiteSpace(onlyColumns))
-                SQL += " * ";
+                rslt += " * ";
             else
-                SQL += " " + onlyColumns.Trim() + " ";
+                rslt += " " + onlyColumns.Trim() + " ";
 
-            SQL += "FROM";
+            rslt += "FROM";
             if (string.IsNullOrWhiteSpace(tableName))
-                SQL += " 'unknow_table' ";
+                rslt += " 'unknow_table' ";
             else
-                SQL += " '" + tableName.Trim() + "' ";
+                rslt += " '" + tableName.Trim() + "' ";
 
             if (!string.IsNullOrWhiteSpace(whereValues))
-                SQL += " WHERE " + whereValues.Trim() + " ";
+                rslt += " WHERE " + whereValues.Trim() + " ";
 
             if (!string.IsNullOrWhiteSpace(orderColumns))
-                SQL += " ORDER BY " + orderColumns.Trim() + " ";
+                rslt += " ORDER BY " + orderColumns.Trim() + " ";
 
-            return SQL.Trim() + ";";
+            return rslt.Trim() + ";";
         }
 
         #endregion

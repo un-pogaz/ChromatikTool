@@ -6,7 +6,7 @@ using System.Xml;
 namespace Chromatik.Unicode
 {
     /// <summary>
-    /// Represents the ConScript Unicode Registry
+    /// Represent a Charset collection
     /// </summary>
     static public partial class Charset
     {
@@ -16,10 +16,13 @@ namespace Chromatik.Unicode
 
         static private string NameID = "Charsets";
 
+        /// <summary> </summary>
         static public CodePlane Charsets { get; private set; } = new CodePlane(NameID);
-        
+
+        /// <summary> </summary>
         static public string Name { get; } = Charsets.Name;
 
+        /// <summary> </summary>
         static public string Description { get; } = Charsets.Description;
 
         /// <summary>
@@ -30,6 +33,7 @@ namespace Chromatik.Unicode
 
         }
 
+        /// <summary> </summary>
         static public string[] GetBlocksNames()
         {
             return Charsets.GetBlocksNames();
