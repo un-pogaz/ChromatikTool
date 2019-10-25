@@ -162,7 +162,7 @@ namespace Chromatik.SQLite
         /// <summary> </summary>
         override public string ToString()
         {
-            string rslt = "'" + Name + "' " + GetTypeString(Type);
+            string rslt = Name.ToSQLiteFormat() + " " + GetTypeString(Type);
 
             if (DefaultValue != null)
             {

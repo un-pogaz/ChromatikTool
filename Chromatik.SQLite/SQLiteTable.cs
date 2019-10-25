@@ -32,8 +32,8 @@ namespace Chromatik.SQLite
         /// <summary>
         /// Create new table with the specified columns
         /// </summary>
-        /// <param name="tableName">table to affect</param>
-        /// <param name="columns">Name and typing of columns</param>
+        /// <param name="tableName">Table to add; Cannot be null or empty</param>
+        /// <param name="columns">Columns assigned to the table; Cannot be null or empty</param>
         /// <param name="msgErr"></param>
         /// <returns></returns>
         public int AddTable(string tableName, SQLiteColumnsCollection columns, out SQLlog msgErr)
@@ -43,8 +43,8 @@ namespace Chromatik.SQLite
         /// <summary>
         /// Create a SQL request for a new table with the specified columns
         /// </summary>
-        /// <param name="tableName">table to affect</param>
-        /// <param name="columns">Name and typing of columns</param>
+        /// <param name="tableName">Table to add; Cannot be null or empty</param>
+        /// <param name="columns">Columns assigned to the table; Cannot be null or empty</param>
         static public string SQL_AddTable(string tableName, SQLiteColumnsCollection columns)
         {
             if (string.IsNullOrWhiteSpace(tableName))
@@ -60,7 +60,7 @@ namespace Chromatik.SQLite
         /// <summary>
         /// Clean all data from the table
         /// </summary>
-        /// <param name="tableName">table to affect</param>
+        /// <param name="tableName">Table to clean; Cannot be null or empty</param>
         /// <param name="msgErr"></param>
         /// <returns></returns>
         public int TruncateTable(string tableName, out SQLlog msgErr)
@@ -70,16 +70,19 @@ namespace Chromatik.SQLite
         /// <summary>
         /// Create a SQL request for clean all data from the table
         /// </summary>
-        /// <param name="tableName">table to affect</param>
+        /// <param name="tableName">Table to clean; Cannot be null or empty</param>
         static public string SQL_TruncateTable(string tableName)
         {
-            return "TRUNCATE TABLE '" + tableName.Trim() + "'" + ";";
+            if (string.IsNullOrWhiteSpace(tableName))
+                throw new ArgumentNullException(nameof(tableName));
+
+            return "TRUNCATE TABLE " + tableName.ToSQLiteFormat() + ";";
         }
 
         /// <summary>
         /// Delete the table
         /// </summary>
-        /// <param name="tableName">table to affect</param>
+        /// <param name="tableName">Table to delete; Cannot be null or empty</param>
         /// <param name="msgErr"></param>
         /// <returns></returns>
         public int DeleteTable(string tableName, out SQLlog msgErr)
@@ -89,17 +92,20 @@ namespace Chromatik.SQLite
         /// <summary>
         /// Create a SQL request for delete the table
         /// </summary>
-        /// <param name="tableName">table to affect</param>
+        /// <param name="tableName">Table to delete; Cannot be null or empty</param>
         static public string SQL_DeleteTable(string tableName)
         {
-            return "DROP TABLE '" + tableName.Trim() + "'" + ";";
+            if (string.IsNullOrWhiteSpace(tableName))
+                throw new ArgumentNullException(nameof(tableName));
+
+            return "DROP TABLE " + tableName.ToSQLiteFormat() + ";";
         }
 
         /// <summary>
         /// Modify the columns of a table
         /// </summary>
-        /// <param name="tableName">table to affect</param>
-        /// <param name="edtiting">Modification to be made</param>
+        /// <param name="tableName">Table to edit; Cannot be null or empty</param>
+        /// <param name="edtiting">Edit to be made; Cannot be null or empty</param>
         /// <param name="msgErr"></param>
         /// <returns></returns>
         public int EditTable(string tableName, string edtiting, out SQLlog msgErr)
@@ -109,41 +115,50 @@ namespace Chromatik.SQLite
         /// <summary>
         /// Create a SQL request for modify the columns of a table
         /// </summary>
-        /// <param name="tableName">table to affect</param>
-        /// <param name="edtiting">Modification to be made</param>
+        /// <param name="tableName">Table to edit; Cannot be null or empty</param>
+        /// <param name="edtiting">Edit to be made; Cannot be null or empty</param>
         static public string SQL_EditTable(string tableName, string edtiting)
         {
-            return "ALTER TABLE '" + tableName.Trim() + "' " + edtiting.Trim() + ";";
+            if (string.IsNullOrWhiteSpace(tableName))
+                throw new ArgumentNullException(nameof(tableName));
+            if (string.IsNullOrWhiteSpace(edtiting))
+                throw new ArgumentNullException(nameof(edtiting));
+
+            return "ALTER TABLE " + tableName.ToSQLiteFormat() + " " + edtiting.Trim() + ";";
         }
 
         /// <summary>
         /// Add columns to the table
         /// </summary>
-        /// <param name="tableName">table to affect</param>
-        /// <param name="columns">columns to add</param>
+        /// <param name="tableName">Table to edit; Cannot be null or empty</param>
+        /// <param name="columns">Columns to add to the table; Cannot be null or empty</param>
         /// <param name="msgErr"></param>
         /// <returns></returns>
         public int AddColumns(string tableName, SQLiteColumnsCollection columns, out SQLlog msgErr)
         {
+            if (columns == null)
+                throw new ArgumentNullException(nameof(columns));
+            if (columns.Count == 0)
+                throw new ArgumentException("SQLiteColumns cannot be empty", nameof(columns));
+
             msgErr = SQLlog.Empty;
             int i = 0;
 
             foreach (SQLiteColumn item in columns.Values)
             {
                 AddColumn(tableName, item, out msgErr);
-                if (msgErr.Succes)
-                    i++;
-                else
+                if (!msgErr.Succes)
                     return i;
 
+                i++;
             }
             return i;
         }
         /// <summary>
         /// Add column to the table
         /// </summary>
-        /// <param name="tableName">table to affect</param>
-        /// <param name="column">column to add</param>
+        /// <param name="tableName">Table to edit; Cannot be null or empty</param>
+        /// <param name="column">Columns to add to the table; Cannot be null or empty</param>
         /// <param name="msgErr"></param>
         /// <returns></returns>
         public int AddColumn(string tableName, SQLiteColumn column, out SQLlog msgErr)
@@ -153,34 +168,44 @@ namespace Chromatik.SQLite
         /// <summary>
         /// Create a SQL request for add column in a table
         /// </summary>
-        /// <param name="tableName">table to affect</param>
-        /// <param name="column">column to add</param>
+        /// <param name="tableName">Table to edit; Cannot be null or empty</param>
+        /// <param name="column">Column to add to the table; Cannot be null or empty</param>
         /// <returns></returns>
         static public string SQL_EditTable_AddColumn(string tableName, SQLiteColumn column)
         {
-            return SQL_EditTable(tableName, " ADD '" + column.Name.Trim() + "' " + SQLiteColumn.GetTypeString(column.Type));
+            if (string.IsNullOrWhiteSpace(tableName))
+                throw new ArgumentNullException(nameof(tableName));
+            if (column == null)
+                throw new ArgumentNullException(nameof(column));
+
+            return SQL_EditTable(tableName, " ADD " + column.Name.ToSQLiteFormat() + " " + SQLiteColumn.GetTypeString(column.Type));
         }
 
         /// <summary>
         /// Delete a column to the table
         /// </summary>
-        /// <param name="tableName">table to affect</param>
-        /// <param name="columnName">name of column to delete</param>
+        /// <param name="tableName">Table to edit; Cannot be null or empty</param>
+        /// <param name="column">Columns to delete to the table; Cannot be null or empty</param>
         /// <param name="msgErr"></param>
         /// <returns></returns>
-        public int DeleteColumn(string tableName, string columnName, out SQLlog msgErr)
+        public int DeleteColumn(string tableName, string column, out SQLlog msgErr)
         {
-            return ExecuteSQLcommand(SQL_EditTable_DeleteColumn(tableName, columnName), out msgErr);
+            return ExecuteSQLcommand(SQL_EditTable_DeleteColumn(tableName, column), out msgErr);
         }
         /// <summary>
         /// Create a SQL request for delete columns in a table
         /// </summary>
-        /// <param name="tableName">table to affect</param>
-        /// <param name="columnName">name of column to delete</param>
+        /// <param name="tableName">Table to edit; Cannot be null or empty</param>
+        /// <param name="column">Columns to delete to the table; Cannot be null or empty</param>
         /// <returns></returns>
-        static public string SQL_EditTable_DeleteColumn(string tableName, string columnName)
+        static public string SQL_EditTable_DeleteColumn(string tableName, string column)
         {
-            return SQL_EditTable(tableName, " DROP '" + columnName.Trim() + "'");
+            if (string.IsNullOrWhiteSpace(tableName))
+                throw new ArgumentNullException(nameof(tableName));
+            if (column == null)
+                throw new ArgumentNullException(nameof(column));
+
+            return SQL_EditTable(tableName, " DROP " + column.ToSQLiteFormat() + ";");
         }
 
     }

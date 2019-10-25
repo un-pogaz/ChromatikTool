@@ -27,6 +27,12 @@ namespace Chromatik.SQLite
             AssociateTable = associateTable;
             SQL = sql;
         }
+
+        /// <summary> </summary>
+        public override string ToString()
+        {
+            return Name + " ["+ AssociateTable + "]";
+        }
     }
 
     /// <summary>

@@ -9,7 +9,7 @@ namespace Chromatik.SQLite
     /// <summary>
     /// Specialized instance for work with the table content of a <see cref="SQLiteDataBase"/>
     /// </summary>
-    public sealed class SQLiteData : SQLiteEdit
+    public class SQLiteData : SQLiteEdit
     {
         /// <summary>
         /// Create a basic instance for work with <see cref="SQLiteDataBase"/>
