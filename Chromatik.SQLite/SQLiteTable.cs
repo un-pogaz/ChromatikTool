@@ -47,10 +47,14 @@ namespace Chromatik.SQLite
         /// <param name="columns">Name and typing of columns</param>
         static public string SQL_AddTable(string tableName, SQLiteColumnsCollection columns)
         {
+            if (string.IsNullOrWhiteSpace(tableName))
+                throw new ArgumentNullException(nameof(tableName));
+            if (columns == null)
+                throw new ArgumentNullException(nameof(columns));
             if (columns.Count == 0)
-                throw new ArgumentException("SQLiteColumns cannot be empty", "columns");
+                throw new ArgumentException("SQLiteColumns cannot be empty", nameof(columns));
             
-            return "CREATE TABLE '" + tableName.Trim() + "' (" + columns.ToString() + ")" + ";";
+            return "CREATE TABLE " + tableName.ToSQLiteFormat() + " (" + columns.ToString() + ")" + ";";
         }
 
         /// <summary>

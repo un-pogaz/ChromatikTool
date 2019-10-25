@@ -166,25 +166,30 @@ namespace Chromatik.SQLite
 
             if (DefaultValue != null)
             {
+                rslt += " DEFAULT ";
+
                 switch (Type)
                 {
                     case SQLiteColumnsType.Integer:
-                        rslt += " " + DefaultValue.ToString();
+                        rslt += DefaultValue.ToString();
                         break;
                     case SQLiteColumnsType.DateTime:
-                        rslt += " " + ((DateTime)DefaultValue).ToString(DateTimeFormat);
-                        break;
+                        {
+                            string s = DefaultValue.ToString();
+                            if (s.Contains("CURRENT") || s.Contains("current"))
+                                rslt += "CURRENT_TIMESTAMP";
+                            else
+                                rslt += ((DateTime)DefaultValue).ToString(DateTimeFormat);
+                            break;
+                        }
                     case SQLiteColumnsType.Real:
-                        rslt += " " + DefaultValue.ToString();
+                        rslt += DefaultValue.ToString();
                         break;
                     case SQLiteColumnsType.Text:
-                        rslt += " " + DefaultValue.ToString();
+                        rslt += DefaultValue.ToString();
                         break;
-                    case SQLiteColumnsType.BLOB:
-                        rslt += " " + DefaultValue;
-                        break;
-                    default:
-                        rslt += " " + DefaultValue;
+                    default: // SQLiteColumnsType.BLOB
+                        rslt += DefaultValue;
                         break;
                 }
             }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace System.Text
 {
@@ -218,5 +219,10 @@ namespace System.Text
             UnicodeSeparator.LSEP,
             UnicodeSeparator.PSEP,
         };
+
+        /// <summary>
+        /// End of line string
+        /// </summary>
+        static public string[] EndLineString = EndLineChar.ToStringArray().Concat("\r\n");
     }
 }

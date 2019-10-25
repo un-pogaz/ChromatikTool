@@ -13,7 +13,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)ConvertExtend.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataTableExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Exception\ChromatikException.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Exception\StreamToolException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HashKey.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Hexa.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Ini\IniFile.cs" />
@@ -25,7 +24,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Text\UTF8SansBomEncoding.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Text\WhiteCharacter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Text\ControlCharacter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Text\FindReplace.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Text\RegexHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Text\StringExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Xml\XmlExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Xml\XmlCreate.cs" />

@@ -18,8 +18,21 @@ namespace Test
         [STAThread]
         static void Main()
         {
+            string p = new string[] { "0", null }.ToOneString(";");
+
+
             SQLiteDataBase db = SQLiteDataBase.CreateDataBase("test", "test", new SQLiteColumnsCollection { new SQLiteColumn("test", SQLiteColumnsType.Text, "".ToSQLiteFormat()) }, true);
+
+            SQLiteMultiCaseValues em = new SQLiteMultiCaseValues("test");
+            SQLiteMultiCaseValues sss = new SQLiteMultiCaseValues("test");
+            sss.Add("test=" + "df".ToSQLiteFormat(), "FFFF".ToSQLiteFormat());
+            sss.Add("test=" + "00000".ToSQLiteFormat(), "O".ToSQLiteFormat());
             
+
+            SQLiteData.SQL_Update("test", new SQLiteMultiCaseValues[] { null, sss, em, sss });
+
+
+
             string[] f = db.GetTablesName();
             using (SQLiteData data = new SQLiteData(db, true))
             {
@@ -27,10 +40,8 @@ namespace Test
                 data.Insert("test", new string[] { "df".ToSQLiteFormat(), "00000".ToSQLiteFormat(), "vvv".ToSQLiteFormat(), "retg".ToSQLiteFormat(), "953".ToSQLiteFormat() }, out l);
                 ;
 
-                SQLiteMultiCaseValues sss = new SQLiteMultiCaseValues("test");
-                sss.Add("test="+ "df".ToSQLiteFormat(), "FFFF".ToSQLiteFormat());
-                sss.Add("test=" + "00000".ToSQLiteFormat(), "O".ToSQLiteFormat());
-                
+
+
                 data.Update("test", sss, out l);
 
                 ;

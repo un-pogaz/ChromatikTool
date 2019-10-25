@@ -8,7 +8,7 @@ namespace System.Text
     /// <summary>
     /// Extension class for advanced Search and Replace in a string.
     /// </summary>
-    static public class FindReplace
+    static public class RegexHelper
     {
         /// <summary>
         /// Execute a simple Search/Replace loop until the pattern disappears.

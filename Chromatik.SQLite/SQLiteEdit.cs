@@ -60,6 +60,9 @@ namespace Chromatik.SQLite
         /// <param name="openConnection">Open the connection with the data base</param>
         public SQLiteEdit(SQLiteDataBase db, bool openConnection)
         {
+            if (db == null)
+              throw new ArgumentNullException(nameof(db));
+
             disposed = false;
             DataBase = db;
 
@@ -131,6 +134,9 @@ namespace Chromatik.SQLite
         /// <returns>Number of rows inserted/updated affected by it</returns>
         public int ExecuteSQLcommand(string SQL, out SQLlog msgErr)
         {
+            if (string.IsNullOrWhiteSpace(SQL))
+                throw new ArgumentNullException(nameof(SQL));
+
             return DataBase._SQLcommand(SQL, out msgErr);
         }
         /// <summary>
@@ -142,6 +148,9 @@ namespace Chromatik.SQLite
         /// <returns>The DataTable request</returns>
         public DataTable ExecuteSQLdataTable(string SQL, out SQLlog msgErr)
         {
+            if (string.IsNullOrWhiteSpace(SQL))
+                throw new ArgumentNullException(nameof(SQL));
+
             return DataBase._SQLdataTable(SQL, out msgErr);
         }
     }

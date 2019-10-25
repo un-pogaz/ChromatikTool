@@ -51,7 +51,7 @@ namespace Chromatik.SQLite
             DBconnect.Dispose();
             disposed = true;
         }
-        internal void IsDisposed()
+        private void IsDisposed()
         {
             if (disposed)
                 throw new ObjectDisposedException("SQLiteDataBase");
@@ -60,6 +60,9 @@ namespace Chromatik.SQLite
         private SQLiteConnection DBconnect;
         private SQLiteCommand CreatDBcommand(string SQL)
         {
+            if (string.IsNullOrWhiteSpace(SQL))
+                throw new ArgumentNullException(nameof(SQL));
+
             IsDisposed();
 
             SQLiteCommand rslt = new SQLiteCommand(DBconnect);
@@ -123,6 +126,9 @@ namespace Chromatik.SQLite
         {
             IsDisposed();
 
+            if (string.IsNullOrWhiteSpace(SQL))
+                throw new ArgumentNullException(nameof(SQL));
+
             SQL = SQL.Trim();
 
             msgErr = SQLlog.Empty;
@@ -151,6 +157,9 @@ namespace Chromatik.SQLite
         internal DataTable _SQLdataTable(string SQL, out SQLlog msgErr)
         {
             IsDisposed();
+
+            if (string.IsNullOrWhiteSpace(SQL))
+                throw new ArgumentNullException(nameof(SQL));
 
             SQL = SQL.Trim();
 
@@ -296,11 +305,11 @@ namespace Chromatik.SQLite
         /// <summary>
         /// Parse a <see cref="string"/> to a valide text for SQLite request (useful if it contains a single quote)
         /// </summary>
-        /// <param name="s"></param>
+        /// <param name="input"></param>
         /// <returns></returns>
-        static public string ToSQLiteFormat(this string s)
+        static public string ToSQLiteFormat(this string input)
         {
-           return System.Data.SQLite.SQLiteExtension.ToSQLiteFormat(s);
+           return System.Data.SQLite.SQLiteExtension.ToSQLiteFormat(input);
         }
     }
 }

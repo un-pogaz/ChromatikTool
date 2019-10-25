@@ -93,7 +93,7 @@ namespace Chromatik.SQLite
         /// <param name="whereValues">null to retrieve all values</param>
         /// <param name="onlyColumns">null for all columns</param>
         /// <param name="orderColumns">null for the default order</param>
-        /// <param name="temp">temp  "sqlite_master" table</param>
+        /// <param name="temp">temp "sqlite_master" table</param>
         static public string SQL_master(string whereValues, string onlyColumns, string orderColumns, bool temp)
         {
             if (temp)

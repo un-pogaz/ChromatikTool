@@ -38,15 +38,11 @@ namespace System.Data.SQLite
         /// <summary>
         /// Parse a <see cref="string"/> to a valide text for SQLite request (useful if it contains a single quote)
         /// </summary>
-        /// <param name="s"></param>
+        /// <param name="input"></param>
         /// <returns></returns>
-        static public string ToSQLiteFormat(this string s)
+        static public string ToSQLiteFormat(this string input)
         {
-            string[] split = s.Trim().Split('\'');
-            for (long i = 0; i < split.LongLength; i++)
-                split[i] = "'" + split[i] + "'";
-
-            return split.ToOneString("", StringOneLineOptions.SkipNull);
+            return "'" + input.Trim().Split('\'').ToOneString("''", StringOneLineOptions.SkipNull) + "'";
         }
     }
 }
