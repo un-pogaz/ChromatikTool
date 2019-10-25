@@ -173,30 +173,30 @@ namespace Chromatik.SQLite
         }
         
         /// <summary>
-        /// Updates the table entries corresponding to the <see cref="SQLiteMultiCaseValues"/>
+        /// Updates the table entries corresponding to the <see cref="SQLiteCaseValue"/>
         /// </summary>
         /// <param name="tableName">Name of the table to updates; Cannot be null or empty</param>
-        /// <param name="multiUpdate"><see cref="SQLiteMultiCaseValues"/> to write in the table; Cannot be null or empty</param>
+        /// <param name="multiUpdate"><see cref="SQLiteCaseValue"/> to write in the table; Cannot be null or empty</param>
         /// <param name="msgErr"></param>
         /// <returns></returns>
-        public int Update(string tableName, SQLiteMultiCaseValues multiUpdate, out SQLlog msgErr)
+        public int Update(string tableName, SQLiteCaseValue multiUpdate, out SQLlog msgErr)
         {
             return ExecuteSQLcommand(SQL_Update(tableName, multiUpdate), out msgErr);
         }
         /// <summary>
-        /// Create a SQL request for updates the table entries corresponding to the <see cref="SQLiteMultiCaseValues"/>
+        /// Create a SQL request for updates the table entries corresponding to the <see cref="SQLiteCaseValue"/>
         /// </summary>
         /// <param name="tableName">Name of the table to updates; Cannot be null or empty</param>
-        /// <param name="multiUpdate"><see cref="SQLiteMultiCaseValues"/> to write in the table; Cannot be null or empty</param>
+        /// <param name="multiUpdate"><see cref="SQLiteCaseValue"/> to write in the table; Cannot be null or empty</param>
         /// <returns></returns>
-        static public string SQL_Update(string tableName, SQLiteMultiCaseValues multiUpdate)
+        static public string SQL_Update(string tableName, SQLiteCaseValue multiUpdate)
         {
             if (string.IsNullOrWhiteSpace(tableName))
                 throw new ArgumentNullException(nameof(tableName));
             if (multiUpdate == null)
                 throw new ArgumentNullException(nameof(multiUpdate));
             if (multiUpdate.Count == 0)
-                throw new ArgumentException("The "+ nameof(multiUpdate) + " {"+nameof(SQLiteMultiCaseValues) +"} cannot be empty.", nameof(multiUpdate));
+                throw new ArgumentException("The "+ nameof(multiUpdate) + " {"+nameof(SQLiteCaseValue) +"} cannot be empty.", nameof(multiUpdate));
 
             string rslt = "UPDATE "+ tableName.ToSQLiteFormat() + " SET " + multiUpdate.GetCASE() +
                 "\nWHERE " + multiUpdate.GetOR();
@@ -205,32 +205,32 @@ namespace Chromatik.SQLite
         }
 
         /// <summary>
-        /// Updates the table entries corresponding to the <see cref="SQLiteMultiCaseValues"/>
+        /// Updates the table entries corresponding to the <see cref="SQLiteCaseValue"/>
         /// </summary>
         /// <param name="tableName">Name of the table to updates; Cannot be null or empty</param>
-        /// <param name="multiUpdate"><see cref="SQLiteMultiCaseValues"/> to write in the table; Cannot be null or empty</param>
+        /// <param name="multiUpdate"><see cref="SQLiteCaseValue"/> to write in the table; Cannot be null or empty</param>
         /// <param name="msgErr"></param>
         /// <returns></returns>
         /// <remarks>Generate a multiple UPDATE CASE for each entrie/column, combined in one request (no others simple way)</remarks>
-        public int Update(string tableName, SQLiteMultiCaseValues[] multiUpdate, out SQLlog msgErr)
+        public int Update(string tableName, SQLiteCaseValue[] multiUpdate, out SQLlog msgErr)
         {
             return ExecuteSQLcommand(SQL_Update(tableName, multiUpdate), out msgErr);
         }
         /// <summary>
-        /// Create a SQL request for updates the table entries corresponding to a <see cref="SQLiteMultiCaseValues"/>[]
+        /// Create a SQL request for updates the table entries corresponding to a <see cref="SQLiteCaseValue"/>[]
         /// </summary>
         /// <param name="tableName">Name of the table to updates; Cannot be null or empty</param>
-        /// <param name="multiUpdate"><see cref="SQLiteMultiCaseValues"/> to write in the table; Cannot be null or empty</param>
+        /// <param name="multiUpdate"><see cref="SQLiteCaseValue"/> to write in the table; Cannot be null or empty</param>
         /// <returns></returns>
         /// <remarks>Generate a multiple UPDATE CASE for each entrie/column, combined in one string request (no others simple way)</remarks>
-        static public string SQL_Update(string tableName, SQLiteMultiCaseValues[] multiUpdate)
+        static public string SQL_Update(string tableName, SQLiteCaseValue[] multiUpdate)
         {
             if (string.IsNullOrWhiteSpace(tableName))
                 throw new ArgumentNullException(nameof(tableName));
             if (multiUpdate == null)
                 throw new ArgumentNullException(nameof(multiUpdate));
             if (multiUpdate.Length == 0)
-                throw new ArgumentException("The " + nameof(multiUpdate) + " {" + nameof(SQLiteMultiCaseValues) + "} cannot be empty.", nameof(multiUpdate));
+                throw new ArgumentException("The " + nameof(multiUpdate) + " {" + nameof(SQLiteCaseValue) + "} cannot be empty.", nameof(multiUpdate));
 
             string[] tbl = new string[multiUpdate.Length];
             for (int i = 0; i < multiUpdate.Length; i++)
@@ -240,7 +240,7 @@ namespace Chromatik.SQLite
             string rslt = tbl.ToOneString("\n\n", StringOneLineOptions.SkipNullAndWhiteSpace);
 
             if (string.IsNullOrWhiteSpace(rslt))
-                throw new ArgumentException("The " + nameof(multiUpdate) + "[] {" + nameof(SQLiteMultiCaseValues) + "}[] as invalid (no CASE are defined).", nameof(multiUpdate));
+                throw new ArgumentException("The " + nameof(multiUpdate) + "[] {" + nameof(SQLiteCaseValue) + "}[] as invalid (no CASE are defined).", nameof(multiUpdate));
 
             return rslt.Trim();
         }

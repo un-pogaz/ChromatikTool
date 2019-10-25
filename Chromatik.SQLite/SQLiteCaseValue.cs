@@ -8,7 +8,7 @@ namespace Chromatik.SQLite
     /// <summary>
     /// Class to help in the creation of CASE value
     /// </summary>
-    public class SQLiteMultiCaseValues : Dictionary<string, string>
+    public class SQLiteCaseValue : Dictionary<string, string>
     {
         /// <summary>
         /// Name of the target column
@@ -29,7 +29,7 @@ namespace Chromatik.SQLite
         /// Creat a class to help in the creation of CASE value
         /// </summary>
         /// <param name="column"></param>
-        public SQLiteMultiCaseValues(string column) : base(StringComparer.InvariantCulture)
+        public SQLiteCaseValue(string column) : base(StringComparer.InvariantCulture)
         {
             if (string.IsNullOrWhiteSpace(column))
                 throw new ArgumentNullException(nameof(column));

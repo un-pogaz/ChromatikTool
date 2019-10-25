@@ -23,13 +23,13 @@ namespace Test
 
             SQLiteDataBase db = SQLiteDataBase.CreateDataBase("test", "test", new SQLiteColumnsCollection { new SQLiteColumn("test", SQLiteColumnsType.Text, "".ToSQLiteFormat()) }, true);
 
-            SQLiteMultiCaseValues em = new SQLiteMultiCaseValues("test");
-            SQLiteMultiCaseValues sss = new SQLiteMultiCaseValues("test");
+            SQLiteCaseValue em = new SQLiteCaseValue("test");
+            SQLiteCaseValue sss = new SQLiteCaseValue("test");
             sss.Add("test=" + "df".ToSQLiteFormat(), "FFFF".ToSQLiteFormat());
             sss.Add("test=" + "00000".ToSQLiteFormat(), "O".ToSQLiteFormat());
             
 
-            SQLiteData.SQL_Update("test", new SQLiteMultiCaseValues[] { null, sss, em, sss });
+            SQLiteData.SQL_Update("test", new SQLiteCaseValue[] { null, sss, em, sss });
 
 
 

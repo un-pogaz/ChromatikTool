@@ -10,7 +10,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)SQLite.Extension.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)SQLiteMultiCaseValues.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SQLiteCaseValue.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SQLitePragma.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SQLiteColumns.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)SQLiteMaster.cs" />
