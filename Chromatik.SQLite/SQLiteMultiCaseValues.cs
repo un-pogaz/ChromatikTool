@@ -75,7 +75,7 @@ namespace Chromatik.SQLite
         /// </summary>
         public string GetOR()
         {
-            return  Keys.ToOneString(" OR ", StringOneLineOptions.SkipNull);
+            return "("+ Keys.ToOneString(") OR (", StringOneLineOptions.SkipNull) + ")";
         }
 
     }

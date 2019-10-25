@@ -198,7 +198,7 @@ namespace Chromatik.SQLite
             if (multiUpdate.Count == 0)
                 throw new ArgumentException("The "+ nameof(multiUpdate) + " {"+nameof(SQLiteMultiCaseValues) +"} cannot be empty.", nameof(multiUpdate));
 
-            string rslt = "UPDATE "+ multiUpdate.ColumnName + " SET " + multiUpdate.GetCASE() +
+            string rslt = "UPDATE "+ tableName + " SET " + multiUpdate.GetCASE() +
                 "\nWHERE " + multiUpdate.GetOR();
 
             return rslt.Trim() + ";";
