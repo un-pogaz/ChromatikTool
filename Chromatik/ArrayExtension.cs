@@ -74,8 +74,7 @@ namespace System.Linq
             
             return rslt;
         }
-
-
+        
         /// <summary>
         /// Get the ToString() array of a array
         /// </summary>
