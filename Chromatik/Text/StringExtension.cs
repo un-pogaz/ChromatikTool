@@ -16,7 +16,7 @@ namespace System.Text
         /// <param name="input"></param>
         /// <param name="separator"></param>
         /// <returns></returns>
-        static public string[] Split(this string input, string separator)
+        static public string[] Split(this string input, params string[] separator)
         {
             return input.Split(separator, StringSplitOptions.None);
         }
@@ -98,88 +98,82 @@ namespace System.Text
             
             bool firstEntry = true;
             
-            if (input.Length < 100)
+            StringBuilder rslt = new StringBuilder(short.MaxValue);
+            for (long i = 0; i < input.LongLength; i++)
             {
-                #region Normal String for small array
-                string rslt = string.Empty;
-
-                for (long i = 0; i < input.LongLength; i++)
+                switch (oneLineOptions)
                 {
-                    switch (oneLineOptions)
-                    {
-                        case StringOneLineOptions.SkipNull:
-                            {
-                                if (input[i] != null)
-                                    rslt = Join(rslt, ref firstEntry, join, input[i]);
-                                break;
-                            }
-                        case StringOneLineOptions.SkipNullAndEmpty:
-                            {
-                                if (!string.IsNullOrEmpty(input[i]))
-                                    rslt = Join(rslt, ref firstEntry, join, input[i]);
-                                break;
-                            }
-                        case StringOneLineOptions.SkipNullAndWhiteSpace:
-                            {
-                                if (!string.IsNullOrWhiteSpace(input[i]))
-                                    rslt = Join(rslt, ref firstEntry, join, input[i]);
-                                break;
-                            }
+                    case StringOneLineOptions.SkipNull:
+                        {
+                            if (input[i] != null)
+                                rslt.Join(ref firstEntry, join, input[i]);
+                            break;
+                        }
+                    case StringOneLineOptions.SkipNullAndEmpty:
+                        {
+                            if (!string.IsNullOrEmpty(input[i]))
+                                rslt.Join(ref firstEntry, join, input[i]);
+                            break;
+                        }
+                    case StringOneLineOptions.SkipNullAndWhiteSpace:
+                        {
+                            if (!string.IsNullOrWhiteSpace(input[i]))
+                                rslt.Join(ref firstEntry, join, input[i]);
+                            break;
+                        }
 
-                        default: // StringOneLineOptions.NullToEmpty
-                            {
-                                if (input[i] == null)
-                                    rslt = Join(rslt, ref firstEntry, join, string.Empty);
-                                else
-                                    rslt = Join(rslt, ref firstEntry, join, input[i]);
-                                break;
-                            }
-                    }
+                    default: // StringOneLineOptions.NullToEmpty
+                        {
+                            if (input[i] == null)
+                                rslt.Join(ref firstEntry, join, string.Empty);
+                            else
+                                rslt.Join(ref firstEntry, join, input[i]);
+                            break;
+                        }
                 }
-                return rslt;
-                #endregion
             }
-            else
+            return rslt.ToString();
+
+            #region Normal String for small array (legacy)
+            /*
+            string rslt = string.Empty;
+
+            for (long i = 0; i < input.LongLength; i++)
             {
-                #region StringBuilder for big array
-                StringBuilder rslt = new StringBuilder(short.MaxValue);
-
-                for (long i = 0; i < input.LongLength; i++)
+                switch (oneLineOptions)
                 {
-                    switch (oneLineOptions)
-                    {
-                        case StringOneLineOptions.SkipNull:
-                            {
-                                if (input[i] != null)
-                                    rslt.Join(ref firstEntry, join, input[i]);
-                                break;
-                            }
-                        case StringOneLineOptions.SkipNullAndEmpty:
-                            {
-                                if (!string.IsNullOrEmpty(input[i]))
-                                    rslt.Join(ref firstEntry, join, input[i]);
-                                break;
-                            }
-                        case StringOneLineOptions.SkipNullAndWhiteSpace:
-                            {
-                                if (!string.IsNullOrWhiteSpace(input[i]))
-                                    rslt.Join(ref firstEntry, join, input[i]);
-                                break;
-                            }
+                    case StringOneLineOptions.SkipNull:
+                        {
+                            if (input[i] != null)
+                                rslt = Join(rslt, ref firstEntry, join, input[i]);
+                            break;
+                        }
+                    case StringOneLineOptions.SkipNullAndEmpty:
+                        {
+                            if (!string.IsNullOrEmpty(input[i]))
+                                rslt = Join(rslt, ref firstEntry, join, input[i]);
+                            break;
+                        }
+                    case StringOneLineOptions.SkipNullAndWhiteSpace:
+                        {
+                            if (!string.IsNullOrWhiteSpace(input[i]))
+                                rslt = Join(rslt, ref firstEntry, join, input[i]);
+                            break;
+                        }
 
-                        default: // StringOneLineOptions.NullToEmpty
-                            {
-                                if (input[i] == null)
-                                    rslt.Join(ref firstEntry, join, string.Empty);
-                                else
-                                    rslt.Join(ref firstEntry, join, input[i]);
-                                break;
-                            }
-                    }
+                    default: // StringOneLineOptions.NullToEmpty
+                        {
+                            if (input[i] == null)
+                                rslt = Join(rslt, ref firstEntry, join, string.Empty);
+                            else
+                                rslt = Join(rslt, ref firstEntry, join, input[i]);
+                            break;
+                        }
                 }
-                return rslt.ToString();
-                #endregion
             }
+            return rslt;
+            */
+            #endregion
         }
 
         static private void Join(this StringBuilder input, ref bool firstEntry, string join, string addition)
@@ -191,7 +185,9 @@ namespace System.Text
                 firstEntry = false;
             }
             else
+            {
                 input.Append(join + addition);
+            }
         }
         static private string Join(string input, ref bool firstEntry, string join, string addition)
         {

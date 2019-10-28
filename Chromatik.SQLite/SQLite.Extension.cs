@@ -42,7 +42,10 @@ namespace System.Data.SQLite
         /// <returns></returns>
         static public string ToSQLiteFormat(this string input)
         {
-            return "'" + input.Trim().Split('\'').ToOneString("''", StringOneLineOptions.SkipNull) + "'";
+            if (input == null || input.Equals("null", StringComparison.InvariantCultureIgnoreCase))
+                return "NULL";
+            else
+                return "'" + input.Trim().Split('\'').ToOneString("''", StringOneLineOptions.SkipNull) + "'";
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Text;
 using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Chromatik.SQLite;
+using System.IO;
 
 namespace Test
 {
@@ -18,36 +18,11 @@ namespace Test
         [STAThread]
         static void Main()
         {
-            string p = new string[] { "0", null }.ToOneString(";");
+            System.IO.FileInfo f = new System.IO.FileInfo(@"E:\Calibre\Perry Rhodan\metadata - Copie.db");
+            decimal o = f.Length;
+            decimal ko = f.LengthKo();
+            decimal mo = f.LengthMo();
 
-
-            SQLiteDataBase db = SQLiteDataBase.CreateDataBase("test", "test", new SQLiteColumnsCollection { new SQLiteColumn("test", SQLiteColumnsType.Text, "".ToSQLiteFormat()) }, true);
-
-            SQLiteCaseValue em = new SQLiteCaseValue("test");
-            SQLiteCaseValue sss = new SQLiteCaseValue("test");
-            sss.Add("test=" + "df".ToSQLiteFormat(), "FFFF".ToSQLiteFormat());
-            sss.Add("test=" + "00000".ToSQLiteFormat(), "O".ToSQLiteFormat());
-            
-
-            SQLiteData.SQL_Update("test", new SQLiteCaseValue[] { null, sss, em, sss });
-
-
-
-            string[] f = db.GetTablesName();
-            using (SQLiteData data = new SQLiteData(db, true))
-            {
-                SQLlog l = SQLlog.Empty;
-                data.Insert("test", new string[] { "df".ToSQLiteFormat(), "00000".ToSQLiteFormat(), "vvv".ToSQLiteFormat(), "retg".ToSQLiteFormat(), "953".ToSQLiteFormat() }, out l);
-                ;
-
-
-
-                data.Update("test", sss, out l);
-
-                ;
-            }
-
-            ;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
