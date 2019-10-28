@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace System.Text
 {
@@ -9,7 +8,6 @@ namespace System.Text
     /// </summary>
     static public class StringExtension
     {
-
         /// <summary>
         /// 
         /// </summary>
@@ -228,10 +226,7 @@ namespace System.Text
         /// <returns></returns>
         static public string[] ToStringArray(this char[] input)
         {
-            string[] rslt = new string[input.Length];
-            for (int i = 0; i < input.Length; i++)
-                rslt[i] = input[i].ToString();
-            return rslt;
+            return System.Linq.ArrayExtension.ToStringArray(input);
         }
 
         /// <summary>

@@ -20,22 +20,21 @@ namespace System.Text
         static public string ReplaceLoop(this string input, string pattern, string replacement)
         {
             DateTime dt = DateTime.Now + Timeout;
-            string rslt = input + "\a";
             do
             {
                 if (dt < DateTime.Now)
                     throw new TimeoutException();
 
-                rslt = rslt.Replace(pattern, replacement);
-            } while (rslt.Contains(pattern));
+                input = input.Replace(pattern, replacement);
+            } while (input.Contains(pattern));
 
-            return rslt;
+            return input;
         }
 
         /// <summary>
         /// Default execution time for Regex Search/Replace. 
         /// </summary>
-        static public TimeSpan DefaultTimeout { get; set; } = new TimeSpan(0, 1, 0);
+        static public TimeSpan DefaultTimeout { get; set; } = new TimeSpan(0, 0, 30);
         /// <summary>
         /// Execution time for Regex Search/Replace. 
         /// </summary>

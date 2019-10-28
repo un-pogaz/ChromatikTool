@@ -18,6 +18,10 @@ namespace Test
         [STAThread]
         static void Main()
         {
+            string dd = "\asdasdf".ReplaceLoop("a", "");
+            ;
+
+
             System.IO.FileInfo f = new System.IO.FileInfo(@"E:\Calibre\Perry Rhodan\metadata - Copie.db");
             decimal o = f.Length;
             decimal ko = f.LengthKo();

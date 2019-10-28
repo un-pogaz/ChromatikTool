@@ -23,7 +23,7 @@ namespace System.Linq
             return Enumerable.Concat(tbl, addition).ToArray();
         }
         /// <summary>
-        /// Concatenate a jagged array
+        /// Compacte a jagged array whit a concatenate of these entrys
         /// </summary>
         static public T[] Concat<T>(this T[] tbl, params T[][] array)
         {
@@ -35,7 +35,8 @@ namespace System.Linq
 
             IEnumerable<T> rslt = tbl;
             foreach (T[] item in array)
-                rslt = rslt.Concat(item);
+                if (item != null)
+                    rslt = rslt.Concat(item);
             
             return rslt.ToArray();
         }
@@ -57,20 +58,34 @@ namespace System.Linq
             T[] rslt = new T[length];
 
             if (startIndex < 0)
-                throw new ArgumentOutOfRangeException("startIndex", "Negative index");
+                throw new ArgumentOutOfRangeException(nameof(startIndex), "Negative index");
 
             if (startIndex > tbl.LongLength)
-                throw new ArgumentOutOfRangeException("startIndex", "Start Index larger than Length");
+                throw new ArgumentOutOfRangeException(nameof(startIndex), "Start Index larger than Length");
 
             if (length < 0)
-                throw new ArgumentOutOfRangeException("length", "Negative Length");
+                throw new ArgumentOutOfRangeException(nameof(length), "Negative Length");
 
             if (startIndex + length > tbl.LongLength)
-                throw new ArgumentOutOfRangeException("length", "Length selected out of limit");
+                throw new ArgumentOutOfRangeException(nameof(length), "Length selected out of limit");
 
             for (long i = 0; i < rslt.LongLength; i++)
                 rslt[i] = tbl[startIndex + i];
             
+            return rslt;
+        }
+
+
+        /// <summary>
+        /// Get the ToString() array of a array
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        static public string[] ToStringArray<T>(this T[] input)
+        {
+            string[] rslt = new string[input.Length];
+            for (int i = 0; i < input.Length; i++)
+                rslt[i] = input[i].ToString();
             return rslt;
         }
     }

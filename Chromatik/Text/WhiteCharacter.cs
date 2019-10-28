@@ -223,6 +223,6 @@ namespace System.Text
         /// <summary>
         /// End of line string
         /// </summary>
-        static public string[] EndLineString = EndLineChar.ToStringArray().Concat(CR.ToString() + LF.ToString());
+        static public string[] EndLineString { get; } = EndLineChar.ToStringArray().Concat(CR.ToString() + LF.ToString());
     }
 }
