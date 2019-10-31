@@ -14,7 +14,7 @@ namespace LibNoise
         /// <summary>
         /// Default range [-1;1]
         /// </summary>
-        nOneToOne = 0,
+        NegativeOneToPositiveOne = 0,
 
         /// <summary>
         /// Byte range [0;255]
@@ -25,11 +25,11 @@ namespace LibNoise
         /// </summary>
         ZeroToOne = 1,
         /// <summary>
-        /// Zero to One range [1;100]
+        /// Zero to hundred range [0;100]
         /// </summary>
         ZeroToHundred = 100,
         /// <summary>
-        /// Zero to One range [1;1000]
+        /// Zero to thousand range [0;1000]
         /// </summary>
         ZeroToThousand = 1000
     }
@@ -39,7 +39,9 @@ namespace LibNoise
     /// </summary>
     public static class LibNoiseExtension
     {
-        static private float ToRange(float input, NoiseRange range)
+        private const NoiseRange _default = NoiseRange.NegativeOneToPositiveOne;
+
+        static public float ToRange(float input, NoiseRange range)
         {
             float factor = 1;
 
@@ -127,7 +129,7 @@ namespace LibNoise
         /// <returns>The resulting line.</returns>
         static public float[] GetLine(this IModule1D module, int lenght)
         {
-            return module.GetLine(lenght, 1, NoiseRange.nOneToOne);
+            return module.GetLine(lenght, 1, _default);
         }
 
         /// <summary>
@@ -139,7 +141,7 @@ namespace LibNoise
         /// <returns>The resulting line in target range.</returns>
         static public float[] GetLine(this IModule1D module, int lenght, float scaleFactor)
         {
-            return module.GetLine(lenght, scaleFactor, NoiseRange.nOneToOne);
+            return module.GetLine(lenght, scaleFactor, _default);
         }
         /// <summary>
         /// Generates an line of values within a specified range.
@@ -174,7 +176,7 @@ namespace LibNoise
         /// <returns>The resulting line in target range.</returns>
         static public float[] GetLine(this IModule1D module, int lenght, int start_x)
         {
-            return module.GetLine(lenght, 1, NoiseRange.nOneToOne, start_x);
+            return module.GetLine(lenght, 1, _default, start_x);
         }
         /// <summary>
         /// Generates an line of values within a specified coordinates of the specified start value.
@@ -186,7 +188,7 @@ namespace LibNoise
         /// <returns>The resulting line in target range.</returns>
         static public float[] GetLine(this IModule1D module, int lenght, float scaleFactor, int start_x)
         {
-            return module.GetLine(lenght, scaleFactor, NoiseRange.nOneToOne, start_x);
+            return module.GetLine(lenght, scaleFactor, _default, start_x);
         }
         /// <summary>
         /// Generates an line of values within a specified range based on the coordinates of the specified start value.
@@ -230,7 +232,7 @@ namespace LibNoise
         /// <returns>The resulting plan.</returns>
         static public float[,] GetPlane(this IModule2D module, int width, int height)
         {
-            return module.GetPlane(width, height, 1, NoiseRange.nOneToOne);
+            return module.GetPlane(width, height, 1, _default);
         }
 
         /// <summary>
@@ -243,7 +245,7 @@ namespace LibNoise
         /// <returns>The resulting plan.</returns>
         static public float[,] GetPlane(this IModule2D module, int width, int height, float scaleFactor)
         {
-            return module.GetPlane(width, height, scaleFactor, NoiseRange.nOneToOne);
+            return module.GetPlane(width, height, scaleFactor, _default);
         }
         /// <summary>
         /// Generates an plan of values within a specified range.
@@ -282,7 +284,7 @@ namespace LibNoise
         /// <returns>The resulting plan.</returns>
         static public float[,] GetPlane(this IModule2D module, int width, int height, int start_x, int start_y)
         {
-            return module.GetPlane(width, height, 1, NoiseRange.nOneToOne, start_x, start_y);
+            return module.GetPlane(width, height, 1, _default, start_x, start_y);
         }
         /// <summary>
         /// Generates an plan of values within a specified coordinates of the specified start values.
@@ -296,7 +298,7 @@ namespace LibNoise
         /// <returns>The resulting plan.</returns>
         static public float[,] GetPlane(this IModule2D module, int width, int height, float scaleFactor, int start_x, int start_y)
         {
-            return module.GetPlane(width, height, scaleFactor, NoiseRange.nOneToOne, start_x, start_y);
+            return module.GetPlane(width, height, scaleFactor, _default, start_x, start_y);
         }
         /// <summary>
         /// Generates an plan of values within a specified range based on the coordinates of the specified start values.
@@ -347,7 +349,7 @@ namespace LibNoise
         /// <returns>The resulting cube.</returns>
         static public float[,,] GetCube(this IModule3D module, int width, int height, int depth)
         {
-            return module.GetCube(width, height, depth, 1, NoiseRange.nOneToOne);
+            return module.GetCube(width, height, depth, 1, _default);
         }
 
         /// <summary>
@@ -362,7 +364,7 @@ namespace LibNoise
         /// <returns>The resulting cube.</returns>
         static public float[,,] GetCube(this IModule3D module, int width, int height, int depth, float scaleFactor)
         {
-            return module.GetCube(width, height, depth, scaleFactor, NoiseRange.nOneToOne);
+            return module.GetCube(width, height, depth, scaleFactor, _default);
         }
         /// <summary>
         /// Generates an cube of values within a specified range.
@@ -408,7 +410,7 @@ namespace LibNoise
         /// <returns>The resulting cube.</returns>
         static public float[,,] GetCube(this IModule3D module, int width, int height, int depth, int start_x, int start_y, int start_z)
         {
-            return module.GetCube(width, height, depth, 1, NoiseRange.nOneToOne, start_x, start_y, start_z);
+            return module.GetCube(width, height, depth, 1, _default, start_x, start_y, start_z);
         }
         /// <summary>
         /// Generates an cube of values within a specified coordinates of the specified start values.
@@ -425,7 +427,7 @@ namespace LibNoise
         /// <returns>The resulting cube.</returns>
         static public float[,,] GetCube(this IModule3D module, int width, int height, int depth, float scaleFactor, int start_x, int start_y, int start_z)
         {
-            return module.GetCube(width, height, depth, scaleFactor, NoiseRange.nOneToOne, start_x, start_y, start_z);
+            return module.GetCube(width, height, depth, scaleFactor, _default, start_x, start_y, start_z);
         }
         /// <summary>
         /// Generates an cube of values within a specified range based on the coordinates of the specified start values.
@@ -484,7 +486,7 @@ namespace LibNoise
         /// <returns>The resulting hypercube.</returns>
         static public float[,,,] GetHypercube(this IModule4D module, int width, int height, int depth, int time)
         {
-            return module.GetHypercube(width, height, depth, time, 1, NoiseRange.nOneToOne);
+            return module.GetHypercube(width, height, depth, time, 1, _default);
         }
 
         /// <summary>
@@ -500,7 +502,7 @@ namespace LibNoise
         /// <returns>The resulting hypercube.</returns>
         static public float[,,,] GetHypercube(this IModule4D module, int width, int height, int depth, int time, float scaleFactor)
         {
-            return module.GetHypercube(width, height, depth, time, scaleFactor, NoiseRange.nOneToOne);
+            return module.GetHypercube(width, height, depth, time, scaleFactor, _default);
         }
         /// <summary>
         /// <para>Warning: easy way to get a <see cref="OutOfMemoryException"/></para>
@@ -550,7 +552,7 @@ namespace LibNoise
         /// <returns>The resulting hypercube.</returns>
         static public float[,,,] GetHypercube(this IModule4D module, int width, int height, int depth, int time, int start_x, int start_y, int start_z, int start_w)
         {
-            return module.GetHypercube(width, height, depth, time, 1, NoiseRange.nOneToOne, start_x, start_y, start_z, start_w);
+            return module.GetHypercube(width, height, depth, time, 1, _default, start_x, start_y, start_z, start_w);
         }
         /// <summary>
         /// <para>Warning: easy way to get a <see cref="OutOfMemoryException"/></para>
@@ -569,7 +571,7 @@ namespace LibNoise
         /// <returns>The resulting hypercube.</returns>
         static public float[,,,] GetHypercube(this IModule4D module, int width, int height, int depth, int time, float scaleFactor, int start_x, int start_y, int start_z, int start_w)
         {
-            return module.GetHypercube(width, height, depth, time, scaleFactor, NoiseRange.nOneToOne, start_x, start_y, start_z, start_w);
+            return module.GetHypercube(width, height, depth, time, scaleFactor, _default, start_x, start_y, start_z, start_w);
         }
         /// <summary>
         /// <para>Warning: easy way to get a <see cref="OutOfMemoryException"/></para>

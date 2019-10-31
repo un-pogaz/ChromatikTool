@@ -208,44 +208,21 @@ namespace Chromatik.Unicode
         /// <summary>
         /// Remove common error
         /// </summary>
-        /// <param name="CodeRange"></param>
+        /// <param name="codeRange"></param>
         /// <returns></returns>
-        static public string CleanCoderange(string CodeRange)
+        static public string CleanCoderange(string codeRange)
         {
-            CodeRange = CodeRange.Replace("U+", "").Replace("U-", "");
+            codeRange = codeRange.Regex("U(\\+|\\-)", "") ;
 
-            while (CodeRange.StartsWith(" ") || CodeRange.EndsWith(" ") ||
-                   CodeRange.StartsWith(",") || CodeRange.EndsWith(",") ||
-                   CodeRange.StartsWith("-") || CodeRange.EndsWith("-"))
-            {
-                CodeRange = CodeRange.Trim().Trim(',').Trim('-');
-            }
+            codeRange = codeRange.Trim(WhiteCharacter.TrimChar.Concat(',', '-'));
 
-            while (CodeRange.Contains(", ") || CodeRange.Contains(" ,") ||
-                   CodeRange.Contains("- ") || CodeRange.Contains(" -"))
-            {
-                CodeRange = CodeRange.Replace(", ", ",");
-                CodeRange = CodeRange.Replace(" ,", ",");
-                CodeRange = CodeRange.Replace("- ", "-");
-                CodeRange = CodeRange.Replace(" -", "-");
-            }
+            codeRange = codeRange.RegexLoop("-\\s+|\\s+-|--", "-").RegexLoop(",\\s+|\\s+,|,,", ",");
 
-            while (CodeRange.Contains(",,") || CodeRange.Contains("--") ||
-                   CodeRange.Contains("-,") || CodeRange.Contains(",-"))
-            {
-                CodeRange = CodeRange.Replace(",,", ",");
-                CodeRange = CodeRange.Replace("--", "-");
+            codeRange = codeRange.RegexLoop("-,|,-", ",");
 
-                CodeRange = CodeRange.Replace("-,", ",");
-                CodeRange = CodeRange.Replace(",-", ",");
-            }
-
-            return CodeRange;
+            return codeRange;
         }
-
         
-        
-
 
         /// <summary>
         /// Get the <see cref="int"/> value of the Code Point

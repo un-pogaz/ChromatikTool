@@ -211,11 +211,6 @@ namespace Chromatik.SQLite
             _SQLcommand("VACUUM", out log);
         }
 
-        /// <summary>
-        /// Get the <see cref="SQLitePragmas"/> of this <see cref="SQLiteDataBase"/>
-        /// </summary>
-        public SQLitePragmas Pragmas { get { return new SQLitePragmas(this); } }
-
         ////////////
         // STATIC //
         ////////////

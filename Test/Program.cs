@@ -7,6 +7,8 @@ using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using LibNoise;
+
 
 namespace Test
 {
@@ -18,9 +20,12 @@ namespace Test
         [STAThread]
         static void Main()
         {
-            string dd = "\asdasdf".ReplaceLoop("a", "");
-            ;
+            string dd = Chromatik.Unicode.CodePoint.CleanCoderange("U+123");
 
+            LibNoise.Primitive.SimplexPerlin perlin = new LibNoise.Primitive.SimplexPerlin(0, LibNoise.NoiseQuality.Best);
+
+            float ff = LibNoiseExtension.ToRange(1, NoiseRange.Byte);
+            ;
 
             System.IO.FileInfo f = new System.IO.FileInfo(@"E:\Calibre\Perry Rhodan\metadata - Copie.db");
             decimal o = f.Length;
