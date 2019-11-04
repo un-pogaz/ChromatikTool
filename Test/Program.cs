@@ -7,7 +7,7 @@ using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
-using LibNoise;
+using Chromatik.Zip;
 
 
 namespace Test
@@ -20,11 +20,13 @@ namespace Test
         [STAThread]
         static void Main()
         {
-            string dd = Chromatik.Unicode.CodePoint.CleanCoderange("U+123");
-
-            LibNoise.Primitive.SimplexPerlin perlin = new LibNoise.Primitive.SimplexPerlin(0, LibNoise.NoiseQuality.Best);
-
-            float ff = LibNoiseExtension.ToRange(1, NoiseRange.Byte);
+            List<KeyValuePair<int, string>> lst = new List<KeyValuePair<int, string>>();
+            lst.Add(8, "z");
+            lst.Add(9, "r");
+            lst.Add(0, "t");
+            lst.Add(1, "a");
+            ;
+            lst.Sort(ListKeyValueSort.KeysAndValues);
             ;
 
             System.IO.FileInfo f = new System.IO.FileInfo(@"E:\Calibre\Perry Rhodan\metadata - Copie.db");

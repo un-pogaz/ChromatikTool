@@ -324,7 +324,7 @@ namespace Chromatik.Zip
         public void AddEntryFromFile(string entryName, string filePath)
         {
             using (FileStream file = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read))
-                AddEntry(entryName, file.CreateClone());
+                AddEntry(entryName, file.Clone());
         }
         /// <summary>
         /// Add all files of the directory in the ZIP archive.
