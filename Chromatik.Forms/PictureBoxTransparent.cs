@@ -19,13 +19,14 @@ namespace System.Windows.Forms
         }
 
         /// <summary>
-        /// Paint the background of the control
+        /// Paint the background of the control (support TRUE transparent background)
         /// </summary>
         /// <param name="e"></param>
         protected override void OnPaintBackground(PaintEventArgs e)
         {
             // Paint background with underlying graphics from other controls
             base.OnPaintBackground(e);
+
             if (BackColor == Color.Transparent)
             {
                 Graphics g = e.Graphics;
