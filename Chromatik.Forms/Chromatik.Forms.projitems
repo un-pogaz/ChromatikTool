@@ -10,6 +10,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)ChromatikToolStrip.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PictureBoxTransparent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TransparentLabel.cs">
       <SubType>Component</SubType>
     </Compile>
