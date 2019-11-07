@@ -23,6 +23,8 @@ namespace Test
 
         private void button1_Click(object sender, EventArgs e)
         {
+            pictureBoxTransparent1.Size = new Size(pictureBoxTransparent1.Size.Width + 10, pictureBoxTransparent1.Size.Height);
+            /*
             using (WebClient wc = new WebClient())
             {
                 wc.DownloadProgressChanged += wc_DownloadProgressChanged;
@@ -32,7 +34,7 @@ namespace Test
                     // Param2 = Path to save
                     Settings.TempFolder + "yggtorrent.rss"
                 );
-            }
+            }*/
         }
 
         // Event to track the progress

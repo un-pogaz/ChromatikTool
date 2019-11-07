@@ -16,6 +16,50 @@ namespace System.Windows.Forms
         public PictureBoxTransparent() : base()
         {
             BackColor = Color.Transparent;
+            timer.Tick += timer_Tick;
+
+            AutoRefreshBackground = false;
+        }
+        Timer timer = new Timer();
+
+        /// <summary>
+        /// Active the auto refresh of the background
+        /// </summary>
+        public bool AutoRefreshBackground
+        {
+            set {
+                if (value)
+                {
+                    if (!timer.Enabled)
+                        timer.Start();
+                }
+                else
+                    timer.Stop();
+            }
+            get { return timer.Enabled; }
+        }
+
+        /// <summary>
+        /// Interval, in milliseconde, betewen the auto refresh of the background
+        /// </summary>
+        public int AutoRefreshBackgroundInterval
+        {
+            set { timer.Interval = value; }
+            get { return timer.Interval; }
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            RefreshBackground();
+        }
+
+        /// <summary>
+        /// Refresh the background
+        /// </summary>
+        public void RefreshBackground()
+        {
+           if (BackColor == Color.Transparent)
+                OnPaintBackground(new PaintEventArgs(CreateGraphics(), ClientRectangle));
         }
 
         /// <summary>

@@ -28,11 +28,7 @@ namespace Test
             ;
             lst.Sort(ListKeyValueSort.KeysAndValues);
             ;
-
-            System.IO.FileInfo f = new System.IO.FileInfo(@"E:\Calibre\Perry Rhodan\metadata - Copie.db");
-            decimal o = f.Length;
-            decimal ko = f.LengthKo();
-            decimal mo = f.LengthMo();
+            
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
