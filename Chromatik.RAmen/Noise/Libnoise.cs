@@ -15,7 +15,7 @@
 // 
 // From the original Jason Bevins's Libnoise (http://libnoise.sourceforge.net)
 
-namespace Chromatik.RAmen
+namespace Chromatik.Cryptography
 {
     using System;
 

@@ -6,9 +6,10 @@
     <SharedGUID>381aaaa2-6761-4711-82bf-2d3932f34c92</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
-    <Import_RootNamespace>Chromatik.RAmen</Import_RootNamespace>
+    <Import_RootNamespace>Chromatik.Cryptography</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)FonDue.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Noise\IModule.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Noise\IModule1D.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Noise\IModule2D.cs" />
@@ -20,6 +21,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Noise\NoiseQuality.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Noise\PrimitiveModule.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Noise\SimplexPerlin.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PlatDUchef.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RAmen.cs" />
   </ItemGroup>
 </Project>

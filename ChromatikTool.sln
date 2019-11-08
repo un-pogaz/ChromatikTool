@@ -17,7 +17,7 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Chromatik.Forms", "Chromati
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Chromatik.MimeType", "Chromatik.MimeType\Chromatik.MimeType.shproj", "{FE5827AE-897B-48E1-9AD3-E536134EE7BB}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Chromatik.RAmen", "Chromatik.RAmen\Chromatik.RAmen.shproj", "{381AAAA2-6761-4711-82BF-2D3932F34C92}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Chromatik.Cryptography", "Chromatik.RAmen\Chromatik.Cryptography.shproj", "{381AAAA2-6761-4711-82BF-2D3932F34C92}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Chromatik.Zip", "Chromatik.Zip\Chromatik.Zip.shproj", "{E4C23370-C288-4B45-92D2-80B29B8DECDD}"
 EndProject
@@ -57,6 +57,7 @@ Global
 		Chromatik.Svg\Chromatik.Svg.projitems*{80c2e08e-798e-462f-9e63-a73f9f53c1dd}*SharedItemsImports = 13
 		Chromatik.RAmen\Chromatik.RAmen.projitems*{381aaaa2-6761-4711-82bf-2d3932f34c92}*SharedItemsImports = 13
 		Chromatik.Compression\Chromatik.Compression.projitems*{01c2a431-8549-4a94-9c51-f1a60621c2a0}*SharedItemsImports = 13
+		Chromatik.RAmen\Chromatik.RAmen.projitems*{1b81048c-2f5f-4f46-8ac4-492d100c0824}*SharedItemsImports = 4
 		Chromatik.Forms\Chromatik.Forms.projitems*{1b81048c-2f5f-4f46-8ac4-492d100c0824}*SharedItemsImports = 4
 		Chromatik.SQLite\Chromatik.SQLite.projitems*{1b81048c-2f5f-4f46-8ac4-492d100c0824}*SharedItemsImports = 4
 		Chromatik.LibNoise\Chromatik.Noise.projitems*{1b81048c-2f5f-4f46-8ac4-492d100c0824}*SharedItemsImports = 4

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Chromatik.RAmen
+namespace Chromatik.Cryptography
 {
     /// <summary>
     /// Enumerates the noise values range

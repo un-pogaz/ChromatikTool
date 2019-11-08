@@ -16,7 +16,7 @@
 // From the original Jason Bevins's Libnoise (http://libnoise.sourceforge.net)
 
 
-namespace Chromatik.RAmen
+namespace Chromatik.Cryptography
 {
     /// <summary>
     /// Abstract interface for noise modules.

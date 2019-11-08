@@ -19,7 +19,7 @@
 // From Stefan Gustavson, Linkping University, Sweden (stegu at itn dot liu dot se)
 // From Karsten Schmidt (slight optimizations & restructuring)
 
-namespace Chromatik.RAmen
+namespace Chromatik.Cryptography
 {
     /// <summary>
     /// Noise module that outputs 3-dimensional Simplex Perlin noise.

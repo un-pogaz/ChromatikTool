@@ -16,7 +16,7 @@
 // From the original Jason Bevins's Libnoise (http://libnoise.sourceforge.net)
 // From Frédéric Lecointre's c# port (frederic.lecointre@burnweb.net)
 
-namespace Chromatik.RAmen
+namespace Chromatik.Cryptography
 {
     /// <summary>
     /// Abstract interface for noise modules that calculates and outputs a value

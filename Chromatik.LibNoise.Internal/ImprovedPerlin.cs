@@ -18,12 +18,6 @@
 
 // Debug purpose for the "seeded" random generator
 
-
-#if DEBUG
-// Only available in debug release
-#define NOISE_RANDOM_PARANOIA
-#endif
-
 namespace LibNoise.Internal
 {
     using System;
@@ -132,51 +126,27 @@ namespace LibNoise.Internal
         {
             _random = new int[RandomSize*2];
 
-            if (seed != 0)
+            // Shuffle the array using the given seed
+            // Unpack the seed into 4 bytes then perform a bitwise XOR operation
+            // with each byte
+            var F = new byte[4];
+            Libnoise.UnpackLittleUint32(seed, ref F);
+
+            for (int i = 0; i < Source.Length; i++)
             {
-                // Shuffle the array using the given seed
-                // Unpack the seed into 4 bytes then perform a bitwise XOR operation
-                // with each byte
-                var F = new byte[4];
-                Libnoise.UnpackLittleUint32(seed, ref F);
+                /*
+                _random[i] =  (F[0] > 0) ? _source[i] ^ F[0] : _source[i];
+                _random[i] =  (F[1] > 0) ? _source[i] ^ F[1] : _random[i];
+                _random[i] =  (F[2] > 0) ? _source[i] ^ F[2] : _random[i];
+                _random[i] =  (F[3] > 0) ? _source[i] ^ F[3] : _random[i];
+                */
 
-                for (int i = 0; i < Source.Length; i++)
-                {
-                    /*
-					_random[i] =  (F[0] > 0) ? _source[i] ^ F[0] : _source[i];
-					_random[i] =  (F[1] > 0) ? _source[i] ^ F[1] : _random[i];
-					_random[i] =  (F[2] > 0) ? _source[i] ^ F[2] : _random[i];
-					_random[i] =  (F[3] > 0) ? _source[i] ^ F[3] : _random[i];
-					*/
+                _random[i] = Source[i] ^ F[0];
+                _random[i] ^= F[1];
+                _random[i] ^= F[2];
+                _random[i] ^= F[3];
 
-                    _random[i] = Source[i] ^ F[0];
-                    _random[i] ^= F[1];
-                    _random[i] ^= F[2];
-                    _random[i] ^= F[3];
-
-                    _random[i + RandomSize] = _random[i];
-                }
-
-#if NOISE_RANDOM_PARANOIA
-#warning NOISE_RANDOM_PARANOIA is on
-
-                // Test if Random has unique values, a sorted Random array
-                // must have values from 0 to 255 
-                var __sorted = new int[RandomSize];
-                Array.Copy(Random, __sorted, RandomSize);
-                Array.Sort(__sorted);
-
-                for (int _j = 0; _j < RandomSize; _j++)
-                {
-                    if (_j != __sorted[_j])
-                        throw new Exception("Unconsistent random value at " + _j + " : " + __sorted[_j]);
-                }
-#endif
-            }
-            else
-            {
-                for (int i = 0; i < RandomSize; i++)
-                    _random[i + RandomSize] = _random[i] = Source[i];
+                _random[i + RandomSize] = _random[i];
             }
         }
 

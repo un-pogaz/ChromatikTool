@@ -19,7 +19,7 @@
 // Debug purpose for the "seeded" random generator
 
 
-namespace Chromatik.RAmen
+namespace Chromatik.Cryptography
 {
     using System;
 
@@ -135,35 +135,27 @@ namespace Chromatik.RAmen
         {
             _random = new int[RandomSize*2];
 
-            if (seed != 0)
+            // Shuffle the array using the given seed
+            // Unpack the seed into 4 bytes then perform a bitwise XOR operation
+            // with each byte
+            var F = new byte[4];
+            Libnoise.UnpackLittleUint32(seed, ref F);
+
+            for (int i = 0; i < Source.Length; i++)
             {
-                // Shuffle the array using the given seed
-                // Unpack the seed into 4 bytes then perform a bitwise XOR operation
-                // with each byte
-                var F = new byte[4];
-                Libnoise.UnpackLittleUint32(seed, ref F);
+                /*
+                _random[i] =  (F[0] > 0) ? _source[i] ^ F[0] : _source[i];
+                _random[i] =  (F[1] > 0) ? _source[i] ^ F[1] : _random[i];
+                _random[i] =  (F[2] > 0) ? _source[i] ^ F[2] : _random[i];
+                _random[i] =  (F[3] > 0) ? _source[i] ^ F[3] : _random[i];
+                */
 
-                for (int i = 0; i < Source.Length; i++)
-                {
-                    /*
-					_random[i] =  (F[0] > 0) ? _source[i] ^ F[0] : _source[i];
-					_random[i] =  (F[1] > 0) ? _source[i] ^ F[1] : _random[i];
-					_random[i] =  (F[2] > 0) ? _source[i] ^ F[2] : _random[i];
-					_random[i] =  (F[3] > 0) ? _source[i] ^ F[3] : _random[i];
-					*/
+                _random[i] = Source[i] ^ F[0];
+                _random[i] ^= F[1];
+                _random[i] ^= F[2];
+                _random[i] ^= F[3];
 
-                    _random[i] = Source[i] ^ F[0];
-                    _random[i] ^= F[1];
-                    _random[i] ^= F[2];
-                    _random[i] ^= F[3];
-
-                    _random[i + RandomSize] = _random[i];
-                }
-            }
-            else
-            {
-                for (int i = 0; i < RandomSize; i++)
-                    _random[i + RandomSize] = _random[i] = Source[i];
+                _random[i + RandomSize] = _random[i];
             }
         }
 
