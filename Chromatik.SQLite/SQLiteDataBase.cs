@@ -135,7 +135,9 @@ namespace Chromatik.SQLite
             int rslt = -1;
             try
             {
-                rslt = CreatDBcommand(SQL).ExecuteNonQuery(CommandBehavior.Default);
+                using (SQLiteCommand cmd = CreatDBcommand(SQL))
+                    rslt = cmd.ExecuteNonQuery(CommandBehavior.Default);
+
                 msgErr = new SQLlog(null, SQL);
             }
             catch (Exception ex)
@@ -167,8 +169,11 @@ namespace Chromatik.SQLite
             DataTable rslt = new DataTable();
             try
             {
-                rslt = CreatDBcommand(SQL).ExecuteReader(CommandBehavior.Default).GetDataTable();
+                using (SQLiteCommand cmd = CreatDBcommand(SQL))
+                    rslt = cmd.ExecuteReader(CommandBehavior.Default).GetDataTable();
+
                 msgErr = new SQLlog(null, SQL);
+
             }
             catch (Exception ex)
             {
@@ -179,10 +184,8 @@ namespace Chromatik.SQLite
             _logs.AddEntry(msgErr);
             return rslt;
         }
-
-
         
-        
+
         /// <summary>
         /// List of all SQL request executed with this instance
         /// </summary>
