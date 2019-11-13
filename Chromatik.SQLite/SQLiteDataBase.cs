@@ -48,7 +48,6 @@ namespace Chromatik.SQLite
         public void Dispose()
         {
             CloseConnection();
-            DBconnect.Dispose();
             disposed = true;
         }
         private void IsDisposed()
@@ -112,6 +111,7 @@ namespace Chromatik.SQLite
             {
                 DBconnect.ReleaseMemory();
                 DBconnect.Close();
+                DBconnect.Dispose();
             }
         }
         
@@ -257,23 +257,10 @@ namespace Chromatik.SQLite
         /// <returns></returns>
         static public SQLiteDataBase CreateDataBase(string fileDB, string tableName, SQLiteColumnsCollection columns)
         {
-            return CreateDataBase(fileDB, tableName, columns, false);
-        }
-
-        /// <summary>
-        /// Create a new database with the Table containing the columns specify
-        /// </summary>
-        /// <param name="fileDB"></param>
-        /// <param name="tableName">Table to create</param>
-        /// <param name="columns">Columns of the Table</param>
-        /// <param name="truncate">Erase the target DB file</param>
-        /// <returns></returns>
-        static public SQLiteDataBase CreateDataBase(string fileDB, string tableName, SQLiteColumnsCollection columns, bool truncate)
-        {
             try
             {
-                if (File.Exists(fileDB) && !truncate)
-                    throw new InvalidPathException("The target file already exist!");
+                if (File.Exists(fileDB))
+                    throw new InvalidPathException("The target file \""+ fileDB + "\" already exist!");
 
                 SQLiteConnection.CreateFile(fileDB);
                 SQLiteDataBase db = new SQLiteDataBase(fileDB);

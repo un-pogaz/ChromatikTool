@@ -214,7 +214,7 @@ namespace Chromatik.Unicode
         {
             codeRange = codeRange.Regex("U(\\+|\\-)", "") ;
 
-            codeRange = codeRange.Trim(WhiteCharacter.TrimChar.Concat(',', '-'));
+            codeRange = codeRange.Trim(WhiteCharacter.WhiteCharacters.Concat(',', '-'));
 
             codeRange = codeRange.RegexLoop("-\\s+|\\s+-|--", "-").RegexLoop(",\\s+|\\s+,|,,", ",");
 

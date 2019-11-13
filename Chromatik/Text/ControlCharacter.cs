@@ -139,6 +139,45 @@ namespace System.Text
         /// U+001F Unit Separator
         /// </summary>
         public static char US { get; } = (char)(0x1F);
+
+        /// <summary>
+        /// All Control Characters
+        /// </summary>
+        static public char[] ControlCharacters { get; } = new char[]
+        {
+            NUL,
+            SOH,
+            STX,
+            ETX,
+            EOT,
+            ENQ,
+            ACK,
+            BEL,
+            BS,
+            HT,
+            LF,
+            VT,
+            FF,
+            CR,
+            SO,
+            SI,
+            DLE,
+            DC1,
+            DC2,
+            DC3,
+            DC4,
+            NAK,
+            SYN,
+            ETB,
+            CAN,
+            EM,
+            SUB,
+            ESC,
+            FS,
+            GS,
+            RS,
+            US,
+        };
     }
 
     /// <summary>
@@ -275,5 +314,45 @@ namespace System.Text
         /// U+009F Application Program Command
         /// </summary>
         public static char APC { get; } = (char)(0x9F);
+
+
+        /// <summary>
+        /// All Supplement Control Characters
+        /// </summary>
+        static public char[] SupplementControlCharacters { get; } = new char[]
+        {
+            XXX,
+            XXY,
+            BPH,
+            NBH,
+            IND,
+            NEL,
+            SSA,
+            ESA,
+            HTS,
+            HTJ,
+            VTS,
+            PLD,
+            PLU,
+            RI,
+            SS2,
+            SS3,
+            DCS,
+            PU1,
+            PU2,
+            STS,
+            CCH,
+            MW,
+            SPA,
+            EPA,
+            SOS,
+            XXZ,
+            SCI,
+            CSI,
+            ST,
+            OSC,
+            PM,
+            APC,
+        };
     }
 }

@@ -171,7 +171,7 @@ namespace System.Text
         /// <summary>
         /// Default char array for <see cref="string.Trim()"/>
         /// </summary>
-        static public char[] TrimChar { get; } = new char[]
+        static public char[] WhiteCharacters { get; } = new char[]
         {
             SPA,
             LF,
@@ -210,7 +210,7 @@ namespace System.Text
         /// <summary>
         /// End of line char
         /// </summary>
-        static public char[] EndLineChar { get; } = new char[]
+        static public char[] EndLineCharacters { get; } = new char[]
         {
             LF,
             CR,
@@ -223,6 +223,6 @@ namespace System.Text
         /// <summary>
         /// End of line string
         /// </summary>
-        static public string[] EndLineString { get; } = EndLineChar.ToStringArray().Concat(CR.ToString() + LF.ToString());
+        static public string[] EndLineString { get; } = EndLineCharacters.ToStringArray().Concat(CR.ToString() + LF.ToString());
     }
 }
