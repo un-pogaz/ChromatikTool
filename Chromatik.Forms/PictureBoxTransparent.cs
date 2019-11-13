@@ -6,6 +6,7 @@ using System.Drawing;
 namespace System.Windows.Forms
 {
     /// <summary>
+    /// https://stackoverflow.com/questions/5522337/c-sharp-picturebox-transparent-background-doesnt-seem-to-work <!-- 3eme réponse -->
     /// Alternative <see cref="PictureBox"/> with a REAL support of transparent background.
     /// </summary>
     public class PictureBoxTransparent : PictureBox
@@ -80,32 +81,41 @@ namespace System.Windows.Forms
             base.OnPaintBackground(e);
 
             if (BackColor == Color.Transparent)
-                using (Graphics g = e.Graphics)
+                PaintTransparentBackground(this, e);
+        }
+
+        /// <summary>
+        /// Paint the background of the control to make a transparent.
+        /// </summary>
+        /// <param name="control"></param>
+        /// <param name="e"></param>
+        static public void PaintTransparentBackground(Control control, PaintEventArgs e)
+        {
+            Graphics g = e.Graphics;
+
+            if (control.Parent != null)
+            {
+                // Take each control in turn
+                int index = control.Parent.Controls.GetChildIndex(control);
+                for (int i = control.Parent.Controls.Count - 1; i > index; i--)
                 {
-                    if (Parent != null)
+                    Control c = control.Parent.Controls[i];
+
+                    // Check it's visible and overlaps this control
+                    if (c.Bounds.IntersectsWith(control.Bounds) && c.Visible)
                     {
-                        // Take each control in turn
-                        int index = Parent.Controls.GetChildIndex(this);
-                        for (int i = Parent.Controls.Count - 1; i > index; i--)
-                        {
-                            using (Control c = Parent.Controls[i])
-                            {
-                                // Check it's visible and overlaps this control
-                                if (c.Bounds.IntersectsWith(Bounds) && c.Visible)
-                                {
-                                    // Load appearance of underlying control and redraw it on this background
-                                    using (Bitmap bmp = new Bitmap(c.Width, c.Height, g))
-                                    {
-                                        c.DrawToBitmap(bmp, c.ClientRectangle);
-                                        g.TranslateTransform(c.Left - Left, c.Top - Top);
-                                        g.DrawImageUnscaled(bmp, Point.Empty);
-                                        g.TranslateTransform(Left - c.Left, Top - c.Top);
-                                    }
-                                }
-                            }
-                        }
+                        // Load appearance of underlying control and redraw it on this background
+                        Bitmap bmp = new Bitmap(c.Width, c.Height, g);
+                        c.DrawToBitmap(bmp, c.ClientRectangle);
+                        g.TranslateTransform(c.Left - control.Left, c.Top - control.Top);
+                        g.DrawImageUnscaled(bmp, Point.Empty);
+
+                        g.TranslateTransform(control.Left - c.Left, control.Top - c.Top);
+
+                        bmp.Dispose();
                     }
                 }
+            }
         }
     }
 }

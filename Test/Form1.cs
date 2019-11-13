@@ -18,12 +18,10 @@ namespace Test
             InitializeComponent();
 
             contextMenuStrip1.Renderer = Chromatik.Forms.ChromatikToolStrip.Defaut;
-            menuStrip1.Renderer = Chromatik.Forms.ChromatikToolStrip.Defaut;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            pictureBoxTransparent1.Size = new Size(pictureBoxTransparent1.Size.Width + 10, pictureBoxTransparent1.Size.Height);
             /*
             using (WebClient wc = new WebClient())
             {
@@ -40,7 +38,6 @@ namespace Test
         // Event to track the progress
         void wc_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
         {
-            prgProgressBar.Value = e.ProgressPercentage;
         }
     }
 }
