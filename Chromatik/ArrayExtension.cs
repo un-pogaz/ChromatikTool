@@ -87,5 +87,15 @@ namespace System.Linq
                 rslt[i] = input[i].ToString();
             return rslt;
         }
+
+        /// <summary>
+        /// Parse a <see cref="object"/> in to a array
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        static public T[] ToObjectArray<T>(this T input)
+        {
+            return new T[] { input };
+        }
     }
 }

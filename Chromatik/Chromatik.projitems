@@ -23,6 +23,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)IO\PathToolException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IO\RecursiveSearch.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IO\StreamExtension.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Reflection\TypeExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Settings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Text\UTF8SansBomEncoding.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Text\WhiteCharacter.cs" />

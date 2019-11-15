@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using Chromatik.Zip;
+using System.Reflection;
 
 
 namespace Test
@@ -20,15 +21,20 @@ namespace Test
         [STAThread]
         static void Main()
         {
-            List<KeyValuePair<int, string>> lst = new List<KeyValuePair<int, string>>();
-            lst.Add(8, "z");
-            lst.Add(9, "r");
-            lst.Add(0, "t");
-            lst.Add(1, "a");
-            ;
-            lst.Sort(ListKeyValueSort.KeysAndValues);
-            ;
+            IComparer<string> oo = Comparator<string>.Default;
+            List<string> lst = new List<string>()
+            {
+                "sqdf",
+                null,
+                "111",
+                null,
+                null,
+            };
+            lst.Sort(oo);
+
             
+            Type[] ty = oo.GetType().GetInterfaces();
+            Type fa = oo.GetType().GetInterface("IComparer`1");
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

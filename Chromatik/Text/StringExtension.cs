@@ -228,13 +228,98 @@ namespace System.Text
         {
             return System.Linq.ArrayExtension.ToStringArray(input);
         }
-
         /// <summary>
         /// Combine a <see cref="char"/>[] to a simple <see cref="string"/>
         /// </summary>
+        /// <param name="input"></param>
         static public string ToOneString(this char[] input)
         {
-            return input.ToStringArray().ToOneString("", StringOneLineOptions.SkipNull);
+            return input.ToOneString(null);
+        }
+        /// <summary>
+        /// Combine a <see cref="char"/>[] to a simple <see cref="string"/>
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="join"><see cref="char"/> use to join</param>
+        static public string ToOneString(this char[] input, char? join)
+        {
+            string s = null;
+            if (join == null)
+                s = null;
+            else
+                s = join.ToString();
+
+            return input.ToStringArray().ToOneString(s, StringOneLineOptions.SkipNull);
+        }
+
+        /// <summary>
+        /// TrimStart() all <see cref="string"/> in the array
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        static public string[] TrimStartAll(this string[] input)
+        {
+            return input.TrimStartAll(WhiteCharacter.WhiteCharacters);
+        }
+        /// <summary>
+        /// TrimStart() all <see cref="string"/> in the array
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="trimChars"></param>
+        /// <returns></returns>
+        static public string[] TrimStartAll(this string[] input, params char[] trimChars)
+        {
+            if (input == null)
+                return null;
+            for (int i = 0; i < input.Length; i++)
+                if (input[i] != null)
+                    input[i] = input[i].TrimStart();
+
+            return input;
+        }
+        /// <summary>
+        /// TrimEnd() all <see cref="string"/> in the array
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        static public string[] TrimEndAll(this string[] input)
+        {
+            return input.TrimEndAll(WhiteCharacter.WhiteCharacters);
+        }
+        /// <summary>
+        /// TrimEnd() all <see cref="string"/> in the array
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="trimChars"></param>
+        /// <returns></returns>
+        static public string[] TrimEndAll(this string[] input, params char[] trimChars)
+        {
+            if (input == null)
+                return null;
+            for (int i = 0; i < input.Length; i++)
+                if (input[i] != null)
+                    input[i] = input[i].TrimEnd();
+
+            return input;
+        }
+        /// <summary>
+        /// Trim() all <see cref="string"/> in the array
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        static public string[] TrimAll(this string[] input)
+        {
+            return input.TrimAll(WhiteCharacter.WhiteCharacters);
+        }
+        /// <summary>
+        /// Trim() all <see cref="string"/> in the array
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="trimChars"></param>
+        /// <returns></returns>
+        static public string[] TrimAll(this string[] input, params char[] trimChars)
+        {
+            return input.TrimStartAll(trimChars).TrimEndAll(trimChars);
         }
     }
 
