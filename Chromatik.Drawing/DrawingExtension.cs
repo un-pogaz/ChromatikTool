@@ -50,7 +50,7 @@ namespace System.Drawing
             EncoderParameters myEncoderParameters = new EncoderParameters(1);
             myEncoderParameters.Param[0] = new EncoderParameter(Imaging.Encoder.Quality, compression);
 
-            img.Save(path, GetImageCodec(ImageFormat.Jpeg), myEncoderParameters);
+            img.Save(path, ImageFormat.Jpeg.GetImageCodec(), myEncoderParameters);
         }
 
         /// <summary>
@@ -58,7 +58,7 @@ namespace System.Drawing
         /// </summary>
         /// <param name="format"></param>
         /// <returns></returns>
-        static public ImageCodecInfo GetImageCodec(ImageFormat format)
+        static public ImageCodecInfo GetImageCodec(this ImageFormat format)
         {
             ImageCodecInfo[] codecs = ImageCodecInfo.GetImageDecoders();
             foreach (ImageCodecInfo codec in codecs)

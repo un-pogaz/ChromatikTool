@@ -9,8 +9,6 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Chromatik", "Chromatik\Chro
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Chromatik.Compression", "Chromatik.Compression\Chromatik.Compression.shproj", "{01C2A431-8549-4A94-9C51-F1A60621C2A0}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Chromatik.Csv", "Chromatik.Csv\Chromatik.Csv.shproj", "{5AAD3FFB-F1E9-4DAA-ABB2-8DF48BA8D91D}"
-EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Chromatik.Drawing", "Chromatik.Drawing\Chromatik.Drawing.shproj", "{7C396CD0-E6B8-438A-8CA5-85B5B520E808}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Chromatik.Forms", "Chromatik.Forms\Chromatik.Forms.shproj", "{9C65A1F9-699C-45A7-B724-24D706E31637}"
@@ -53,7 +51,6 @@ Global
 		Chromatik.SlimDX\Chromatik.SlimDX.projitems*{748d4242-3809-4a88-ae97-a4360a535fdd}*SharedItemsImports = 13
 		Chromatik\Chromatik.projitems*{7e078ec5-80b5-40a3-a55f-08b97e642325}*SharedItemsImports = 13
 		Chromatik.Drawing\Chromatik.Drawing.projitems*{7c396cd0-e6b8-438a-8ca5-85b5b520e808}*SharedItemsImports = 13
-		Chromatik.Csv\Chromatik.Csv.projitems*{5aad3ffb-f1e9-4daa-abb2-8df48ba8d91d}*SharedItemsImports = 13
 		Chromatik.LibNoise.Internal\Chromatik.Noise.Internal.projitems*{b77f072e-132e-4c18-8294-e0b498761c4c}*SharedItemsImports = 13
 		Chromatik.Unicode\Chromatik.Unicode.projitems*{010804b0-74f5-4362-a574-3e552221ab30}*SharedItemsImports = 13
 		Chromatik.ToolBox\Chromatik.ToolBox.projitems*{01cd2cc5-0985-46e7-b029-5c3bb2315b70}*SharedItemsImports = 13
