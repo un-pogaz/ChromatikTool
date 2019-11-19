@@ -116,13 +116,22 @@ namespace System.IO
 
 
         /// <summary>
-        /// To linux Directory Separator Char
+		/// Replace invalid characters in file name with _
         /// </summary>
-        /// <param name="path"></param>
+        /// <param name="name"></param>
         /// <returns></returns>
-        static public string ToLinux(string path)
+        static public string MakeValidFileName(this string name)
         {
-            return path.Replace("\\", "/").Trim();
+            return name.Replace(InvalidFileNameChars, '_');
+        }
+        /// <summary>
+		/// Replace invalid characters in file name with _
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        static public string MakeValidPath(this string name)
+        {
+            return name.Replace(InvalidPathChars, '_');
         }
     }
 }

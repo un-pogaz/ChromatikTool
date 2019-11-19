@@ -188,6 +188,36 @@ namespace System.Xml
                 return (XmlComment)node.AppendChild(node.OwnerDocument.CreateComment(text));
             }
         }
+
+        /// <summary>
+        /// Remove the <see cref="XmlDeclaration"/> of the OwnerDocument.
+        /// </summary>
+        /// <param name="node"></param>
+        /// <returns></returns>
+        static public bool RemoveDeclaration(this XmlNode node)
+        {
+            XmlDocument doc;
+            if (node is XmlDocument)
+                doc = node as XmlDocument;
+            else
+                doc = node.OwnerDocument;
+
+            if (doc.FirstChild.NodeType == XmlNodeType.XmlDeclaration)
+            {
+                doc.RemoveChild(doc.FirstChild);
+                return true;
+            }
+            else
+                return false;
+        }
         #endregion
+    }
+
+    public enum DocumentType
+    {
+        None,
+        HTML4,
+        XHTML1,
+        HTML5,
     }
 }

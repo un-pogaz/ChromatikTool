@@ -4,7 +4,7 @@ using System.Text;
 using System.IO;
 using System.MimeType;
 
-namespace System.Base64
+namespace System
 {
     /// <summary>
     /// Static class for parse file in base 64

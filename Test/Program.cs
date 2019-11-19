@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using Chromatik.Zip;
+using System.Xml;
 using System.Reflection;
 
 
@@ -32,14 +33,23 @@ namespace Test
             };
             lst.Sort(oo);
 
-            
             Type[] ty = oo.GetType().GetInterfaces();
             Type fa = oo.GetType().GetInterface("IComparer`1");
 
+            XmlDocument xml = XmlCreate.Document(@"C:\Users\demeure.t\Downloads\[Content_Types] - Copie.xml");
+            xml.RemoveDeclaration();
+            xml.SetDocumentType(DocumentType.None);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
         }
+
+        public static string MakeValidFileName(string name)
+        {
+            return Path.GetInvalidFileNameChars().Aggregate(name, (current, c) => current.Replace(c, '_'));
+        }
     }
+
+
     
 }

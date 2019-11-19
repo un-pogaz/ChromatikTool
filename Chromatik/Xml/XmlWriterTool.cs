@@ -57,9 +57,7 @@ namespace System.Xml
             if (settings == null)
                 throw new ArgumentNullException("settings");
 
-            foreach (XmlNode item in document.ChildNodes)
-                if (item is XmlDeclaration)
-                    document.RemoveChild(item);
+            document.RemoveDeclaration();
 
             writeXML(filePath, document, settings);
         }

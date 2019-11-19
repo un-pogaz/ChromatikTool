@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -29,6 +30,40 @@ namespace System.Text
             } while (input.Contains(pattern));
 
             return input;
+        }
+
+        /// <summary>
+        /// Returns a new string in which all occurrences of the specifieds characters are replaced by a another character specified.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="oldValues"></param>
+        /// <param name="newValue"></param>
+        /// <returns></returns>
+        static public string Replace(this string input, char[] oldValues, char newValue)
+        {
+            if (input == null)
+                throw new ArgumentNullException(nameof(input));
+            if (oldValues == null)
+                oldValues = new char[0];
+
+            return oldValues.Aggregate(input, (current, c) => current.Replace(c, newValue));
+        }
+
+        /// <summary>
+        /// Returns a new string in which all occurrences of the specifieds string are replaced by a another string specified.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="oldValues"></param>
+        /// <param name="newValue"></param>
+        /// <returns></returns>
+        static public string Replace(this string input, string[] oldValues, string newValue)
+        {
+            if (input == null)
+                throw new ArgumentNullException(nameof(input));
+            if (oldValues == null)
+                oldValues = new string[0];
+
+            return oldValues.Aggregate(input, (current, c) => current.Replace(c, newValue));
         }
 
         /// <summary>
