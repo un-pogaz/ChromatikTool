@@ -109,7 +109,7 @@ namespace System.Xml
         {
             if (!string.IsNullOrWhiteSpace(prefix))
                 node.AddNamespace(prefix, namespaceURI);
-            
+
             node.SetAttribute(localName, namespaceURI, value);
         }
 
@@ -151,7 +151,7 @@ namespace System.Xml
             node.SetAttributeNode(localName, namespaceURI);
         }
         #endregion
-        
+
         #region Others
         /// <summary>
         /// Append a <see cref="XmlCDataSection"/> to the node
@@ -193,8 +193,8 @@ namespace System.Xml
         /// Remove the <see cref="XmlDeclaration"/> of the OwnerDocument.
         /// </summary>
         /// <param name="node"></param>
-        /// <returns></returns>
-        static public bool RemoveDeclaration(this XmlNode node)
+        /// <returns>Return the node cleaned</returns>
+        static public XmlNode RemoveDeclaration(this XmlNode node)
         {
             XmlDocument doc;
             if (node is XmlDocument)
@@ -203,21 +203,12 @@ namespace System.Xml
                 doc = node.OwnerDocument;
 
             if (doc.FirstChild.NodeType == XmlNodeType.XmlDeclaration)
-            {
                 doc.RemoveChild(doc.FirstChild);
-                return true;
-            }
-            else
-                return false;
+
+            return node;
         }
+        
         #endregion
     }
 
-    public enum DocumentType
-    {
-        None,
-        HTML4,
-        XHTML1,
-        HTML5,
-    }
 }

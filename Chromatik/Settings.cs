@@ -11,13 +11,10 @@ namespace System
     /// <summary>
     /// Static class for various setings
     /// </summary>
-    public static class Settings
+    public static partial class Settings
     {
         static Settings()
-        {
-
-        }
-
+        { }
 
         /// <summary>
         /// Path.DirectorySeparatorChar
@@ -47,9 +44,9 @@ namespace System
         {
             get
             {
-                if (string.IsNullOrWhiteSpace(_tempFolderName))
-                    _tempFolderName = Path.GetFileNameWithoutExtension(Application.ExecutablePath);
-                return _tempFolderName;
+                if (string.IsNullOrWhiteSpace(_workFolderName))
+                    _workFolderName = Path.GetFileNameWithoutExtension(Application.ExecutablePath);
+                return _workFolderName;
             }
             set
             {
@@ -57,11 +54,11 @@ namespace System
                 {
                     value = value.Trim();
                     Directory.CreateDirectory(Path.Combine(Path.GetTempPath(), value));
-                    _tempFolderName = value;
+                    _workFolderName = value;
                 }
             }
         }
-        static string _tempFolderName;
+        static string _workFolderName;
 
         /// <summary>
         /// Temporary folder specific to the application

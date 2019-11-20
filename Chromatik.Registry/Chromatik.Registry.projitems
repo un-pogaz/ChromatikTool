@@ -6,6 +6,6 @@
     <SharedGUID>57e41f0c-bcb8-4d10-8d21-42836d08226b</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
-    <Import_RootNamespace>ChromatikRegistry</Import_RootNamespace>
+    <Import_RootNamespace>Chromatik.Registry</Import_RootNamespace>
   </PropertyGroup>
 </Project>

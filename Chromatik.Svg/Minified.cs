@@ -15,7 +15,6 @@ namespace Svg
     static public class Minified
     {
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="indent"></param>
         /// <returns></returns>

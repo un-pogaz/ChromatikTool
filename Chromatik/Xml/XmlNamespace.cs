@@ -45,5 +45,21 @@ namespace System.Xml
             
             xmlns = "xmlns:" + this.Prefix;
         }
+
+
+
+        static public XmlNamespace IDpub { get; } = new XmlNamespace("IDpub", @"http://software.chromatik.com/IDpub/");
+        
+        static public XmlNamespace OPF { get; } = new XmlNamespace("opf", "http://www.idpf.org/2007/opf");
+
+        static public XmlNamespace DublinCore { get; } = new XmlNamespace("dc", @"http://purl.org/dc/elements/1.1/");
+        
+        static public XmlNamespace DublinCoreTermes { get; } = new XmlNamespace("dcterms", @"http://purl.org/dc/terms/");
+        
+        static public XmlNamespace MARCcode { get; } = new XmlNamespace("marc", @"http://id.loc.gov/vocabulary/relators");
+        
+        static public XmlNamespace Rendition { get; } = new XmlNamespace("rendition", @"http://www.idpf.org/vocab/rendition/#");
+        
+        static public XmlNamespace Calibre { get; } = new XmlNamespace("calibre", @"https://sw.kovidgoyal.net/calibre/");
     }
 }

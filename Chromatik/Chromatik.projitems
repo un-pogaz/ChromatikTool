@@ -30,6 +30,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Text\ControlCharacter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Text\RegexHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Text\StringExtension.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Xml\DocumentType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Xml\XmlExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Xml\XmlCreate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Xml\XmlEnumertor.cs" />

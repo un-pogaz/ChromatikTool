@@ -319,7 +319,7 @@ namespace System.Text
         /// <summary>
         /// All Supplement Control Characters
         /// </summary>
-        static public char[] SupplementControlCharacters { get; } = new char[]
+        static public char[] ControlCharactersSupplements { get; } = new char[]
         {
             XXX,
             XXY,

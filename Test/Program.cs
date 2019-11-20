@@ -35,10 +35,11 @@ namespace Test
 
             Type[] ty = oo.GetType().GetInterfaces();
             Type fa = oo.GetType().GetInterface("IComparer`1");
+            
 
-            XmlDocument xml = XmlCreate.Document(@"C:\Users\demeure.t\Downloads\[Content_Types] - Copie.xml");
-            xml.RemoveDeclaration();
-            xml.SetDocumentType(DocumentType.None);
+            DocumentType.GetDocumentType(@"C:\Users\demeure.t\Downloads\cover.xhtml");
+
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());

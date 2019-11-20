@@ -7,12 +7,12 @@ using System.Xml.Linq;
 namespace System.Xml
 {
     /// <summary>
-    /// Static
+    /// Static class for write a XML file
     /// </summary>
     static public class XmlWriterTool
     {
         /// <summary>
-        /// Default setting for XmlWriter
+        /// Initial setting for <see cref="XmlWriter"/>
         /// </summary>
         static public XmlWriterSettings DefaultSetting { get; } = new XmlWriterSettings()
         {
@@ -30,6 +30,10 @@ namespace System.Xml
             WriteEndDocumentOnClose = true,
             CloseOutput = true
         };
+        /// <summary>
+        /// Default setting for <see cref="XmlWriter"/> in <see cref="XmlWriterTool"/>
+        /// </summary>
+        static public XmlWriterSettings Setting { get; set; } = DefaultSetting;
 
         /// <summary>
         /// Write the XML document
@@ -56,8 +60,6 @@ namespace System.Xml
 
             if (settings == null)
                 throw new ArgumentNullException("settings");
-
-            document.RemoveDeclaration();
 
             writeXML(filePath, document, settings);
         }
@@ -102,20 +104,19 @@ namespace System.Xml
             if (settings == null)
                 throw new ArgumentNullException("settings");
 
-            Directory.CreateDirectory(Path.GetDirectoryName(filePath));
-            XmlWriter XMLwriter = XmlWriter.Create(filePath, settings);
+            node = node.Clone().RemoveDeclaration();
 
-            XMLwriter.WriteStartDocument();
-
-            if (node is XmlDocument)
-                ((XmlDocument)node).WriteTo(XMLwriter);
-            else if(node is XmlElement)
-                ((XmlElement)node).WriteTo(XMLwriter);
-            else
-                node.WriteTo(XMLwriter);
-
-            XMLwriter.Close();
-            XMLwriter.Flush();
+            Directory.CreateDirectory(Path.GetDirectoryName(Path.GetFullPath(filePath)));
+            using (XmlWriter XMLwriter = XmlWriter.Create(filePath, settings))
+            {
+                XMLwriter.WriteStartDocument();
+                if (node is XmlDocument)
+                    ((XmlDocument)node).WriteTo(XMLwriter);
+                else if (node is XmlElement)
+                    ((XmlElement)node).WriteTo(XMLwriter);
+                else
+                    node.WriteTo(XMLwriter);
+            }
         }
     }
 }
