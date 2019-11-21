@@ -29,7 +29,7 @@ namespace System.Text
         {
             return input.Split(new string[] { separator }, splitOptions);
         }
-        
+
         /// <summary>
         /// Get a <see cref="string"/>[] of all line on this text
         /// </summary>
@@ -49,7 +49,7 @@ namespace System.Text
         {
             return input.Split(WhiteCharacter.EndLineString, splitOptions);
         }
-        
+
         /// <summary>
         /// Parse the <see cref="string"/> to Linux End of Line char
         /// </summary>
@@ -57,7 +57,7 @@ namespace System.Text
         /// <returns></returns>
         static public string ToLinux(this string input)
         {
-            return input.Regex("("+ WhiteCharacter.EndLineString.ToOneString("|")+")", "\n");
+            return input.Regex("(" + WhiteCharacter.EndLineString.ToOneString("|") + ")", "\n");
         }
 
         /// <summary>
@@ -93,9 +93,9 @@ namespace System.Text
 
             if (join == null)
                 join = string.Empty;
-            
+
             bool firstEntry = true;
-            
+
             StringBuilder rslt = new StringBuilder(short.MaxValue);
             for (long i = 0; i < input.LongLength; i++)
             {
@@ -320,6 +320,40 @@ namespace System.Text
         static public string[] TrimAll(this string[] input, params char[] trimChars)
         {
             return input.TrimStartAll(trimChars).TrimEndAll(trimChars);
+        }
+
+        /// <summary>
+        /// Determines if this instance and another specified <see cref="string"/> object have the same value.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="values"></param>
+        /// <returns></returns>
+        static public bool Equals(this string input, params string[] values)
+        {
+            if (values == null)
+                return false;
+            foreach (var item in values)
+                if (input.Equals(item))
+                    return true;
+
+            return false;
+        }
+        /// <summary>
+        /// Determines if this string and a specified <see cref="string"/> object have the same value, a parameter specifies the culture, case and sort rules used in the comparison.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="values"></param>
+        /// <param name="comparisonType"></param>
+        /// <returns></returns>
+        static public bool Equals(this string input, StringComparison comparisonType, params string[] values)
+        {
+            if (values == null)
+                return false;
+            foreach (var item in values)
+                if (input.Equals(item, comparisonType))
+                    return true;
+
+            return false;
         }
     }
 

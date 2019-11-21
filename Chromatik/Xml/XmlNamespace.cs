@@ -16,7 +16,7 @@ namespace System.Xml
         /// <summary>
         /// URI of this namespace
         /// </summary>
-        public string URI { get; }
+        public string Uri { get; }
         /// <summary>
         /// xmlns attribut of this XML namespace
         /// </summary>
@@ -26,8 +26,8 @@ namespace System.Xml
         /// Create a Namespace XML with a specified URI and prefix
         /// </summary>
         /// <param name="prefix"></param>
-        /// <param name="URI"></param>
-        public XmlNamespace(string prefix, string URI)
+        /// <param name="uri"></param>
+        public XmlNamespace(string prefix, string uri)
         {
             if (string.IsNullOrWhiteSpace(prefix))
                 throw new ArgumentNullException("prefix");
@@ -35,13 +35,8 @@ namespace System.Xml
             this.Prefix = prefix.Trim();
             if (this.Prefix.Contains(":") || this.Prefix.Contains(" ") || this.Prefix.Contains("\n") || this.Prefix.Contains("\r"))
                 throw new ArgumentException("prefix");
-
-            if (URI == null)
-                throw new ArgumentNullException("URI");
-
-            this.URI = URI.Trim();
-            if (this.URI.Contains("\n") || this.URI.Contains("\r"))
-                throw new ArgumentException("URI");
+            
+            Uri = System.Uri.EscapeDataString(uri);
             
             xmlns = "xmlns:" + this.Prefix;
         }
@@ -61,5 +56,7 @@ namespace System.Xml
         static public XmlNamespace Rendition { get; } = new XmlNamespace("rendition", @"http://www.idpf.org/vocab/rendition/#");
         
         static public XmlNamespace Calibre { get; } = new XmlNamespace("calibre", @"https://sw.kovidgoyal.net/calibre/");
+
+        static public XmlNamespace XHTML { get; } = new XmlNamespace("xhtml", @"http://www.w3.org/1999/xhtml");
     }
 }

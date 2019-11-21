@@ -31,7 +31,7 @@ namespace System.Xml
         /// </summary>
         static public XmlRacine Create(string name, XmlNamespace ns)
         {
-            return Create(name, ns.URI);
+            return Create(name, ns.Uri);
         }
         /// <summary>
         /// Create a basic <see cref="XmlElement"/> with the specified URI

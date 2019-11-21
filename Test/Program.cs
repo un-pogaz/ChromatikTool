@@ -35,10 +35,9 @@ namespace Test
 
             Type[] ty = oo.GetType().GetInterfaces();
             Type fa = oo.GetType().GetInterface("IComparer`1");
+
+            DocumentType dt = DocumentType.GetDocumentTypeFromXML("<!DOCTYPE ncx PUBLIC \" -//NISO//DTD ncx 2005-1//EN\" \"http://www.daisy.org/z3986/2005/ncx-2005-1.dtd\"> ");
             
-
-            DocumentType.GetDocumentType(@"C:\Users\demeure.t\Downloads\cover.xhtml");
-
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

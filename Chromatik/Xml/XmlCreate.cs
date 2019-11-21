@@ -39,6 +39,7 @@ namespace System.Xml
         {
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(xml.Regex("<!DOCTYPE[^>]*>", "", RegexHelper.DefaultRegexOptions|Text.RegularExpressions.RegexOptions.IgnoreCase));
+            doc.RemoveDeclaration();
             return doc;
         }
     }

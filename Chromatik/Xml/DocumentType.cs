@@ -9,12 +9,12 @@ namespace System.Xml
     {
         public string Name { get; }
         public string Id { get; }
-        public Uri Uri { get; }
+        public string Uri { get; }
         public string Subset { get; }
 
-        public bool IsSystemId { get; }
+        public bool IsSystem { get; }
 
-        public DocumentType(string name, string id, bool isSystemId, string uri, string subset)
+        public DocumentType(string name, bool isSystem, string id,  string uri, string subset)
         {
             char[] InvalideChar = WhiteCharacter.WhiteCharacters.Concat(ControlCharacter.ControlCharacters, ControlCharacterSupplement.ControlCharactersSupplements);
 
@@ -38,53 +38,57 @@ namespace System.Xml
             else
                 Id = id;
 
-            IsSystemId = isSystemId;
+            IsSystem = isSystem;
 
             if (uri != null)
                 uri = uri.Trim(InvalideChar).Replace(InvalideChar.ToStringArray(), "");
-            uri = uri.Trim(InvalideChar).Replace(InvalideChar.ToStringArray(), "");
-            if (string.IsNullOrWhiteSpace(subset))
-            {
+            if (string.IsNullOrWhiteSpace(uri))
                 Uri = null;
-            }
             else
-                Uri = new Uri(uri);
+                Uri = uri;
 
             if (subset != null)
                 subset = subset.Trim(InvalideChar).Replace(InvalideChar.ToStringArray(), "");
-            subset = subset.Trim(InvalideChar).Replace(InvalideChar.ToStringArray(), "");
             if (string.IsNullOrWhiteSpace(subset))
                 subset = null;
             else
                 Subset = subset;
         }
         
-        static public DocumentType GetDocumentType(string path)
+        static public DocumentType GetDocumentTypeOfFile(string path)
         {
-            return GetDocumentTypeXML(IO.File.ReadAllText(path));
+            return GetDocumentTypeFromXML(IO.File.ReadAllText(path));
         }
-        static public DocumentType GetDocumentTypeXML(string xml)
+        static public DocumentType GetDocumentTypeFromXML(string xml)
         {
             Text.RegularExpressions.RegexOptions RegexOptions = RegexHelper.RegexOptions | Text.RegularExpressions.RegexOptions.IgnoreCase;
             string match = xml.RegexGetMatch(@"<!\s*DOCTYPE[^>]*>", RegexOptions);
             if (string.IsNullOrWhiteSpace(match))
                 return null;
 
-            string name, system, sub, id, uri;
-            bool sys;
+            string name, sys = null, sub = null, id = null, uri = null;
+            bool system;
 
             name = match.Regex("<!\\s*DOCTYPE\\s+([^\\s]*)\\s*[^>]*>", "$1", RegexOptions);
 
-            system = match.Regex("<!\\s*DOCTYPE\\s+[^\\s]*\\s+(PUBLIC|SYSTEM)[^>]*>", "$1", RegexOptions);
+            if (match.RegexIsMatch("<!\\s*DOCTYPE\\s+[^\\s]*\\s+([^\\s>]*)[^>]*>", RegexOptions))
+                sys = match.Regex("<!\\s*DOCTYPE\\s+[^\\s]*\\s+([^\\s>]*)[^>]*>", "$1", RegexOptions);
 
-            sub = match.Regex("<!\\s*DOCTYPE\\s+[^\\s]*\\s+(PUBLIC|SYSTEM)[^>\\[]*([^>\\[]*)[^>]*>", "$2", RegexOptions);
+            if (match.RegexIsMatch("<!\\s*DOCTYPE\\s+[^\\s]*\\s+[^\\s>]*\\s+\"([^\"]*)\"[^>]*>", RegexOptions))
+                id = match.Regex("<!\\s*DOCTYPE\\s+[^\\s]*\\s+[^\\s>]*\\s+\"([^\"]*)\"[^>]*>", "$1", RegexOptions);
 
-            if (system.Equals("SYSTEM", StringComparison.InvariantCultureIgnoreCase))
-                sys = false;
+            if (match.RegexIsMatch("<!\\s*DOCTYPE\\s+[^\\s]*\\s+[^\\s>]*\\s+\"[^\"]*\"\\s+\"([^\"]*)\"[^>]*>", RegexOptions))
+                uri = match.Regex("<!\\s*DOCTYPE\\s+[^\\s]*\\s+[^\\s>]*\\s+\"[^\"]*\"\\s+\"([^\"]*)\"[^>]*>", "$1", RegexOptions);
+
+            if (match.RegexIsMatch("<!\\s*DOCTYPE\\s+[^\\s]*\\s+[^>\\[]*\\[([^>\\[]*)\\][^>]*>", RegexOptions))
+                sub = match.Regex("<!\\s*DOCTYPE\\s+[^\\s]*\\s+[^>\\[]*\\[([^>\\[]*)\\][^>]*>", "$1", RegexOptions);
+
+            if (sys.Equals("SYSTEM", StringComparison.InvariantCultureIgnoreCase))
+                system = true;
             else
-                sys = true;
+                system = false;
 
-            return null;
+            return new DocumentType(name, system, id,  uri, sub);
         }
         /// string Subset<summary></summary>
         /// <returns></returns>
@@ -94,14 +98,14 @@ namespace System.Xml
 
             if (Id != null)
             {
-                if (IsSystemId)
+                if (IsSystem)
                     rslt += ", SYSTEM =\"" + Id + "\"";
                 else
                     rslt += ", PUBLIC=\"" + Id + "\"";
             }
             else
             {
-                if (IsSystemId)
+                if (IsSystem)
                     rslt += ", SYSTEM";
             }
 
@@ -119,19 +123,19 @@ namespace System.Xml
 
                 if (Id != null)
                 {
-                    if (IsSystemId)
+                    if (IsSystem)
                         rslt += " SYSTEM \"" + Id + "\"";
                     else
                         rslt += " PUBLIC \"" + Id + "\"";
                 }
                 else
                 {
-                    if (IsSystemId)
+                    if (IsSystem)
                         rslt += " SYSTEM";
                 }
 
                 if (Uri != null)
-                    rslt += " \"" + Uri.AbsoluteUri + "\"";
+                    rslt += " \"" + Uri + "\"";
 
                 if (Subset != null)
                     rslt += " [" + Subset + "]";
@@ -140,21 +144,21 @@ namespace System.Xml
             }
         }
 
-        public DocumentType HTML5 { get; } = new DocumentType("html", null, false, null, null);
-        public DocumentType XHTML1_1 { get; } = new DocumentType("html", "-//W3C//DTD XHTML 1.1//EN", false, "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd", null);
+        static public DocumentType HTML5 { get; } = new DocumentType("html", false, null, null, null);
+        static public DocumentType XHTML1_1 { get; } = new DocumentType("html", false, "-//W3C//DTD XHTML 1.1//EN", "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd", null);
 
-        public DocumentType NCX { get; } = new DocumentType("ncx", "-//NISO//DTD ncx 2005-1//EN", false, "http://www.daisy.org/z3986/2005/ncx-2005-1.dtd", null);
+        static public DocumentType NCX { get; } = new DocumentType("ncx", false, "-//NISO//DTD ncx 2005-1//EN", "http://www.daisy.org/z3986/2005/ncx-2005-1.dtd", null);
 
-        public DocumentType MathML2 { get; } = new DocumentType("math", "-//W3C//DTD MathML 2.0//EN", false, "http://www.w3.org/Math/DTD/mathml2/mathml2.dtd", null);
-        public DocumentType MathML1 { get; } = new DocumentType("math", null, true, "http://www.w3.org/Math/DTD/mathml1/mathml.dtd", null);
+        static public DocumentType MathML2 { get; } = new DocumentType("math", false, "-//W3C//DTD MathML 2.0//EN",  "http://www.w3.org/Math/DTD/mathml2/mathml2.dtd", null);
+        static public DocumentType MathML1 { get; } = new DocumentType("math", true, null, "http://www.w3.org/Math/DTD/mathml1/mathml.dtd", null);
 
-        public DocumentType XHTML1strict { get; } = new DocumentType("html", "-//W3C//DTD XHTML 1.0 Strict//EN", false, "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd", null);
-        public DocumentType XHTML1transitional { get; } = new DocumentType("html", "-//W3C//DTD XHTML 1.0 Transitional//EN", false, "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd", null);
-        public DocumentType XHTML1frameset { get; } = new DocumentType("html", "-//W3C//DTD XHTML 1.0 Frameset//EN", false, "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd", null);
+        static public DocumentType XHTML1strict { get; } = new DocumentType("html", false, "-//W3C//DTD XHTML 1.0 Strict//EN",  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd", null);
+        static public DocumentType XHTML1transitional { get; } = new DocumentType("html", false, "-//W3C//DTD XHTML 1.0 Transitional//EN",  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd", null);
+        static public DocumentType XHTML1frameset { get; } = new DocumentType("html", false, "-//W3C//DTD XHTML 1.0 Frameset//EN", "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd", null);
 
-        public DocumentType HTML4strict { get; } = new DocumentType("html", "-//W3C//DTD HTML 4.01//EN", false, "http://www.w3.org/TR/html4/strict.dtd", null);
-        public DocumentType HTML4transitional { get; } = new DocumentType("html", "-//W3C//DTD HTML 4.01 Transitional//EN", false, "http://www.w3.org/TR/html4/loose.dtd", null);
-        public DocumentType HTML4frameset { get; } = new DocumentType("html", "-//W3C//DTD HTML 4.01 Frameset//EN", false, "http://www.w3.org/TR/html4/frameset.dtd", null);
+        static public DocumentType HTML4strict { get; } = new DocumentType("html", false, "-//W3C//DTD HTML 4.01//EN",  "http://www.w3.org/TR/html4/strict.dtd", null);
+        static public DocumentType HTML4transitional { get; } = new DocumentType("html", false, "-//W3C//DTD HTML 4.01 Transitional//EN",  "http://www.w3.org/TR/html4/loose.dtd", null);
+        static public DocumentType HTML4frameset { get; } = new DocumentType("html", false, "-//W3C//DTD HTML 4.01 Frameset//EN", "http://www.w3.org/TR/html4/frameset.dtd", null);
         
     }
 }

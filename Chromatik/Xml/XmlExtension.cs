@@ -42,7 +42,7 @@ namespace System.Xml
         /// <returns></returns>
         static public XmlElement AppendElement(this XmlNode node, string localName, XmlNamespace ns)
         {
-            return node.AppendElement(ns.Prefix, localName, ns.URI);
+            return node.AppendElement(ns.Prefix, localName, ns.Uri);
         }
         /// <summary>
         /// Append a <see cref="XmlElement"/> to the node.
@@ -95,7 +95,7 @@ namespace System.Xml
         /// <param name="value"></param>
         static public void SetAttribute(this XmlElement node, string localName, XmlNamespace ns, string value)
         {
-            node.SetAttribute(localName, ns.Prefix, ns.URI, value);
+            node.SetAttribute(localName, ns.Prefix, ns.Uri, value);
         }
         /// <summary>
         /// Set a attribut with the value and the specified Namespace
@@ -137,7 +137,7 @@ namespace System.Xml
         /// <param name="ns"><see cref="XmlNamespace"/> to add</param>
         static public void AddNamespace(this XmlElement node, XmlNamespace ns)
         {
-            node.AddNamespace(ns.Prefix, ns.URI);
+            node.AddNamespace(ns.Prefix, ns.Uri);
         }
 
         /// <summary>
