@@ -10,6 +10,8 @@ using System.IO;
 using Chromatik.Zip;
 using System.Xml;
 using System.Reflection;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 
 namespace Test
@@ -22,6 +24,21 @@ namespace Test
         [STAThread]
         static void Main()
         {
+            JObject jo = JObjectCreate.Object(@"D:\other\Github\ChromatikTool\Chromatik.NewtonsoftJson\TEST\fr_table.json");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             IComparer<string> oo = Comparator<string>.Default;
             List<string> lst = new List<string>()
             {
