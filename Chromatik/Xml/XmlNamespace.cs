@@ -29,34 +29,57 @@ namespace System.Xml
         /// <param name="uri"></param>
         public XmlNamespace(string prefix, string uri)
         {
+            prefix = prefix.Trim(WhiteCharacter.WhiteCharacters);
             if (string.IsNullOrWhiteSpace(prefix))
                 throw new ArgumentNullException("prefix");
 
-            this.Prefix = prefix.Trim();
+            Prefix = prefix;
             if (this.Prefix.Contains(":") || this.Prefix.Contains(" ") || this.Prefix.Contains("\n") || this.Prefix.Contains("\r"))
                 throw new ArgumentException("prefix");
             
-            Uri = System.Uri.EscapeDataString(uri);
+            Uri = uri;
             
             xmlns = "xmlns:" + this.Prefix;
         }
 
 
+        /// <summary>
+        /// Standard namespace for XML
+        /// </summary>
+        static public XmlNamespace XML { get; } = new XmlNamespace("xml", @"http://www.w3.org/XML/1998/namespace");
+        /// <summary>
+        /// Standard namespace for XHTML
+        /// </summary>
+        static public XmlNamespace XHTML { get; } = new XmlNamespace("xhtml", @"http://www.w3.org/1999/xhtml");
 
-        static public XmlNamespace IDpub { get; } = new XmlNamespace("IDpub", @"http://software.chromatik.com/IDpub/");
-        
-        static public XmlNamespace OPF { get; } = new XmlNamespace("opf", "http://www.idpf.org/2007/opf");
-
+        /// <summary>
+        /// Standard namespace for Dublin Core
+        /// </summary>
         static public XmlNamespace DublinCore { get; } = new XmlNamespace("dc", @"http://purl.org/dc/elements/1.1/");
-        
+        /// <summary>
+        /// Standard namespace for Dublin Core Termes
+        /// </summary>
         static public XmlNamespace DublinCoreTermes { get; } = new XmlNamespace("dcterms", @"http://purl.org/dc/terms/");
-        
+        /// <summary>
+        /// Standard namespace for MARC code
+        /// </summary>
         static public XmlNamespace MARCcode { get; } = new XmlNamespace("marc", @"http://id.loc.gov/vocabulary/relators");
-        
+
+        /// <summary>
+        /// Standard namespace for ePub OPF file
+        /// </summary>
+        static public XmlNamespace OPF { get; } = new XmlNamespace("opf", "http://www.idpf.org/2007/opf");
+        /// <summary>
+        /// Standard namespace for ePub rendition vocabulary
+        /// </summary>
         static public XmlNamespace Rendition { get; } = new XmlNamespace("rendition", @"http://www.idpf.org/vocab/rendition/#");
-        
+
+        /// <summary>
+        /// Standard namespace for Calibre software
+        /// </summary>
         static public XmlNamespace Calibre { get; } = new XmlNamespace("calibre", @"https://sw.kovidgoyal.net/calibre/");
 
-        static public XmlNamespace XHTML { get; } = new XmlNamespace("xhtml", @"http://www.w3.org/1999/xhtml");
+
+        static public XmlNamespace IDpub { get; } = new XmlNamespace("IDpub", @"http://software.chromatik.com/IDpub/");
     }
 }

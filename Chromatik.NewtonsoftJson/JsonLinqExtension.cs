@@ -10,63 +10,115 @@ namespace Newtonsoft.Json.Linq
 {
     static public class JsonLinqExtension
     {
-        static public IEnumerable<JProperty> Properties(this JProperty jcontainer)
+        /// <summary>
+        /// Get the value of the propertie in a <see cref="JObject"/>
+        /// </summary>
+        /// <param name="jcontainer"></param>
+        /// <returns>A <see cref="JProperty"/> or null</returns>
+        static public JObject ValueObjet(this JProperty jcontainer)
         {
             if (jcontainer.Value.Type == JTokenType.Object)
-                return ((JObject)jcontainer.Value).Properties();
+                return ((JObject)jcontainer.Value);
+            else
+                return null;
+        }
+        /// <summary>
+        /// Gets an <see cref="IEnumerable{T}"/> of <see cref="JProperty"/>
+        /// of this object's properties.</summary>
+        /// <param name="jcontainer"></param>
+        /// <returns></returns>
+        static public IEnumerable<JProperty> Properties(this JProperty jcontainer)
+        {
+            JObject jobject = jcontainer.ValueObjet();
+            if (jobject != null)
+                return jobject.Properties();
             else
                 return new JProperty[0];
         }
+        /// <summary>
+        /// Gets a <see cref="JProperty"/> with the specified name.
+        /// </summary>
+        /// <param name="jcontainer"></param>
+        /// <param name="name">The property name</param>
+        /// <returns>A <see cref="JProperty"/> matched with the specified name or null.</returns>
         static public JProperty Property(this JProperty jcontainer, string name)
         {
-            if (jcontainer.Value.Type == JTokenType.Object)
-                return ((JObject)jcontainer.Value).Property(name);
+            JObject jobject = jcontainer.ValueObjet();
+            if (jobject != null)
+                return jobject.Property(name);
             else
                 return null;
         }
+        /// <summary>
+        /// Gets the <see cref="JProperty"/> with the specified name. The exact name
+        /// will be searched for first and if no matching property is found then the <see cref="StringComparison"/>
+        /// will be used to match a property.</summary>
+        /// <param name="jcontainer"></param>
+        /// <param name="name">The property name</param>
+        /// <param name="comparison">One of the enumeration values that specifies how the strings will be compared.</param>
+        /// <returns>A <see cref="JProperty"/> matched with the specified name or null.</returns>
         static public JProperty Property(this JProperty jcontainer, string name, StringComparison comparison)
         {
-            if (jcontainer.Value.Type == JTokenType.Object)
-                return ((JObject)jcontainer.Value).Property(name, comparison);
+            JObject jobject = jcontainer.ValueObjet();
+            if (jobject != null)
+                return jobject.Property(name, comparison);
             else
                 return null;
         }
 
-        static public JProperty AddProperty(this JProperty jproperty, string name)
+        /// <summary>
+        /// Add a <see cref="JProperty"/> and return it
+        /// </summary>
+        /// <param name="jproperty"></param>
+        /// <param name="propertyName">Name of the property</param>
+        /// <returns>The added property</returns>
+        static public JProperty AddProperty(this JProperty jproperty, string propertyName)
         {
-            return jproperty.AddProperty(name, new JObject());
+            return jproperty.ValueObjet().AddProperty(propertyName);
         }
-        static public JProperty AddProperty(this JProperty jproperty, string name, JValue value)
+        /// <summary>
+        /// Add a <see cref="JProperty"/> and return it
+        /// </summary>
+        /// <param name="jproperty"></param>
+        /// <param name="propertyName"></param>
+        /// <param name="value">The value</param>
+        /// <returns>The added property</returns>
+        static public JProperty AddProperty(this JProperty jproperty, string propertyName, JToken value)
         {
-            return jproperty.AddProperty(name, (value as JToken));
+            return jproperty.ValueObjet().AddProperty(propertyName, value);
         }
-        static public JProperty AddProperty(this JProperty jproperty, string name, JArray array)
+        /// <summary>
+        /// Add a <see cref="JProperty"/> and return it
+        /// </summary>
+        /// <param name="jobject"></param>
+        /// <param name="propertyName">Name of the property</param>
+        /// <returns>The added property</returns>
+        static public JProperty AddProperty(this JObject jobject, string propertyName)
         {
-            return jproperty.AddProperty(name, (array as JToken));
+            return jobject.AddProperty(propertyName, JValue.CreateNull());
         }
-        static public JProperty AddProperty(this JProperty jproperty, string name, JProperty property)
+        /// <summary>
+        /// Add a <see cref="JProperty"/> and return it
+        /// </summary>
+        /// <param name="jobject"></param>
+        /// <param name="propertyName">Name of the property</param>
+        /// <param name="value">The value</param>
+        /// <returns>The added property</returns>
+        static public JProperty AddProperty(this JObject jobject, string propertyName, JToken value)
         {
-            return jproperty.AddProperty(name, (property as JToken));
-        }
-        static public JProperty AddProperty(this JProperty jproperty, string name, JObject JObject)
-        {
-            return jproperty.AddProperty(name, (JObject as JToken));
-        }
-        static public JProperty AddProperty(this JProperty jproperty, string name, JToken token)
-        {
-            (jproperty.Value as JObject).Add(name, token);
-            return jproperty.Value.Last as JProperty;
+            jobject.Add(propertyName, value);
+            return (JProperty)jobject.Last;
         }
 
-
-        static public JProperty AddProperty(this JObject jobject, string name)
+        /// <summary>
+        /// Removes the property with the specified name.
+        /// </summary>
+        /// <param name="jproperty"></param>
+        /// <param name="name">Name of the property</param>
+        /// <returns>true if item was successfully removed; otherwise, false.</returns>
+        static public bool Remove(this JProperty jproperty, string name)
         {
-            return jobject.AddProperty(name, new JObject());
-        }
-        static public JProperty AddProperty(this JObject jobject, string name, JToken token)
-        {
-            jobject.Add(name, token);
-            return jobject.Last as JProperty;
+            return jproperty.ValueObjet().Remove(name);
         }
     }
 }

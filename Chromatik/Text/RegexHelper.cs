@@ -15,10 +15,10 @@ namespace System.Text
         /// Execute a simple Search/Replace loop until the pattern disappears.
         /// </summary>
         /// <param name="input"></param>
-        /// <param name="pattern"></param>
-        /// <param name="replacement"></param>
+        /// <param name="oldValues"></param>
+        /// <param name="newValue"></param>
         /// <returns></returns>
-        static public string ReplaceLoop(this string input, string pattern, string replacement)
+        static public string ReplaceLoop(this string input, string oldValues, string newValue)
         {
             DateTime dt = DateTime.Now + Timeout;
             do
@@ -26,14 +26,14 @@ namespace System.Text
                 if (dt < DateTime.Now)
                     throw new TimeoutException();
 
-                input = input.Replace(pattern, replacement);
-            } while (input.Contains(pattern));
+                input = input.Replace(oldValues, newValue);
+            } while (input.Contains(oldValues));
 
             return input;
         }
 
         /// <summary>
-        /// Returns a new string in which all occurrences of the specifieds characters are replaced by a another character specified.
+        /// Returns a new string in which all occurrences of the specifieds characters are replaced by a another character.
         /// </summary>
         /// <param name="input"></param>
         /// <param name="oldValues"></param>
@@ -46,11 +46,14 @@ namespace System.Text
             if (oldValues == null)
                 oldValues = new char[0];
 
-            return oldValues.Aggregate(input, (current, c) => current.Replace(c, newValue));
+            foreach (var item in oldValues)
+                input = input.Replace(item, newValue);
+
+            return input;
         }
 
         /// <summary>
-        /// Returns a new string in which all occurrences of the specifieds string are replaced by a another string specified.
+        /// Returns a new string in which all occurrences of the specifieds string are replaced by a another string.
         /// </summary>
         /// <param name="input"></param>
         /// <param name="oldValues"></param>
@@ -63,11 +66,33 @@ namespace System.Text
             if (oldValues == null)
                 oldValues = new string[0];
 
-            return oldValues.Aggregate(input, (current, c) => current.Replace(c, newValue));
+            foreach (var item in oldValues)
+                input = input.Replace(item, newValue);
+
+            return input;
+        }
+        /// <summary>
+        /// Returns a new string in which all occurrences of the specifieds string are replaced by a another string.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="oldValues"></param>
+        /// <param name="newValue"></param>
+        /// <returns></returns>
+        static public string ReplaceLoop(this string input, string[] oldValues, string newValue)
+        {
+            if (input == null)
+                throw new ArgumentNullException(nameof(input));
+            if (oldValues == null)
+                oldValues = new string[0];
+
+            foreach (var item in oldValues)
+                input = input.ReplaceLoop(item, newValue);
+
+            return input;
         }
 
         /// <summary>
-        /// Default execution time for Regex Search/Replace. 
+        /// Default execution time for Regex Search/Replace (30s). 
         /// </summary>
         static public TimeSpan DefaultTimeout { get; set; } = new TimeSpan(0, 0, 30);
         /// <summary>

@@ -10,13 +10,18 @@ namespace Newtonsoft.Json.Linq
 
     static public class JObjectWrite
     {
+        /// <summary>
+        /// 
+        /// </summary>
         static public JsonSerializerSettings DefaultSettings { get; } = new JsonSerializerSettings()
         {
             Formatting = Formatting.Indented,
             StringEscapeHandling = StringEscapeHandling.Default,
             FloatFormatHandling = FloatFormatHandling.String,
         };
-
+        /// <summary>
+        /// 
+        /// </summary>
         static public JsonSerializerSettings Settings { get; } = DefaultSettings;
 
         static public void Object(string path, JObject jobject)

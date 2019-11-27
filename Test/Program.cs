@@ -24,17 +24,16 @@ namespace Test
         [STAThread]
         static void Main()
         {
-            JObject jo = JObjectCreate.Object(@"D:\other\Github\ChromatikTool\Chromatik.NewtonsoftJson\TEST\fr_table.json");
+            JObject jo = JObjectCreate.ObjectJSON("{\"test\": true}");
+            JObject jp = (JObject)jo.Property("test").Value;
 
+            JArray hh = new JArray();
+            hh.Add("");
+            hh.Add(true);
 
+            XmlDocument rac = XmlCreate.DocumentXML("<der lang=\"fr\" xml:lang=\"fr\"/>");
 
-
-
-
-
-
-
-
+            XmlNamespace s = XmlNamespace.Calibre;
 
 
 
