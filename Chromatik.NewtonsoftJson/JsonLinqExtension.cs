@@ -111,12 +111,12 @@ namespace Newtonsoft.Json.Linq
         }
 
         /// <summary>
-        /// Removes the property with the specified name.
+        /// Remove the property with the specified name.
         /// </summary>
         /// <param name="jproperty"></param>
         /// <param name="name">Name of the property</param>
         /// <returns>true if item was successfully removed; otherwise, false.</returns>
-        static public bool Remove(this JProperty jproperty, string name)
+        static public bool RemoveProperty(this JProperty jproperty, string name)
         {
             return jproperty.ValueObjet().Remove(name);
         }
