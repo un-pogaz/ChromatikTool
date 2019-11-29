@@ -9,6 +9,9 @@
     <Import_RootNamespace>Chromatik.Cryptography</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Enigma\Enigma.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enigma\EnigmaConfiguration.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enigma\EnigmaRotor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FonDue.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Noise\IModule.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Noise\IModule1D.cs" />
@@ -23,5 +26,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)Noise\SimplexPerlin.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PlatDUchef.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RAmen.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Noise\NewFolder\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)Enigma\Enigma machine _ Tom MacWright _ Observable - Copier.url" />
+    <None Include="$(MSBuildThisFileDirectory)Enigma\enigma.1.0.0.nupkg.zip" />
   </ItemGroup>
 </Project>
