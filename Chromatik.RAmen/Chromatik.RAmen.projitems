@@ -10,7 +10,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Enigma\Enigma.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Enigma\Extensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enigma\PlugBoard.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enigma\Reflector.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enigma\Rotor.cs" />
