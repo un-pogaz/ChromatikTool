@@ -76,19 +76,6 @@ namespace System.Linq
         }
         
         /// <summary>
-        /// Get the ToString() array of a array
-        /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
-        static public string[] ToStringArray<T>(this T[] input)
-        {
-            string[] rslt = new string[input.Length];
-            for (int i = 0; i < input.Length; i++)
-                rslt[i] = input[i].ToString();
-            return rslt;
-        }
-
-        /// <summary>
         /// Parse a <see cref="object"/> in to a array
         /// </summary>
         /// <param name="input"></param>
@@ -96,6 +83,25 @@ namespace System.Linq
         static public T[] ToObjectArray<T>(this T input)
         {
             return new T[] { input };
+        }
+    }
+}
+
+namespace System
+{
+    /// <summary>
+    /// Class to extend System methods
+    /// </summary>
+    static public class SystemExtension
+    {
+        /// <summary>
+        /// Test if is <see langword="null"/>
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        static public bool IsNull(this object value)
+        {
+            return (value == null);
         }
     }
 }

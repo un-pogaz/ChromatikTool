@@ -45,7 +45,7 @@ namespace System.Data.SQLite
             if (input == null || input.Equals("null", StringComparison.InvariantCultureIgnoreCase))
                 return "NULL";
             else
-                return "'" + input.Trim().Split('\'').ToOneString("''", StringOneLineOptions.SkipNull) + "'";
+                return "'" + input.Trim().Split('\'').Join("''") + "'";
         }
     }
 }

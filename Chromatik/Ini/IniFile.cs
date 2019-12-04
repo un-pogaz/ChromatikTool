@@ -1,86 +1,312 @@
 using System;
+using System.IO;
+using System.Text;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
-using System.Text;
-using System.IO;
 
-namespace System.Ini
+namespace System.Configuration
 {
     /// <summary>
-    /// Class for read and modify a INI file
+    /// Represent a INI file on the system and provide the methods to interact with it.
     /// </summary>
-    public class IniFile
+    public class Ini
     {
+        /// <summary>
+        /// Copies a string into the specified section of an initialization file.
+        /// </summary>
+        /// <returns>
+        /// If the function successfully copies the string to the initialization file, the return value is nonzero.
+        /// If the function fails, or if it flushes the cached version of the most recently accessed initialization file, the return value is zero. 
+        /// </returns>
         [DllImport("kernel32")]
-        private static extern long WritePrivateProfileString(string section,
-                                                             string key, string val, string filePath);
-
-        [DllImport("kernel32")]
-        private static extern int GetPrivateProfileString(string section,
-                                                          string key, string def, StringBuilder retVal,
-                                                          int size, string filePath);
+        private static extern long WritePrivateProfileString(string section, string key, string val, string filePath);
 
         /// <summary>
-        /// Create a instance associated with a INI file 
+        /// Retrieves a string from the specified section in an initialization file.
         /// </summary>
-        /// <param name="ini"></param>
-        public IniFile(string ini)
+        /// <returns>
+        /// The return value is the number of characters copied to the buffer, not including the terminating null character.
+        /// </returns>
+        [DllImport("kernel32")]
+        private static extern int GetPrivateProfileString(string section, string key, string def, StringBuilder retVal, int size, string filePath);
+
+        /// <summary>
+        /// Retrieves all the keys and values for the specified section of an initialization file.
+        /// </summary>
+        /// <returns>
+        /// The return value is the number of characters copied to the buffer, not including the terminating null character.
+        /// </returns>
+        [DllImport("kernel32.dll")]
+        private static extern int GetPrivateProfileSection(string lpAppName, byte[] lpszReturnBuffer, int nSize, string lpFileName);
+        
+        private const int SIZE = 255;
+        private const string DATETIME_MASK = "yyyy/MM/dd HH:mm:ss";
+        private const string DATE_MASK = "yyyy/MM/dd";
+
+        /// <summary>
+        /// Path of the file read associated on this <see cref="Ini"/>
+        /// </summary>
+        public string FileName { get; }
+
+        /// <summary>
+        /// Create a <see cref="Ini"/> associated with a file on the system.
+        /// </summary>
+        /// <param name="fileName"></param>
+        public Ini(string fileName)
         {
-            IniPath = ini;
+            FileName = fileName;
+            if (!Path.IsPathRooted(FileName))
+            {
+                string basePath = Directory.GetCurrentDirectory();
+                FileName = Path.Combine(basePath, FileName);
+            }
         }
-        /// <summary> 
-        /// Path of the INI file associated
-        /// </summary>
-        public string IniPath { get; set; }
+        /// <summary></summary>
+        public override string ToString()
+        {
+            return Path.GetFileName(FileName) +" | INI \""+ FileName+ "\""; 
+        }
+
         /// <summary>
-        /// Read the value in the section of the INI file
+        /// Delete a section in the INI file
+        /// </summary>
+        /// <param name="section"></param>
+        /// <returns></returns>
+        public void DeleteSection(string section)
+        {
+            WritePrivateProfileString(section, null, null, FileName);
+        }
+        /// <summary>
+        /// Delete a key in the INI file
         /// </summary>
         /// <param name="section"></param>
         /// <param name="key"></param>
         /// <returns></returns>
-        public string ReadValue(string section, string key)
+        public void DeleteKey(string section, string key)
         {
-            return ReadValue(section, key, string.Empty);
+            WritePrivateProfileString(section, key, null, FileName);
         }
+
         /// <summary>
-        /// Read the value in the section of the INI file
+        /// Read a <see cref="string"/> value
         /// </summary>
         /// <param name="section"></param>
         /// <param name="key"></param>
-        /// <param name="def">Default value if the value is empty</param>
         /// <returns></returns>
-        public string ReadValue(string section, string key, string def)
+        public string ReadString(string section, string key)
         {
-            SectionKey(ref section, ref key);
-            if (def == null)
-                def = string.Empty;
-            var temp = new StringBuilder(short.MaxValue);
-            GetPrivateProfileString(section, key, def, temp, temp.Capacity, IniPath);
-            return temp.ToString().Trim();
+            var temp = new StringBuilder(SIZE);
+            GetPrivateProfileString(section, key, null, temp, SIZE, FileName);
+            return temp.ToString();
         }
         /// <summary>
-        /// Write a value in the section of the INI file
+        /// Read a <see cref="bool"/> value
+        /// </summary>
+        /// <param name="section"></param>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public bool ReadBoolean(string section, string key)
+        {
+            string value = ReadString(section, key);
+            return value.ToUpper().Equals("TRUE");
+        }
+        /// <summary>
+        /// Read a <see cref="decimal"/> value
+        /// </summary>
+        /// <param name="section"></param>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public decimal ReadDecimal(string section, string key)
+        {
+            string value = ReadString(section, key);
+            return decimal.Parse(value.Trim(), Globalization.CultureInfo.InvariantCulture);
+        }
+        /// <summary>
+        /// Read a <see cref="double"/> value
+        /// </summary>
+        /// <param name="section"></param>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public double ReadDouble(string section, string key)
+        {
+            string value = ReadString(section, key);
+            return double.Parse(value.Trim(), Globalization.CultureInfo.InvariantCulture);
+        }
+        /// <summary>
+        /// Read a <see cref="float"/> value
+        /// </summary>
+        /// <param name="section"></param>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public float ReadFloat(string section, string key)
+        {
+            string value = ReadString(section, key);
+            return float.Parse(value, Globalization.CultureInfo.InvariantCulture);
+        }
+        /// <summary>
+        /// Read a <see cref="int"/> value
+        /// </summary>
+        /// <param name="section"></param>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public int ReadInteger(string section, string key)
+        {
+            string value = ReadString(section, key);
+            return Convert.ToInt32(value.Trim());
+        }
+        /// <summary>
+        /// Read a <see cref="DateTime"/> value (yyyy/MM/dd HH:mm:ss)
+        /// </summary>
+        /// <param name="section"></param>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public DateTime ReadDateTime(string section, string key)
+        {
+            string value = ReadString(section, key);
+            return DateTime.ParseExact(value, DATETIME_MASK, Globalization.CultureInfo.InvariantCulture);
+        }
+        /// <summary>
+        /// Read a Date value (yyyy/MM/dd)
+        /// </summary>
+        /// <param name="section"></param>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public DateTime ReadDate(string section, string key)
+        {
+            string value = ReadString(section, key);
+            return DateTime.ParseExact(value, DATE_MASK, Globalization.CultureInfo.InvariantCulture);
+        }
+        /// <summary>
+        /// Write a <see cref="string"/> value
         /// </summary>
         /// <param name="section"></param>
         /// <param name="key"></param>
         /// <param name="value"></param>
-        public void WriteValue(string section, string key, string value)
+        /// <returns></returns>
+        public bool WriteString(string section, string key, string value)
         {
-            SectionKey(ref section, ref key);
-            if (string.IsNullOrWhiteSpace(value))
-                value = string.Empty;
-            value = value.Trim();
-            WritePrivateProfileString(section, key, value, IniPath);
+            long l = WritePrivateProfileString(section, key, value, FileName);
+            return l > 0;
+        }
+        /// <summary>
+        /// Write a <see cref="bool"/> value
+        /// </summary>
+        /// <param name="section"></param>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public bool WriteBoolean(string section, string key, bool value)
+        {
+            string str = value.ToString().ToUpper();
+            return WriteString(section, key, str);
+        }
+        /// <summary>
+        /// Write a <see cref="decimal"/> value
+        /// </summary>
+        /// <param name="section"></param>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public bool WriteDecimal(string section, string key, decimal value)
+        {
+            return WriteString(section, key, value.ToString(Globalization.CultureInfo.InvariantCulture));
+        }
+        /// <summary>
+        /// Write a <see cref="double"/> value
+        /// </summary>
+        /// <param name="section"></param>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public bool WriteDouble(string section, string key, double value)
+        {
+            return WriteString(section, key, value.ToString(Globalization.CultureInfo.InvariantCulture));
+        }
+        /// <summary>
+        /// Write a <see cref="float"/> value
+        /// </summary>
+        /// <param name="section"></param>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public bool WriteFloat(string section, string key, float value)
+        {
+            return WriteString(section, key, value.ToString(Globalization.CultureInfo.InvariantCulture));
+        }
+        /// <summary>
+        /// Write a <see cref="int"/> value
+        /// </summary>
+        /// <param name="section"></param>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public bool WriteInteger(string section, string key, int value)
+        {
+            return WriteString(section, key, value.ToString());
+        }
+        /// <summary>
+        /// Write a <see cref="DateTime"/> value (yyyy/MM/dd HH:mm:ss)
+        /// </summary>
+        /// <param name="section"></param>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public bool WriteDateTime(string section, string key, DateTime value)
+        {
+            return WriteString(section, key, value.ToString(DATETIME_MASK));
+        }
+        /// <summary>
+        /// Write a Date value (yyyy/MM/dd)
+        /// </summary>
+        /// <param name="section"></param>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public bool WriteDate(string section, string key, DateTime value)
+        {
+            return WriteString(section, key, value.ToString(DATE_MASK));
         }
 
-        static private void SectionKey(ref string section, ref string key)
+        /// <summary>
+        /// Test if the section exist
+        /// </summary>
+        /// <param name="section"></param>
+        /// <returns></returns>
+        public bool SectionExists(string section)
         {
-            if (string.IsNullOrWhiteSpace(section))
-                section = string.Empty;
-            section = section.Trim();
-            if (string.IsNullOrWhiteSpace(key))
-                key = string.Empty;
-            key = key.Trim();
+            int i = GetPrivateProfileString(section, null, null, new StringBuilder(SIZE), SIZE, FileName);
+            return i > 0;
+        }
+        /// <summary>
+        /// Test if the key exist
+        /// </summary>
+        /// <param name="section"></param>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public bool KeyExists(string section, string key)
+        {
+            int i = GetPrivateProfileString(section, key, null, new StringBuilder(SIZE), SIZE, FileName);
+            return i > 0;
+        }
+
+        /// <summary>
+        /// Read all values of the section
+        /// </summary>
+        /// <param name="section"></param>
+        /// <returns></returns>
+        public IDictionary<string, string> ReadSection(string section)
+        {
+            var buffer = new byte[2048];
+            GetPrivateProfileSection(section, buffer, 2048, FileName);
+            var tmp = Encoding.ASCII.GetString(buffer).Trim('\0').Split('\0');
+            var result = new Dictionary<string, string>();
+
+            foreach (var entry in tmp)
+            {
+                var s = entry.Split(new string[] { "=" }, 2, StringSplitOptions.None);
+                result.Add(s[0], s[1]);
+            }
+            return result;
         }
     }
 }

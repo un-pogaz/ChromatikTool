@@ -61,7 +61,7 @@ namespace Chromatik.SQLite
         public SQLiteEdit(SQLiteDataBase db, bool openConnection)
         {
             if (db == null)
-              throw new ArgumentNullException(nameof(db));
+                throw new ArgumentNullException(nameof(db));
 
             disposed = false;
             DataBase = db;
@@ -74,7 +74,7 @@ namespace Chromatik.SQLite
         /// <summary> </summary>
         public override string ToString()
         {
-            return DataBase.ToString() + " {"+clsName+"}";
+            return DataBase.ToString() + " {" + clsName + "}";
         }
 
         bool OpenOnStart = false;
@@ -95,7 +95,7 @@ namespace Chromatik.SQLite
             if (disposed)
                 throw new ObjectDisposedException(clsName);
         }
-        
+
         /// <summary> </summary>
         ~SQLiteEdit()
         {
@@ -140,18 +140,32 @@ namespace Chromatik.SQLite
             return DataBase._SQLcommand(SQL, out msgErr);
         }
         /// <summary>
-        /// Obtains a DataTable corresponding to the SQL request 
+        /// Obtains a <see cref="DataTable"/> corresponding to the SQL request
         /// </summary>
         /// <param name="SQL">The SQL request to be executed</param>
         /// <param name="msgErr">Advanced error message</param>
         /// <remarks>Will automatically open and close a new connection if it is not opened</remarks>
-        /// <returns>The DataTable request</returns>
+        /// <returns>The <see cref="DataTable"/> request</returns>
         public DataTable ExecuteSQLdataTable(string SQL, out SQLlog msgErr)
         {
             if (string.IsNullOrWhiteSpace(SQL))
                 throw new ArgumentNullException(nameof(SQL));
 
             return DataBase._SQLdataTable(SQL, out msgErr);
+        }
+        /// <summary>
+        /// Obtains a value corresponding to the SQL scalar request 
+        /// </summary>
+        /// <param name="SQL">The SQL request to be executed</param>
+        /// <param name="msgErr">Advanced error message</param>
+        /// <remarks>Will automatically open and close a new connection if it is not opened</remarks>
+        /// <returns>The value of the scalar request</returns>
+        public object ExecuteSQLscalar(string SQL, out SQLlog msgErr)
+        {
+            if (string.IsNullOrWhiteSpace(SQL))
+                throw new ArgumentNullException(nameof(SQL));
+
+            return DataBase._SQLscalar(SQL, out msgErr);
         }
     }
 }

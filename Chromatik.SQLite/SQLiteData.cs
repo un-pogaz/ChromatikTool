@@ -126,7 +126,7 @@ namespace Chromatik.SQLite
             if (!string.IsNullOrWhiteSpace(columns))
                 rslt += " (" + columns.Trim() + ") ";
 
-            string v = values.ToOneString("),\n(", StringOneLineOptions.SkipNullAndWhiteSpace);
+            string v = values.Join("),\n(", StringJoinOptions.SkipNullAndWhiteSpace);
             if (string.IsNullOrWhiteSpace(v))
                 throw new ArgumentException("The " + nameof(values) + " cannot be empty.", nameof(values));
 
@@ -237,7 +237,7 @@ namespace Chromatik.SQLite
                 if (multiUpdate[i] != null && multiUpdate[i].Count > 0)
                     tbl[i] = SQL_Update(tableName, multiUpdate[i]);
 
-            string rslt = tbl.ToOneString("\n\n", StringOneLineOptions.SkipNullAndWhiteSpace);
+            string rslt = tbl.Join("\n\n", StringJoinOptions.SkipNullAndWhiteSpace);
 
             if (string.IsNullOrWhiteSpace(rslt))
                 throw new ArgumentException("The " + nameof(multiUpdate) + "[] {" + nameof(SQLiteCaseValue) + "}[] as invalid (no CASE are defined).", nameof(multiUpdate));

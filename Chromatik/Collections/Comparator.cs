@@ -12,9 +12,6 @@ namespace System.Collections.Generic
     /// <typeparam name="T"></typeparam>
     public class Comparator<T> : IComparer<T>, IComparer
     {
-        private const int test = -1000;
-
-
         /// <summary> </summary>
         static public Comparator<T> Default { get; } = new Comparator<T>();
 
@@ -23,15 +20,13 @@ namespace System.Collections.Generic
         /// </summary>
         public Type TypeCompared;
 
-        Dictionary<string, string> FieldComparator = new Dictionary<string, string>();
+        List<string> FieldComparator = new List<string>();
 
-        private Comparator() : this(string.Empty)
+        public Comparator() : this(string.Empty)
         { }
-        private Comparator(string field): this(field.ToObjectArray())
+        public Comparator(params string[] fields) : this(fields, false)
         { }
-        private Comparator(string[] fields) : this(fields, false)
-        { }
-        private Comparator(string[] fields, bool incluedPrivate)
+        public Comparator(string[] fields, bool includePrivate)
         {
             if (fields == null)
                 fields = new string[0];
@@ -42,12 +37,14 @@ namespace System.Collections.Generic
             {
                 foreach (var fieldName in fields.TrimAll().Distinct().ToArray())
                 {
-                    FieldInfo field = TypeCompared.GetField(fieldName, incluedPrivate);
+                    FieldInfo field = TypeCompared.GetField(fieldName, includePrivate);
+                    MemberInfo prop = TypeCompared.GetProperty(fieldName, includePrivate);
+
                     if (field != null)
                         foreach (string testInterface in new string[] { "IComparable`1", "IComparable", "IComparer`1", "IComparer" })
                             if (field.FieldType.GetInterface(testInterface) != null)
                             {
-                                FieldComparator.Add(fieldName, testInterface);
+                                FieldComparator.Add(fieldName);
                                 break;
                             }
 
@@ -103,7 +100,7 @@ namespace System.Collections.Generic
             {
                 return Compare((T)x, (T)y);
             }
-            catch (Exception ex)
+            catch
             {
                 return 0;
             }
@@ -217,15 +214,6 @@ namespace System.Collections.Generic
         /// </summary>
         public int Compare(KeyValuePair<TKey, TValue> x, KeyValuePair<TKey, TValue> y)
         {
-            /// Les struct (comme KeyValuePair) ne peuve étre null
-
-            //if (x == null && y == null)
-            //    return 0;
-            //else if (y == null)
-            //    return 1;
-            //else if (x == null)
-            //    return -1;
-
             if (keyFirst)
             {
                 int key = KeyComparator.Compare(x.Key, y.Key);
@@ -259,7 +247,7 @@ namespace System.Collections.Generic
             {
                 return Compare((KeyValuePair<TKey, TValue>)x, (KeyValuePair<TKey, TValue>)y);
             }
-            catch (Exception ex)
+            catch
             {
                 return 0;
             }

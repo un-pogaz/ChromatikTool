@@ -4,8 +4,7 @@ using System.Text;
 
 namespace Chromatik.Cryptography.Enigma
 {
-    sealed class EnigmaConfiguration
+    sealed public class Enigma
     {
-
     }
 }

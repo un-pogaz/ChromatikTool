@@ -7,11 +7,13 @@ using System.Threading.Tasks;
 
 namespace Newtonsoft.Json.Linq
 {
-
+    /// <summary>
+    /// Static class for write a JSON file
+    /// </summary>
     static public class JObjectWrite
     {
         /// <summary>
-        /// 
+        /// Default stting used by the <see cref="JObjectWrite"/>
         /// </summary>
         static public JsonSerializerSettings DefaultSettings { get; } = new JsonSerializerSettings()
         {
@@ -20,15 +22,25 @@ namespace Newtonsoft.Json.Linq
             FloatFormatHandling = FloatFormatHandling.String,
         };
         /// <summary>
-        /// 
+        /// Setting used by the <see cref="JObjectWrite"/>
         /// </summary>
         static public JsonSerializerSettings Settings { get; } = DefaultSettings;
 
+        /// <summary>
+        /// Write a JSON file from a <see cref="JObject"/>
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="jobject"></param>
         static public void Object(string path, JObject jobject)
         {
             Object(path, jobject, Settings);
         }
-
+        /// <summary>
+        /// Write a JSON file from a <see cref="JObject"/>
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="jobject"></param>
+        /// <param name="settings"></param>
         static public void Object(string path, JObject jobject, JsonSerializerSettings settings)
         {
             using (StreamWriter tw = new StreamWriter(path))

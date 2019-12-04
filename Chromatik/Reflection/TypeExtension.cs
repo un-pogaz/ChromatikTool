@@ -67,14 +67,29 @@ namespace System.Reflection
         /// </summary>
         /// <param name="type"></param>
         /// <param name="name"></param>
-        /// <param name="incluedPrivate">True for includ the Private and Protected</param>
+        /// <param name="includePrivate">True for includ the Private and Protected</param>
         /// <returns></returns>
-        static public FieldInfo GetField(this Type type, string name, bool incluedPrivate)
+        static public FieldInfo GetField(this Type type, string name, bool includePrivate)
         {
-            if (incluedPrivate)
+            if (includePrivate)
                 return type.GetField(name, BindingFlags.Instance | BindingFlags.Public | BindingFlags.Static | BindingFlags.NonPublic);
             else
                 return type.GetField(name, BindingFlags.Instance | BindingFlags.Public | BindingFlags.Static);
+        }
+
+        /// <summary>
+        /// Get the <see cref="FieldInfo"/>, includ the Private and Protected
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="name"></param>
+        /// <param name="includePrivate">True for includ the Private and Protected</param>
+        /// <returns></returns>
+        static public PropertyInfo GetProperty(this Type type, string name, bool includePrivate)
+        {
+            if (includePrivate)
+                return type.GetProperty(name, BindingFlags.Instance | BindingFlags.Public | BindingFlags.Static | BindingFlags.NonPublic);
+            else
+                return type.GetProperty(name, BindingFlags.Instance | BindingFlags.Public | BindingFlags.Static);
         }
     }
 }

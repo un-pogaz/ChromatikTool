@@ -12,6 +12,7 @@ using System.Xml;
 using System.Reflection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Configuration;
 
 
 namespace Test
@@ -25,18 +26,25 @@ namespace Test
         static void Main()
         {
             JObject jo = JObjectCreate.ObjectJSON("{\"test\": true}");
-            JObject jp = (JObject)jo.Property("test").Value;
 
             JArray hh = new JArray();
             hh.Add("");
             hh.Add(true);
 
             XmlDocument rac = XmlCreate.DocumentXML("<der lang=\"fr\" xml:lang=\"fr\"/>");
+            string r = new object[] { "000", rac, "000", null, "000" }.ToOneString("|", StringJoinOptions.NullToNull);
+
+            string[] fff = new char[] { 'f', '4', '9' }.ToStringArray();
+
+            Comparator<FileInfo> copmp = new Comparator<FileInfo>("Length");
 
             XmlNamespace s = XmlNamespace.Calibre;
 
+            Ini ini = new Ini("test.ini");
+            ini.WriteString("section1", "value1", "q45243ſ€é");
 
-
+            MadMilkman.Ini.IniFile dd = new MadMilkman.Ini.IniFile();
+            dd.Load("");
 
             IComparer<string> oo = Comparator<string>.Default;
             List<string> lst = new List<string>()

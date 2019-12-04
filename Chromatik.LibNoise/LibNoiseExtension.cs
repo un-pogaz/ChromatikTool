@@ -41,6 +41,10 @@ namespace LibNoise
     {
         private const NoiseRange _default = NoiseRange.NegativeOneToPositiveOne;
 
+        /// <summary></summary>
+        /// <param name="input"></param>
+        /// <param name="range"></param>
+        /// <returns></returns>
         static public float ToRange(float input, NoiseRange range)
         {
             float factor = 1;

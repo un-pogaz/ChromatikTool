@@ -9,6 +9,18 @@ namespace Chromatik.SQLite
     /// </summary>
     public class SQLlog
     {
+        /// <summary>
+        /// Create a empty <see cref="SQLlog"/> (readonly)
+        /// </summary>
+        public SQLlog() : this(null, string.Empty)
+        { }
+
+        /// <summary>
+        /// Represents a empty <see cref="SQLlog"/> (readonly)
+        /// </summary>
+        static readonly public SQLlog Empty = new SQLlog();
+
+
         internal SQLlog(Exception e, string SQL)
         {
             this.e = e;
@@ -43,10 +55,5 @@ namespace Chromatik.SQLite
         {
             return msgErr;
         }
-
-        /// <summary>
-        /// Represents a empty <see cref="SQLlog"/> (readonly)
-        /// </summary>
-        static readonly public SQLlog Empty = new SQLlog(null, string.Empty);
     }
 }

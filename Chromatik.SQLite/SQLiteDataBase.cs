@@ -40,7 +40,7 @@ namespace Chromatik.SQLite
         /// <summary> </summary>
         public override string ToString()
         {
-            return "\""+Path.GetFileName(FilePath)+"\"; Conneting: " + ConnectionIsOpen.ToString().ToLower() + "; Requests: " +Logs.Count+";"; 
+            return "\""+Path.GetFileName(FilePath)+"\"; Connecting: " + ConnectionIsOpen.ToString().ToLower() + "; Requests: " +Logs.Count+";"; 
         }
 
         private bool disposed = true;
@@ -81,7 +81,16 @@ namespace Chromatik.SQLite
                 if (DBconnect == null)
                     return false;
                 else
-                    return (DBconnect.State == ConnectionState.Open);
+                {
+                    try
+                    {
+                        return (DBconnect.State == ConnectionState.Open);
+                    }
+                    catch (Exception)
+                    {
+                        return false;
+                    }
+                }
             }
         }
 
@@ -150,12 +159,12 @@ namespace Chromatik.SQLite
             return rslt;
         }
         /// <summary>
-        /// Obtains a DataTable corresponding to the SQL request 
+        /// Obtains a <see cref="DataTable"/> corresponding to the SQL request 
         /// </summary>
         /// <param name="SQL">The SQL request to be executed</param>
         /// <param name="msgErr">Advanced error message</param>
         /// <remarks>Will automatically open and close a new connection if it is not opened</remarks>
-        /// <returns>The DataTable request</returns>
+        /// <returns>The <see cref="DataTable"/> request</returns>
         internal DataTable _SQLdataTable(string SQL, out SQLlog msgErr)
         {
             IsDisposed();
@@ -184,7 +193,42 @@ namespace Chromatik.SQLite
             _logs.AddEntry(msgErr);
             return rslt;
         }
-        
+        /// <summary>
+        /// Obtains a value corresponding to the SQL scalar request 
+        /// </summary>
+        /// <param name="SQL">The SQL request to be executed</param>
+        /// <param name="msgErr">Advanced error message</param>
+        /// <remarks>Will automatically open and close a new connection if it is not opened</remarks>
+        /// <returns>The value of the scalar request</returns>
+        internal object _SQLscalar(string SQL, out SQLlog msgErr)
+        {
+            IsDisposed();
+
+            if (string.IsNullOrWhiteSpace(SQL))
+                throw new ArgumentNullException(nameof(SQL));
+
+            SQL = SQL.Trim();
+
+            msgErr = SQLlog.Empty;
+            object rslt = null;
+            try
+            {
+                using (SQLiteCommand cmd = CreatDBcommand(SQL))
+                    rslt = cmd.ExecuteScalar(CommandBehavior.Default);
+
+                msgErr = new SQLlog(null, SQL);
+
+            }
+            catch (Exception ex)
+            {
+                rslt = null;
+                msgErr = new SQLlog(ex, SQL);
+            }
+
+            _logs.AddEntry(msgErr);
+            return rslt;
+        }
+
 
         /// <summary>
         /// List of all SQL request executed with this instance
