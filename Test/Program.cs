@@ -25,16 +25,29 @@ namespace Test
         [STAThread]
         static void Main()
         {
-            JObject jo = JObjectCreate.ObjectJSON("{\"test\": true}");
 
             JArray hh = new JArray();
             hh.Add("");
             hh.Add(true);
 
+            Chromatik.Cryptography.Enigma.PlugBoard pl = new Chromatik.Cryptography.Enigma.PlugBoard();
+            pl.AddPlug('U', 'Y');
+            pl.AddPlug('A', 'Z');
+            pl.RemovePlug('U');
+            pl.RemovePlug('Z');
+
+
+            Chromatik.Cryptography.Enigma.Enigma enigma = new Chromatik.Cryptography.Enigma.Enigma(Chromatik.Cryptography.Enigma.Reflector.A, Chromatik.Cryptography.Enigma.Rotor.I, Chromatik.Cryptography.Enigma.Rotor.II, Chromatik.Cryptography.Enigma.Rotor.III);
+
+            char ccc = enigma.Process('A');
+
+            Chromatik.Cryptography.Enigma.Enigma enigma2 = new Chromatik.Cryptography.Enigma.Enigma(Chromatik.Cryptography.Enigma.Reflector.A, Chromatik.Cryptography.Enigma.Rotor.I, Chromatik.Cryptography.Enigma.Rotor.II, Chromatik.Cryptography.Enigma.Rotor.III);
+
+            char ddd = enigma2.Process(ccc);
+            enigma2.ToString();
             XmlDocument rac = XmlCreate.DocumentXML("<der lang=\"fr\" xml:lang=\"fr\"/>");
             string r = new object[] { "000", rac, "000", null, "000" }.ToOneString("|", StringJoinOptions.NullToNull);
-
-            string[] fff = new char[] { 'f', '4', '9' }.ToStringArray();
+            
 
             Comparator<FileInfo> copmp = new Comparator<FileInfo>("Length");
 
@@ -42,10 +55,7 @@ namespace Test
 
             Ini ini = new Ini("test.ini");
             ini.WriteString("section1", "value1", "q45243ſ€é");
-
-            MadMilkman.Ini.IniFile dd = new MadMilkman.Ini.IniFile();
-            dd.Load("");
-
+            
             IComparer<string> oo = Comparator<string>.Default;
             List<string> lst = new List<string>()
             {

@@ -6,62 +6,37 @@ using System.Threading.Tasks;
 
 namespace Chromatik.Cryptography.Enigma
 {
-	public class Rotor
-	{
-		public Rotor(string id)
-		{
-			this.Id = id;
-			_initWires(WireMatrix.RandomWires());
-			this.RotateAt = 'A';
-			this.InitialPosition = 'A';
-			this.OffsetPosition = 'A';
-		}
+	sealed public partial class Rotor : Alphabet
+    {
+		public Rotor(string id, IEnumerable<char> wires) : this(id, wires, 'A')
+		{ }
 
-		public Rotor(string id, IEnumerable<char> wires)
-		{
-			this.Id = id;
-			_initWires(wires);
-			this.RotateAt = 'A';
-			this.InitialPosition = 'A';
-			this.OffsetPosition = 'A';
-		}
+        public Rotor(string id, IEnumerable<char> wires, char rotateAt) : this(id, wires, rotateAt, null)
+        { }
 
-		public Rotor(string id, IEnumerable<char> wires, char rotateAt)
-		{
-			this.Id = id;
-			_initWires(wires);
-			this.RotateAt = rotateAt;
-			this.InitialPosition = 'A';
-			this.OffsetPosition = 'A';
+		public Rotor(string id, IEnumerable<char> wires, char rotateAt, char? rotateAtSecondary) : base(wires)
+        {
+			Id = id;
+            WiresLeft = new WireMatrix(wires);
+            WiresRight = WiresLeft.Invert();
+            RotateAt = rotateAt;
+			RotateAtSecondary = rotateAtSecondary;
+			InitialPosition = 'A';
+			OffsetPosition = 'A';
 		}
-
-		public Rotor(string id, IEnumerable<char> wires, char rotateAt, char rotateAtSecondary)
-		{
-			this.Id = id;
-			_initWires(wires);
-			this.RotateAt = rotateAt;
-			this.RotateAtSecondary = rotateAtSecondary;
-			this.InitialPosition = 'A';
-			this.OffsetPosition = 'A';
-		}
-
-		private void _initWires(IEnumerable<char> wires)
-		{
-			this.WiresLeft = new WireMatrix(wires);
-			this.WiresRight = this.WiresLeft.Invert();
-		}
-
-		public string Id { get; private set; }
+        
+		public string Id { get; }
 
 		public WireMatrix WiresLeft { get; private set; }
-		public WireMatrix WiresRight { get; private set; }
+        public WireMatrix WiresRight { get; private set; }
 
-		public char InitialPosition { get; set; }
+        public char InitialPosition { get; set; }
 
 		public char OffsetPosition { get; set; }
 
-		public char RotateAt { get; private set; }
-		public char? RotateAtSecondary { get; private set; }
+		public char RotateAt { get; }
+		public char? RotateAtSecondary { get; }
+
 
 		public void RotateToPosition(char position)
 		{
@@ -70,47 +45,39 @@ namespace Chromatik.Cryptography.Enigma
 				throw new EnigmaException("Invalid rotor position: {0}".Format(position));
 			}
 
-			var positionIndex = WireMatrix.Projectcharacter(position);
-			var offsetIndex = WireMatrix.Projectcharacter(this.OffsetPosition);
-			var delta = positionIndex - offsetIndex;
+            int positionIndex = WiresLeft.ProjectCharacter(position);
+			int offsetIndex = WiresLeft.ProjectCharacter(OffsetPosition);
+            int delta = positionIndex - offsetIndex;
 			if (delta < 0)
-			{
-				delta = 26 + delta;
-			}
+				delta = OperatingAlphabet.Length + delta;
 
 			for(int currentIndex = 0; currentIndex < delta; currentIndex++)
 			{
-				this.WiresLeft.Rotate();
-				this.WiresRight = this.WiresLeft.Invert();
+				WiresLeft.Rotate();
+				WiresRight = WiresLeft.Invert();
 
 				offsetIndex = offsetIndex + 1;
-				if (offsetIndex >= 26)
-				{
+				if (offsetIndex >= OperatingAlphabet.Length)
 					offsetIndex = 0;
-				}
 
-				this.OffsetPosition = WireMatrix.ProjectIndex(offsetIndex);
+				OffsetPosition = WiresLeft.ProjectIndex(offsetIndex);
 			}
 		}
 
 		public bool Rotate()
 		{
-			var shouldAdvance = this.OffsetPosition.Equals(this.RotateAt);
-			if (this.RotateAtSecondary != null)
-			{
-				shouldAdvance = shouldAdvance || this.OffsetPosition.Equals(this.RotateAtSecondary.Value);
-			}
+			bool shouldAdvance = OffsetPosition.Equals(RotateAt);
+			if (RotateAtSecondary != null)
+				shouldAdvance = shouldAdvance || OffsetPosition.Equals(RotateAtSecondary.Value);
 
-			var offsetIndex = WireMatrix.Projectcharacter(this.OffsetPosition);
+			int offsetIndex = WiresLeft.ProjectCharacter(OffsetPosition);
 			offsetIndex = offsetIndex + 1;
-			if (offsetIndex >= 26)
-			{
+			if (offsetIndex >= OperatingAlphabet.Length)
 				offsetIndex = 0;
-			}
-			this.OffsetPosition = WireMatrix.ProjectIndex(offsetIndex);
+			OffsetPosition = WiresLeft.ProjectIndex(offsetIndex);
 
-			this.WiresLeft.Rotate();
-			this.WiresRight = this.WiresLeft.Invert();
+			WiresLeft.Rotate();
+			WiresRight = WiresLeft.Invert();
 
 			return shouldAdvance;
         }
@@ -129,7 +96,7 @@ namespace Chromatik.Cryptography.Enigma
 
 		public override string ToString()
 		{
-			return string.Format("Rotor Id: {0} Initial: {1} Offset: {2}", this.Id, this.InitialPosition, this.OffsetPosition);
+			return string.Format("Rotor Id: {0} Initial: {1} Offset: {2}", Id, InitialPosition, OffsetPosition);
 		}
 	}
 }

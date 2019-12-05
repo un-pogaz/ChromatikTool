@@ -11,8 +11,11 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Enigma\Enigma.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enigma\PlugBoard.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enigma\Reflector.static.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enigma\Reflector.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enigma\Rotor.static.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enigma\Rotor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enigma\Alphabet.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enigma\WireMatrix.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FonDue.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Noise\IModule.cs" />

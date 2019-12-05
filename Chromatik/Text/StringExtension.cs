@@ -160,7 +160,7 @@ namespace System.Text
         {
             if (values == null)
                 return string.Empty;
-            return values.ToArray().ToOneString(separator);
+            return values.ToOneString(separator, StringJoinOptions.NullToEmpty);
         }
         /// <summary>
         /// Concatenates all the elements in a <see cref="string"/>, using the separator specified between each element.
@@ -185,7 +185,10 @@ namespace System.Text
         {
             if (values == null)
                 return string.Empty;
-            return values.ToArray().ToOneString(separator, oneLineOptions);
+            object[] rslt = new object[values.Count()];
+            values.ToArray().CopyTo(rslt, 0);
+
+            return rslt.ToOneString(separator, oneLineOptions);
         }
         /// <summary>
         /// Concatenates all the elements in a <see cref="string"/>, using the separator specified between each element, and applies the specified behavior for the null, empty or WhiteSpace entries.

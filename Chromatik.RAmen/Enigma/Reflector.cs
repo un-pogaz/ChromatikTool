@@ -6,32 +6,26 @@ using System.Threading.Tasks;
 
 namespace Chromatik.Cryptography.Enigma
 {
-	public class Reflector
-	{
-		public Reflector(string id)
+    sealed public partial class Reflector : Alphabet
+    {
+		public Reflector(string id, IEnumerable<char> wires) : base(wires)
 		{
-			this.Id = id;
-			this.Wires = new WireMatrix();
+			Id = id;
+			Wires = new WireMatrix(wires);
 		}
 
-		public Reflector(string id, IEnumerable<char> wires)
-		{
-			this.Id = id;
-			this.Wires = new WireMatrix(wires);
-		}
-
-		public string Id { get; private set; }
-		public WireMatrix Wires { get; private set; }
+		public string Id { get; }
+		public WireMatrix Wires { get; }
 
 		public char Process(char input)
 		{
-			var output = this.Wires.Process(input);
+			var output = Wires.Process(input);
 			return output;
 		}
 
 		public override string ToString()
 		{
-			return string.Format("Reflector {0}", this.Id);
+			return string.Format("Reflector {0}", Id);
 		}
 	}
 }

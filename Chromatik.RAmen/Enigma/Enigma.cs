@@ -12,197 +12,92 @@ namespace Chromatik.Cryptography.Enigma
 		public EnigmaException(string message) : base(message) { }
 	}
 
-    public class Enigma
+    sealed public class Enigma : Alphabet
     {
-		public static Rotor Rotor_I()
+        public Enigma(Reflector reflector, params Rotor[] rotors) : this(reflector, new PlugBoard(), rotors)
+        { }
+
+        public Enigma(Reflector reflector, PlugBoard plugBoard, params Rotor[] rotors) : base(reflector.OperatingAlphabet)
 		{
-			return new Rotor("I", "EKMFLGDQVZNTOWYHXUSPAIBRCJ", rotateAt: 'Q');
-		}
+            if (reflector.IsNull())
+                throw new ArgumentNullException(nameof(reflector));
+            Reflector = reflector;
 
-		public static Rotor Rotor_II()
-		{
-			return new Rotor("II", "AJDKSIRUXBLHWTMCQGZNPYFVOE", rotateAt: 'E');
-		}
+            if (rotors.IsNull())
+                rotors = new Rotor[0];
+            Rotors = rotors;
 
-		public static Rotor Rotor_III()
-		{
-			return new Rotor("III", "BDFHJLCPRTXVZNYEIWGAKMUSQO", rotateAt: 'V');
-		}
+            foreach (Rotor item in rotors)
+                item.RotateToPosition(item.InitialPosition);
 
-		public static Rotor Rotor_IV()
-		{
-			return new Rotor("IV", "ESOVPZJAYQUIRHXLNFTGKDCMWB", rotateAt: 'J');
-		}
-
-		public static Rotor Rotor_V()
-		{
-			return new Rotor("V", "VZBRGITYUPSDNHLXAWMJQOFECK", rotateAt: 'Z');
-		}
-
-		public static Rotor Rotor_VI()
-		{
-			return new Rotor("VI", "JPGVOUMFYQBENHZRDKASXLICTW", rotateAt: 'Z', rotateAtSecondary: 'M');
-		}
-
-		public static Rotor Rotor_VII()
-		{
-			return new Rotor("VII", "NZJHGRCXMYSWBOUFAIVLPEKQDT", rotateAt: 'Z', rotateAtSecondary: 'M');
-		}
-
-		public static Rotor Rotor_VIII()
-		{
-			return new Rotor("VIII", "FKQHTLXOCBJSPDZRAMEWNIUYGV", rotateAt: 'Z', rotateAtSecondary: 'M');
-		}
-
-		public static Reflector Reflector_A()
-		{
-			return new Reflector("A", "EJMZALYXVBWFCRQUONTSPIKHGD");
-		}
-
-		public static Reflector Reflector_B()
-		{
-			return new Reflector("B", "YRUHQSLDPXNGOKMIEBFZCWVJAT");
-		}
-
-		public static Reflector Reflector_C()
-		{
-			return new Reflector("C", "FVPJIAOYEDRZXWGCTKUQSBNMHL");
-		}
-
-		public Enigma()
-		{
-			this.PlugBoard = new PlugBoard();
-		}
-
-		public void Initialize()
-		{
-			if (Reflector == null)
-			{
-				throw new EnigmaException("Reflector not installed!");
-			}
-
-			if (Rotor_1 == null)
-			{
-				throw new EnigmaException("Rotor 1 not installed!");
-			}
-
-			if (Rotor_2 == null)
-			{
-				throw new EnigmaException("Rotor 2 not installed!");
-			}
-
-			if (Rotor_3 == null)
-			{
-				throw new EnigmaException("Rotor 3 not installed!");
-			}
-
-			this.Rotor_1.RotateToPosition(this.Rotor_1.InitialPosition);
-			this.Rotor_2.RotateToPosition(this.Rotor_2.InitialPosition);
-			this.Rotor_3.RotateToPosition(this.Rotor_3.InitialPosition);
-			if (this.Rotor_4 != null)
-			{
-				this.Rotor_4.RotateToPosition(this.Rotor_4.InitialPosition);
-			}
-		}
+            if (plugBoard == null)
+                PlugBoard = new PlugBoard();
+            else
+                PlugBoard = plugBoard;
+        }
 
 		/// <summary>
 		/// Reflector
 		/// </summary>
-		public Reflector Reflector { get; set; }
+		public Reflector Reflector { get; }
 
-		/// <summary>
-		/// Rotor 1
-		/// </summary>
-		public Rotor Rotor_1 { get; set; }
-
-		/// <summary>
-		/// Rotor 2
-		/// </summary>
-		public Rotor Rotor_2 { get; set; }
-
-		/// <summary>
-		/// Rotor 3
-		/// </summary>
-		public Rotor Rotor_3 { get; set; }
-
-		/// <summary>
-		/// Rotor 4 (Optional)
-		/// </summary>
-		public Rotor Rotor_4 { get; set; }
+        /// <summary>
+        /// Rotor 1
+        /// </summary>
+        public Rotor[] Rotors { get; }
 
 		/// <summary>
 		/// Plug Board
 		/// </summary>
-		public PlugBoard PlugBoard { get; set; }
+		public PlugBoard PlugBoard { get; }
 
 		/// <summary>
 		/// Process a key press.
 		/// </summary>
 		/// <param name="input"></param>
 		/// <returns></returns>
-		public char Input(char input)
+		public char Process(char input)
 		{
-			var working = input;
+            char working = input;
+            working = PlugBoard.Process(working);
 
-			if (!char.IsLetter(input))
-			{
-				throw new EnigmaException("Invalid character: {0}".Format(input));
-			}
-
-			if (char.IsLower(input))
-			{
-				working = char.ToUpper(input);
-			}
-
-			working = PlugBoard.Process(working);
-			
-			var should_rotate_next = Rotor_1.Rotate();
-			working = Rotor_1.ProcessLeft(working);
-
-			if (should_rotate_next)
-			{
-				should_rotate_next = Rotor_2.Rotate();
-			}
-			working = Rotor_2.ProcessLeft(working);
-
-			if (should_rotate_next)
-			{
-				should_rotate_next = Rotor_3.Rotate();
-			}
-			working = Rotor_3.ProcessLeft(working);
-
-			if (Rotor_4 != null)
-			{
-				if (should_rotate_next)
-				{
-					Rotor_4.Rotate();
-				}
-				working = Rotor_4.ProcessLeft(working);
-			}
+            bool should_rotate_next = true;
+            for (int i = 0; i < Rotors.Length; i++)
+            {
+                if (should_rotate_next)
+                    should_rotate_next = Rotors[i].Rotate();
+                working = Rotors[i].ProcessLeft(working);
+            }
 
 			working = Reflector.Process(working);
 
-			if (Rotor_4 != null)
-			{
-				working = Rotor_4.ProcessRight(working);
-			}
-
-			working = Rotor_3.ProcessRight(working);
-			working = Rotor_2.ProcessRight(working);
-			working = Rotor_1.ProcessRight(working);
+            for (int i = Rotors.Length-1; i >= 0; i--)
+                working = Rotors[i].ProcessRight(working);
 
 			working = PlugBoard.Process(working);
 
 			return working;
 		}
+        public char[] Process(char[] input)
+        {
+            for (int i = 0; i < input.Length; i++)
+                if (OperatingAlphabet.Contains(input[i]))
+                    input[i] = Process(input[i]);
+            return input;
+        }
+        public string Process(string input)
+        {
+            return Process(input.ToCharArray()).ToOneString();
+        }
+        public IEnumerable<char> Process(IEnumerable<char> input)
+        {
+            return Process(input.ToArray());
+        }
 
-		public override string ToString()
+
+        public override string ToString()
 		{
-			if (Rotor_4 != null)
-			{
-				return string.Format("{0} {1} {2} {3} {4} Plugs: {5}", Reflector.ToString(), Rotor_1.ToString(), Rotor_2.ToString(), Rotor_3.ToString(), Rotor_4.ToString(), PlugBoard.ToString());
-			}
-			return string.Format("{0} {1} {2} {3} Plugs: {4}", Reflector.ToString(), Rotor_1.ToString(), Rotor_2.ToString(), Rotor_3.ToString(), PlugBoard.ToString());
+            return Reflector.ToString() + " / " + Rotors.ToOneString<Rotor>(" / ") + " / Plugs: {4}" + PlugBoard.ToString();
 		}
 	}
 }

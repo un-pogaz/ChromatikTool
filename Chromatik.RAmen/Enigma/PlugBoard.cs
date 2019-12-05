@@ -12,27 +12,66 @@ namespace Chromatik.Cryptography.Enigma
 		public PlugBoardException(string message) : base(message) { }
 	}
 
-	public class PlugBoard
-	{
-		public PlugBoard()
-		{
-			Plugs = new Dictionary<char, char>();
-		}
+	public class PlugBoard : IReadOnlyDictionary<char, char>, IEnumerable<KeyValuePair<char, char>>, System.Collections.IEnumerable
+    {
+		public PlugBoard() : this(new Dictionary<char, char>())
+		{ }
+        public PlugBoard(IDictionary<char, char> dictionary)
+        {
+            plugs = new Dictionary<char, char>(dictionary);
+        }
 
-		public Dictionary<char, char> Plugs { get; private set; }
+        private Dictionary<char, char> plugs = new Dictionary<char, char>();
 
-		/// <summary>
-		/// Process the input character.
-		/// </summary>
-		/// <param name="input"></param>
-		/// <returns></returns>
-		public char Process(char input)
+
+        public char this[char input]
+        {
+            get { return plugs[input]; }
+        }
+        public IEnumerable<char> Keys
+        {
+            get { return plugs.Keys; }
+        }
+        public IEnumerable<char> Values
+        {
+            get { return plugs.Values; }
+        }
+        public bool ContainsKey(char key)
+        {
+            return plugs.ContainsKey(key);
+        }
+        public bool ContainsValue(char value)
+        {
+            return plugs.ContainsValue(value);
+        }
+        public bool TryGetValue(char key, out char value)
+        {
+            return plugs.TryGetValue(key, out value);
+        }
+        public int Count
+        {
+            get { return plugs.Count; }
+        }
+
+        public System.Collections.Generic.IEnumerator<KeyValuePair<char, char>> GetEnumerator()
+        {
+            return plugs.GetEnumerator();
+        }
+        System.Collections.IEnumerator GetEnumerator()
+        {
+            return plugs.GetEnumerator();
+        }
+
+        /// <summary>
+        /// Process the input character.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public char Process(char input)
 		{
 			char output;
-			if (Plugs.TryGetValue(input, out output))
-			{
+			if (plugs.TryGetValue(input, out output))
 				return output;
-			}
 			return input;
 		}
 
@@ -55,45 +94,41 @@ namespace Chromatik.Cryptography.Enigma
 				workingTo = char.ToUpper(workingTo);
 			}
 			
-			if (Plugs.ContainsKey(from))
+			if (plugs.ContainsKey(from))
 			{
-				var existingTo = this.Plugs[from];
+				var existingTo = plugs[from];
 				throw new PlugBoardException("Already mapped {0} <=> {1}".Format(from, existingTo));
 			}
-			if (Plugs.ContainsKey(to))
+			if (plugs.ContainsKey(to))
 			{
-				var existingFrom = this.Plugs[to];
+				var existingFrom = plugs[to];
 				throw new PlugBoardException("Already mapped {0} <=> {1}".Format(existingFrom, to));
 			}
 
-			Plugs.Add(workingFrom, workingTo);
-			Plugs.Add(workingTo, workingFrom);
+            plugs.Add(workingFrom, workingTo);
+            plugs.Add(workingTo, workingFrom);
 		}
 
-		/// <summary>
-		/// Removes a plug mapping
-		/// </summary>
-		/// <param name="from"></param>
-		public void RemovePlug(char from)
+        /// <summary>
+        /// Removes a plug mapping
+        /// </summary>
+        /// <param name="plug"></param>
+        public void RemovePlug(char plug)
 		{
-			if (Plugs.ContainsKey(from))
-			{
-				var to = Plugs[from];
-				Plugs.Remove(from);
-				Plugs.Remove(to);
-			}
-		}
+			if (plugs.ContainsKey(plug))
+            {
+                char to = plugs[plug];
+                plugs.Remove(plug);
+                plugs.Remove(to);
+            }
+        }
 
 		public override string ToString()
 		{
-			if(!this.Plugs.Any())
-			{
+			if(!Plugs.Any())
 				return "None";
-			}
 			else
-			{
 				return string.Join(", ", this.Plugs.Select(_ => "{0}-{1}".Format(_.Key, _.Value)));
-			}
 		}
 	}
 }

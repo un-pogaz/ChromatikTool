@@ -6,30 +6,15 @@ using System.Threading.Tasks;
 
 namespace Chromatik.Cryptography.Enigma
 {
-	public class WireMatrix
-	{
-		public const int ASCII_UPPER_A = 65;
-		public static readonly List<char> ALPHABET = new List<char>() { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
-
-		/// <summary>
-		/// Initialize the wire matrix with a random set of wires.
-		/// </summary>
-		public WireMatrix()
-		{
-			this.Wires = RandomWires();
-		}
-
+	sealed public class WireMatrix : Alphabet
+    {
 		/// <summary>
 		/// Initialize the wire matrix with a set of given wires.
 		/// </summary>
 		/// <param name="wires"></param>
-		public WireMatrix(IEnumerable<char> wires)
+		public WireMatrix(IEnumerable<char> wires) : base(wires)
 		{
-			if (wires.Count() != 26)
-			{
-				throw new EnigmaException("Invalid input wire matrix, count is not 26");
-			}
-			this.Wires = wires.ToList();
+			Wires = wires.ToList();
 		}
 
 		/// <summary>
@@ -44,61 +29,44 @@ namespace Chromatik.Cryptography.Enigma
 		/// <returns></returns>
 		public char Process(char input)
 		{
-			var asIndex = Projectcharacter(input);
+			var asIndex = ProjectCharacter(input);
 			return Wires[asIndex];
 		}
 
 		public void Rotate()
 		{
-			var elem = this.Wires[0];
-			this.Wires.RemoveAt(0);
-			this.Wires.Add(elem);
+			var elem = Wires[0];
+			Wires.RemoveAt(0);
+			Wires.Add(elem);
 		}
 
 		public WireMatrix Invert()
 		{
-			var indexMap = new Dictionary<Int32, char>();
-			for (int index = 0; index < this.Wires.Count; index++)
-			{
-				indexMap.Add(WireMatrix.Projectcharacter(this.Wires[index]), WireMatrix.ProjectIndex(index));
-			}
+			var indexMap = new Dictionary<int, char>();
+			for (int index = 0; index < Wires.Count; index++)
+				indexMap.Add(ProjectCharacter(Wires[index]), ProjectIndex(index));
 
 			return new WireMatrix(indexMap.OrderBy(_ => _.Key).Select(_ => _.Value));
 		}
 
 		/// <summary>
-		/// Return a random set of wires.
-		/// </summary>
-		/// <returns></returns>
-		public static List<char> RandomWires()
-		{
-			return ALPHABET.OrderBy(_ => System.Guid.NewGuid()).ToList();
-		}
-
-		/// <summary>
-		/// Project a character onto the range 0,25 for use in access wire matrix indexes.
+		/// Project a character onto the range use in access wire matrix indexes.
 		/// </summary>
 		/// <param name="input"></param>
 		/// <returns></returns>
-		public static int Projectcharacter(char input)
+		public int ProjectCharacter(char input)
 		{
-			if (!char.IsLetter(input))
-			{
-				throw new EnigmaException("Invalid input; {0} is not a letter".Format(input));
-			}
-
-			char working = input;
-			if (char.IsLower(working))
-			{
-				working = char.ToUpper(input);
-			}
-
-			return (int)working - ASCII_UPPER_A;
+			return (int)input - OperatingAlphabet[0];
         }
 
-		public static char ProjectIndex(Int32 index)
+        /// <summary>
+		/// Project a indexes onto the range use in access wire matrix character.
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        public char ProjectIndex(int index)
 		{
-			return (char)(index + ASCII_UPPER_A);
+			return (char)(index + OperatingAlphabet[0]);
 		}
 	}
 }
