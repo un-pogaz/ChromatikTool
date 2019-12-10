@@ -1,4 +1,4 @@
-﻿namespace MadMilkman.Ini
+﻿namespace System.Configuration
 {
     internal enum IniCommentType
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace MadMilkman.Ini
+namespace System.Configuration
 {
     /// <summary>
     /// Provides data for <see cref="IniValueBinding.Binding"/> event.

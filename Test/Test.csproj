@@ -50,10 +50,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Enigma, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>.\Enigma.dll</HintPath>
-    </Reference>
     <Reference Include="LibNoise, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\LibNoise.0.2\lib\NET45\LibNoise.dll</HintPath>
       <Private>True</Private>
@@ -116,11 +112,6 @@
       <Project>{1b81048c-2f5f-4f46-8ac4-492d100c0824}</Project>
       <Name>ChromatikTool</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Enigma.dll" />
-    <Content Include="MadMilkman.Ini.dll" />
-    <Content Include="MadMilkman.Ini.xml" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">

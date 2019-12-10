@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MadMilkman.Ini
+namespace System.Configuration
 {
     delegate bool TryParseDelegate<TDelegate>(string value, out TDelegate result);
 

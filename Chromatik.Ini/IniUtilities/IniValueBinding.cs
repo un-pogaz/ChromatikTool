@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
-namespace MadMilkman.Ini
+namespace System.Configuration
 {
     /// <summary>
     /// Represents a class that is used for binding operations, an operation in which the <see cref="IniKey">placeholder keys</see> values are replaced with an internal or external data.

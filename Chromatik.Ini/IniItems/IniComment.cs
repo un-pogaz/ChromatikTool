@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace MadMilkman.Ini
+namespace System.Configuration
 {
     /// <summary>
     /// Represents a comment object used by <see cref="IniItem"/> objects, <see cref="IniSection"/> and <see cref="IniKey"/>.

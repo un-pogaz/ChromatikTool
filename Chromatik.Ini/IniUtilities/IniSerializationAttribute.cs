@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MadMilkman.Ini
+namespace System.Configuration
 {
     /// <summary>
     /// Indicates the behavior of public property when serializing or deserializing the object that contains it.

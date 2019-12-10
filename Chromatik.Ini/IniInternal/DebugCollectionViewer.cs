@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Collections.Generic;
 
-namespace MadMilkman.Ini
+namespace System.Configuration
 {
     internal sealed class DebugCollectionViewer<T>
     {

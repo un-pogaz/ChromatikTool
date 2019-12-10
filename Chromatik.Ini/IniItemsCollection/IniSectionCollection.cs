@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace MadMilkman.Ini
+namespace System.Configuration
 {
     /// <summary>
     /// Represents a collection of <see cref="IniSection"/> items.

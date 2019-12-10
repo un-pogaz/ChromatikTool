@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace MadMilkman.Ini
+namespace System.Configuration
 {
     /// <summary>
     /// Represents a base class for INI content items, <see cref="IniSection"/> and <see cref="IniKey"/>.

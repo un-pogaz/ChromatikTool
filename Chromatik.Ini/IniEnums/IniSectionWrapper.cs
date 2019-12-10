@@ -1,4 +1,4 @@
-﻿namespace MadMilkman.Ini
+﻿namespace System.Configuration
 {
     /// <summary>
     /// Defines <see cref="IniSection">section's</see> wrapper characters around its name.

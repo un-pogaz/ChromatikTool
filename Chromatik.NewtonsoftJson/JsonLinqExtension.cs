@@ -8,6 +8,9 @@ using Newtonsoft.Json.Linq;
 
 namespace Newtonsoft.Json.Linq
 {
+    /// <summary>
+    /// Static class extension for <see cref="JObject"/>
+    /// </summary>
     static public class JsonLinqExtension
     {
         /// <summary>

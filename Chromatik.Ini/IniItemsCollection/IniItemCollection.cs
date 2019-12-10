@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace MadMilkman.Ini
+namespace System.Configuration
 {
     /// <summary>
     /// Represents a base generic class for INI content item collections, <see cref="IniSectionCollection"/> and <see cref="IniKeyCollection"/>.

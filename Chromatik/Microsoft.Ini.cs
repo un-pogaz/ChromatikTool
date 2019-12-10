@@ -4,13 +4,14 @@ using System.Text;
 using System.Runtime.InteropServices;
 using System.Collections.Generic;
 
-namespace System.Configuration
+namespace Microsoft.Win32
 {
     /// <summary>
     /// Represent a INI file on the system and provide the methods to interact with it.
     /// </summary>
     public class Ini
     {
+
         /// <summary>
         /// Copies a string into the specified section of an initialization file.
         /// </summary>
@@ -119,7 +120,7 @@ namespace System.Configuration
         public decimal ReadDecimal(string section, string key)
         {
             string value = ReadString(section, key);
-            return decimal.Parse(value.Trim(), Globalization.CultureInfo.InvariantCulture);
+            return decimal.Parse(value.Trim(), System.Globalization.CultureInfo.InvariantCulture);
         }
         /// <summary>
         /// Read a <see cref="double"/> value
@@ -130,7 +131,7 @@ namespace System.Configuration
         public double ReadDouble(string section, string key)
         {
             string value = ReadString(section, key);
-            return double.Parse(value.Trim(), Globalization.CultureInfo.InvariantCulture);
+            return double.Parse(value.Trim(), System.Globalization.CultureInfo.InvariantCulture);
         }
         /// <summary>
         /// Read a <see cref="float"/> value
@@ -141,7 +142,7 @@ namespace System.Configuration
         public float ReadFloat(string section, string key)
         {
             string value = ReadString(section, key);
-            return float.Parse(value, Globalization.CultureInfo.InvariantCulture);
+            return float.Parse(value, System.Globalization.CultureInfo.InvariantCulture);
         }
         /// <summary>
         /// Read a <see cref="int"/> value
@@ -163,7 +164,7 @@ namespace System.Configuration
         public DateTime ReadDateTime(string section, string key)
         {
             string value = ReadString(section, key);
-            return DateTime.ParseExact(value, DATETIME_MASK, Globalization.CultureInfo.InvariantCulture);
+            return DateTime.ParseExact(value, DATETIME_MASK, System.Globalization.CultureInfo.InvariantCulture);
         }
         /// <summary>
         /// Read a Date value (yyyy/MM/dd)
@@ -174,7 +175,7 @@ namespace System.Configuration
         public DateTime ReadDate(string section, string key)
         {
             string value = ReadString(section, key);
-            return DateTime.ParseExact(value, DATE_MASK, Globalization.CultureInfo.InvariantCulture);
+            return DateTime.ParseExact(value, DATE_MASK, System.Globalization.CultureInfo.InvariantCulture);
         }
         /// <summary>
         /// Write a <see cref="string"/> value
@@ -209,7 +210,7 @@ namespace System.Configuration
         /// <returns></returns>
         public bool WriteDecimal(string section, string key, decimal value)
         {
-            return WriteString(section, key, value.ToString(Globalization.CultureInfo.InvariantCulture));
+            return WriteString(section, key, value.ToString(System.Globalization.CultureInfo.InvariantCulture));
         }
         /// <summary>
         /// Write a <see cref="double"/> value
@@ -220,7 +221,7 @@ namespace System.Configuration
         /// <returns></returns>
         public bool WriteDouble(string section, string key, double value)
         {
-            return WriteString(section, key, value.ToString(Globalization.CultureInfo.InvariantCulture));
+            return WriteString(section, key, value.ToString(System.Globalization.CultureInfo.InvariantCulture));
         }
         /// <summary>
         /// Write a <see cref="float"/> value
@@ -231,7 +232,7 @@ namespace System.Configuration
         /// <returns></returns>
         public bool WriteFloat(string section, string key, float value)
         {
-            return WriteString(section, key, value.ToString(Globalization.CultureInfo.InvariantCulture));
+            return WriteString(section, key, value.ToString(System.Globalization.CultureInfo.InvariantCulture));
         }
         /// <summary>
         /// Write a <see cref="int"/> value

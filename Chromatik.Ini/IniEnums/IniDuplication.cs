@@ -1,4 +1,4 @@
-﻿namespace MadMilkman.Ini
+﻿namespace System.Configuration
 {
     /// <summary>
     /// Defines a behaviour for duplicate <see cref="IniItem.Name"/> occurences.

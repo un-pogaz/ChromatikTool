@@ -17,8 +17,9 @@
 using System;
 using System.IO;
 using System.Diagnostics;
+using System.Configuration;
 
-namespace MadMilkman.Ini
+namespace System.Configuration
 {
     /// <summary>
     /// In-memory representation of an INI file.

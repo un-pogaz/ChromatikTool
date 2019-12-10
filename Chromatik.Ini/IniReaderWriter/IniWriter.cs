@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace MadMilkman.Ini
+namespace System.Configuration
 {
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1001:TypesThatOwnDisposableFieldsShouldBeDisposable",
      Justification = "StringWriter doesn't have unmanaged resources.")]

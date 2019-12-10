@@ -44,6 +44,7 @@ namespace Newtonsoft.Json.Linq
         /// Load a JSON from a <see cref="string"/>
         /// </summary>
         /// <param name="json"></param>
+        /// <param name="setting"></param>
         /// <returns></returns>
         static public JObject ObjectJSON(string json, JsonSerializerSettings setting)
         {

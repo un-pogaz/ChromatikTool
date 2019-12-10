@@ -5,20 +5,34 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Chromatik.Cryptography.Enigma
+namespace System.Security.Cryptography.Enigma
 {
-	public class PlugBoardException : EnigmaException
-	{
-		public PlugBoardException() : base() { }
-		public PlugBoardException(string message) : base(message) { }
-	}
-
-	public class PlugBoard : ReadOnlyDictionary<char, char>
+    /// <summary>
+    /// Represent a Plug Board which will switch 2 characters.
+    /// </summary>
+    [System.Diagnostics.DebuggerDisplay(null)]
+    sealed public class PlugBoard : ReadOnlyDictionary<char, char>
     {
+        /// <summary>
+        /// Initialize a empty Plug Board.
+        /// </summary>
 		public PlugBoard() : this(new Dictionary<char, char>())
 		{ }
-        public PlugBoard(IDictionary<char, char> dictionary) : base(dictionary)
-        { }
+        /// <summary>
+        /// Initialize a Plug Board with a specified plug.
+        /// </summary>
+        public PlugBoard(IDictionary<char, char> dictionary) : base(new Dictionary<char, char>())
+        {
+            foreach (var item in dictionary)
+            {
+                if (ContainsKey(item.Value) && this[item.Value] == item.Key)
+                {
+                    // Already mapped
+                }
+                else
+                    AddPlug(item.Key, item.Value);
+            }
+        }
         /// <summary>
         /// Process the input character.
         /// </summary>
@@ -40,9 +54,9 @@ namespace Chromatik.Cryptography.Enigma
 		public void AddPlug(char from, char to)
 		{
 			if (ContainsKey(from))
-				throw new PlugBoardException("Already mapped {0} <=> {1}".Format(from, Dictionary[from]));
+				throw new ArgumentException("Already mapped {0} <=> {1}".Format(from, Dictionary[from]), nameof(from));
 			if (ContainsKey(to))
-				throw new PlugBoardException("Already mapped {0} <=> {1}".Format(Dictionary[to], to));
+				throw new ArgumentException("Already mapped {0} <=> {1}".Format(Dictionary[to], to), nameof(to));
 
             Dictionary.Add(from, to);
             Dictionary.Add(to, from);

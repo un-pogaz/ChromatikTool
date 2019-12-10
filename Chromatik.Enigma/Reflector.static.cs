@@ -4,20 +4,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Chromatik.Cryptography.Enigma
+namespace System.Security.Cryptography.Enigma
 {
+    /// <summary>
+    /// Represent a reflector for a <see cref="Enigma"/>.
+    /// </summary>
     sealed public partial class Reflector
     {
+        /// <summary>
+        /// Standard reflector A
+        /// </summary>
         public static Reflector A
         {
             get { return new Reflector("A", "EJMZALYXVBWFCRQUONTSPIKHGD"); }
         }
-
+        /// <summary>
+        /// Standard reflector B
+        /// </summary>
         public static Reflector B
         {
             get { return new Reflector("B", "YRUHQSLDPXNGOKMIEBFZCWVJAT"); }
         }
-
+        /// <summary>
+        /// Standard reflector C
+        /// </summary>
         public static Reflector C
         {
             get { return new Reflector("C", "FVPJIAOYEDRZXWGCTKUQSBNMHL"); }

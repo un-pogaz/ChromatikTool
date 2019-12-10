@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Reflection;
 
-namespace MadMilkman.Ini
+namespace System.Configuration
 {
     internal static class IniSerializer
     {

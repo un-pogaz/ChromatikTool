@@ -3,7 +3,7 @@ using System.Text;
 using System.IO;
 using System.Security.Cryptography;
 
-namespace MadMilkman.Ini
+namespace System.Configuration
 {
     internal static class IniEncryptor
     {

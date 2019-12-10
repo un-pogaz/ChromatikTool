@@ -1,4 +1,4 @@
-﻿namespace MadMilkman.Ini
+﻿namespace System.Configuration
 {
     /// <summary>
     /// Defines <see cref="IniComment">comment's</see> starting character.

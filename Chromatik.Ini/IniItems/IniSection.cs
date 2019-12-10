@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Collections.Generic;
 
-namespace MadMilkman.Ini
+namespace System.Configuration
 {
     /// <summary>
     /// Represents a section item of the INI file with name and keys content.

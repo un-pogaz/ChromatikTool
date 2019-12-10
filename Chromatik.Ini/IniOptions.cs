@@ -17,7 +17,7 @@
 using System.Text;
 using System.Diagnostics;
 
-namespace MadMilkman.Ini
+namespace System.Configuration
 {
     /// <summary>
     /// Represents a class that defines INI file's format, stores properties used for both reading and writing a file.

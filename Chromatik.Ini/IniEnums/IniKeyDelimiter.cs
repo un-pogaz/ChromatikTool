@@ -1,4 +1,4 @@
-﻿namespace MadMilkman.Ini
+﻿namespace System.Configuration
 {
     /// <summary>
     /// Defines <see cref="IniKey">key's</see> name and value delimiter character.
