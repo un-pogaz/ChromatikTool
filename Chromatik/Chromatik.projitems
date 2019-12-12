@@ -26,6 +26,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Reflection\TypeExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Settings.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Text\UTF8SansBomEncoding.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Text\ByteCharacter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Text\WhiteCharacter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Text\ControlCharacter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Text\RegexHelper.cs" />

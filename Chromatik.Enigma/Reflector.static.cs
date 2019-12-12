@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace System.Security.Cryptography.Enigma
+namespace System.Security.Cryptography.Machine
 {
     /// <summary>
     /// Represent a reflector for a <see cref="Enigma"/>.
@@ -31,6 +31,17 @@ namespace System.Security.Cryptography.Enigma
         public static Reflector C
         {
             get { return new Reflector("C", "FVPJIAOYEDRZXWGCTKUQSBNMHL"); }
+        }
+
+        static public class Byte
+        {
+            /// <summary>
+            /// Byte reflector C
+            /// </summary>
+            public static Reflector C
+            {
+                get { return new Reflector("C", "FVPJIAOYEDRZXWGCTKUQSBNMHL"); }
+            }
         }
     }
 }

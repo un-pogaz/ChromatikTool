@@ -6,7 +6,7 @@
     <SharedGUID>91df0aad-8fb3-4e9a-8540-eb9560ca7ebf</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
-    <Import_RootNamespace>Chromatik.Cryptography.Enigma</Import_RootNamespace>
+    <Import_RootNamespace>Chromatik.Cryptography.Machine</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Alphabet.cs" />

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace System.Security.Cryptography.Enigma
+namespace System.Security.Cryptography.Machine
 {
     /// <summary>
     /// Represent a wire matrix with a set of given wires.
@@ -59,14 +59,14 @@ namespace System.Security.Cryptography.Enigma
 			return new WireMatrix(indexMap.OrderBy(_ => _.Key).Select(_ => _.Value));
 		}
 
-		/// <summary>
-		/// Project a character onto the range use in access wire matrix indexes.
-		/// </summary>
-		/// <param name="input"></param>
-		/// <returns></returns>
-		public int ProjectCharacter(char input)
+        /// <summary>
+        /// Project a character onto the range use in access wire matrix indexes.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public int ProjectCharacter(char input)
 		{
-			return (int)input - OperatingAlphabet[0];
+            return OperatingAlphabet.ToList().IndexOf(input); ;
         }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace System.Security.Cryptography.Enigma
         /// <returns></returns>
         public char ProjectIndex(int index)
 		{
-			return (char)(index + OperatingAlphabet[0]);
+			return OperatingAlphabet[index];
 		}
 	}
 }

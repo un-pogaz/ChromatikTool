@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace System.Security.Cryptography.Enigma
+namespace System.Security.Cryptography.Machine
 {
     /// <summary>
     /// Represent famous WW2 cryptography machine.
     /// </summary>
-    sealed public class Enigma : Alphabet
+    sealed public class Enigma : Alphabet, ICloneable
     {
         /// <summary>
         /// Initialize a Enigma machine.
@@ -120,11 +120,56 @@ namespace System.Security.Cryptography.Enigma
         {
             return Process(input.ToArray());
         }
+        /// <summary>
+        /// Reset the enigma machine (all rotor to the initial position).
+        /// </summary>
+        public void Reset()
+        {
+            foreach (Rotor rotor in Rotors)
+                rotor.Reset();
+        }
 
         /// <summary></summary>
         public override string ToString()
 		{
             return Reflector.ToString() + " / " + Rotors.ToOneString<Rotor>(" / ") + " / Plugs: " + PlugBoard.ToString();
-		}
-	}
+        }
+
+        /// <summary>
+        /// Creates a duplicate of this Enigma.
+        /// </summary>
+        /// <returns></returns>
+        public Enigma Clone()
+        {
+            return CloneEnigma(false);
+        }
+        /// <summary>
+        /// Creates a duplicate of this Enigma and reset then.
+        /// </summary>
+        /// <returns></returns>
+        public Enigma Clone(bool andReset)
+        {
+            return CloneEnigma(andReset);
+        }
+        /// <summary>
+        /// Creates a duplicate of this Enigma.
+        /// </summary>
+        /// <returns></returns>
+        object ICloneable.Clone()
+        {
+            return CloneEnigma(false);
+        }
+        /// <summary>
+        /// Creates a duplicate of this Enigma and reset then.
+        /// </summary>
+        /// <returns></returns>
+        public Enigma CloneEnigma(bool andReset)
+        {
+            List<Rotor> lst = new List<Rotor>();
+            foreach (Rotor rotor in Rotors)
+                lst.Add(rotor.Clone(andReset));
+
+            return new Enigma(Reflector.Clone(), PlugBoard.Clone(), lst.ToArray());
+        }
+    }
 }

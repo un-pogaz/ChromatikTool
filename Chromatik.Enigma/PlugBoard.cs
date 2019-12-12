@@ -5,18 +5,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace System.Security.Cryptography.Enigma
+namespace System.Security.Cryptography.Machine
 {
     /// <summary>
     /// Represent a Plug Board which will switch 2 characters.
     /// </summary>
     [System.Diagnostics.DebuggerDisplay(null)]
-    sealed public class PlugBoard : ReadOnlyDictionary<char, char>
+    sealed public class PlugBoard : ReadOnlyDictionary<char, char>, ICloneable
     {
         /// <summary>
         /// Initialize a empty Plug Board.
         /// </summary>
-		public PlugBoard() : this(new Dictionary<char, char>())
+        public PlugBoard() : this(new Dictionary<char, char>())
 		{ }
         /// <summary>
         /// Initialize a Plug Board with a specified plug.
@@ -82,6 +82,31 @@ namespace System.Security.Cryptography.Enigma
                 return "None";
             else
                 return Dictionary.Select(pair => "{0}-{1}".Format(pair.Key, pair.Value)).Join(", ");
-		}
-	}
+        }
+
+        /// <summary>
+        /// Creates a duplicate of this rotor
+        /// </summary>
+        /// <returns></returns>
+        public PlugBoard Clone()
+        {
+            return ClonePlugBoard();
+        }
+        /// <summary>
+        /// Creates a duplicate of this rotor
+        /// </summary>
+        /// <returns></returns>
+        object ICloneable.Clone()
+        {
+            return ClonePlugBoard();
+        }
+        /// <summary>
+        /// Creates a duplicate of this rotor
+        /// </summary>
+        /// <returns></returns>
+        public PlugBoard ClonePlugBoard()
+        {
+            return new PlugBoard(this.Dictionary);
+        }
+    }
 }

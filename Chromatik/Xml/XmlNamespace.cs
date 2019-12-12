@@ -79,7 +79,9 @@ namespace System.Xml
         /// </summary>
         static public XmlNamespace Calibre { get; } = new XmlNamespace("calibre", @"https://sw.kovidgoyal.net/calibre/");
 
-
+        /// <summary>
+        /// Standard namespace for IDpub software
+        /// </summary>
         static public XmlNamespace IDpub { get; } = new XmlNamespace("IDpub", @"http://software.chromatik.com/IDpub/");
     }
 }

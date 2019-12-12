@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace System.Security.Cryptography.Enigma
+namespace System.Security.Cryptography.Machine
 {
     /// <summary>
     /// Class for operating within the a limit characters range.
@@ -17,17 +17,25 @@ namespace System.Security.Cryptography.Enigma
         /// <param name="alphabet"></param>
         internal Alphabet(IEnumerable<char> alphabet)
         {
+            source_alphabet = alphabet;
+
             List<char> rslt = alphabet.ToList();
             if (rslt.Count == 0)
                 throw new ArgumentException("The alphabet can't be empty.", nameof(alphabet));
+            if (rslt.Count != rslt.Distinct().Count())
+                throw new ArgumentException("The alphabet contains a duplicated charactere.", nameof(alphabet));
+
             rslt.Sort();
-            OperatingAlphabet = rslt.ToArray();
+            _operatingAlphabet = rslt.ToArray();
         }
+
+        protected IEnumerable<char> source_alphabet;
 
         /// <summary>
         /// The mapping of input wire to output wire.
         /// </summary>
-        public char[] OperatingAlphabet { get; }
+        public IReadOnlyList<char> OperatingAlphabet { get { return _operatingAlphabet; } }
+        private char[] _operatingAlphabet;
 
         /// <summary>
         /// Test if a <see cref="char"/> is contains in the operating alphabet.
@@ -64,10 +72,10 @@ namespace System.Security.Cryptography.Enigma
         {
             if (obj == null)
                 return false;
-            if (OperatingAlphabet.Length != obj.OperatingAlphabet.Length)
+            if (OperatingAlphabet.Count != obj.OperatingAlphabet.Count)
                 return false;
 
-            for (int i = 0; i < OperatingAlphabet.Length; i++)
+            for (int i = 0; i < OperatingAlphabet.Count; i++)
             {
                 if (OperatingAlphabet[i] != obj.OperatingAlphabet[i])
                     return false;

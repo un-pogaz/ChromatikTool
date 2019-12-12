@@ -4,44 +4,62 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace System.Security.Cryptography.Enigma
+namespace System.Security.Cryptography.Machine
 {
-	sealed public partial class Rotor : Alphabet
+	sealed public partial class Rotor : Alphabet, ICloneable
     {
+        private static ArgumentException ExceptionInvalidChar(string name)
+        {
+            return new ArgumentException("The \"" + name + "\" character is not contained in the operating alphabet.", name);
+        }
+
         /// <summary>
         /// Initialize a rotor with a set of given wires.
         /// </summary>
         public Rotor(string id, IEnumerable<char> wires) : this(id, wires, null)
+        { }
+        /// <summary>
+        /// Initialize a rotor with a set of given wires.
+        /// </summary>
+        public Rotor(string id, IEnumerable<char> wires, char? initialPosition) : this(id, wires, initialPosition, null)
 		{ }
         /// <summary>
         /// Initialize a rotor with a set of given wires and the specified rotate.
         /// </summary>
-        public Rotor(string id, IEnumerable<char> wires, char? rotateAt) : this(id, wires, rotateAt, null)
+        public Rotor(string id, IEnumerable<char> wires, char? initialPosition, char? rotateAt) : this(id, wires, initialPosition, rotateAt, null)
         { }
         /// <summary>
         /// Initialize a rotor with a set of given wires and the specifieds rotates.
         /// </summary>
-		public Rotor(string id, IEnumerable<char> wires, char? rotateAt, char? rotateAtSecondary) : base(wires)
+		public Rotor(string id, IEnumerable<char> wires, char? initialPosition, char? rotateAt, char? rotateAtSecondary) : base(wires)
         {
+            if (id.IsNullOrWhiteSpace())
+                throw new ArgumentNullException("The "+ nameof(id) + " can be null, Empty or WhiteSpace.", nameof(id));
 			Id = id;
             
             WiresLeft = new WireMatrix(wires);
             WiresRight = WiresLeft.Invert();
+
+            if (!AlphabetContains(rotateAt))
+                throw ExceptionInvalidChar(nameof(rotateAt));
+
             if (rotateAt == null)
                 RotateAt = OperatingAlphabet[0];
             else
                 RotateAt = rotateAt;
 
+            if (RotateAtSecondary != null && !AlphabetContains(rotateAtSecondary))
+                throw ExceptionInvalidChar(nameof(rotateAtSecondary));
+
             RotateAtSecondary = rotateAtSecondary;
 
-            if (!AlphabetContains(RotateAt))
-                throw new ArgumentException("The \""+ nameof(RotateAt) + "\" character is not contained in the operating alphabet.", nameof(RotateAt));
+            if (RotateAtSecondary != null && !AlphabetContains(initialPosition))
+                throw ExceptionInvalidChar(nameof(initialPosition));
 
-            if (RotateAtSecondary != null && !AlphabetContains(RotateAtSecondary))
-                throw new ArgumentException("The \"" + nameof(RotateAtSecondary) + "\" character is not contained in the operating alphabet.", nameof(RotateAtSecondary));
-
-            InitialPosition = OperatingAlphabet[0];
-            OffsetPosition = OperatingAlphabet[0];
+            if (initialPosition == null)
+                InitialPosition = OperatingAlphabet[0];
+            else
+                InitialPosition = initialPosition.GetValueOrDefault();
         }
         /// <summary>
         /// Identifiant of the rotor.
@@ -59,16 +77,26 @@ namespace System.Security.Cryptography.Enigma
         /// <summary>
         /// Initial position of the rotor
         /// </summary>
-        public char InitialPosition { get; set; }
+        public char InitialPosition
+        {
+            set
+            {
+                _initialPosition = value;
+                RotateToPosition(value);
+            }
+            get { return _initialPosition; }
+        }
+        char _initialPosition;
+
         /// <summary>
         /// Offset position of the rotor
         /// </summary>
-		public char OffsetPosition { get; set; }
+		public char OffsetPosition { get; private set; }
 
         /// <summary></summary>
-		public char? RotateAt { get; }
+		public char? RotateAt { get; set; }
         /// <summary></summary>
-		public char? RotateAtSecondary { get; }
+		public char? RotateAtSecondary { get; set; }
 
         /// <summary>
         /// Rotate the rotor to the specified position.
@@ -76,14 +104,14 @@ namespace System.Security.Cryptography.Enigma
         /// <returns></returns>
         public void RotateToPosition(char position)
 		{
-			if(!char.IsLetter(position))
+			if(!AlphabetContains(position))
 				throw new ArgumentException("Invalid rotor position: {0}".Format(position), nameof(position));
 
             int positionIndex = WiresLeft.ProjectCharacter(position);
 			int offsetIndex = WiresLeft.ProjectCharacter(OffsetPosition);
             int delta = positionIndex - offsetIndex;
 			if (delta < 0)
-				delta = OperatingAlphabet.Length + delta;
+				delta = OperatingAlphabet.Count + delta;
 
 			for(int currentIndex = 0; currentIndex < delta; currentIndex++)
 			{
@@ -91,7 +119,7 @@ namespace System.Security.Cryptography.Enigma
 				WiresRight = WiresLeft.Invert();
 
 				offsetIndex = offsetIndex + 1;
-				if (offsetIndex >= OperatingAlphabet.Length)
+				if (offsetIndex >= OperatingAlphabet.Count)
 					offsetIndex = 0;
 
 				OffsetPosition = WiresLeft.ProjectIndex(offsetIndex);
@@ -110,7 +138,7 @@ namespace System.Security.Cryptography.Enigma
 
 			int offsetIndex = WiresLeft.ProjectCharacter(OffsetPosition);
 			offsetIndex = offsetIndex + 1;
-			if (offsetIndex >= OperatingAlphabet.Length)
+			if (offsetIndex >= OperatingAlphabet.Count)
 				offsetIndex = 0;
 			OffsetPosition = WiresLeft.ProjectIndex(offsetIndex);
 
@@ -137,12 +165,55 @@ namespace System.Security.Cryptography.Enigma
 		public char ProcessRight(char input)
 		{	
 			return WiresRight.Process(input);
-		}
+        }
+        /// <summary>
+        /// Reset the rotor to the initial position.
+        /// </summary>
+        public void Reset()
+        {
+            RotateToPosition(InitialPosition);
+        }
 
         /// <summary></summary>
 		public override string ToString()
 		{
 			return string.Format("Rotor Id: {0} Initial: {1} Offset: {2}", Id, InitialPosition, OffsetPosition);
 		}
-	}
+
+        /// <summary>
+        /// Creates a duplicate of this rotor
+        /// </summary>
+        /// <returns></returns>
+        public Rotor Clone()
+        {
+            return CloneRotor(false);
+        }
+        /// <summary>
+        /// Creates a duplicate of this rotor and reset then.
+        /// </summary>
+        /// <returns></returns>
+        public Rotor Clone(bool andReset)
+        {
+            return CloneRotor(andReset);
+        }
+        /// <summary>
+        /// Creates a duplicate of this rotor
+        /// </summary>
+        /// <returns></returns>
+        object ICloneable.Clone()
+        {
+            return CloneRotor(false);
+        }
+        /// <summary>
+        /// Creates a duplicate of this rotor and reset then.
+        /// </summary>
+        /// <returns></returns>
+        public Rotor CloneRotor(bool andReset)
+        {
+            Rotor rslt = new Rotor(Id, source_alphabet, InitialPosition, RotateAt, RotateAtSecondary);
+            if (!andReset)
+                rslt.RotateToPosition(OffsetPosition);
+            return rslt;
+        }
+    }
 }

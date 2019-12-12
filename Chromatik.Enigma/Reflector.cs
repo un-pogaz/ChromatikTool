@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace System.Security.Cryptography.Enigma
+namespace System.Security.Cryptography.Machine
 {
-    sealed public partial class Reflector : Alphabet
+    sealed public partial class Reflector : Alphabet, ICloneable
     {
         /// <summary>
         /// Initialize a reflector with a set of given wires.
@@ -39,6 +39,31 @@ namespace System.Security.Cryptography.Enigma
 		public override string ToString()
 		{
 			return string.Format("Reflector {0}", Id);
-		}
-	}
+        }
+
+        /// <summary>
+        /// Creates a duplicate of this rotor
+        /// </summary>
+        /// <returns></returns>
+        public Reflector Clone()
+        {
+            return CloneReflector();
+        }
+        /// <summary>
+        /// Creates a duplicate of this rotor
+        /// </summary>
+        /// <returns></returns>
+        object ICloneable.Clone()
+        {
+            return CloneReflector();
+        }
+        /// <summary>
+        /// Creates a duplicate of this rotor
+        /// </summary>
+        /// <returns></returns>
+        public Reflector CloneReflector()
+        {
+            return new Reflector(Id, source_alphabet);
+        }
+    }
 }

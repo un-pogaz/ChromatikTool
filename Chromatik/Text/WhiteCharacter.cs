@@ -208,6 +208,20 @@ namespace System.Text
         };
 
         /// <summary>
+        /// char array of UnicodeMarks
+        /// </summary>
+        static public char[] UnicodeMarks { get; } = new char[]
+        {
+            UnicodeMark.FTRM,
+            UnicodeMark.RTLM,
+            UnicodeMark.LTRE,
+            UnicodeMark.RTLE,
+            UnicodeMark.PDF,
+            UnicodeMark.LTRO,
+            UnicodeMark.RTLO,
+        };
+
+        /// <summary>
         /// End of line char
         /// </summary>
         static public char[] EndLineCharacters { get; } = new char[]
@@ -221,8 +235,21 @@ namespace System.Text
         };
 
         /// <summary>
+        /// End of line for Windows
+        /// </summary>
+        static public string EndLineWindows { get; } = CR.ToString() + LF.ToString();
+        /// <summary>
+        /// End of line for Linux
+        /// </summary>
+        static public string EndLineLinux { get; } = LF.ToString();
+        /// <summary>
+        /// End of line for Mac
+        /// </summary>
+        static public string EndLineMac { get; } = CR.ToString();
+
+        /// <summary>
         /// End of line string
         /// </summary>
-        static public string[] EndLineString { get; } = EndLineCharacters.ToStringArray().Concat(CR.ToString() + LF.ToString());
+        static public string[] EndLineString { get; } = new string[] { EndLineWindows }.Concat(EndLineCharacters.ToStringArray());
     }
 }

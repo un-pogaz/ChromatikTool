@@ -13,7 +13,7 @@ using System.Reflection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Configuration;
-using System.Security.Cryptography.Enigma;
+using System.Security.Cryptography.Machine;
 
 
 namespace Test
@@ -26,11 +26,17 @@ namespace Test
         [STAThread]
         static void Main()
         {
-            Enigma enigma1 = new Enigma(Reflector.B, Rotor.I, Rotor.II, Rotor.III);
+            Rotor Ia = Rotor.I;
+            Ia.InitialPosition = Ia.OperatingAlphabet[5];
+            Hexa h = new Hexa(byte.MaxValue);
+
+            Enigma enigma1 = new Enigma(Reflector.B, Ia, Rotor.II, Rotor.III);
             string test = enigma1.Process("HELLO WORLD !");
-            Enigma enigma2 = new Enigma(Reflector.B, Rotor.I, Rotor.II, Rotor.III);
-            string rslt = enigma2.Process(test);
+            enigma1.Reset();
+            string rslt0 = enigma1.Process(test);
             
+            Enigma enigma3 = enigma1.Clone(true);
+            string rslt3 = enigma3.Process(test);
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
