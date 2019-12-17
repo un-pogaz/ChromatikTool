@@ -31,6 +31,7 @@ namespace Test
             Hexa h = new Hexa(byte.MaxValue);
 
             Enigma enigma1 = new Enigma(Reflector.B, Ia, RotorEnigma.II, RotorEnigma.VIII);
+            enigma1.ToString();
             string test = enigma1.Process("HELLO WORLD !");
             enigma1.Reset();
             string rslt0 = enigma1.Process(test);
@@ -41,10 +42,13 @@ namespace Test
             XmlDocument xml = XmlCreate.DocumentXML("<xml><span>kkkkkkk</span> <span de=\"\">yyyy</span> 65246541 <span>sdfwsfd</span></xml>");
             renameXMLNode(xml, "span", "stripspan");
 
+            string ddd = xml.OuterXml.Regex("<(|/)stripspan>", "");
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
         }
+
         public static void renameXMLNode(XmlNode node, string oldName, string newName)
         {
             XmlDocument doc;

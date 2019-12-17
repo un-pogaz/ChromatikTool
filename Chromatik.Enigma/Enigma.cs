@@ -125,7 +125,7 @@ namespace System.Security.Cryptography.Machine
         /// <summary></summary>
         public override string ToString()
 		{
-            return Reflector.ToString() + " / " + Rotors.ToOneString<RotorEnigma>(" / ") + " / Plugs: " + PlugBoard.ToString();
+            return Reflector.ToString() + " / " + Rotors.ToOneString(" / ") + " / Plugs: " + PlugBoard.ToString();
         }
 
         /// <summary>

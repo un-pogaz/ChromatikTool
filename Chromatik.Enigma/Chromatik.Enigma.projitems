@@ -10,10 +10,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Alphabet.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)EnigmaII.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Kraken.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MarkMark.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enigma.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IMachine.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ModuleEnigma.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Module.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PlugBoard.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Reflector.cs" />

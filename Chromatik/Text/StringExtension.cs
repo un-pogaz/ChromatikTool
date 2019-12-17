@@ -60,96 +60,7 @@ namespace System.Text
         {
             return input.Regex("(" + WhiteCharacter.EndLineString.Join("|") + ")", "\n");
         }
-        
-        /// <summary>
-        /// Concatenates the members of a <see cref="IEnumerable{T}"/> collection built of <see cref="string"/> type, using the separator specified between each member.
-        /// </summary>
-        /// <param name="values">Collection that contains the chains to be concatenated.</param>
-        /// <param name="separator">String to use as separator. Separator is included in the returned string only if values contains several elements.</param>
-        /// <returns>String composed of the value elements delimited by the separator. If values is an empty array, the method returns <see cref="string.Empty"/>.</returns>
-        static public string Join(this IEnumerable<string> values, string separator)
-        {
-            return values.ToArray().Join(separator);
-        }
-        /// <summary>
-        /// Concatenates all the elements of a <see cref="string"/> array, using the separator specified between each element.
-        /// </summary>
-        /// <param name="values">Array containing the elements to be concatenated.</param>
-        /// <param name="separator">String to use as separator. Separator is included in the returned string only if value contains several elements.</param>
-        /// <returns>String composed of the value elements delimited by the separator. If values is an empty array, the method returns <see cref="string.Empty"/>.</returns>
-        static public string Join(this string[] values, string separator)
-        {
-            return values.Join(separator, StringJoinOptions.NullToEmpty);
-        }
-        /// <summary>
-        /// Concatenates the members of a <see cref="IEnumerable{T}"/> collection built of <see cref="string"/> type, using the separator specified between each member, and applies the specified behavior for the null, empty or WhiteSpace entries.
-        /// </summary>
-        /// <param name="values">Collection that contains the chains to be concatenated.</param>
-        /// <param name="separator">String to use as separator. Separator is included in the returned string only if values contains several elements.</param>
-        /// <param name="oneLineOptions">Behaviour to be use for the null, Empty or WhiteSpace entries.</param>
-        /// <returns>String composed of the value elements delimited by the separator. If values is an empty array, the method returns <see cref="string.Empty"/>.</returns>
-        static public string Join(this IEnumerable<string> values, string separator, StringJoinOptions oneLineOptions)
-        {
-            return values.ToArray().Join(separator, oneLineOptions);
-        }
-        /// <summary>
-        /// Concatenates all the elements of a <see cref="string"/> array, using the separator specified between each element, and applies the specified behavior for the null, empty or WhiteSpace entries.
-        /// </summary>
-        /// <param name="values">Array containing the elements to be concatenated.</param>
-        /// <param name="separator">String to use as separator. Separator is included in the returned string only if values contains several elements.</param>
-        /// <param name="oneLineOptions">Behaviour to be use for the null, Empty or WhiteSpace entries.</param>
-        /// <returns>String composed of the value elements delimited by the separator. If values is an empty array, the method returns <see cref="string.Empty"/>.</returns>
-        static public string Join(this string[] values, string separator, StringJoinOptions oneLineOptions)
-        {
-            if (values == null || values.Length == 0)
-                return string.Empty;
 
-            if (values.Length == 1)
-            {
-                if (values != null)
-                    return values[0].ToString();
-                else
-                    return string.Empty;
-            }
-
-            if (separator == null)
-                separator = string.Empty;
-
-            List<string> rslt = new List<string>(values.Length);
-            for (int i = 0; i < values.Length; i++)
-            {
-                switch (oneLineOptions)
-                {
-                    case StringJoinOptions.SkipNull:
-                        if (values[i] != null)
-                            rslt.Add(values[i]);
-                        break;
-                    case StringJoinOptions.NullToNull:
-                        if (values[i] == null)
-                            rslt.Add("Null");
-                        else
-                            rslt.Add(values[i]);
-                        break;
-                    case StringJoinOptions.SkipNullAndEmpty:
-                        if (!values[i].IsNullOrEmpty())
-                            rslt.Add(values[i]);
-                        break;
-                    case StringJoinOptions.SkipNullAndWhiteSpace:
-                        if (!values[i].IsNullOrWhiteSpace())
-                            rslt.Add(values[i]);
-                        break;
-                    default: //StringOneLineOptions.NullToEmpty
-                        if (values[i] == null)
-                            rslt.Add(string.Empty);
-                        else
-                            rslt.Add(values[i]);
-                        break;
-                }
-            }
-
-            return string.Join(separator, rslt);
-        }
-        
         /// <summary>
         /// Concatenates the members of a <see cref="IEnumerable{T}"/>, using the separator specified between each member.
         /// </summary>
@@ -157,18 +68,6 @@ namespace System.Text
         /// <param name="separator">String to use as separator. Separator is included in the returned string only if values contains several elements.</param>
         /// <returns>String composed of the value elements delimited by the separator. If values is an empty array, the method returns <see cref="string.Empty"/>.</returns>
         static public string ToOneString<T>(this IEnumerable<T> values, string separator)
-        {
-            if (values == null)
-                return string.Empty;
-            return values.ToOneString(separator, StringJoinOptions.NullToEmpty);
-        }
-        /// <summary>
-        /// Concatenates all the elements in a <see cref="string"/>, using the separator specified between each element.
-        /// </summary>
-        /// <param name="values">Array containing the elements to be concatenated.</param>
-        /// <param name="separator">String to use as separator. Separator is included in the returned string only if value contains several elements.</param>
-        /// <returns>String composed of the value elements delimited by the separator. If values is an empty array, the method returns <see cref="string.Empty"/>.</returns>
-        static public string ToOneString(this object[] values, string separator)
         {
             if (values == null)
                 return string.Empty;
@@ -185,34 +84,90 @@ namespace System.Text
         {
             if (values == null)
                 return string.Empty;
-            object[] rslt = new object[values.Count()];
-            values.ToArray().CopyTo(rslt, 0);
 
-            return rslt.ToOneString(separator, oneLineOptions);
-        }
-        /// <summary>
-        /// Concatenates all the elements in a <see cref="string"/>, using the separator specified between each element, and applies the specified behavior for the null, empty or WhiteSpace entries.
-        /// </summary>
-        /// <param name="values">Array containing the elements to be concatenated.</param>
-        /// <param name="separator">String to use as separator. Separator is included in the returned string only if values contains several elements.</param>
-        /// <param name="oneLineOptions">Behaviour to be use for the null, Empty or WhiteSpace entries.</param>
-        /// <returns>String composed of the value elements delimited by the separator. If values is an empty array, the method returns <see cref="string.Empty"/>.</returns>
-        static public string ToOneString(this object[] values, string separator, StringJoinOptions oneLineOptions)
-        {
-            if (values == null)
-                return string.Empty;
+            T[] tbl = values.ToArray();
+            string[] rslt = new string[tbl.Length];
 
-            string[] rslt = new string[values.Length];
-            for (int i = 0; i < values.Length; i++)
+            for (int i = 0; i < tbl.Length; i++)
             {
-                if (values[i] != null)
-                    rslt[i] = values[i].ToString();
+                if (tbl[i] != null)
+                    rslt[i] = tbl[i].ToString();
                 else
                     rslt[i] = null;
             }
             return rslt.Join(separator, oneLineOptions);
         }
 
+        /// <summary>
+        /// Concatenates the members of a <see cref="IEnumerable{T}"/> collection built of <see cref="string"/> type, using the separator specified between each member.
+        /// </summary>
+        /// <param name="values">Collection that contains the chains to be concatenated.</param>
+        /// <param name="separator">String to use as separator. Separator is included in the returned string only if values contains several elements.</param>
+        /// <returns>String composed of the value elements delimited by the separator. If values is an empty array, the method returns <see cref="string.Empty"/>.</returns>
+        static public string Join(this IEnumerable<string> values, string separator)
+        {
+            return values.ToArray().Join(separator, StringJoinOptions.NullToEmpty);
+        }
+        /// <summary>
+        /// Concatenates the members of a <see cref="IEnumerable{T}"/> collection built of <see cref="string"/> type, using the separator specified between each member, and applies the specified behavior for the null, empty or WhiteSpace entries.
+        /// </summary>
+        /// <param name="values">Collection that contains the chains to be concatenated.</param>
+        /// <param name="separator">String to use as separator. Separator is included in the returned string only if values contains several elements.</param>
+        /// <param name="oneLineOptions">Behaviour to be use for the null, Empty or WhiteSpace entries.</param>
+        /// <returns>String composed of the value elements delimited by the separator. If values is an empty array, the method returns <see cref="string.Empty"/>.</returns>
+        static public string Join(this IEnumerable<string> values, string separator, StringJoinOptions oneLineOptions)
+        {
+            if (values == null || values.Count() == 0)
+                return string.Empty;
+
+            if (values.Count() == 1)
+            {
+                string first = values.First();
+                if (first != null)
+                    return first;
+                else
+                    return string.Empty;
+            }
+
+            if (separator == null)
+                separator = string.Empty;
+            if (separator == null)
+                separator = string.Empty;
+
+            List<string> rslt = new List<string>(values.Count());
+            foreach (string item in values)
+            {
+                switch (oneLineOptions)
+                {
+                    case StringJoinOptions.SkipNull:
+                        if (item != null)
+                            rslt.Add(item);
+                        break;
+                    case StringJoinOptions.NullToNull:
+                        if (item == null)
+                            rslt.Add("Null");
+                        else
+                            rslt.Add(item);
+                        break;
+                    case StringJoinOptions.SkipNullAndEmpty:
+                        if (!item.IsNullOrEmpty())
+                            rslt.Add(item);
+                        break;
+                    case StringJoinOptions.SkipNullAndWhiteSpace:
+                        if (!item.IsNullOrWhiteSpace())
+                            rslt.Add(item);
+                        break;
+                    default: //StringOneLineOptions.NullToEmpty
+                        if (item == null)
+                            rslt.Add(string.Empty);
+                        else
+                            rslt.Add(item);
+                        break;
+                }
+            }
+            return string.Join(separator, rslt);
+        }
+        
         /// <summary>
         /// Indicates whether the specified string is null or a empty string.
         /// </summary>
@@ -266,25 +221,19 @@ namespace System.Text
         /// <summary>
         /// Combine a <see cref="char"/>[] to a simple <see cref="string"/>
         /// </summary>
-        /// <param name="input"></param>
-        static public string ToOneString(this char[] input)
+        /// <param name="values"></param>
+        static public string ToOneString(this char[] values)
         {
-            return input.ToOneString(null);
+            return values.ToOneString("", StringJoinOptions.SkipNull);
         }
         /// <summary>
         /// Combine a <see cref="char"/>[] to a simple <see cref="string"/>
         /// </summary>
-        /// <param name="input"></param>
+        /// <param name="values"></param>
         /// <param name="join"><see cref="char"/> use to join</param>
-        static public string ToOneString(this char[] input, char? join)
+        static public string ToOneString(this char[] values, char join)
         {
-            string s = null;
-            if (join == null)
-                s = null;
-            else
-                s = join.ToString();
-
-            return input.ToStringArray().Join(s, StringJoinOptions.SkipNull);
+            return values.ToOneString(join.ToString(), StringJoinOptions.SkipNull);
         }
 
         /// <summary>
