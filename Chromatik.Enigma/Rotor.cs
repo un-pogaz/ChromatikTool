@@ -6,11 +6,18 @@ using System.Threading.Tasks;
 
 namespace System.Security.Cryptography.Machine
 {
-	sealed public partial class Rotor : Alphabet, ICloneable
+    /// <summary>
+    /// Base class for create a rotor
+    /// </summary>
+	public partial class Rotor : Alphabet, ICloneable
     {
-        private static ArgumentException ExceptionInvalidChar(string name)
+        internal static ArgumentException ExceptionInvalidChar(char c, string name)
         {
-            return new ArgumentException("The \"" + name + "\" character is not contained in the operating alphabet.", name);
+            return new ArgumentException("The \'" + c + "\' character is not contained in the operating alphabet.", name);
+        }
+        internal static ArgumentOutOfRangeException ExceptionNegative(string name)
+        {
+            return new ArgumentOutOfRangeException(name, "The index of rotate contain a negative value.", name);
         }
 
         /// <summary>
@@ -24,14 +31,9 @@ namespace System.Security.Cryptography.Machine
         public Rotor(string id, IEnumerable<char> wires, char? initialPosition) : this(id, wires, initialPosition, null)
 		{ }
         /// <summary>
-        /// Initialize a rotor with a set of given wires and the specified rotate.
-        /// </summary>
-        public Rotor(string id, IEnumerable<char> wires, char? initialPosition, char? rotateAt) : this(id, wires, initialPosition, rotateAt, null)
-        { }
-        /// <summary>
         /// Initialize a rotor with a set of given wires and the specifieds rotates.
         /// </summary>
-		public Rotor(string id, IEnumerable<char> wires, char? initialPosition, char? rotateAt, char? rotateAtSecondary) : base(wires)
+		public Rotor(string id, IEnumerable<char> wires, char? initialPosition, IEnumerable<char> rotateAt) : base(wires)
         {
             if (id.IsNullOrWhiteSpace())
                 throw new ArgumentNullException("The "+ nameof(id) + " can be null, Empty or WhiteSpace.", nameof(id));
@@ -39,22 +41,20 @@ namespace System.Security.Cryptography.Machine
             
             WiresLeft = new WireMatrix(wires);
             WiresRight = WiresLeft.Invert();
-
-            if (!AlphabetContains(rotateAt))
-                throw ExceptionInvalidChar(nameof(rotateAt));
-
+            
             if (rotateAt == null)
-                RotateAt = OperatingAlphabet[0];
+                RotateAt = new char[0];
             else
-                RotateAt = rotateAt;
+            {
+                rotateAt = rotateAt.Distinct();
 
-            if (RotateAtSecondary != null && !AlphabetContains(rotateAtSecondary))
-                throw ExceptionInvalidChar(nameof(rotateAtSecondary));
+                foreach (char item in rotateAt)
+                    if (!AlphabetContains(item))
+                        throw ExceptionInvalidChar(item, nameof(rotateAt));
 
-            RotateAtSecondary = rotateAtSecondary;
+                RotateAt = rotateAt.ToArray();
+            }
 
-            if (RotateAtSecondary != null && !AlphabetContains(initialPosition))
-                throw ExceptionInvalidChar(nameof(initialPosition));
 
             if (initialPosition == null)
                 InitialPosition = OperatingAlphabet[0];
@@ -91,13 +91,32 @@ namespace System.Security.Cryptography.Machine
         /// <summary>
         /// Offset position of the rotor
         /// </summary>
-		public char OffsetPosition { get; private set; }
+		public char OffsetPosition { get; protected set; }
 
-        /// <summary></summary>
-		public char? RotateAt { get; set; }
-        /// <summary></summary>
-		public char? RotateAtSecondary { get; set; }
+        /// <summary>
+        /// Character cause the rotation of the adjacent rotor
+        /// </summary>
+		virtual public char[] RotateAt
+        {
+            set
+            {
+                if (value == null)
+                    value = new char[0];
+                else
+                {
+                    value = value.Distinct();
 
+                    foreach (char item in value)
+                        if (!AlphabetContains(item))
+                            throw ExceptionInvalidChar(item, nameof(value));
+
+                    _rotateAt = value;
+                }
+            }
+            get { return _rotateAt; }
+        }
+        char[] _rotateAt;
+        
         /// <summary>
         /// Rotate the rotor to the specified position.
         /// </summary>
@@ -125,16 +144,19 @@ namespace System.Security.Cryptography.Machine
 				OffsetPosition = WiresLeft.ProjectIndex(offsetIndex);
 			}
 		}
-
         /// <summary>
         /// Rotate the rotor to the next position.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>true if the next should be rotate</returns>
         public bool Rotate()
 		{
-			bool shouldAdvance = OffsetPosition.Equals(RotateAt);
-			if (RotateAtSecondary != null)
-				shouldAdvance = shouldAdvance || OffsetPosition.Equals(RotateAtSecondary.Value);
+			bool shouldAdvance = false;
+            foreach (char item in RotateAt)
+                if (OffsetPosition.Equals(item))
+                {
+                    shouldAdvance = true;
+                    break;
+                }
 
 			int offsetIndex = WiresLeft.ProjectCharacter(OffsetPosition);
 			offsetIndex = offsetIndex + 1;
@@ -210,7 +232,7 @@ namespace System.Security.Cryptography.Machine
         /// <returns></returns>
         public Rotor CloneRotor(bool andReset)
         {
-            Rotor rslt = new Rotor(Id, source_alphabet, InitialPosition, RotateAt, RotateAtSecondary);
+            Rotor rslt = new Rotor(Id, source_alphabet, InitialPosition, RotateAt);
             if (!andReset)
                 rslt.RotateToPosition(OffsetPosition);
             return rslt;

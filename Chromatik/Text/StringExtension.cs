@@ -149,7 +149,7 @@ namespace System.Text
 
             return string.Join(separator, rslt);
         }
-
+        
         /// <summary>
         /// Concatenates the members of a <see cref="IEnumerable{T}"/>, using the separator specified between each member.
         /// </summary>

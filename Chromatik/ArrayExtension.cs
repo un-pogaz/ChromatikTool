@@ -74,7 +74,18 @@ namespace System.Linq
             
             return rslt;
         }
-        
+
+        /// <summary>
+        /// Concatenate two array
+        /// </summary>
+        static public T[] Distinct<T>(this T[] tbl)
+        {
+            if (tbl == null)
+                tbl = new T[0];
+
+            return Enumerable.Distinct(tbl).ToArray();
+        }
+
         /// <summary>
         /// Parse a <see cref="object"/> in to a array
         /// </summary>
@@ -83,25 +94,6 @@ namespace System.Linq
         static public T[] ToObjectArray<T>(this T input)
         {
             return new T[] { input };
-        }
-    }
-}
-
-namespace System
-{
-    /// <summary>
-    /// Class to extend System methods
-    /// </summary>
-    static public class SystemExtension
-    {
-        /// <summary>
-        /// Test if is <see langword="null"/>
-        /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        static public bool IsNull(this object value)
-        {
-            return (value == null);
         }
     }
 }

@@ -26,21 +26,48 @@ namespace Test
         [STAThread]
         static void Main()
         {
-            Rotor Ia = Rotor.I;
+            RotorEnigma Ia = RotorEnigma.I;
             Ia.InitialPosition = Ia.OperatingAlphabet[5];
             Hexa h = new Hexa(byte.MaxValue);
 
-            Enigma enigma1 = new Enigma(Reflector.B, Ia, Rotor.II, Rotor.III);
+            Enigma enigma1 = new Enigma(Reflector.B, Ia, RotorEnigma.II, RotorEnigma.VIII);
             string test = enigma1.Process("HELLO WORLD !");
             enigma1.Reset();
             string rslt0 = enigma1.Process(test);
-            
+
             Enigma enigma3 = enigma1.Clone(true);
             string rslt3 = enigma3.Process(test);
+            
+            XmlDocument xml = XmlCreate.DocumentXML("<xml><span>kkkkkkk</span> <span de=\"\">yyyy</span> 65246541 <span>sdfwsfd</span></xml>");
+            renameXMLNode(xml, "span", "stripspan");
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
+        }
+        public static void renameXMLNode(XmlNode node, string oldName, string newName)
+        {
+            XmlDocument doc;
+            if (node is XmlDocument)
+                doc = node as XmlDocument;
+            else
+                doc = node.OwnerDocument;
+
+            foreach (XmlNode item in node.GetElements())
+            {
+                if (item.LocalName == oldName && item.Attributes.Count == 0)
+                {
+                    XmlNode newRoot = doc.CreateElement(newName);
+                    XmlNode oldRoot = item;
+                    foreach (XmlNode child in item.ChildNodes)
+                        newRoot.AppendChild(child.CloneNode(true));
+                    
+                    XmlNode parent = oldRoot.ParentNode;
+                    parent.InsertBefore(newRoot, oldRoot);
+                    parent.RemoveChild(oldRoot);
+                }
+                renameXMLNode(item, oldName, newName);
+            }
         }
     }
 }

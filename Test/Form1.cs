@@ -19,6 +19,20 @@ namespace Test
         {
             InitializeComponent();
         }
-        
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Random ran = new Random();
+            List<string> lst = new List<string>();
+            for (int i = 0; i < 10; i++)
+            {
+                byte[] ba = new byte[byte.MaxValue + 1];
+                ran.NextBytes(ba);
+                string s = "ByteCharacter.b" + ba.ToOneString(", ByteCharacter.b");
+                lst.Add("new char[] { " + s + " }");
+            }
+
+            textBox1.Text = lst.ToOneString(WhiteCharacter.EndLineWindows + WhiteCharacter.EndLineWindows);
+        }
     }
 }

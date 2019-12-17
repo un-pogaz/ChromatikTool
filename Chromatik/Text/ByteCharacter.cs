@@ -1049,5 +1049,68 @@ namespace System.Text
         /// <see cref="byte"/> 255
         /// </summary>
         public static char b255 { get; } = (char)(0xFF);
+        
+        /// <summary>
+        /// Convert <see cref="byte"/> to <see cref="char"/>
+        /// </summary>
+        /// <param name="b"></param>
+        /// <returns></returns>
+        public static char ByteToChar(byte b)
+        {
+            return (char)b;
+        }
+        /// <summary>
+        /// Convert <see cref="char"/> to <see cref="byte"/>
+        /// </summary>
+        /// <param name="c"></param>
+        /// <returns></returns>
+        public static byte CharToByte(char c)
+        {
+            return (byte)c;
+        }
+
+        /// <summary>
+        /// Convert enumerable <see cref="byte"/> to enumerable <see cref="char"/>
+        /// </summary>
+        /// <param name="b"></param>
+        /// <returns></returns>
+        public static IEnumerable<char> ByteToChar(IEnumerable<byte> b)
+        {
+            if (b == null)
+                yield break;
+            foreach (var item in b)
+                yield return ByteToChar(item);
+        }
+        /// <summary>
+        /// Convert enumerable <see cref="char"/> to enumerable <see cref="byte"/>
+        /// </summary>
+        /// <param name="c"></param>
+        /// <returns></returns>
+        public static IEnumerable<byte> CharToByte(IEnumerable<char> c)
+        {
+            if (c == null)
+                yield break;
+            foreach (var item in c)
+                yield return CharToByte(item);
+        }
+
+        /// <summary>
+        /// Convert <see cref="byte"/> table to <see cref="char"/> table
+        /// </summary>
+        /// <param name="b"></param>
+        /// <returns></returns>
+        public static char[] ByteToChar(byte[] b)
+        {
+            return ByteToChar((IEnumerable<byte>)b).ToArray();
+        }
+        /// <summary>
+        /// Convert <see cref="char"/> table to <see cref="byte"/> table
+        /// </summary>
+        /// <param name="c"></param>
+        /// <returns></returns>
+        public static byte[] CharToByte(char[] c)
+        {
+            return CharToByte((IEnumerable<char>)c).ToArray();
+        }
     }
 }

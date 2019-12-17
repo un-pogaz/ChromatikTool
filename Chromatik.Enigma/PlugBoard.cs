@@ -18,6 +18,8 @@ namespace System.Security.Cryptography.Machine
         /// </summary>
         public PlugBoard() : this(new Dictionary<char, char>())
 		{ }
+        
+
         /// <summary>
         /// Initialize a Plug Board with a specified plug.
         /// </summary>
