@@ -44,18 +44,7 @@ namespace Test
             string ddd = xml.OuterXml.Regex("<(|/)stripspan>", "");
             */
             ;
-
-            string dd = "<HTML>     <BODY><P>  TEST1\n<P align=center>TEST1\n<P center>TEST1\n</BODY>";
-
-            StreamReader ss = new StreamReader(StreamExtension.StreamFromString(dd));
-
-            XmlDocument cc = XmlCreate.Document(@"D:\Projet\OPHELY V6.3_0 -Exploit RESULTATS V2.2\Ophely_V6_3\SEEB_Toolbox.xml");
-            if (hh.OuterXml == cc.OuterXml)
-            {
-
-            }
-
-            System.Sgml.SgmlReader sgml = new System.Sgml.SgmlReader();
+            
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
