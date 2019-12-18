@@ -69,17 +69,17 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResourceChromatik.Designer.cs">
-      <DependentUpon>ResourceChromatik.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>ResourceChromatik.resx</DependentUpon>
     </Compile>
     <Compile Include="Unicode.Initialisation.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ResourceChromatik.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>ResourceChromatik.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>ResourceChromatik.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

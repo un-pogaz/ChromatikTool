@@ -31,6 +31,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)Text\ControlCharacter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Text\RegexHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Text\StringExtension.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sgml\DesktopEntityResolver.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sgml\EmbeddedResourceEntityContent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sgml\IEntityResolver.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sgml\SgmlParser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sgml\SgmlReader.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Xml\DocumentType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Xml\XmlExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Xml\XmlCreate.cs" />
@@ -38,5 +43,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)Xml\XmlNamespace.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Xml\XmlRacine.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Xml\XmlWriterTool.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)Sgml\Html.dtd" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Sgml\_Info.txt" />
   </ItemGroup>
 </Project>

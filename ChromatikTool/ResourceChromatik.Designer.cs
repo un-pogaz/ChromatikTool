@@ -78,7 +78,7 @@ namespace Chromatik {
         ///    &lt;/Charset&gt;
         ///    &lt;Charset nameID=&quot;Latin-1&quot;&gt;
         ///      &lt;Name lang=&quot;en&quot;&gt;Latin-1&lt;/Name&gt;
-        ///      &lt;Description lang=&quot;en&quot;&gt;Latin-1 Western E [le reste de la chaîne a été tronqué]&quot;;.
+        ///      &lt;Description lang=&quot;en&quot;&gt;Latin-1 Western European&lt;/Descript [le reste de la chaîne a été tronqué]&quot;;.
         /// </summary>
         internal static string Charsets_XML {
             get {
@@ -101,11 +101,35 @@ namespace Chromatik {
         ///          &lt;Languages lang=&quot;en&quot;&gt;&lt;/Languages&gt;
         ///          &lt;Countries lang=&quot;en&quot;&gt;&lt;/Countries&gt;
         ///        &lt;/Localisable&gt;
-        ///        &lt;WebCharTable url=&quot;https:// [le reste de la chaîne a été tronqué]&quot;;.
+        ///        &lt;WebCharTable url=&quot;https://www.evertype.c [le reste de la chaîne a été tronqué]&quot;;.
         /// </summary>
         internal static string ConScript_XML {
             get {
                 return ResourceManager.GetString("ConScript_XML", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à &lt;!--
+        ///    This HTML DTD is based on loose.dtd from the W3C, but it is even looser
+        ///    so as to allow for the types of real world messy HTML you find out on the
+        ///    web.  For example, allowing all kinds of content like &lt;script&gt; inside a &lt;TD&gt;
+        ///    and so forth.
+        ///--&gt;
+        ///&lt;!ENTITY % HTML.Version &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;
+        ///  -- Typical usage:
+        ///
+        ///    &lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;
+        ///            &quot;http://www.w3.org/TR/html4/loose.dtd&quot;&gt;
+        ///    &lt;html&gt;
+        ///    &lt;head&gt;
+        ///    ...
+        ///    &lt;/head&gt;
+        ///    [le reste de la chaîne a été tronqué]&quot;;.
+        /// </summary>
+        internal static string Html_dtd {
+            get {
+                return ResourceManager.GetString("Html_dtd", resourceCulture);
             }
         }
         
@@ -123,7 +147,8 @@ namespace Chromatik {
         ///        &lt;Description lang=&quot;en&quot;&gt;&lt;/Description&gt;
         ///        &lt;Localisable&gt;
         ///          &lt;Languages&gt;&lt;/Languages&gt;
-        ///          &lt;Countries&gt; [le reste de la chaîne a été tronqué]&quot;;.
+        ///          &lt;Countries&gt;&lt;/Countries&gt;
+        /// [le reste de la chaîne a été tronqué]&quot;;.
         /// </summary>
         internal static string Unicode_XML {
             get {

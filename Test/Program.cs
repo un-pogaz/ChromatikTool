@@ -7,13 +7,11 @@ using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
-using Chromatik.Zip;
 using System.Xml;
 using System.Reflection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Configuration;
-using System.Security.Cryptography.Machine;
 
 
 namespace Test
@@ -26,6 +24,7 @@ namespace Test
         [STAThread]
         static void Main()
         {
+            /*
             RotorEnigma Ia = RotorEnigma.I;
             Ia.InitialPosition = Ia.OperatingAlphabet[5];
             Hexa h = new Hexa(byte.MaxValue);
@@ -43,12 +42,26 @@ namespace Test
             renameXMLNode(xml, "span", "stripspan");
 
             string ddd = xml.OuterXml.Regex("<(|/)stripspan>", "");
+            */
+            ;
+
+            string dd = "<HTML>     <BODY><P>  TEST1\n<P align=center>TEST1\n<P center>TEST1\n</BODY>";
+
+            StreamReader ss = new StreamReader(StreamExtension.StreamFromString(dd));
+
+            XmlDocument cc = XmlCreate.Document(@"D:\Projet\OPHELY V6.3_0 -Exploit RESULTATS V2.2\Ophely_V6_3\SEEB_Toolbox.xml");
+            if (hh.OuterXml == cc.OuterXml)
+            {
+
+            }
+
+            System.Sgml.SgmlReader sgml = new System.Sgml.SgmlReader();
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
         }
-
+        
         public static void renameXMLNode(XmlNode node, string oldName, string newName)
         {
             XmlDocument doc;

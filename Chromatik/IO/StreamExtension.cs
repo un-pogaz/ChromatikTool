@@ -27,5 +27,29 @@ namespace System.IO
 
             return rslt;
         }
+
+        /// <summary>
+        /// Create a stream from a string.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        static public MemoryStream StreamFromString(string input)
+        {
+            return StreamFromString(input, UTF8SansBomEncoding.UTF8SansBom);
+        }
+        /// <summary>
+        /// Create a stream from a string with the specified encoding.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="encoding"></param>
+        /// <returns></returns>
+        static public MemoryStream StreamFromString(string input, Encoding encoding)
+        {
+            MemoryStream rslt = new MemoryStream();
+            using (StreamWriter writer = new StreamWriter(rslt, encoding, 1024, true))
+                writer.Write(input);
+            rslt.Position = 0;
+            return rslt;
+        }
     }
 }
