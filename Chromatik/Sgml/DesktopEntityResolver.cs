@@ -119,15 +119,17 @@ namespace System.Sgml
         }
     }
 
-
+    /// <summary></summary>
     public class DesktopEntityResolver : IEntityResolver
     {
+        /// <summary></summary>
         public DesktopEntityResolver()
-        {
-        }
+        { }
 
+        /// <summary></summary>
         public WebProxy Proxy { get; set; }
 
+        /// <summary></summary>
         public IEntityContent GetContent(Uri uri)
         {
             if (!uri.IsAbsoluteUri)

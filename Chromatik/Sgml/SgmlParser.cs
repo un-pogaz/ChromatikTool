@@ -179,6 +179,7 @@ namespace System.Sgml {
         /// <param name="name">The name of the entity.</param>
         /// <param name="pubid">The public id of the entity.</param>
         /// <param name="uri">The uri of the entity.</param>
+        /// <param name="resolver"></param>
         public Entity(string name, string pubid, string uri, IEntityResolver resolver)
         {
             m_name = name;
@@ -193,6 +194,7 @@ namespace System.Sgml {
         /// </summary>
         /// <param name="name">The name of the entity.</param>
         /// <param name="literal">The literal value of the entity.</param>
+        /// <param name="resolver"></param>
         public Entity(string name, string literal, IEntityResolver resolver)
         {
             m_name = name;
@@ -207,6 +209,7 @@ namespace System.Sgml {
         /// <param name="name">The name of the entity.</param>
         /// <param name="baseUri">The baseUri for the entity to read from the TextReader.</param>
         /// <param name="stm">The TextReader to read the entity from.</param>
+        /// <param name="resolver"></param>
         public Entity(string name, Uri baseUri, TextReader stm, IEntityResolver resolver)
         {
             m_name = name;
@@ -2422,6 +2425,7 @@ namespace System.Sgml {
         /// </summary>
         /// <param name="name">The name of the DTD.</param>
         /// <param name="nt">The <see cref="XmlNameTable"/> is NOT used.</param>
+        /// <param name="resolver"></param>
         public SgmlDtd(string name, XmlNameTable nt, IEntityResolver resolver)
         {
             this.m_name = name;
@@ -2468,6 +2472,7 @@ namespace System.Sgml {
         /// <param name="url"></param>
         /// <param name="subset"></param>
         /// <param name="nt">The <see cref="XmlNameTable"/> is NOT used.</param>
+        /// <param name="resolver"></param>
         /// <returns>A new <see cref="SgmlDtd"/> instance that encapsulates the DTD.</returns>
         public static SgmlDtd Parse(Uri baseUri, string name, string pubid, string url, string subset, XmlNameTable nt, IEntityResolver resolver)
         {
@@ -2502,6 +2507,7 @@ namespace System.Sgml {
         /// <param name="input">The reader to load the DTD from.</param>
         /// <param name="subset"></param>
         /// <param name="nt">The <see cref="XmlNameTable"/> is NOT used.</param>
+        /// <param name="resolver"></param>
         /// <returns>A new <see cref="SgmlDtd"/> instance that encapsulates the DTD.</returns>
         [SuppressMessage("Microsoft.Reliability", "CA2000", Justification = "The entities created here are not temporary and should not be disposed here.")]
         public static SgmlDtd Parse(Uri baseUri, string name, TextReader input, string subset, XmlNameTable nt, IEntityResolver resolver)

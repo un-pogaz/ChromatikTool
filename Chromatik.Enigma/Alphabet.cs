@@ -29,6 +29,7 @@ namespace System.Security.Cryptography.Machine
             _operatingAlphabet = rslt.ToArray();
         }
 
+        /// <summary></summary>
         protected IEnumerable<char> source_alphabet;
 
         /// <summary>

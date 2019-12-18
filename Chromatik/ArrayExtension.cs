@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 
@@ -85,15 +86,24 @@ namespace System.Linq
 
             return Enumerable.Distinct(tbl).ToArray();
         }
-
+        
         /// <summary>
-        /// Parse a <see cref="object"/> in to a array
+        /// Convert <see cref="IEnumerable"/> to a <see cref="object"/> <see cref="IEnumerable{T}"/> collection
         /// </summary>
-        /// <param name="input"></param>
+        /// <param name="source"></param>
         /// <returns></returns>
-        static public T[] ToObjectArray<T>(this T input)
+        static public IEnumerable<object> ToObjectEnumerable(this IEnumerable source)
         {
-            return new T[] { input };
+            return source.OfType<object>();
+        }
+        /// <summary>
+        /// Convert <see cref="IEnumerable"/> to a <see cref="object"/> array
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        static public object[] ToObjectArray(this IEnumerable source)
+        {
+            return source.ToObjectEnumerable().ToArray();
         }
     }
 }

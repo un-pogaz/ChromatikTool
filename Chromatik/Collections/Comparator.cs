@@ -22,10 +22,22 @@ namespace System.Collections.Generic
 
         List<string> FieldComparator = new List<string>();
 
+        /// <summary>
+        /// Create a comparator
+        /// </summary>
         public Comparator() : this(string.Empty)
         { }
+        /// <summary>
+        /// Create a comparator with a fields
+        /// </summary>
+        /// <param name="fields"></param>
         public Comparator(params string[] fields) : this(fields, false)
         { }
+        /// <summary>
+        /// Create a comparator with a fields
+        /// </summary>
+        /// <param name="fields"></param>
+        /// <param name="includePrivate"></param>
         public Comparator(string[] fields, bool includePrivate)
         {
             if (fields == null)

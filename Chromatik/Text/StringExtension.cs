@@ -60,6 +60,33 @@ namespace System.Text
         {
             return input.Regex("(" + WhiteCharacter.EndLineString.Join("|") + ")", "\n");
         }
+        
+        /// <summary>
+        /// Get the ToString() of a <see cref="IEnumerable{T}"/> collection (<see langword="null"/> as keep)
+        /// </summary>
+        /// <param name="values"></param>
+        /// <remarks><see langword="null"/> as keep</remarks>
+        /// <returns></returns>
+        static public IEnumerable<string> ToStringEnumerable<T>(this IEnumerable<T> values)
+        {
+            foreach (T item in values)
+            {
+                if (item != null)
+                    yield return item.ToString();
+                else
+                    yield return null;
+            }
+        }
+        /// <summary>
+        /// Get the ToString() of a <see cref="IEnumerable{T}"/> collection (<see langword="null"/> as keep)
+        /// </summary>
+        /// <param name="values"></param>
+        /// <remarks><see langword="null"/> as keep</remarks>
+        /// <returns></returns>
+        static public string[] ToStringArray<T>(this IEnumerable<T> values)
+        {
+            return values.ToStringEnumerable().ToArray();
+        }
 
         /// <summary>
         /// Concatenates the members of a <see cref="IEnumerable{T}"/>, using the separator specified between each member.
@@ -78,26 +105,33 @@ namespace System.Text
         /// </summary>
         /// <param name="values">Collection that contains the chains to be concatenated.</param>
         /// <param name="separator">String to use as separator. Separator is included in the returned string only if values contains several elements.</param>
-        /// <param name="oneLineOptions">Behaviour to be use for the null, Empty or WhiteSpace entries.</param>
+        /// <param name="joinOptions">Behaviour to be use for the null, Empty or WhiteSpace entries.</param>
         /// <returns>String composed of the value elements delimited by the separator. If values is an empty array, the method returns <see cref="string.Empty"/>.</returns>
-        static public string ToOneString<T>(this IEnumerable<T> values, string separator, StringJoinOptions oneLineOptions)
+        static public string ToOneString<T>(this IEnumerable<T> values, string separator, StringJoinOptions joinOptions)
         {
             if (values == null)
                 return string.Empty;
 
-            T[] tbl = values.ToArray();
-            string[] rslt = new string[tbl.Length];
-
-            for (int i = 0; i < tbl.Length; i++)
-            {
-                if (tbl[i] != null)
-                    rslt[i] = tbl[i].ToString();
-                else
-                    rslt[i] = null;
-            }
-            return rslt.Join(separator, oneLineOptions);
+            return values.ToStringEnumerable().Join(separator, joinOptions);
         }
 
+        /// <summary>
+        /// Combine a <see cref="char"/>[] to a simple <see cref="string"/>
+        /// </summary>
+        /// <param name="values"></param>
+        static public string ToOneString(this char[] values)
+        {
+            return values.ToOneString("", StringJoinOptions.SkipNull);
+        }
+        /// <summary>
+        /// Combine a <see cref="char"/>[] to a simple <see cref="string"/>
+        /// </summary>
+        /// <param name="values"></param>
+        /// <param name="join"><see cref="char"/> use to join</param>
+        static public string ToOneString(this char[] values, char join)
+        {
+            return values.ToOneString(join.ToString(), StringJoinOptions.SkipNull);
+        }
         /// <summary>
         /// Concatenates the members of a <see cref="IEnumerable{T}"/> collection built of <see cref="string"/> type, using the separator specified between each member.
         /// </summary>
@@ -106,16 +140,16 @@ namespace System.Text
         /// <returns>String composed of the value elements delimited by the separator. If values is an empty array, the method returns <see cref="string.Empty"/>.</returns>
         static public string Join(this IEnumerable<string> values, string separator)
         {
-            return values.ToArray().Join(separator, StringJoinOptions.NullToEmpty);
+            return values.Join(separator, StringJoinOptions.NullToEmpty);
         }
         /// <summary>
         /// Concatenates the members of a <see cref="IEnumerable{T}"/> collection built of <see cref="string"/> type, using the separator specified between each member, and applies the specified behavior for the null, empty or WhiteSpace entries.
         /// </summary>
         /// <param name="values">Collection that contains the chains to be concatenated.</param>
         /// <param name="separator">String to use as separator. Separator is included in the returned string only if values contains several elements.</param>
-        /// <param name="oneLineOptions">Behaviour to be use for the null, Empty or WhiteSpace entries.</param>
+        /// <param name="joinOptions">Behaviour to be use for the null, Empty or WhiteSpace entries.</param>
         /// <returns>String composed of the value elements delimited by the separator. If values is an empty array, the method returns <see cref="string.Empty"/>.</returns>
-        static public string Join(this IEnumerable<string> values, string separator, StringJoinOptions oneLineOptions)
+        static public string Join(this IEnumerable<string> values, string separator, StringJoinOptions joinOptions)
         {
             if (values == null || values.Count() == 0)
                 return string.Empty;
@@ -137,7 +171,7 @@ namespace System.Text
             List<string> rslt = new List<string>(values.Count());
             foreach (string item in values)
             {
-                switch (oneLineOptions)
+                switch (joinOptions)
                 {
                     case StringJoinOptions.SkipNull:
                         if (item != null)
@@ -206,35 +240,6 @@ namespace System.Text
             }
         }
 
-        /// <summary>
-        /// Convert a <see cref="char"/>[] to a <see cref="string"/>[]
-        /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
-        static public string[] ToStringArray(this char[] input)
-        {
-            string[] rslt = new string[input.Length];
-            for (int i = 0; i < input.Length; i++)
-                rslt[i] = input[i].ToString();
-            return rslt;
-        }
-        /// <summary>
-        /// Combine a <see cref="char"/>[] to a simple <see cref="string"/>
-        /// </summary>
-        /// <param name="values"></param>
-        static public string ToOneString(this char[] values)
-        {
-            return values.ToOneString("", StringJoinOptions.SkipNull);
-        }
-        /// <summary>
-        /// Combine a <see cref="char"/>[] to a simple <see cref="string"/>
-        /// </summary>
-        /// <param name="values"></param>
-        /// <param name="join"><see cref="char"/> use to join</param>
-        static public string ToOneString(this char[] values, char join)
-        {
-            return values.ToOneString(join.ToString(), StringJoinOptions.SkipNull);
-        }
 
         /// <summary>
         /// TrimStart() all <see cref="string"/> in the array

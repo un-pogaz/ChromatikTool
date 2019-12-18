@@ -1100,7 +1100,7 @@ namespace System.Sgml
 #if WINDOWS_DESKTOP
         public override char QuoteChar
 #else
-        public char QuoteChar
+        new public char QuoteChar
 #endif
         {
             get

@@ -7,11 +7,11 @@ using System.Xml;
 namespace System.Xml
 {
     /// <summary>
-    /// Extension class for enumerate or get the <see cref="XmlElement"/>
+    /// Extension class for enumerate or get a array of <see cref="XmlElement"/>
     /// </summary>
     static public class XmlEnumertor
     {
-        #region Last Element
+        #region EnumerableElement
 
         /// <summary>
         /// Enumerate the <see cref="XmlElement"/> in the <see cref="XmlNode"/>
@@ -29,9 +29,7 @@ namespace System.Xml
         /// <returns></returns>
         static public IEnumerable<XmlElement> EnumerableElement(this XmlNodeList nodeList)
         {
-            foreach (XmlNode item in nodeList)
-                if (item is XmlElement)
-                    yield return item as XmlElement;
+            return nodeList.OfType<XmlElement>();
         }
 
         /// <summary>
@@ -108,27 +106,7 @@ namespace System.Xml
                 if (item.Name == name && item.HasAttribute(attribute) && item.Name == name && item.GetAttribute(attribute) == value)
                     yield return item;
         }
-
-        /// <summary>
-        /// Enumerate the <see cref="XmlElement"/> in the <see cref="XmlNode"/> in reverse ordre
-        /// </summary>
-        /// <param name="node"></param>
-        /// <returns></returns>
-        static public IEnumerable<XmlElement> EnumerableElement_Reverse(this XmlNode node)
-        {
-            return node.ChildNodes.EnumerableElement_Reverse();
-        }
-        /// <summary>
-        /// Enumerate the <see cref="XmlElement"/> in the <see cref="XmlNodeList"/> in reverse ordre
-        /// </summary>
-        /// <param name="nodeList"></param>
-        /// <returns></returns>
-        static public IEnumerable<XmlElement> EnumerableElement_Reverse(this XmlNodeList nodeList)
-        {
-            for (int i = nodeList.Count - 1; i >= 0; i--)
-                if (nodeList[i] is XmlElement)
-                    yield return nodeList[i] as XmlElement;
-        }
+        
 
         #endregion
 
@@ -322,6 +300,16 @@ namespace System.Xml
         #region Last Element
 
         /// <summary>
+        /// Enumerate the <see cref="XmlElement"/> in the <see cref="XmlNodeList"/> in reverse ordre
+        /// </summary>
+        /// <param name="nodeList"></param>
+        /// <returns></returns>
+        static IEnumerable<XmlElement> EnumerableElementReverse(this XmlNodeList nodeList)
+        {
+            return nodeList.EnumerableElement().Reverse();
+        }
+
+        /// <summary>
         /// Get the last <see cref="XmlElement"/> of the <see cref="XmlNodeList"/>
         /// </summary>
         /// <param name="node"></param>
@@ -337,7 +325,7 @@ namespace System.Xml
         /// <returns></returns>
         static public XmlElement LastElement(this XmlNodeList nodeList)
         {
-            foreach (XmlElement item in nodeList.EnumerableElement_Reverse())
+            foreach (XmlElement item in nodeList.EnumerableElementReverse())
                 return item;
 
             return null;
@@ -361,7 +349,7 @@ namespace System.Xml
         /// <returns></returns>
         static public XmlElement LastElement(this XmlNodeList nodeList, string name)
         {
-            foreach (XmlElement item in nodeList.EnumerableElement_Reverse())
+            foreach (XmlElement item in nodeList.EnumerableElementReverse())
                 if (item.Name == name)
                     return item;
 
@@ -388,7 +376,7 @@ namespace System.Xml
         /// <returns></returns>
         static public XmlElement LastElement(this XmlNodeList nodeList, string name, string attribute)
         {
-            foreach (XmlElement item in nodeList.EnumerableElement_Reverse())
+            foreach (XmlElement item in nodeList.EnumerableElementReverse())
                 if (item.Name == name && item.HasAttribute(attribute))
                     return item;
 
@@ -417,7 +405,7 @@ namespace System.Xml
         /// <returns></returns>
         static public XmlElement LastElement(this XmlNodeList nodeList, string name, string attribute, string value)
         {
-            foreach (XmlElement item in nodeList.EnumerableElement_Reverse())
+            foreach (XmlElement item in nodeList.EnumerableElementReverse())
                 if (item.Name == name && item.GetAttribute(attribute) == value)
                     return item;
 

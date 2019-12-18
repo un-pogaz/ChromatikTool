@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Security.Cryptography.Machine;
 using System.Xml;
 using System.Reflection;
 using Newtonsoft.Json;
@@ -24,7 +25,11 @@ namespace Test
         [STAThread]
         static void Main()
         {
-            /*
+
+            XmlDocument dgdfg = XmlCreate.DocumentXML("<xml> kkkkkkk yyyy <!-- --> 65246541 sdfwsfd</xml>");
+            XmlElement[] eeeee = dgdfg.FirstElement().GetElements();
+            XmlElement dfgg = dgdfg.FirstElement().LastElement();
+
             RotorEnigma Ia = RotorEnigma.I;
             Ia.InitialPosition = Ia.OperatingAlphabet[5];
             Hexa h = new Hexa(byte.MaxValue);
@@ -42,8 +47,6 @@ namespace Test
             renameXMLNode(xml, "span", "stripspan");
 
             string ddd = xml.OuterXml.Regex("<(|/)stripspan>", "");
-            */
-            ;
             
 
             Application.EnableVisualStyles();

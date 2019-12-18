@@ -114,9 +114,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ChromatikTool.CommentsCleaner\ChromatikTool.CommentsCleaner.csproj">
-      <Project>{41404c61-0dbe-4a5e-8d3e-ff30a8bc1b47}</Project>
-      <Name>ChromatikTool.CommentsCleaner</Name>
+    <ProjectReference Include="..\ChromatikTool\ChromatikTool.csproj">
+      <Project>{1b81048c-2f5f-4f46-8ac4-492d100c0824}</Project>
+      <Name>ChromatikTool</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -169,7 +169,7 @@ namespace System.Text
         }
 
         /// <summary>
-        /// Default char array for <see cref="string.Trim()"/>
+        /// Default char array for <see cref="string.Trim()"/> (is a combine a base <see cref="WhiteCharacter"/> and <see cref="UnicodeSeparator"/>)
         /// </summary>
         static public char[] WhiteCharacters { get; } = new char[]
         {

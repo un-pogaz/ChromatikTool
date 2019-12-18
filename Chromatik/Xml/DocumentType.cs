@@ -90,7 +90,8 @@ namespace System.Xml
 
             return new DocumentType(name, system, id,  uri, sub);
         }
-        /// string Subset<summary></summary>
+
+        /// <summary></summary>
         /// <returns></returns>
         public override string ToString()
         {
@@ -115,6 +116,9 @@ namespace System.Xml
             return rslt;
         }
 
+        /// <summary>
+        /// Text of the DOCTYPE.
+        /// </summary>
         public string DocumentTypeText
         {
             get
@@ -144,20 +148,31 @@ namespace System.Xml
             }
         }
 
+        /// <summary></summary>
         static public DocumentType HTML5 { get; } = new DocumentType("html", false, null, null, null);
+        /// <summary></summary>
         static public DocumentType XHTML1_1 { get; } = new DocumentType("html", false, "-//W3C//DTD XHTML 1.1//EN", "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd", null);
 
+        /// <summary></summary>
         static public DocumentType NCX { get; } = new DocumentType("ncx", false, "-//NISO//DTD ncx 2005-1//EN", "http://www.daisy.org/z3986/2005/ncx-2005-1.dtd", null);
 
+        /// <summary></summary>
         static public DocumentType MathML2 { get; } = new DocumentType("math", false, "-//W3C//DTD MathML 2.0//EN",  "http://www.w3.org/Math/DTD/mathml2/mathml2.dtd", null);
+        /// <summary></summary>
         static public DocumentType MathML1 { get; } = new DocumentType("math", true, null, "http://www.w3.org/Math/DTD/mathml1/mathml.dtd", null);
 
+        /// <summary></summary>
         static public DocumentType XHTML1strict { get; } = new DocumentType("html", false, "-//W3C//DTD XHTML 1.0 Strict//EN",  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd", null);
+        /// <summary></summary>
         static public DocumentType XHTML1transitional { get; } = new DocumentType("html", false, "-//W3C//DTD XHTML 1.0 Transitional//EN",  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd", null);
+        /// <summary></summary>
         static public DocumentType XHTML1frameset { get; } = new DocumentType("html", false, "-//W3C//DTD XHTML 1.0 Frameset//EN", "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd", null);
 
+        /// <summary></summary>
         static public DocumentType HTML4strict { get; } = new DocumentType("html", false, "-//W3C//DTD HTML 4.01//EN",  "http://www.w3.org/TR/html4/strict.dtd", null);
+        /// <summary></summary>
         static public DocumentType HTML4transitional { get; } = new DocumentType("html", false, "-//W3C//DTD HTML 4.01 Transitional//EN",  "http://www.w3.org/TR/html4/loose.dtd", null);
+        /// <summary></summary>
         static public DocumentType HTML4frameset { get; } = new DocumentType("html", false, "-//W3C//DTD HTML 4.01 Frameset//EN", "http://www.w3.org/TR/html4/frameset.dtd", null);
         
     }
