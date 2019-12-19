@@ -11,35 +11,42 @@ namespace System.Linq
     static public class ArrayExtension
     {
         /// <summary>
-        /// Concatenate two array
+        /// Concatenate a jagged array whit a concatenate of these entrys
         /// </summary>
-        static public T[] Concat<T>(this T[] tbl, params T[] addition)
+        static public IEnumerable<T> Concat<T>(this IEnumerable<T> first, params IEnumerable<T>[] additions)
         {
-            if (tbl == null)
-                tbl = new T[0];
-            
-            if (addition == null)
-                addition = new T[0];
-            
-            return Enumerable.Concat(tbl, addition).ToArray();
-        }
-        /// <summary>
-        /// Compacte a jagged array whit a concatenate of these entrys
-        /// </summary>
-        static public T[] Concat<T>(this T[] tbl, params T[][] array)
-        {
-            if (tbl == null)
-                tbl = new T[0];
-
-            if (array == null)
-                array = new T[0][];
-
-            IEnumerable<T> rslt = tbl;
-            foreach (T[] item in array)
+            IEnumerable<T> rslt = first;
+            foreach (T[] item in additions)
                 if (item != null)
                     rslt = rslt.Concat(item);
+
+            return rslt;
+        }
+        /// <summary>
+        /// Concatenate two array
+        /// </summary>
+        static public T[] Concat<T>(this T[] first, params T[] additions)
+        {
+            if (first == null)
+                first = new T[0];
             
-            return rslt.ToArray();
+            if (additions == null)
+                additions = new T[0];
+            
+            return Enumerable.Concat(first, additions).ToArray();
+        }
+        /// <summary>
+        /// Concatenate a jagged array whit a concatenate of these entrys
+        /// </summary>
+        static public T[] Concat<T>(this T[] first, params T[][] additions)
+        {
+            if (first == null)
+                first = new T[0];
+
+            if (additions == null)
+                additions = new T[0][];
+            
+            return first.Concat(additions as IEnumerable<T>[]).ToArray();
         }
 
         /// <summary>
@@ -77,7 +84,7 @@ namespace System.Linq
         }
 
         /// <summary>
-        /// Concatenate two array
+        /// Returns separate elements of a sequence and uses the default equality comparator to compare values.
         /// </summary>
         static public T[] Distinct<T>(this T[] tbl)
         {
@@ -86,7 +93,18 @@ namespace System.Linq
 
             return Enumerable.Distinct(tbl).ToArray();
         }
+        /// <summary>
+        /// Returns separate elements of a sequence and uses the specified <see cref="IEqualityComparer{T}"/> to compare values.
+        /// </summary>
+        static public T[] Distinct<T>(this T[] tbl, IEqualityComparer<T> comparer)
+        {
+            if (tbl == null)
+                tbl = new T[0];
+
+            return Enumerable.Distinct(tbl, comparer).ToArray();
+        }
         
+
         /// <summary>
         /// Convert <see cref="IEnumerable"/> to a <see cref="object"/> <see cref="IEnumerable{T}"/> collection
         /// </summary>
@@ -104,6 +122,16 @@ namespace System.Linq
         static public object[] ToObjectArray(this IEnumerable source)
         {
             return source.ToObjectEnumerable().ToArray();
+        }
+        /// <summary>
+        /// Obtains a filter array to the elements of a <see cref="IEnumerable"/> according to the specified type
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        static public T[] OfTypeArray<T>(this IEnumerable source)
+        {
+            return source.OfType<T>().ToArray();
         }
     }
 }

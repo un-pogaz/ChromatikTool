@@ -12,7 +12,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Data\clsErr.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Data\clsNum.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Env\clsCalendrier.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Env\clsDataEnv.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Env\clsDT.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Env\clsProcess.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Env\clsStack.cs" />

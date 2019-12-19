@@ -82,7 +82,7 @@ namespace Chromatik.SQLite
             {
                 string[] rslt = new string[Count];
                 for (int i = 0; i < Count; i++)
-                    rslt[i] = Values[0].ToString();
+                    rslt[i] = Values[i].ToString();
                 return rslt.Join(", ");
             }
             else

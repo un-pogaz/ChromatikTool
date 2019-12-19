@@ -131,11 +131,29 @@ namespace System
         }
 
         /// <summary>
-        /// Get the application folder path
+        /// Application folder
         /// </summary>
-        static public string ApplicationPath
-        {
-            get { return Path.GetDirectoryName(Application.ExecutablePath) + DSC; }
-        }
+        static public string ApplicationFolder { get; } = Path.GetDirectoryName(Application.ExecutablePath) + DSC;
+
+        /// <summary>
+        /// ApplicationData (%AppData%) folder of the application
+        /// </summary>
+        static public string ApplicationData { get; } = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), WorkFolderName) + DSC;
+
+        /// <summary>
+        /// ApplicationData (%AppData%) folder of the application
+        /// </summary>
+        static public  string LocalApplicationData { get; } = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), WorkFolderName) + DSC;
+
+        /// <summary>
+        /// ProgramData folder of the application
+        /// </summary>
+        static public string ProgramData { get; } = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), WorkFolderName) + DSC;
+
+        /// <summary>
+        /// Version info
+        /// </summary>
+        static public VersionClass Version { get; } = new VersionClass(Application.ProductVersion);
+
     }
 }

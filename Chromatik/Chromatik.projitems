@@ -36,6 +36,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Sgml\IEntityResolver.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sgml\SgmlParser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sgml\SgmlReader.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Version.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Xml\DocumentType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Xml\XmlExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Xml\XmlCreate.cs" />

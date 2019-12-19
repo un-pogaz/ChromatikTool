@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace System.Collections.Generic
     /// Create a <see cref="IComparer{T}"/>
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class Comparator<T> : IComparer<T>, IComparer
+    public class Comparator<T> : IComparer<T>, IComparer, IEqualityComparer<T>, IEqualityComparer
     {
         /// <summary> </summary>
         static public Comparator<T> Default { get; } = new Comparator<T>();
@@ -116,6 +117,28 @@ namespace System.Collections.Generic
             {
                 return 0;
             }
+        }
+
+        /// <summary> </summary>
+        public bool Equals(T x, T y)
+        {
+            return (Compare(x, y) == 0);
+        }
+        /// <summary> </summary>
+        new public bool Equals(object x, object y)
+        {
+            return (Compare(x, y) == 0);
+        }
+
+        /// <summary> </summary>
+        public int GetHashCode(T obj)
+        {
+            return obj.GetHashCode();
+        }
+        /// <summary> </summary>
+        public int GetHashCode(object obj)
+        {
+            return obj.GetHashCode();
         }
     }
 

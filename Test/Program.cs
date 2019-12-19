@@ -25,10 +25,19 @@ namespace Test
         [STAThread]
         static void Main()
         {
+            string[] ss = new string[0].Concat(
+                Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+                Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+                Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData)
+            );
 
-            XmlDocument dgdfg = XmlCreate.DocumentXML("<xml> kkkkkkk yyyy <!-- --> 65246541 sdfwsfd</xml>");
-            XmlElement[] eeeee = dgdfg.FirstElement().GetElements();
-            XmlElement dfgg = dgdfg.FirstElement().LastElement();
+            string[] xx = new string[0].Concat(
+                Settings.ApplicationFolder,
+                Settings.LocalApplicationData,
+                Settings.ProgramData
+            );
+
+            VersionClass vv = new VersionClass("v 1.0.3");
 
             RotorEnigma Ia = RotorEnigma.I;
             Ia.InitialPosition = Ia.OperatingAlphabet[5];
@@ -47,7 +56,6 @@ namespace Test
             renameXMLNode(xml, "span", "stripspan");
 
             string ddd = xml.OuterXml.Regex("<(|/)stripspan>", "");
-            
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
