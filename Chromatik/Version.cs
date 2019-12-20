@@ -36,7 +36,7 @@ namespace System
 
             int rslt = 0;
             if (index < s.Length)
-                int.TryParse(s[index], out rslt);
+                rslt = int.Parse(s[index]);
             return rslt;
         }
 

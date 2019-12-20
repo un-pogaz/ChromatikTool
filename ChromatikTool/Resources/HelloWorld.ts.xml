@@ -4,9 +4,9 @@
 <context>
   <name>About</name>
   <message>
-    <location filename="../../Form_Files/About.ui" line="14"/>
-    <source>About</source>
-    <translation>À propos</translation>
+    <location filename="About.ui" line="1"/>
+    <source>Hello World!</source>
+    <translation>Bonjour tous le monde !</translation>
   </message>
 </context>
 </TS>

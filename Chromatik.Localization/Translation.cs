@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Xml;
-using System.Globalization;
 
 namespace System.Globalization
 {
-    public class Translation : Collections.ObjectModel.Collection<TranslationContext>
+    public class Translation : Dictionary<string, TranslationContext>
     {
         static public Translation LoadTranslation(string path)
         {
@@ -24,24 +23,17 @@ namespace System.Globalization
         {
             try
             {
-                return new Translation(XmlCreate.DocumentXML(xml));
+                return new Translation(XmlCreate.DocumentXML(xml.ToLinux()));
             }
             catch (Exception ex)
             {
                 throw new TranslationException(ex);
             }
         }
+
         static public Translation CreatNewTranslation(string targetLang)
         {
             try
-            {
-
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
             {
                 return CreatNewTranslation(CultureInfo.GetCultureInfo(targetLang));
             }
@@ -56,17 +48,42 @@ namespace System.Globalization
         }
 
         public CultureInfo Culture { get; }
-
-        protected Translation(XmlDocument document) : base(GetContexts(document))
+        public VersionClass Version { get; set; }
+        
+        protected Translation(XmlDocument document) : base(new Dictionary<string, TranslationContext>())
         {
+            XmlElement ts = document.FirstElement("TS");
+            if (ts == null)
+                throw new TranslationException("Invalid Translation file. The root node isn't 'TS'.");
+            if (!ts.HasAttribute("language"))
+                throw new TranslationException("The 'language' attribute as not defined.");
+            if (!ts.HasAttribute("version"))
+                throw new TranslationException("The 'version' attribute as not defined.");
 
-        }
-
-        static List<TranslationContext> GetContexts(XmlDocument document)
-        {
-            List<TranslationContext> rslt = new List<TranslationContext>();
+            try
+            {
+                Culture = CultureInfo.GetCultureInfo(ts.GetAttribute("language"));
+                Version = new VersionClass(ts.GetAttribute("version"));
+            }
+            catch (Exception ex)
+            {
+                throw new TranslationException(ex);
+            }
             
-            return rslt;
+            XmlElement[] context = ts.GetElements("context");
+            if (context.Length == 0)
+                throw new TranslationException("Invalid Translation file. No 'context' node was found.");
+
+            List<TranslationContext> rslt = new List<TranslationContext>();
+            foreach (XmlElement item in context)
+            {
+                TranslationContext trs = new TranslationContext(item);
+                if (!ContainsKey(trs.Name))
+                    Add(trs.Name, trs);
+                else
+                    foreach (TranslationMessage msg in trs)
+                        this[trs.Name].Add(msg);
+            }
         }
     }
 }

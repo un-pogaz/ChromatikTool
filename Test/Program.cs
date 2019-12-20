@@ -34,10 +34,9 @@ namespace Test
             /// string rslt3 = enigma3.Process(test);
             
             ;
+            
 
-            SortedList<string, string> rslt = new SortedList<string, string>();
-            rslt.Add("dd", "");
-            rslt.Add("dd", "");
+            VersionClass d = new VersionClass("sdf");
 
             XmlDocument xml = XmlCreate.DocumentXML("<xml><span>kkkkkkk</span> <span de=\"\">yyyy</span> 65246541 <span>sdfwsfd</span></xml>");
             renameXMLNode(xml, "span", "stripspan");
