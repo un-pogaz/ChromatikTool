@@ -51,6 +51,8 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Chromatik.Machine", "Chroma
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChromatikTool.CommentsCleaner", "ChromatikTool.CommentsCleaner\ChromatikTool.CommentsCleaner.csproj", "{41404C61-0DBE-4A5E-8D3E-FF30A8BC1B47}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Chromatik.Localization", "Chromatik.Localization\Chromatik.Localization.shproj", "{056C42BC-A284-46E9-BB07-7EBF706EECD0}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Chromatik.Sequence\Chromatik.Sequence.projitems*{84e88843-7ad5-4b04-a72b-747bdc43ad4d}*SharedItemsImports = 13
@@ -59,21 +61,23 @@ Global
 		Chromatik.Zip\Chromatik.Zip.projitems*{e4c23370-c288-4b45-92d2-80b29b8decdd}*SharedItemsImports = 13
 		Chromatik.Registry\Chromatik.Registry.projitems*{57e41f0c-bcb8-4d10-8d21-42836d08226b}*SharedItemsImports = 13
 		Chromatik.LibNoise\Chromatik.Noise.projitems*{7701fd2d-6c9e-4a06-baa3-b214d0f82eaf}*SharedItemsImports = 13
-		Chromatik.Unicode\Chromatik.Unicode.projitems*{41404c61-0dbe-4a5e-8d3e-ff30a8bc1b47}*SharedItemsImports = 4
 		Chromatik.Forms\Chromatik.Forms.projitems*{41404c61-0dbe-4a5e-8d3e-ff30a8bc1b47}*SharedItemsImports = 4
 		Chromatik.SQLite\Chromatik.SQLite.projitems*{41404c61-0dbe-4a5e-8d3e-ff30a8bc1b47}*SharedItemsImports = 4
+		Chromatik.Unicode\Chromatik.Unicode.projitems*{41404c61-0dbe-4a5e-8d3e-ff30a8bc1b47}*SharedItemsImports = 4
 		Chromatik\Chromatik.projitems*{41404c61-0dbe-4a5e-8d3e-ff30a8bc1b47}*SharedItemsImports = 4
 		Chromatik.SQLite\Chromatik.SQLite.projitems*{db77794d-a9ee-476c-a553-bdda2849b878}*SharedItemsImports = 13
 		Chromatik.Forms\Chromatik.Forms.projitems*{9c65a1f9-699c-45a7-b724-24d706e31637}*SharedItemsImports = 13
 		Chromatik.Ini\Chromatik.Ini.projitems*{94564b30-da9a-465b-ad6e-98daca15f120}*SharedItemsImports = 13
+		Chromatik.Localization\Chromatik.Localization.projitems*{056c42bc-a284-46e9-bb07-7ebf706eecd0}*SharedItemsImports = 13
 		Chromatik.SlimDX\Chromatik.SlimDX.projitems*{748d4242-3809-4a88-ae97-a4360a535fdd}*SharedItemsImports = 13
-		Chromatik.Unicode\Chromatik.Unicode.projitems*{af7bfb9e-19a5-40c4-872e-5d71eea28de8}*SharedItemsImports = 4
-		Chromatik.Forms\Chromatik.Forms.projitems*{af7bfb9e-19a5-40c4-872e-5d71eea28de8}*SharedItemsImports = 4
-		Chromatik.SQLite\Chromatik.SQLite.projitems*{af7bfb9e-19a5-40c4-872e-5d71eea28de8}*SharedItemsImports = 4
 		Chromatik.Zip\Chromatik.Zip.projitems*{af7bfb9e-19a5-40c4-872e-5d71eea28de8}*SharedItemsImports = 4
+		Chromatik.Forms\Chromatik.Forms.projitems*{af7bfb9e-19a5-40c4-872e-5d71eea28de8}*SharedItemsImports = 4
+		Chromatik.Localization\Chromatik.Localization.projitems*{af7bfb9e-19a5-40c4-872e-5d71eea28de8}*SharedItemsImports = 4
+		Chromatik.Svg\Chromatik.Svg.projitems*{af7bfb9e-19a5-40c4-872e-5d71eea28de8}*SharedItemsImports = 4
+		Chromatik.SQLite\Chromatik.SQLite.projitems*{af7bfb9e-19a5-40c4-872e-5d71eea28de8}*SharedItemsImports = 4
+		Chromatik.Unicode\Chromatik.Unicode.projitems*{af7bfb9e-19a5-40c4-872e-5d71eea28de8}*SharedItemsImports = 4
 		Chromatik.MimeType\Chromatik.MimeType.projitems*{af7bfb9e-19a5-40c4-872e-5d71eea28de8}*SharedItemsImports = 4
 		Chromatik\Chromatik.projitems*{af7bfb9e-19a5-40c4-872e-5d71eea28de8}*SharedItemsImports = 4
-		Chromatik.Svg\Chromatik.Svg.projitems*{af7bfb9e-19a5-40c4-872e-5d71eea28de8}*SharedItemsImports = 4
 		Chromatik.Enigma\Chromatik.Enigma.projitems*{91df0aad-8fb3-4e9a-8540-eb9560ca7ebf}*SharedItemsImports = 13
 		Chromatik\Chromatik.projitems*{7e078ec5-80b5-40a3-a55f-08b97e642325}*SharedItemsImports = 13
 		Chromatik.NewtonsoftJson\Chromatik.NewtonsoftJson.projitems*{9732e864-65eb-4a5e-923a-f937f2d45d2c}*SharedItemsImports = 13
@@ -85,16 +89,17 @@ Global
 		Chromatik.RAmen\Chromatik.RAmen.projitems*{381aaaa2-6761-4711-82bf-2d3932f34c92}*SharedItemsImports = 13
 		Chromatik.Compression\Chromatik.Compression.projitems*{01c2a431-8549-4a94-9c51-f1a60621c2a0}*SharedItemsImports = 13
 		Chromatik.Drawing\Chromatik.Drawing.projitems*{1b81048c-2f5f-4f46-8ac4-492d100c0824}*SharedItemsImports = 4
-		Chromatik.Unicode\Chromatik.Unicode.projitems*{1b81048c-2f5f-4f46-8ac4-492d100c0824}*SharedItemsImports = 4
-		Chromatik.Forms\Chromatik.Forms.projitems*{1b81048c-2f5f-4f46-8ac4-492d100c0824}*SharedItemsImports = 4
-		Chromatik.SQLite\Chromatik.SQLite.projitems*{1b81048c-2f5f-4f46-8ac4-492d100c0824}*SharedItemsImports = 4
-		Chromatik.NewtonsoftJson\Chromatik.NewtonsoftJson.projitems*{1b81048c-2f5f-4f46-8ac4-492d100c0824}*SharedItemsImports = 4
 		Chromatik.Zip\Chromatik.Zip.projitems*{1b81048c-2f5f-4f46-8ac4-492d100c0824}*SharedItemsImports = 4
-		Chromatik.Ini\Chromatik.Ini.projitems*{1b81048c-2f5f-4f46-8ac4-492d100c0824}*SharedItemsImports = 4
-		Chromatik.MimeType\Chromatik.MimeType.projitems*{1b81048c-2f5f-4f46-8ac4-492d100c0824}*SharedItemsImports = 4
-		Chromatik.LibNoise\Chromatik.Noise.projitems*{1b81048c-2f5f-4f46-8ac4-492d100c0824}*SharedItemsImports = 4
-		Chromatik\Chromatik.projitems*{1b81048c-2f5f-4f46-8ac4-492d100c0824}*SharedItemsImports = 4
 		Chromatik.Enigma\Chromatik.Enigma.projitems*{1b81048c-2f5f-4f46-8ac4-492d100c0824}*SharedItemsImports = 4
+		Chromatik.Forms\Chromatik.Forms.projitems*{1b81048c-2f5f-4f46-8ac4-492d100c0824}*SharedItemsImports = 4
+		Chromatik.NewtonsoftJson\Chromatik.NewtonsoftJson.projitems*{1b81048c-2f5f-4f46-8ac4-492d100c0824}*SharedItemsImports = 4
+		Chromatik.Localization\Chromatik.Localization.projitems*{1b81048c-2f5f-4f46-8ac4-492d100c0824}*SharedItemsImports = 4
+		Chromatik.Ini\Chromatik.Ini.projitems*{1b81048c-2f5f-4f46-8ac4-492d100c0824}*SharedItemsImports = 4
+		Chromatik.SQLite\Chromatik.SQLite.projitems*{1b81048c-2f5f-4f46-8ac4-492d100c0824}*SharedItemsImports = 4
+		Chromatik.Unicode\Chromatik.Unicode.projitems*{1b81048c-2f5f-4f46-8ac4-492d100c0824}*SharedItemsImports = 4
+		Chromatik.LibNoise\Chromatik.Noise.projitems*{1b81048c-2f5f-4f46-8ac4-492d100c0824}*SharedItemsImports = 4
+		Chromatik.MimeType\Chromatik.MimeType.projitems*{1b81048c-2f5f-4f46-8ac4-492d100c0824}*SharedItemsImports = 4
+		Chromatik\Chromatik.projitems*{1b81048c-2f5f-4f46-8ac4-492d100c0824}*SharedItemsImports = 4
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

@@ -45,11 +45,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\ChromatikTool\ResourceChromatik.Designer.cs">
-      <Link>ResourceChromatik.Designer.cs</Link>
+    <Compile Include="..\ChromatikTool\Resources.Designer.cs">
+      <Link>Resources.Designer.cs</Link>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ResourceChromatik.resx</DependentUpon>
+      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="..\ChromatikTool\Unicode.Initialisation.cs">
       <Link>Unicode.Initialisation.cs</Link>
@@ -60,11 +60,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="..\ChromatikTool\ResourceChromatik.resx">
-      <Link>ResourceChromatik.resx</Link>
+    <EmbeddedResource Include="..\ChromatikTool\Resources.resx">
+      <Link>Resources.resx</Link>
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
-      <LastGenOutput>ResourceChromatik.Designer.cs</LastGenOutput>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="..\Chromatik\Chromatik.projitems" Label="Shared" />

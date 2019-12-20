@@ -46,9 +46,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Xml\XmlWriterTool.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="$(MSBuildThisFileDirectory)Sgml\Html.dtd" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="$(MSBuildThisFileDirectory)Sgml\_Info.txt" />
   </ItemGroup>
 </Project>

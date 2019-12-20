@@ -7,12 +7,7 @@ using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
-using System.Security.Cryptography.Machine;
 using System.Xml;
-using System.Reflection;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System.Configuration;
 
 
 namespace Test
@@ -25,33 +20,25 @@ namespace Test
         [STAThread]
         static void Main()
         {
-            string[] ss = new string[0].Concat(
-                Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
-                Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
-                Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData)
-            );
-
-            string[] xx = new string[0].Concat(
-                Settings.ApplicationFolder,
-                Settings.LocalApplicationData,
-                Settings.ProgramData
-            );
-
-            VersionClass vv = new VersionClass("v 1.0.3");
-
-            RotorEnigma Ia = RotorEnigma.I;
-            Ia.InitialPosition = Ia.OperatingAlphabet[5];
-            Hexa h = new Hexa(byte.MaxValue);
-
-            Enigma enigma1 = new Enigma(Reflector.B, Ia, RotorEnigma.II, RotorEnigma.VIII);
-            enigma1.ToString();
-            string test = enigma1.Process("HELLO WORLD !");
-            enigma1.Reset();
-            string rslt0 = enigma1.Process(test);
-
-            Enigma enigma3 = enigma1.Clone(true);
-            string rslt3 = enigma3.Process(test);
+            /// RotorEnigma Ia = RotorEnigma.I;
+            /// Ia.InitialPosition = Ia.OperatingAlphabet[5];
+            /// Hexa h = new Hexa(byte.MaxValue);
+            /// 
+            /// Enigma enigma1 = new Enigma(Reflector.B, Ia, RotorEnigma.II, RotorEnigma.VIII);
+            /// enigma1.ToString();
+            /// string test = enigma1.Process("HELLO WORLD !");
+            /// enigma1.Reset();
+            /// string rslt0 = enigma1.Process(test);
+            /// 
+            /// Enigma enigma3 = enigma1.Clone(true);
+            /// string rslt3 = enigma3.Process(test);
             
+            ;
+
+            SortedList<string, string> rslt = new SortedList<string, string>();
+            rslt.Add("dd", "");
+            rslt.Add("dd", "");
+
             XmlDocument xml = XmlCreate.DocumentXML("<xml><span>kkkkkkk</span> <span de=\"\">yyyy</span> 65246541 <span>sdfwsfd</span></xml>");
             renameXMLNode(xml, "span", "stripspan");
 

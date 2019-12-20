@@ -67,22 +67,35 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ResourceChromatik.Designer.cs">
+    <Compile Include="Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ResourceChromatik.resx</DependentUpon>
+      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Unicode.Initialisation.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ResourceChromatik.resx">
+    <EmbeddedResource Include="Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
-      <LastGenOutput>ResourceChromatik.Designer.cs</LastGenOutput>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Resources\Html.dtd" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\unicode.charsets.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\unicode.conscript.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\unicode.unicode.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\HelloWorld.ts.xml" />
   </ItemGroup>
   <Import Project="..\Chromatik\Chromatik.projitems" Label="Shared" />
   <Import Project="..\Chromatik.Forms\Chromatik.Forms.projitems" Label="Shared" />
@@ -95,6 +108,7 @@
   <Import Project="..\Chromatik.NewtonsoftJson\Chromatik.NewtonsoftJson.projitems" Label="Shared" />
   <Import Project="..\Chromatik.Ini\Chromatik.Ini.projitems" Label="Shared" />
   <Import Project="..\Chromatik.Enigma\Chromatik.Enigma.projitems" Label="Shared" />
+  <Import Project="..\Chromatik.Localization\Chromatik.Localization.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

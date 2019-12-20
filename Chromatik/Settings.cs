@@ -84,7 +84,7 @@ namespace System
                             {
                                 item.Delete(true);
                             }
-                            catch (Exception)
+                            catch
                             {
                             }
                         }
@@ -96,7 +96,7 @@ namespace System
                             {
                                 item.Delete();
                             }
-                            catch (Exception)
+                            catch
                             {
                             }
                         }

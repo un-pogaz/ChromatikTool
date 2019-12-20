@@ -460,7 +460,7 @@ namespace System.Sgml
                 {
                     if (this.m_docType != null && StringUtilities.EqualsIgnoreCase(this.m_docType, "html"))
                     {
-                        Stream stream = StreamExtension.StreamFromString(Chromatik.ResourceChromatik.Html_dtd);
+                        Stream stream = StreamExtension.StreamFromString(Chromatik.Resources.Html_dtd);
                         // see if our resolver can find it.
                         if (stream != null)
                         {

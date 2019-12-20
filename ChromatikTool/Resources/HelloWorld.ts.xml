@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<!DOCTYPE TS>
+<TS language="fr" version="2.1">
+<context>
+  <name>About</name>
+  <message>
+    <location filename="../../Form_Files/About.ui" line="14"/>
+    <source>About</source>
+    <translation>À propos</translation>
+  </message>
+</context>
+</TS>

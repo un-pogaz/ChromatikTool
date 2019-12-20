@@ -48,6 +48,14 @@ namespace System.Xml
         /// </summary>
         static public XmlNamespace XML { get; } = new XmlNamespace("xml", @"http://www.w3.org/XML/1998/namespace");
         /// <summary>
+        /// Standard namespace for XML
+        /// </summary>
+        static public XmlNamespace XMLSchema { get; } = new XmlNamespace("xs", @"http://www.w3.org/2001/XMLSchema");
+        /// <summary>
+        /// Standard namespace for XML
+        /// </summary>
+        static public XmlNamespace XMLSchemaInstance { get; } = new XmlNamespace("xsi", @"http://www.w3.org/2001/XMLSchema-instance");
+        /// <summary>
         /// Standard namespace for XHTML
         /// </summary>
         static public XmlNamespace XHTML { get; } = new XmlNamespace("xhtml", @"http://www.w3.org/1999/xhtml");

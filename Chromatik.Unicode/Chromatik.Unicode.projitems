@@ -34,9 +34,4 @@
     <Compile Include="$(MSBuildThisFileDirectory)Unicode.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)UnicodeExceptions.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="$(MSBuildThisFileDirectory)unicode.ConScript.xml" />
-    <None Include="$(MSBuildThisFileDirectory)unicode.Charsets.xml" />
-    <None Include="$(MSBuildThisFileDirectory)unicode.Unicode.xml" />
-  </ItemGroup>
 </Project>
