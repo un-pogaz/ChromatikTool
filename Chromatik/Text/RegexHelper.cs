@@ -103,7 +103,7 @@ namespace System.Text
         /// <summary>
         /// Default <see cref="RegularExpressions.RegexOptions"/> for regex operations.
         /// </summary>
-        static public RegexOptions DefaultRegexOptions { get; } = (RegexOptions.Singleline|RegexOptions.Multiline| RegexOptions.CultureInvariant);
+        static public RegexOptions DefaultRegexOptions { get { return (RegexOptions.Singleline | RegexOptions.Multiline | RegexOptions.CultureInvariant); } }
         /// <summary>
         /// <see cref="RegularExpressions.RegexOptions"/> for regex operations.
         /// </summary>
