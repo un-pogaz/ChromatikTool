@@ -52,7 +52,7 @@ namespace System.Text
         }
 
         /// <summary>
-        /// Parse the <see cref="string"/> to Linux End of Line char
+        /// Parse the <see cref="string"/> to Linux End of Line char '\n'
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
@@ -60,7 +60,17 @@ namespace System.Text
         {
             return input.Regex("(" + WhiteCharacter.EndLineString.Join("|") + ")", "\n");
         }
-        
+
+        /// <summary>
+        /// Parse the <see cref="string"/> to the <see cref="Environment.NewLine"/>
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        static public string ToEnvironmentLine(this string input)
+        {
+            return input.Regex("(" + WhiteCharacter.EndLineString.Join("|") + ")", Environment.NewLine);
+        }
+
         /// <summary>
         /// Get the ToString() of a <see cref="IEnumerable{T}"/> collection (<see langword="null"/> as keep)
         /// </summary>

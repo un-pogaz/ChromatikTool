@@ -61,7 +61,7 @@ namespace Svg
                 {
                     string svg_minifed = Path.GetDirectoryName(filePath) + Path.DirectorySeparatorChar + Path.GetFileNameWithoutExtension(filePath) + "-minifed.svg";
 
-                    XmlWriterTool.Document(svg_minifed, Document(load), WriterSetting(indent));
+                    XmlWriterDocument.Document(svg_minifed, Document(load), WriterSetting(indent));
 
                     string text = System.IO.File.ReadAllText(svg_minifed).ReplaceLoop(" />", "/>");
                     if (!indent)

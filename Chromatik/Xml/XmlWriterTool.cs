@@ -8,29 +8,34 @@ namespace System.Xml
     /// <summary>
     /// Static class for write a XML file
     /// </summary>
-    static public class XmlWriterTool
+    static public class XmlWriterDocument
     {
         /// <summary>
         /// Initial setting for <see cref="XmlWriter"/>
         /// </summary>
-        static public XmlWriterSettings DefaultSetting { get; } = new XmlWriterSettings()
+        static public XmlWriterSettings DefaultSetting
         {
-            OmitXmlDeclaration = false,
-            Encoding = UTF8SansBomEncoding.Default,
-            Indent = true,
-            IndentChars = "  ",
-            NewLineChars = "\n",
-            NewLineOnAttributes = false,
-            CheckCharacters = true,
-            NamespaceHandling = NamespaceHandling.OmitDuplicates,
-            ConformanceLevel = ConformanceLevel.Auto,
-            NewLineHandling = NewLineHandling.None,
-            DoNotEscapeUriAttributes = false,
-            WriteEndDocumentOnClose = true,
-            CloseOutput = true
-        };
+            get {
+                return new XmlWriterSettings()
+                {
+                    OmitXmlDeclaration = false,
+                    Encoding = UTF8SansBomEncoding.Default,
+                    Indent = true,
+                    IndentChars = "  ",
+                    NewLineChars = "\n",
+                    NewLineOnAttributes = false,
+                    CheckCharacters = true,
+                    NamespaceHandling = NamespaceHandling.OmitDuplicates,
+                    ConformanceLevel = ConformanceLevel.Auto,
+                    NewLineHandling = NewLineHandling.None,
+                    DoNotEscapeUriAttributes = false,
+                    WriteEndDocumentOnClose = true,
+                    CloseOutput = true
+                };
+            }
+        }
         /// <summary>
-        /// Default setting for <see cref="XmlWriter"/> in <see cref="XmlWriterTool"/>
+        /// Default setting for <see cref="XmlWriter"/> in <see cref="XmlWriterDocument"/>
         /// </summary>
         static public XmlWriterSettings Setting { get; set; } = DefaultSetting;
 
