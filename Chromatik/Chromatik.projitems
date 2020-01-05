@@ -36,6 +36,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)Sgml\IEntityResolver.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sgml\SgmlParser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sgml\SgmlReader.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Translation\GettextPO.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Translation\QtTranslation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Translation\QtTranslationContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Translation\QtTranslationException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Translation\QtTranslationMessage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Translation\Xliff.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Version.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Xml\DocumentType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Xml\XmlExtension.cs" />
@@ -43,9 +49,13 @@
     <Compile Include="$(MSBuildThisFileDirectory)Xml\XmlEnumertor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Xml\XmlNamespace.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Xml\XmlRacine.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Xml\XmlWriterTool.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Xml\XmlWriterDocument.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="$(MSBuildThisFileDirectory)Sgml\_Info.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)Translation\Translate gettext PO Files _ Transifex Documentation.url" />
+    <None Include="$(MSBuildThisFileDirectory)Translation\Translate XLIFF Files _ Transifex Documentation.url" />
   </ItemGroup>
 </Project>

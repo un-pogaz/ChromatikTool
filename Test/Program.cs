@@ -34,9 +34,11 @@ namespace Test
             /// string rslt3 = enigma3.Process(test);
             
             ;
-            
 
-            VersionClass d = new VersionClass("sdf");
+            string t1 = Settings.Args.GetNextArg("--test1");
+            string t2 = Settings.Args.GetNextArg("--test2");
+
+            System.Globalization.QtTranslation trs = System.Globalization.QtTranslation.LoadTranslation(@"F:\Projet\GitHub\ChromatikTool\Test\for_translation_sigil_sigil_fr.ts.xml");
 
             XmlDocument xml = XmlCreate.DocumentXML("<xml><span>kkkkkkk</span> <span de=\"\">yyyy</span> 65246541 <span>sdfwsfd</span></xml>");
             renameXMLNode(xml, "span", "stripspan");

@@ -32,6 +32,29 @@ namespace System.IO
         }
 
         /// <summary>
+        /// Obtains safely file correspond to the research pattern in the target folder.
+        /// </summary>
+        /// <param name="path">Target folder</param>
+        /// <param name="searchPattern">Search string to find among the file names in path. This parameter can contain a combination of literal and generic characters * and ? (see Remarks), but does not support regular expressions.</param>
+        static public string[] GetFiles(string path, params string[] searchPattern) { return GetFiles(path, searchPattern, SearchOption.AllDirectories); }
+        /// <summary>
+        /// Obtains safely file correspond to the research pattern in the target folder.
+        /// </summary>
+        /// <param name="path">Target folder</param>
+        /// <param name="searchPattern">Search string to find among the file names in path. This parameter can contain a combination of literal and generic characters * and ? (see Remarks), but does not support regular expressions.</param>
+        /// <param name="searchOption"></param>
+        static public string[] GetFiles(string path, string[] searchPattern, SearchOption searchOption)
+        {
+            IEnumerable<string> enu = new List<string>();
+            foreach (var search in searchPattern)
+                enu = enu.Concat(EnumerateFiles(path, search, searchOption));
+
+            List<string> rslt = new List<string>(enu);
+            rslt.Sort();
+            return rslt.ToArray();
+        }
+
+        /// <summary>
         /// Enumerable safely all files in the target folder.
         /// </summary>
         /// <param name="path">Target folder</param>
@@ -66,6 +89,7 @@ namespace System.IO
                             yield return item;
             }
         }
+
 
         /// <summary>
         /// Obtains safely all directory in the target folder.

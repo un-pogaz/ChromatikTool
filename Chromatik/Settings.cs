@@ -22,21 +22,6 @@ namespace System
         static private char DSC { get; } = Path.DirectorySeparatorChar;
 
         /// <summary>
-        /// Command line arguments of the application
-        /// </summary>
-        static public string[] Args
-        {
-            get
-            {
-                string[] rslt = Environment.GetCommandLineArgs();
-                if (rslt.Length > 0)
-                    return rslt.SubArray(1);
-                else
-                    return new string[0];
-            }
-        }
-
-        /// <summary>
         /// Name used for the temporary work folder; see <see cref="CreateTempWorkFolder()"/>
         /// </summary>
         /// <remarks>By default, is the file name of the application</remarks>
@@ -143,7 +128,7 @@ namespace System
         /// <summary>
         /// ApplicationData (%AppData%) folder of the application
         /// </summary>
-        static public  string LocalApplicationData { get; } = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), WorkFolderName) + DSC;
+        static public string LocalApplicationData { get; } = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), WorkFolderName) + DSC;
 
         /// <summary>
         /// ProgramData folder of the application
@@ -155,5 +140,84 @@ namespace System
         /// </summary>
         static public VersionClass Version { get; } = new VersionClass(Application.ProductVersion);
 
+
+        /// <summary>
+        /// Command line arguments of the application
+        /// </summary>
+        static public CommandLineArgs Args { get; } = new CommandLineArgs();
+
+        [System.Diagnostics.DebuggerDisplay("{CommandLine}")]
+        public class CommandLineArgs : Collections.ObjectModel.ReadOnlyCollection<string>
+        {
+            static private IList<string> Init()
+            {
+                string[] rslt = Environment.GetCommandLineArgs();
+                if (rslt.Length > 0)
+                    return rslt.SubArray(1);
+                else
+                    return new string[0];
+            }
+
+            public CommandLineArgs() : base(Init())
+            {
+                string cmd = Environment.CommandLine;
+                CommandLine = cmd.Substring(cmd.IndexOf('"', 1)+1).Trim();
+            }
+
+            public string CommandLine { get; }
+
+            new public bool Contains(string value)
+            {
+                return (IndexOf(value) >= 0);
+            }
+            public bool Contains(string value, bool caseSensitive)
+            {
+                return (IndexOf(value, caseSensitive) >= 0);
+            }
+            public bool Contains(string value, StringComparison comparisonType)
+            {
+                return (IndexOf(value, comparisonType) >= 0);
+            }
+
+            new public int IndexOf(string value)
+            {
+                return IndexOf(value, false);
+            }
+            public int IndexOf(string value, bool caseSensitive)
+            {
+                if (caseSensitive)
+                    return IndexOf(value, StringComparison.InvariantCulture);
+                else
+                    return IndexOf(value, StringComparison.InvariantCultureIgnoreCase);
+            }
+            public int IndexOf(string value, StringComparison comparisonType)
+            {
+                for (int i = 0; i < Items.Count; i++)
+                    if (Items[i].Equals(value, comparisonType))
+                        return i;
+
+                return -1;
+            }
+
+            public string GetNextArg(string value)
+            {
+                return GetNextArg(value, false);
+            }
+            public string GetNextArg(string value, bool caseSensitive)
+            {
+                if (caseSensitive)
+                    return GetNextArg(value, StringComparison.InvariantCulture);
+                else
+                    return GetNextArg(value, StringComparison.InvariantCultureIgnoreCase);
+            }
+            public string GetNextArg(string value, StringComparison comparisonType)
+            {
+                int index = IndexOf(value, comparisonType);
+                if (index >= 0 && index+1 < Count)
+                    return Items[index+1];
+
+                return null;
+            }
+        }
     }
 }
