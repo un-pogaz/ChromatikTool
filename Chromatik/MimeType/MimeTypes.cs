@@ -1358,18 +1358,32 @@ namespace System.MimeType
         }
 
         /// <summary>
+        /// Get the first MINE types associated with the extension
+        /// </summary>
+        /// <param name="extension"></param>
+        /// <returns>String array of MINE types associated with the extension</returns>
+        public static string GetMimeType(string extension) { return GetMimeType(extension, false); }
+        /// <summary>
+        /// Get the first MINE types associated with the extension
+        /// </summary>
+        /// <param name="extension"></param>
+        /// <param name="throwErrorIfNotFound">Throw a exception if the extension as not found</param>
+        /// <returns>String array of MINE types associated with the extension</returns>
+        public static string GetMimeType(string extension, bool throwErrorIfNotFound) { return GetMimeTypes(extension, throwErrorIfNotFound)[0]; }
+
+        /// <summary>
         /// Get the MINE types associated with the extension
         /// </summary>
         /// <param name="extension"></param>
         /// <returns>String array of MINE types associated with the extension</returns>
-        public static string[] GetMimeType(string extension) { return GetMimeType(extension, false); }
+        public static string[] GetMimeTypes(string extension) { return GetMimeTypes(extension, false); }
         /// <summary>
         /// Get the MINE types associated with the extension
         /// </summary>
         /// <param name="extension"></param>
         /// <param name="throwErrorIfNotFound">Throw a exception if the extension as not found</param>
         /// <returns>String array of MINE types associated with the extension</returns>
-        public static string[] GetMimeType(string extension, bool throwErrorIfNotFound)
+        public static string[] GetMimeTypes(string extension, bool throwErrorIfNotFound)
         {
             if (extension == null)
                 throw new ArgumentNullException();
@@ -1394,20 +1408,35 @@ namespace System.MimeType
         /// </summary>
         /// <returns></returns>
         public static string[] GetAllMimeTypes() { return EXTz.Value.AllKeys; }
-
+        
         /// <summary>
         /// Get the extensions associated with the MINE type
         /// </summary>
         /// <param name="mimeType"></param>
-        /// <returns>String array of extensions associated with the MINE type</returns>
-        public static string[] GetExtension(string mimeType) { return GetExtension(mimeType, false); }
+        /// <returns>String array of the extensions associated with the MimeType</returns>
+        public static string GetExtension(string mimeType) { return GetExtension(mimeType, false); }
         /// <summary>
         /// Get the extensions associated with the MINE type
         /// </summary>
         /// <param name="mimeType"></param>
         /// <param name="throwErrorIfNotFound">Throw a exception if the MINE type as not found</param>
         /// <returns>String array of the extensions associated with the MimeType</returns>
-        public static string[] GetExtension(string mimeType, bool throwErrorIfNotFound)
+        public static string GetExtension(string mimeType, bool throwErrorIfNotFound) { return GetExtensions(mimeType, throwErrorIfNotFound)[0]; }
+
+
+        /// <summary>
+        /// Get the extensions associated with the MINE type
+        /// </summary>
+        /// <param name="mimeType"></param>
+        /// <returns>String array of extensions associated with the MINE type</returns>
+        public static string[] GetExtensions(string mimeType) { return GetExtensions(mimeType, false); }
+        /// <summary>
+        /// Get the extensions associated with the MINE type
+        /// </summary>
+        /// <param name="mimeType"></param>
+        /// <param name="throwErrorIfNotFound">Throw a exception if the MINE type as not found</param>
+        /// <returns>String array of the extensions associated with the MimeType</returns>
+        public static string[] GetExtensions(string mimeType, bool throwErrorIfNotFound)
         {
             if (mimeType == null)
                 throw new ArgumentNullException();
@@ -1432,5 +1461,6 @@ namespace System.MimeType
         /// </summary>
         /// <returns></returns>
         public static string[] GetAllExtensions() { return MINE.Value.AllKeys; }
+                
     }
 }

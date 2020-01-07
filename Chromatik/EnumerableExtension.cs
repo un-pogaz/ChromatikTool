@@ -8,7 +8,7 @@ namespace System.Linq
     /// <summary>
     /// Class to extend System.Linq methods
     /// </summary>
-    static public class ArrayExtension
+    static public class EnumerableExtension
     {
         /// <summary>
         /// Concatenate a jagged array whit a concatenate of these entrys
@@ -103,7 +103,48 @@ namespace System.Linq
 
             return Enumerable.Distinct(tbl, comparer).ToArray();
         }
-        
+
+
+
+        public static bool IsEmpty<T>(this IEnumerable<T> enumerable)
+        {
+            return !enumerable.Any();
+        }
+
+        public static bool IsSingle<T>(this IEnumerable<T> enumerable)
+        {
+            return enumerable.Count() == 1;
+        }
+
+        public static bool HasMany<T>(this IEnumerable<T> enumerable)
+        {
+            return enumerable.Count() > 1;
+        }
+
+        public static IEnumerable<TSource> DistinctBy<TSource, TKey>(this IEnumerable<TSource> enumerable, Func<TSource, TKey> keySelector)
+        {
+            HashSet<TKey> knownKeys = new HashSet<TKey>();
+            foreach (TSource element in enumerable)
+            {
+                if (knownKeys.Add(keySelector(element)))
+                {
+                    yield return element;
+                }
+            }
+        }
+
+        public static IEnumerable<T> ForEach<T>(this IEnumerable<T> enumerable, Action<T> action)
+        {
+            foreach (var item in enumerable)
+            {
+                action(item);
+            }
+
+            return enumerable;
+        }
+
+
+
 
         /// <summary>
         /// Convert <see cref="IEnumerable"/> to a <see cref="object"/> <see cref="IEnumerable{T}"/> collection

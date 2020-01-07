@@ -55,13 +55,13 @@ namespace Svg
         {
             if (System.IO.File.Exists(filePath))
             {
-                XmlDocument load = XmlCreate.Document(filePath);
+                XmlDocument load = XmlDocumentCreate.Document(filePath);
 
                 if (load != null && load.FirstElement("svg") != null)
                 {
                     string svg_minifed = Path.GetDirectoryName(filePath) + Path.DirectorySeparatorChar + Path.GetFileNameWithoutExtension(filePath) + "-minifed.svg";
 
-                    XmlWriterDocument.Document(svg_minifed, Document(load), WriterSetting(indent));
+                    XmlDocumentWriter.Document(svg_minifed, Document(load), WriterSetting(indent));
 
                     string text = System.IO.File.ReadAllText(svg_minifed).ReplaceLoop(" />", "/>");
                     if (!indent)

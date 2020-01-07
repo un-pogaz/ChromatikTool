@@ -29,7 +29,7 @@ namespace System
             {
                 string b64 = Convert.ToBase64String(File.ReadAllBytes(filePath));
                 if (WebFormat)
-                    return "data:" + MimeTypes.GetMimeType(Path.GetExtension(filePath))[0] + ";base64," + b64;
+                    return "data:" + MimeTypes.GetMimeTypes(Path.GetExtension(filePath))[0] + ";base64," + b64;
                 else
                     return b64;
             }

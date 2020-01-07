@@ -581,8 +581,7 @@ namespace System.Sgml
                 Init();
             }
         }
-
-#if WINDOWS_DESKTOP
+        
         /// <summary>
         /// Sometimes you need to specify a proxy server in order to load data via HTTP
         /// from outside the firewall.  For example: "itgproxy:80".
@@ -607,7 +606,6 @@ namespace System.Sgml
                 }
             }
         }
-#endif
 
         /// <summary>
         /// The base Uri is used to resolve relative Uri's like the SystemLiteral and
@@ -750,12 +748,7 @@ namespace System.Sgml
             this.m_rootCount = 0;
             this.m_foundRoot = false;
             this.unknownNamespaces.Clear();
-#if WINDOWS_DESKTOP
             this.m_resolver = new DesktopEntityResolver();
-#endif
-#if WINDOWS_UWP
-            this.m_resolver = new UniversalEntityResolver();
-#endif
         }
 
         private Node Push(string name, XmlNodeType nt, string value)
@@ -1097,11 +1090,7 @@ namespace System.Sgml
         /// <remarks>
         /// This property applies only to an attribute node.
         /// </remarks>
-#if WINDOWS_DESKTOP
-        public override char QuoteChar
-#else
         new public char QuoteChar
-#endif
         {
             get
             {
@@ -2190,17 +2179,6 @@ namespace System.Sgml
                                 this.m_partial = '!';
                                 break; 
                             }
-#if FIX
-                        } else if (ch == '['){
-                            // We are about to wrap this node as a CDATA block because of it's
-                            // type in the DTD, but since we found a CDATA block in the input
-                            // we have to parse it as a CDATA block, otherwise we will attempt
-                            // to output nested CDATA blocks which of course is illegal.
-                            if (this.ParseConditionalBlock()){
-                                this.partial = ' ';
-                                return true;
-                            }
-#endif
                         }
                         else
                         {

@@ -8,7 +8,7 @@ namespace System.Xml
     /// <summary>
     /// Load quickly a <see cref="XmlDocument"/>
     /// </summary>
-    static public partial class XmlCreate
+    static public partial class XmlDocumentCreate
     {
         /// <summary>
         /// Load quickly a <see cref="XmlDocument"/> from a file
@@ -46,7 +46,7 @@ namespace System.Xml
 
         private static string RemoveDOCTYPE(this string input)
         {
-            return input.Regex("<!DOCTYPE[^>]*>", "", RegexHelper.DefaultRegexOptions | Text.RegularExpressions.RegexOptions.IgnoreCase);
+            return input.Regex("<!DOCTYPE[^>]*>", "", Text.RegularExpressions.RegexOptions.Singleline | Text.RegularExpressions.RegexOptions.Multiline | Text.RegularExpressions.RegexOptions.CultureInvariant | Text.RegularExpressions.RegexOptions.IgnoreCase);
         }
 
         /// <summary>

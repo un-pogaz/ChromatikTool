@@ -37,13 +37,16 @@ namespace Test
 
             string t1 = Settings.Args.GetNextArg("--test1");
             string t2 = Settings.Args.GetNextArg("--test2");
+            
+            System.Globalization.Localization.QtTranslation trs = System.Globalization.Localization.QtTranslation.LoadTranslation(@"for_translation_sigil_sigil_fr.ts.xml");
+            trs.Save("test.ts.xml");
 
-            System.Globalization.QtTranslation trs = System.Globalization.QtTranslation.LoadTranslation(@"F:\Projet\GitHub\ChromatikTool\Test\for_translation_sigil_sigil_fr.ts.xml");
+            System.Globalization.Localization.Xliff xliff = System.Globalization.Localization.Xliff.LoadXliff("XLIFF_2.xlf");
 
-            XmlDocument xml = XmlCreate.DocumentXML("<xml><span>kkkkkkk</span> <span de=\"\">yyyy</span> 65246541 <span>sdfwsfd</span></xml>");
-            renameXMLNode(xml, "span", "stripspan");
 
-            string ddd = xml.OuterXml.Regex("<(|/)stripspan>", "");
+            XmlDocument xml = XmlDocumentCreate.DocumentXML("<xml><span>kkkkkkk</span> <span de=\"\">yyyy</span><i> 65246541 </i><span>sdfwsfd</span></xml>");
+            
+            XmlDocumentWriter.Document("test.0.xml", xml, DocumentType.HTML5);
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

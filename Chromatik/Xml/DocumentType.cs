@@ -14,6 +14,8 @@ namespace System.Xml
 
         public bool IsSystem { get; }
 
+        public DocumentType(string name, bool isSystem, string id, string uri) : this(name, isSystem, id, uri, null)
+        { }
         public DocumentType(string name, bool isSystem, string id,  string uri, string subset)
         {
             char[] InvalideChar = WhiteCharacter.WhiteCharacters.Concat(ControlCharacter.ControlCharacters, ControlCharacterSupplement.ControlCharactersSupplements);
@@ -61,7 +63,7 @@ namespace System.Xml
         }
         static public DocumentType GetDocumentTypeFromXML(string xml)
         {
-            Text.RegularExpressions.RegexOptions RegexOptions = RegexHelper.RegexOptions | Text.RegularExpressions.RegexOptions.IgnoreCase;
+            Text.RegularExpressions.RegexOptions RegexOptions = RegexHelper.RegexOptions | System.Text.RegularExpressions.RegexOptions.IgnoreCase;
             string match = xml.RegexGetMatch(@"<!\s*DOCTYPE[^>]*>", RegexOptions);
             if (string.IsNullOrWhiteSpace(match))
                 return null;
@@ -119,7 +121,7 @@ namespace System.Xml
         /// <summary>
         /// Text of the DOCTYPE.
         /// </summary>
-        public string DocumentTypeText
+        public string Text
         {
             get
             {
@@ -149,31 +151,31 @@ namespace System.Xml
         }
 
         /// <summary></summary>
-        static public DocumentType HTML5 { get; } = new DocumentType("html", false, null, null, null);
+        static public DocumentType HTML5 { get; } = new DocumentType("html", false, null, null);
         /// <summary></summary>
-        static public DocumentType XHTML1_1 { get; } = new DocumentType("html", false, "-//W3C//DTD XHTML 1.1//EN", "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd", null);
+        static public DocumentType XHTML1_1 { get; } = new DocumentType("html", false, "-//W3C//DTD XHTML 1.1//EN", "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd");
 
         /// <summary></summary>
-        static public DocumentType NCX { get; } = new DocumentType("ncx", false, "-//NISO//DTD ncx 2005-1//EN", "http://www.daisy.org/z3986/2005/ncx-2005-1.dtd", null);
+        static public DocumentType NCX { get; } = new DocumentType("ncx", false, "-//NISO//DTD ncx 2005-1//EN", "http://www.daisy.org/z3986/2005/ncx-2005-1.dtd");
 
         /// <summary></summary>
-        static public DocumentType MathML2 { get; } = new DocumentType("math", false, "-//W3C//DTD MathML 2.0//EN",  "http://www.w3.org/Math/DTD/mathml2/mathml2.dtd", null);
+        static public DocumentType MathML2 { get; } = new DocumentType("math", false, "-//W3C//DTD MathML 2.0//EN",  "http://www.w3.org/Math/DTD/mathml2/mathml2.dtd");
         /// <summary></summary>
-        static public DocumentType MathML1 { get; } = new DocumentType("math", true, null, "http://www.w3.org/Math/DTD/mathml1/mathml.dtd", null);
+        static public DocumentType MathML1 { get; } = new DocumentType("math", true, null, "http://www.w3.org/Math/DTD/mathml1/mathml.dtd");
 
         /// <summary></summary>
-        static public DocumentType XHTML1strict { get; } = new DocumentType("html", false, "-//W3C//DTD XHTML 1.0 Strict//EN",  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd", null);
+        static public DocumentType XHTML1strict { get; } = new DocumentType("html", false, "-//W3C//DTD XHTML 1.0 Strict//EN",  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd");
         /// <summary></summary>
-        static public DocumentType XHTML1transitional { get; } = new DocumentType("html", false, "-//W3C//DTD XHTML 1.0 Transitional//EN",  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd", null);
+        static public DocumentType XHTML1transitional { get; } = new DocumentType("html", false, "-//W3C//DTD XHTML 1.0 Transitional//EN",  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd");
         /// <summary></summary>
-        static public DocumentType XHTML1frameset { get; } = new DocumentType("html", false, "-//W3C//DTD XHTML 1.0 Frameset//EN", "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd", null);
+        static public DocumentType XHTML1frameset { get; } = new DocumentType("html", false, "-//W3C//DTD XHTML 1.0 Frameset//EN", "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd");
 
         /// <summary></summary>
-        static public DocumentType HTML4strict { get; } = new DocumentType("html", false, "-//W3C//DTD HTML 4.01//EN",  "http://www.w3.org/TR/html4/strict.dtd", null);
+        static public DocumentType HTML4strict { get; } = new DocumentType("html", false, "-//W3C//DTD HTML 4.01//EN",  "http://www.w3.org/TR/html4/strict.dtd");
         /// <summary></summary>
-        static public DocumentType HTML4transitional { get; } = new DocumentType("html", false, "-//W3C//DTD HTML 4.01 Transitional//EN",  "http://www.w3.org/TR/html4/loose.dtd", null);
+        static public DocumentType HTML4transitional { get; } = new DocumentType("html", false, "-//W3C//DTD HTML 4.01 Transitional//EN",  "http://www.w3.org/TR/html4/loose.dtd");
         /// <summary></summary>
-        static public DocumentType HTML4frameset { get; } = new DocumentType("html", false, "-//W3C//DTD HTML 4.01 Frameset//EN", "http://www.w3.org/TR/html4/frameset.dtd", null);
+        static public DocumentType HTML4frameset { get; } = new DocumentType("html", false, "-//W3C//DTD HTML 4.01 Frameset//EN", "http://www.w3.org/TR/html4/frameset.dtd");
         
     }
 }

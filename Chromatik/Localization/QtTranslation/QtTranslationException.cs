@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Globalization;
 
-namespace System.Globalization
+namespace System.Globalization.Localization
 {
     /// <summary></summary>
     public class QtTranslationException : SystemException
@@ -24,13 +23,13 @@ namespace System.Globalization
         /// <summary></summary>
         static public QtTranslationException InvalideNoNodeFound(string nodeName)
         {
-            return new QtTranslationException("Invalid Translation file. No '"+ nodeName + "' node was found.");
+            return new QtTranslationException("Invalid Qt Translation file. No '"+ nodeName + "' node was found.");
         }
 
         /// <summary></summary>
         static public QtTranslationException InvalideNoAttributeFound(string attributeName, string nodeName)
         {
-            return new QtTranslationException("The '" + attributeName + "' attribute as not defined in the '" + nodeName + "' node.");
+            return new QtTranslationException("Invalid Qt Translation file.\nThe '" + attributeName + "' attribute as not defined in the '" + nodeName + "' node.");
         }
     }
 }

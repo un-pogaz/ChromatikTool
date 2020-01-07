@@ -4,15 +4,15 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 
-namespace System.Globalization
+namespace System.Globalization.Localization
 {
-    public class QtTranslation : System.Collections.ObjectModel.ReadOnlyDictionary<string, QtTranslationContext>
+    public class QtTranslation : Collections.ObjectModel.ReadOnlyDictionary<string, QtTranslationContext>
     {
         static public QtTranslation LoadTranslation(string path)
         {
             try
             {
-                return new QtTranslation(XmlCreate.Document(path));
+                return new QtTranslation(XmlDocumentCreate.Document(path));
             }
             catch (Exception ex)
             {
@@ -23,7 +23,7 @@ namespace System.Globalization
         {
             try
             {
-                return new QtTranslation(XmlCreate.DocumentXML(xml));
+                return new QtTranslation(XmlDocumentCreate.DocumentXML(xml));
             }
             catch (Exception ex)
             {
@@ -50,9 +50,9 @@ namespace System.Globalization
 
             return new QtTranslation(ts.OwnerDocument);
         }
-
-        public CultureInfo Culture { get; }
-        public VersionClass Version { get; set; }
+        
+        public CultureInfo Language { get; }
+        public VersionClass Version { get; }
         
         protected QtTranslation(XmlDocument document) : base(new Dictionary<string, QtTranslationContext>())
         {
@@ -63,10 +63,12 @@ namespace System.Globalization
                 throw QtTranslationException.InvalideNoAttributeFound("language", "TS");
             if (!ts.HasAttribute("version"))
                 throw QtTranslationException.InvalideNoAttributeFound("version", "TS");
+            if (ts.GetAttribute("version") != "2.1")
+                throw new QtTranslationException("Unsuported version of QtTranslation file.\nThe 2.1 version is the only supported.");
 
             try
             {
-                Culture = CultureInfo.GetCultureInfo(ts.GetAttribute("language"));
+                Language = CultureInfo.GetCultureInfo(ts.GetAttribute("language"));
                 Version = new VersionClass(ts.GetAttribute("version"));
             }
             catch (Exception ex)
@@ -107,22 +109,49 @@ namespace System.Globalization
             Dictionary.Remove(contextName);
         }
         
+        public XmlDocument GetXmlDocument()
+        {
+            XmlRacine ts = new XmlRacine("TS");
+            ts.SetAttribute("language", Language.Name);
+            ts.SetAttribute("version", Version.ToString());
+
+            foreach (QtTranslationContext ctx in Dictionary.Values)
+            {
+                XmlElement context = ts.AppendElement("context");
+                context.AppendElement("name").AppendText(ctx.Name);
+
+                foreach (QtTranslationMessage msg in ctx)
+                {
+                    XmlElement message = context.AppendElement("message");
+
+                    foreach (var loc in msg.Locations)
+                    {
+                        XmlElement location = message.AppendElement("location");
+                        location.SetAttribute("filename", loc.Filename);
+                        location.SetAttribute("line", loc.Line.ToString());
+                    }
+
+                    message.AppendElement("source").AppendText(msg.Source);
+
+                    if (!msg.Comment.IsNullOrWhiteSpace())
+                        message.AppendElement("comment").AppendText(msg.Comment);
+
+                    message.AppendElement("translation").AppendText(msg.Translation);
+                }
+            }
+
+            return ts.OwnerDocument;
+        }
+        
         public void Save(string filePath)
         {
-            Save(filePath, XmlWriterDocument.Setting);
+            Save(filePath, XmlDocumentWriter.Setting);
         }
         public void Save(string filePath, XmlWriterSettings settings)
         {
-            XmlRacine ts = new XmlRacine("TS");
-            ts.SetAttribute("version", Version.ToString());
-            ts.SetAttribute("language", Culture.Name);
-
-            foreach (var item in Dictionary)
-            {
-
-            }
-
-            XmlWriterDocument.Document(filePath, ts, settings);
+            XmlDocumentWriter.Document(filePath, GetXmlDocument(), settings, DocumentType);
         }
+
+        static public DocumentType DocumentType { get; } = new DocumentType("TS", false, null, null);
     }
 }

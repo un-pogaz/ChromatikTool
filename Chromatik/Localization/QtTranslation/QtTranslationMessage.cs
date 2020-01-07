@@ -2,18 +2,17 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
-using System.Text;
 using System.Xml;
 
-namespace System.Globalization
+namespace System.Globalization.Localization
 {
     [Diagnostics.DebuggerDisplay("{DebbugString()}")]
     public class QtTranslationMessage
     {
-        public string Location { get; set; }
-        public int Line { get; set; }
+        public List<QtTranslationLocation> Locations { get; } = new List<QtTranslationLocation>();
         public string Source { get; set; }
         public string Translation { get; set; }
+        public string Comment { get; set; }
 
         protected string DebbugString()
         {
@@ -62,6 +61,9 @@ namespace System.Globalization
             if (!location.HasAttribute("line"))
                 throw QtTranslationException.InvalideNoAttributeFound("line", "location");
 
+            foreach (XmlElement item in message.EnumerableElement("location"))
+                Locations.Add(new QtTranslationLocation(item.GetAttribute("filename"), int.Parse(item.GetAttribute("line"))));
+
             XmlElement source = message.FirstElement("source");
             if (source == null)
                 throw QtTranslationException.InvalideNoNodeFound("source");
@@ -70,10 +72,14 @@ namespace System.Globalization
             if (translation == null)
                 throw QtTranslationException.InvalideNoNodeFound("translation");
 
-            Location = location.GetAttribute("filename");
-            Line = int.Parse(location.GetAttribute("line"));
             Source = source.InnerText;
             Translation = translation.InnerText;
+
+            XmlElement comment = message.FirstElement("comment");
+            if (comment != null && !comment.InnerText.IsNullOrWhiteSpace())
+                Comment = comment.InnerText;
         }
+
+
     }
 }

@@ -79,7 +79,6 @@
   <Import Project="..\Chromatik.Forms\Chromatik.Forms.projitems" Label="Shared" />
   <Import Project="..\Chromatik.Unicode\Chromatik.Unicode.projitems" Label="Shared" />
   <Import Project="..\Chromatik.Zip\Chromatik.Zip.projitems" Label="Shared" />
-  <Import Project="..\Chromatik.MimeType\Chromatik.MimeType.projitems" Label="Shared" />
   <Import Project="..\Chromatik.SQLite\Chromatik.SQLite.projitems" Label="Shared" />
   <Import Project="..\Chromatik.Svg\Chromatik.Svg.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

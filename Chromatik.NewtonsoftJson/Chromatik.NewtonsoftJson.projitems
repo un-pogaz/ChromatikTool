@@ -12,7 +12,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)JObjectCreate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)JObjectWrite.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)JsonLinqExtension.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Translation\JsonStructuredTranslation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Localisation\JsonStructuredTranslation.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="$(MSBuildThisFileDirectory)TEST\al_table.json" />
@@ -35,6 +35,6 @@
     <Content Include="$(MSBuildThisFileDirectory)TEST\uk_table.json" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="$(MSBuildThisFileDirectory)Translation\Structured JSON _ Transifex Documentation.url" />
+    <None Include="$(MSBuildThisFileDirectory)Localisation\Structured JSON _ Transifex Documentation.url" />
   </ItemGroup>
 </Project>

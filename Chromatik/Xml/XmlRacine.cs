@@ -17,7 +17,9 @@ namespace System.Xml
         /// Create a basic <see cref="XmlElement"/> with the specified URI
         /// </summary>
         public XmlRacine(string localName, string namespaceURI) : base("", localName, namespaceURI, new XmlDocument())
-        { }
+        {
+            OwnerDocument.AppendChild(this);
+        }
 
         /// <summary>
         /// Create a basic <see cref="XmlElement"/>

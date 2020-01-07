@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 
-namespace System.Globalization
+namespace System.Globalization.Localization
 {
     [Diagnostics.DebuggerDisplay("{Name} Count = {Count}")]
     public class QtTranslationContext : List<QtTranslationMessage>
@@ -19,6 +19,12 @@ namespace System.Globalization
             
             Name = name.Trim();
         }
+        
+        public void AddMessage(string location, int line, string source, string translation)
+        {
+            Add(new QtTranslationMessage(location, line, source, translation));
+        }
+
         internal QtTranslationContext(XmlElement element)
         {
             XmlElement name = element.LastElement("name");
@@ -33,7 +39,7 @@ namespace System.Globalization
                 {
                     Add(new QtTranslationMessage(item));
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                 }
             }
