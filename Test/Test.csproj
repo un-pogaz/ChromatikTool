@@ -132,8 +132,6 @@
     <Content Include="for_translation_sigil_sigil_fr.ts.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="NGettext.dll" />
-    <Content Include="NGettext.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
