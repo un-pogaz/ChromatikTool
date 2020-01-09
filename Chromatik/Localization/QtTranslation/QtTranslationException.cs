@@ -27,7 +27,7 @@ namespace System.Globalization.Localization
         }
 
         /// <summary></summary>
-        static public QtTranslationException InvalideNoAttributeFound(string attributeName, string nodeName)
+        static public QtTranslationException InvalideNoNodeFound(string nodeName, string attributeName)
         {
             return new QtTranslationException("Invalid Qt Translation file.\nThe '" + attributeName + "' attribute as not defined in the '" + nodeName + "' node.");
         }

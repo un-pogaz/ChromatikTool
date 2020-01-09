@@ -5,8 +5,10 @@ using System.Xml;
 
 namespace System.Globalization.Localization
 {
-    public class Xliff : Collections.ObjectModel.ReadOnlyDictionary<string, XliffFile>
+    public class Xliff : XliffIdentifiedListe<XliffFile>
     {
+        public const string NodeName = "xliff";
+
         static public XmlNamespace NamespaceXliff { get; } = new XmlNamespace("xliff", "urn:oasis:names:tc:xliff:document:2.0");
 
         static public Xliff LoadXliff(string path)
@@ -32,46 +34,55 @@ namespace System.Globalization.Localization
             }
         }
         
-        public CultureInfo SourceLang { get; set; }
-        public CultureInfo TargetLang { get; set; }
+        public CultureInfo SourceLang
+        {
+            set
+            {
+                if (value == null)
+                    throw new XliffException("The '"+ nameof(SourceLang) + "' can't be null.");
+                _sourceLang = value;
+            }
+            get { return _sourceLang; }
+        }
+        CultureInfo _sourceLang;
+        public CultureInfo TargetLang
+        {
+            set
+            {
+                if (value == null)
+                    throw new XliffException("The '" + nameof(TargetLang) + "' can't be null.");
+                _targetLang = value;
+            }
+            get { return _targetLang; }
+        }
+        CultureInfo _targetLang;
 
-        protected bool xmlSpacePreserve = false;
-
-        private Xliff() : base(new Dictionary<string, XliffFile>())
+        private Xliff() : base()
         { }
 
-        protected Xliff(XmlDocument document) : this()
+        protected Xliff(XmlDocument document) : base()
         {
-            XmlElement xliff = document.FirstElement("xliff");
+            XmlElement xliff = document.FirstElement(NodeName);
 
             if (xliff == null)
-                throw new XliffException("Invalid Xliff file. The root node isn't 'xliff'.");
-            if (!xliff.HasAttribute("version"))
-                throw XliffException.InvalideNoAttributeFound("version", "xliff");
-            if (xliff.GetAttribute("version") != "2.0")
+                throw new XliffException("Invalid Xliff file. The root node isn't '"+NodeName+"'.");
+            
+            if (xliff.TestAttribut("version") != "2.0")
                 throw new XliffException("Unsuported version of Xliff File.\nThe 2.0 version is the only supported.");
+            
+            SourceLang = CultureInfo.GetCultureInfo(xliff.TestAttribut("srcLang"));
+            TargetLang = CultureInfo.GetCultureInfo(xliff.TestAttribut("trgLang"));
+            
+            foreach (XliffFile item in XliffFile.GetFiles(xliff))
+                AddFile(item);
 
-            if (!xliff.HasAttribute("srcLang"))
-                throw XliffException.InvalideNoAttributeFound("srcLang", "xliff");
-            if (!xliff.HasAttribute("trgLang"))
-                throw XliffException.InvalideNoAttributeFound("trgLang", "xliff");
-
-            SourceLang = CultureInfo.GetCultureInfo(xliff.GetAttribute("srcLang"));
-            TargetLang = CultureInfo.GetCultureInfo(xliff.GetAttribute("trgLang"));
-
-            xmlSpacePreserve = xliff.XmlSpacePreserve();
-
-            XmlElement[] xmlFile = xliff.GetElements("file", "id");
-            if (xmlFile.Length == 0)
-                throw XliffException.InvalideNoNodeFound("file", "id");
-
-            foreach (XmlElement item in xmlFile)
-                Add(new XliffFile(item));
+            if (Count == 0)
+                throw new XliffException("Invalid Xliff file.\nA minimum of one <"+XliffFile.NodeName+"> with the attribute 'id' is required.");
         }
 
-        protected void Add(XliffFile file)
+        public void AddFile(XliffFile file)
         {
-            Dictionary.Add(file.ID, file);
+            Add(file);
         }
     }
 }

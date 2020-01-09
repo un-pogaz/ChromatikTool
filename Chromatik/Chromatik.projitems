@@ -9,6 +9,7 @@
     <Import_RootNamespace>Chromatik</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)EventArgs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EnumerableExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Collections\Comparator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Collections\ListExtension.cs" />
@@ -22,6 +23,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Localization\QtTranslation\QtTranslationException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Localization\QtTranslation\QtTranslationLocation.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Localization\QtTranslation\QtTranslationMessage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Localization\Xliff\XliffIdentified.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Localization\Xliff\XliffList.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Localization\Xliff\XliffData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Localization\Xliff\XliffGroup.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Localization\Xliff\XliffState.cs" />
@@ -30,7 +33,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Localization\Xliff\XliffTarget.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Localization\Xliff\XliffSource.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Localization\Xliff\XliffNote.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Localization\Xliff\XliffIgnorable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Localization\Xliff\XliffTranslatable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Localization\Xliff\XliffUnit.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Localization\Xliff\XliffSkeleton.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Localization\Xliff\XliffFile.cs" />

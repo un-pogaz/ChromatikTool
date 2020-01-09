@@ -60,9 +60,9 @@ namespace System.Globalization.Localization
             if (ts == null)
                 throw new QtTranslationException("Invalid Translation file. The root node isn't 'TS'.");
             if (!ts.HasAttribute("language"))
-                throw QtTranslationException.InvalideNoAttributeFound("language", "TS");
+                throw QtTranslationException.InvalideNoNodeFound("TS", "language");
             if (!ts.HasAttribute("version"))
-                throw QtTranslationException.InvalideNoAttributeFound("version", "TS");
+                throw QtTranslationException.InvalideNoNodeFound("TS", "version");
             if (ts.GetAttribute("version") != "2.1")
                 throw new QtTranslationException("Unsuported version of QtTranslation file.\nThe 2.1 version is the only supported.");
 

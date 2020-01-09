@@ -21,21 +21,27 @@ namespace System.Globalization.Localization
         { }
 
         /// <summary></summary>
-        static public XliffException InvalideNoNodeFound(string nodeName)
-        {
-            return new XliffException("Invalid Xliff file. No '" + nodeName + "' node was found.");
-        }
+        static public XliffException NotSupported { get; } = new XliffException("This action is not supported.");
 
         /// <summary></summary>
-        static public XliffException InvalideNoNodeFound(string nodeName, string attributeName)
-        {
-            return new XliffException("Invalid Xliff file. No '" + nodeName + "' node with an attribute '"+ attributeName + "' was found.");
-        }
+        static public XliffException NotSupported_ReadOnlyCollection { get; } = new XliffException("This action is not supported in a Read Only Collection.");
 
         /// <summary></summary>
-        static public XliffException InvalideNoAttributeFound(string attributeName, string nodeName)
+        static public XliffException NoAttributFound(string nodeName, string attributeName)
         {
             return new XliffException("The '" + attributeName + "' attribute as not defined in the '" + nodeName + "' node.");
+        }
+        /// <summary></summary>
+        static public XliffException InvalideAttributID(string noID)
+        {
+            return new XliffException("'" + noID + "' is not a valid ID.");
+        }
+
+
+        /// <summary></summary>
+        static public XliffException InvalideNodeName(string nodeName)
+        {
+            return new XliffException("The node name isn't '"+ nodeName + "' not the expected name..");
         }
     }
 }

@@ -32,17 +32,25 @@ namespace Test
             /// 
             /// Enigma enigma3 = enigma1.Clone(true);
             /// string rslt3 = enigma3.Process(test);
-            
+
             ;
 
             string t1 = Settings.Args.GetNextArg("--test1");
             string t2 = Settings.Args.GetNextArg("--test2");
             
-            System.Globalization.Localization.QtTranslation trs = System.Globalization.Localization.QtTranslation.LoadTranslation(@"for_translation_sigil_sigil_fr.ts.xml");
-            trs.Save("test.ts.xml");
+            //System.Globalization.Localization.QtTranslation trs = System.Globalization.Localization.QtTranslation.LoadTranslation(@"for_translation_sigil_sigil_fr.ts.xml");
+            //trs.Save("test.ts.xml");
 
             System.Globalization.Localization.Xliff xliff = System.Globalization.Localization.Xliff.LoadXliff("XLIFF_2.xlf");
 
+
+            xliff[0].ID = null;
+            xliff[0].ID = "f3";
+            xliff[0].ID = "f2";
+
+
+            System.Globalization.Localization.XliffList<string> obs = new System.Globalization.Localization.XliffList<string>(new string[] { null, "000", "sdf" });
+            
 
             XmlDocument xml = XmlDocumentCreate.DocumentXML("<xml><span>kkkkkkk</span> <span de=\"\">yyyy</span><i> 65246541 </i><span>sdfwsfd</span></xml>");
             

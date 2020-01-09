@@ -57,9 +57,9 @@ namespace System.Globalization.Localization
             if (location == null)
                 throw QtTranslationException.InvalideNoNodeFound("location");
             if (!location.HasAttribute("filename"))
-                throw QtTranslationException.InvalideNoAttributeFound("filename", "location");
+                throw QtTranslationException.InvalideNoNodeFound("location", "filename");
             if (!location.HasAttribute("line"))
-                throw QtTranslationException.InvalideNoAttributeFound("line", "location");
+                throw QtTranslationException.InvalideNoNodeFound("location", "line");
 
             foreach (XmlElement item in message.EnumerableElement("location"))
                 Locations.Add(new QtTranslationLocation(item.GetAttribute("filename"), int.Parse(item.GetAttribute("line"))));

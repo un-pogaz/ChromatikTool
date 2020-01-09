@@ -5,9 +5,4 @@ using System.Xml;
 
 namespace System.Globalization.Localization
 {
-    public class XliffSegment : XliffIgnorable
-    {
-        public XliffStateEnum state;
-        public XliffSubState subState;
-    }
 }
