@@ -10,7 +10,7 @@ namespace System.Reflection
     public static class TypeExtension
     {
         static private BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.FlattenHierarchy;
-
+        
         /// <summary>
         /// Get the value of a Field or Property
         /// </summary>
@@ -92,19 +92,6 @@ namespace System.Reflection
             }
 
             throw new InvalidCastException("The value of the requested Field '"+ fieldName + "' is not of the Type called.");
-        }
-
-        static public FieldInfo GetField(this Type type, string fieldName)
-        {
-            if (type == null)
-                throw new ArgumentNullException(nameof(type));
-            return type.GetField(fieldName, bindingFlags);
-        }
-        static public PropertyInfo GetProperty(this Type type, string fieldName)
-        {
-            if (type == null)
-                throw new ArgumentNullException(nameof(type));
-            return type.GetProperty(fieldName, bindingFlags);
         }
     }
 }
