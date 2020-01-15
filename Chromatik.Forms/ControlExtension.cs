@@ -1,9 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using System.Drawing;
+using System.Reflection;
 
 namespace System.Windows.Forms
 {
@@ -98,6 +100,16 @@ namespace System.Windows.Forms
             if (e == null)
                 e = new PaintEventArgs(control.CreateGraphics(), control.ClientRectangle);
 
+            BorderStyle borderStyle = BorderStyle.None;
+            try
+            {
+                borderStyle = control.GetValueOf<BorderStyle>("BorderStyle");
+            }
+            catch (Exception ex)
+            {
+                borderStyle = BorderStyle.None;
+            }
+
             Graphics g = e.Graphics;
 
             foreach (Control item in control.IntersectsControlsDown())
@@ -108,7 +120,17 @@ namespace System.Windows.Forms
                     // Load appearance of underlying control and redraw it on this background
                     Bitmap bmp = new Bitmap(item.Width, item.Height, g);
                     item.DrawToBitmap(bmp, item.ClientRectangle);
-                    g.TranslateTransform(item.Left - control.Left, item.Top - control.Top);
+                    switch (borderStyle)
+                    {
+                        /*
+                        SystemInformation.BorderSize
+                        SystemInformation.Border3DSize
+                        */
+
+                        default: //BorderStyle.None
+                            g.TranslateTransform(item.Left - control.Left, item.Top - control.Top);
+                            break;
+                    }
                     g.DrawImageUnscaled(bmp, Point.Empty);
                     g.TranslateTransform(control.Left - item.Left, control.Top - item.Top);
                     bmp.Dispose();
