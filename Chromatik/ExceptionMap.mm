@@ -1,0 +1,560 @@
+<map version="freeplane 1.7.0">
+<!--To view this file, download free mind mapping software Freeplane from http://freeplane.sourceforge.net -->
+<node TEXT="Exception" LOCALIZED_STYLE_REF="AutomaticLayout.level.root" FOLDED="false" ID="ID_39732168" CREATED="1540557791866" MODIFIED="1578751344291" VGAP_QUANTITY="3.0 pt"><hook NAME="MapStyle" zoom="0.622">
+    <properties fit_to_viewport="false" edgeColorConfiguration="#808080ff,#ff0000ff,#0000ffff,#00ff00ff,#ff00ffff,#00ffffff,#7c0000ff,#00007cff,#007c00ff,#7c007cff,#007c7cff,#7c7c00ff" show_note_icons="true" show_icon_for_attributes="true"/>
+
+<map_styles>
+<stylenode LOCALIZED_TEXT="styles.root_node" STYLE="oval" UNIFORM_SHAPE="true" TEXT_ALIGN="CENTER" VGAP_QUANTITY="24.0 pt">
+<font SIZE="24"/>
+<stylenode LOCALIZED_TEXT="styles.predefined" POSITION="right" STYLE="bubble" TEXT_ALIGN="CENTER">
+<stylenode LOCALIZED_TEXT="default" ICON_SIZE="12.0 pt" COLOR="#000000" STYLE="fork" TEXT_ALIGN="CENTER">
+<font NAME="SansSerif" SIZE="10" BOLD="false" ITALIC="false"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="defaultstyle.details" TEXT_ALIGN="CENTER"/>
+<stylenode LOCALIZED_TEXT="defaultstyle.attributes" TEXT_ALIGN="CENTER">
+<font SIZE="9"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="defaultstyle.note" COLOR="#000000" BACKGROUND_COLOR="#ffffff" TEXT_ALIGN="CENTER"/>
+<stylenode LOCALIZED_TEXT="defaultstyle.floating" TEXT_ALIGN="CENTER">
+<edge STYLE="hide_edge"/>
+<cloud COLOR="#f0f0f0" SHAPE="ROUND_RECT"/>
+</stylenode>
+</stylenode>
+<stylenode LOCALIZED_TEXT="styles.user-defined" POSITION="right" STYLE="bubble" TEXT_ALIGN="CENTER">
+<stylenode LOCALIZED_TEXT="styles.topic" COLOR="#18898b" STYLE="fork" TEXT_ALIGN="CENTER">
+<font NAME="Liberation Sans" SIZE="10" BOLD="true"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="styles.subtopic" COLOR="#cc3300" STYLE="fork" TEXT_ALIGN="CENTER">
+<font NAME="Liberation Sans" SIZE="10" BOLD="true"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="styles.subsubtopic" COLOR="#669900" TEXT_ALIGN="CENTER">
+<font NAME="Liberation Sans" SIZE="10" BOLD="true"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="styles.important" TEXT_ALIGN="CENTER">
+<icon BUILTIN="yes"/>
+</stylenode>
+</stylenode>
+<stylenode LOCALIZED_TEXT="styles.AutomaticLayout" POSITION="right" STYLE="bubble" TEXT_ALIGN="CENTER">
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level.root" COLOR="#000000" BACKGROUND_COLOR="#ccccff" STYLE="oval" SHAPE_HORIZONTAL_MARGIN="10.0 pt" SHAPE_VERTICAL_MARGIN="10.0 pt" TEXT_ALIGN="CENTER" BORDER_WIDTH="4.0 px" BORDER_COLOR_LIKE_EDGE="false" BORDER_COLOR="#0066cc" VGAP_QUANTITY="3.0 pt">
+<font SIZE="18"/>
+<edge COLOR="#666666" WIDTH="4"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,1" COLOR="#000000" BACKGROUND_COLOR="#cccccc" STYLE="bubble" TEXT_ALIGN="CENTER" BORDER_WIDTH="1.0 px" BORDER_COLOR_LIKE_EDGE="false" BORDER_COLOR="#cccccc" BORDER_DASH="SOLID" MAX_WIDTH="16.0 cm">
+<font SIZE="16"/>
+<edge STYLE="bezier" COLOR="#666666" WIDTH="4" DASH="SOLID"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,2" COLOR="#000000" BACKGROUND_COLOR="#ccccff" STYLE="bubble" TEXT_ALIGN="CENTER" BORDER_WIDTH="4.0 px" BORDER_COLOR_LIKE_EDGE="false" BORDER_COLOR="#0066cc" MAX_WIDTH="16.0 cm">
+<font SIZE="14"/>
+<edge STYLE="bezier" COLOR="#666666" WIDTH="4" DASH="SOLID"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,3" COLOR="#000000" BACKGROUND_COLOR="#ccccff" STYLE="wide_hexagon" TEXT_ALIGN="CENTER" BORDER_WIDTH="4.0 px" BORDER_COLOR_LIKE_EDGE="false" BORDER_COLOR="#0066cc">
+<font SIZE="12"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,4" COLOR="#111111" BACKGROUND_COLOR="#ccccff" STYLE="bubble" TEXT_ALIGN="CENTER" BORDER_WIDTH="4.0 px" BORDER_COLOR_LIKE_EDGE="false" BORDER_COLOR="#0066cc">
+<font SIZE="10"/>
+</stylenode>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,5" BACKGROUND_COLOR="#ccccff" STYLE="bubble" TEXT_ALIGN="CENTER" BORDER_WIDTH="4.0 px" BORDER_COLOR_LIKE_EDGE="false" BORDER_COLOR="#0066cc"/>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,6" BORDER_WIDTH="4.0 px" BORDER_COLOR_LIKE_EDGE="false" BORDER_COLOR="#0066cc" TEXT_ALIGN="CENTER"/>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,7" BORDER_WIDTH="4.0 px" BORDER_COLOR_LIKE_EDGE="false" BORDER_COLOR="#0066cc" TEXT_ALIGN="CENTER"/>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,8" BORDER_WIDTH="4.0 px" BORDER_COLOR_LIKE_EDGE="false" BORDER_COLOR="#0066cc" TEXT_ALIGN="CENTER"/>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,9" BORDER_WIDTH="4.0 px" BORDER_COLOR_LIKE_EDGE="false" BORDER_COLOR="#0066cc" TEXT_ALIGN="CENTER"/>
+<stylenode LOCALIZED_TEXT="AutomaticLayout.level,10" BORDER_WIDTH="4.0 px" BORDER_COLOR_LIKE_EDGE="false" BORDER_COLOR="#0066cc" TEXT_ALIGN="CENTER"/>
+</stylenode>
+</stylenode>
+</map_styles>
+</hook>
+<hook NAME="AutomaticEdgeColor" COUNTER="27" RULE="ON_BRANCH_CREATION"/>
+<hook NAME="accessories/plugins/AutomaticLayout.properties" VALUE="ALL"/>
+<edge COLOR="#666666"/>
+<node TEXT="System" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" POSITION="right" ID="ID_770384766" CREATED="1578748012379" MODIFIED="1578751344291" HGAP_QUANTITY="25.999999642372146 pt" VSHIFT_QUANTITY="1.4999999552965093 pt">
+<edge COLOR="#666666"/>
+<node TEXT="AggregateException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_903849290" CREATED="1578748314377" MODIFIED="1578751344291">
+<edge COLOR="#666666"/>
+</node>
+<node TEXT="ApplicationException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1812672820" CREATED="1578748343761" MODIFIED="1578751344292">
+<edge COLOR="#666666"/>
+<node TEXT="System.Reflection" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_107339061" CREATED="1578748547312" MODIFIED="1578751344292">
+<edge COLOR="#666666"/>
+<node TEXT="InvalidFilterCriteriaException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1183579875" CREATED="1578748574704" MODIFIED="1578751344290">
+<edge COLOR="#666666"/>
+</node>
+<node TEXT="TargetException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1758149497" CREATED="1578748584152" MODIFIED="1578751344291">
+<edge COLOR="#666666"/>
+</node>
+<node TEXT="TargetInvocationException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_830191699" CREATED="1578748584848" MODIFIED="1578751344291">
+<edge COLOR="#666666"/>
+</node>
+<node TEXT="TargetParameterCountException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_292529360" CREATED="1578748603633" MODIFIED="1578751344291">
+<edge COLOR="#666666"/>
+</node>
+</node>
+<node TEXT="System.Threading" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_1665430201" CREATED="1578748609368" MODIFIED="1578751344292">
+<edge COLOR="#666666"/>
+<node TEXT="WaitHandleCannotBeOpenedException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1760738710" CREATED="1578748618840" MODIFIED="1578751344291">
+<edge COLOR="#666666"/>
+</node>
+</node>
+</node>
+<node TEXT="InvalidTimeZoneException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1774333649" CREATED="1578748345508" MODIFIED="1578751344296">
+<edge COLOR="#666666"/>
+</node>
+<node TEXT="SystemException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_937712710" CREATED="1578748431314" MODIFIED="1578752359106">
+<edge COLOR="#666666"/>
+<node TEXT="AccessViolationException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1762546381" CREATED="1578751458472" MODIFIED="1578751465345"/>
+<node TEXT="AppDomainUnloadedException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_637897486" CREATED="1578751504671" MODIFIED="1578751526417"/>
+<node TEXT="ArgumentException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_90471230" CREATED="1578748344294" MODIFIED="1578754141247">
+<node TEXT="ArgumentNullException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1684937927" CREATED="1578748706856" MODIFIED="1578751344292">
+<edge COLOR="#666666"/>
+</node>
+<node TEXT="ArgumentOutOfRangeException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_59867723" CREATED="1578748726008" MODIFIED="1578751344292">
+<edge COLOR="#666666"/>
+</node>
+<node TEXT="DuplicateWaitObjectException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_756797030" CREATED="1578748731288" MODIFIED="1578751344292">
+<edge COLOR="#666666"/>
+</node>
+<node TEXT="System.ComponentModel" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_138121199" CREATED="1578748709408" MODIFIED="1578754141247">
+<edge COLOR="#666666"/>
+<node TEXT="InvalidAsynchronousStateException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_937060413" CREATED="1578748767072" MODIFIED="1578751344292">
+<edge COLOR="#666666"/>
+</node>
+<node TEXT="InvalidEnumArgumentException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1571403629" CREATED="1578748776800" MODIFIED="1578751344292">
+<edge COLOR="#666666"/>
+</node>
+</node>
+<node TEXT="System.Globalization" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_1000366813" CREATED="1578748747400" MODIFIED="1578751344292">
+<edge COLOR="#666666"/>
+<node TEXT="CultureNotFoundException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1653448396" CREATED="1578748807087" MODIFIED="1578751344293">
+<edge COLOR="#666666"/>
+</node>
+</node>
+<node TEXT="System.IO.Log" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_472220997" CREATED="1578748797671" MODIFIED="1578751344293">
+<edge COLOR="#666666"/>
+<node TEXT="ReservationNotFoundException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_315524753" CREATED="1578748807991" MODIFIED="1578751344293">
+<edge COLOR="#666666"/>
+</node>
+</node>
+<node TEXT="System.Text" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_738071317" CREATED="1578748801215" MODIFIED="1578751344293">
+<edge COLOR="#666666"/>
+<node TEXT="DecoderFallbackException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_318732525" CREATED="1578748808662" MODIFIED="1578751344293">
+<edge COLOR="#666666"/>
+</node>
+<node TEXT="EncoderFallbackException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_914856808" CREATED="1578748842199" MODIFIED="1578751344293">
+<edge COLOR="#666666"/>
+</node>
+</node>
+</node>
+<node TEXT="ArithmeticException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_184461981" CREATED="1578748344360" MODIFIED="1578751547648">
+<node TEXT="DivideByZeroException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1486874987" CREATED="1578749532435" MODIFIED="1578751344293">
+<edge COLOR="#666666"/>
+</node>
+<node TEXT="NotFiniteNumberException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1915382278" CREATED="1578749537291" MODIFIED="1578751344293">
+<edge COLOR="#666666"/>
+</node>
+<node TEXT="OverflowException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_835662559" CREATED="1578749537963" MODIFIED="1578751344293">
+<edge COLOR="#666666"/>
+</node>
+</node>
+<node TEXT="ArrayTypeMismatchException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1188444617" CREATED="1578748344427" MODIFIED="1578751581942"/>
+<node TEXT="BadImageFormatException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_138729423" CREATED="1578748344513" MODIFIED="1578751604705"/>
+<node TEXT="CannotUnloadAppDomainException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_818241123" CREATED="1578751641168" MODIFIED="1578751647317"/>
+<node LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1344560473" CREATED="1578751642575" MODIFIED="1578751713480"><richcontent TYPE="NODE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      <i>[deprecated]</i>&#160;ContextMarshalException
+    </p>
+  </body>
+</html>
+
+</richcontent>
+</node>
+<node TEXT="DataMisalignedException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1454363420" CREATED="1578748345047" MODIFIED="1578751632470"/>
+<node LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1077483083" CREATED="1578751738599" MODIFIED="1578751793105"><richcontent TYPE="NODE">
+
+<html>
+  <head>
+    
+  </head>
+  <body>
+    <p>
+      <i>[deprecated]</i>&#160;ExecutionEngineException
+    </p>
+  </body>
+</html>
+
+</richcontent>
+</node>
+<node TEXT="ExternalException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1918174244" CREATED="1578753026136" MODIFIED="1578754138040">
+<node TEXT="System.ComponentModel" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_1303720243" CREATED="1578752874408" MODIFIED="1578752909033">
+<node TEXT="Win32Exception" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_252112780" CREATED="1578752914472" MODIFIED="1578753610687">
+<node TEXT="System.Net" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_1057022179" CREATED="1578753539892" MODIFIED="1578753550086">
+<node TEXT="HttpListenerException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_529211573" CREATED="1578753562453" MODIFIED="1578753565206"/>
+</node>
+<node TEXT="System.Net.NetworkInformation" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_1459296262" CREATED="1578753578724" MODIFIED="1578753586426">
+<node TEXT="NetworkInformationException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_651911169" CREATED="1578753569444" MODIFIED="1578753570913"/>
+</node>
+<node TEXT="System.Net.Sockets" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_23767747" CREATED="1578753588517" MODIFIED="1578753600862">
+<node TEXT="SocketException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_86826379" CREATED="1578753591260" MODIFIED="1578753605054"/>
+</node>
+<node TEXT="System.Net.WebSockets" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_1342963450" CREATED="1578753589812" MODIFIED="1578753612517">
+<node TEXT="WebSocketException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_882083523" CREATED="1578753593188" MODIFIED="1578753618973"/>
+</node>
+</node>
+</node>
+<node TEXT="System.ComponentModel.Design" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_1166657861" CREATED="1578753123174" MODIFIED="1578753129648">
+<node TEXT="CheckoutException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1420659129" CREATED="1578753130327" MODIFIED="1578753135048"/>
+</node>
+<node TEXT="System.Data.Common" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_338777211" CREATED="1578753286310" MODIFIED="1578753287752">
+<node TEXT="DbException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_724020581" CREATED="1578753291926" MODIFIED="1578753315455"/>
+</node>
+<node TEXT="System.Messaging" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_1094767431" CREATED="1578753322566" MODIFIED="1578754138040">
+<node TEXT="MessageQueueException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_224052062" CREATED="1578753234479" MODIFIED="1578753236839"/>
+</node>
+<node TEXT="System.Runtime.InteropServices" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_1609510675" CREATED="1578753348693" MODIFIED="1578753362922">
+<node TEXT="COMException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_877752161" CREATED="1578753378630" MODIFIED="1578753405055">
+<node TEXT="System.DirectoryServices" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_433675494" CREATED="1578753437901" MODIFIED="1578753442054">
+<node TEXT="DirectoryServicesCOMException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_950267784" CREATED="1578753422325" MODIFIED="1578753431078"/>
+</node>
+</node>
+<node TEXT="SEHException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_754718636" CREATED="1578753223062" MODIFIED="1578753230464"/>
+</node>
+<node TEXT="System.ServiceModel" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_1752990097" CREATED="1578753349918" MODIFIED="1578753375342">
+<node TEXT="MsmqException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_747644312" CREATED="1578753213062" MODIFIED="1578753218455"/>
+</node>
+<node TEXT="System.Web" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_838755482" CREATED="1578753154815" MODIFIED="1578753159992">
+<node TEXT="HttpException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_236015255" CREATED="1578753161511" MODIFIED="1578753195617">
+<node TEXT="HttpCompileException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_864477726" CREATED="1578753175246" MODIFIED="1578753185480"/>
+<node TEXT="HttpParseException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_883829676" CREATED="1578753185767" MODIFIED="1578753192303"/>
+<node TEXT="HttpRequestValidationException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1376755094" CREATED="1578753186439" MODIFIED="1578753196680"/>
+<node TEXT="HttpUnhandledException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1664713261" CREATED="1578753187583" MODIFIED="1578753201040"/>
+</node>
+</node>
+</node>
+<node TEXT="FormatException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1798220557" CREATED="1578748345112" MODIFIED="1578751773716">
+<node TEXT="UriFormatException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_196490465" CREATED="1578749605187" MODIFIED="1578751344294">
+<edge COLOR="#666666"/>
+</node>
+<node TEXT="System.IO" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_1322378189" CREATED="1578749618339" MODIFIED="1578751344294">
+<edge COLOR="#666666"/>
+<node TEXT="FileFormatException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_140961843" CREATED="1578749645898" MODIFIED="1578751344294">
+<edge COLOR="#666666"/>
+</node>
+</node>
+<node TEXT="System.Net" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_117187704" CREATED="1578749632547" MODIFIED="1578751344294">
+<edge COLOR="#666666"/>
+<node TEXT="CookieException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_946632912" CREATED="1578749646546" MODIFIED="1578751344294">
+<edge COLOR="#666666"/>
+</node>
+</node>
+<node TEXT="System.Reflection" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_1869895934" CREATED="1578749637714" MODIFIED="1578751344294">
+<edge COLOR="#666666"/>
+<node TEXT="CustomAttributeFormatException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1638238003" CREATED="1578749653490" MODIFIED="1578751344294">
+<edge COLOR="#666666"/>
+</node>
+</node>
+</node>
+<node TEXT="IndexOutOfRangeException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1519491305" CREATED="1578748345178" MODIFIED="1578751852259"/>
+<node TEXT="InsufficientExecutionStackException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1235983612" CREATED="1578748345244" MODIFIED="1578751877980"/>
+<node TEXT="InvalidCastException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1151311899" CREATED="1578748345310" MODIFIED="1578751895765"/>
+<node TEXT="InvalidOperationException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_505808657" CREATED="1578748345377" MODIFIED="1578751917865">
+<node TEXT="ObjectDisposedException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_570897469" CREATED="1578750394806" MODIFIED="1578751344295">
+<edge COLOR="#666666"/>
+</node>
+<node TEXT="System.Data.Linq" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_1394134259" CREATED="1578750410158" MODIFIED="1578751344295">
+<edge COLOR="#666666"/>
+<node TEXT="DuplicateKeyException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_817598175" CREATED="1578750466150" MODIFIED="1578751344295">
+<edge COLOR="#666666"/>
+</node>
+<node TEXT="ForeignKeyReferenceAlreadyHasValueException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_479028014" CREATED="1578750468294" MODIFIED="1578751344295">
+<edge COLOR="#666666"/>
+</node>
+</node>
+<node TEXT="System.Data.Services" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_1785835862" CREATED="1578750574325" MODIFIED="1578751344295">
+<edge COLOR="#666666"/>
+<node TEXT="DataServiceException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1619547379" CREATED="1578750586405" MODIFIED="1578751344295">
+<edge COLOR="#666666"/>
+</node>
+</node>
+<node TEXT="System.Data.Services.Client" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_1286237374" CREATED="1578750603573" MODIFIED="1578751344295">
+<edge COLOR="#666666"/>
+<node TEXT="DataServiceClientException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_502041583" CREATED="1578750608757" MODIFIED="1578751344296">
+<edge COLOR="#666666"/>
+</node>
+<node TEXT="DataServiceQueryException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1810784662" CREATED="1578750611748" MODIFIED="1578751344296">
+<edge COLOR="#666666"/>
+</node>
+<node TEXT="DataServiceRequestException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_805698636" CREATED="1578750612364" MODIFIED="1578751344296">
+<edge COLOR="#666666"/>
+</node>
+</node>
+<node TEXT="System.Net" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_1902560094" CREATED="1578750640877" MODIFIED="1578751344296">
+<edge COLOR="#666666"/>
+<node TEXT="ProtocolViolationException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_861570219" CREATED="1578750661396" MODIFIED="1578751344296">
+<edge COLOR="#666666"/>
+</node>
+<node TEXT="WebException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_323480908" CREATED="1578750677404" MODIFIED="1578751344296">
+<edge COLOR="#666666"/>
+</node>
+<node TEXT="PingException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1104913708" CREATED="1578750678245" MODIFIED="1578751344296">
+<edge COLOR="#666666"/>
+</node>
+</node>
+<node TEXT="System.Runtime.CompilerServices" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_530930626" CREATED="1578750691789" MODIFIED="1578751344296">
+<edge COLOR="#666666"/>
+<node TEXT="SwitchExpressionException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_44476691" CREATED="1578750693661" MODIFIED="1578751344296">
+<edge COLOR="#666666"/>
+</node>
+</node>
+<node TEXT="System.Windows" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_639608673" CREATED="1578750705468" MODIFIED="1578751344296">
+<edge COLOR="#666666"/>
+<node TEXT="ResourceReferenceKeyNotFoundException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1906082154" CREATED="1578750707524" MODIFIED="1578751344296">
+<edge COLOR="#666666"/>
+</node>
+</node>
+<node TEXT="System.Windows.Automation" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_540875936" CREATED="1578750724172" MODIFIED="1578751344296">
+<edge COLOR="#666666"/>
+<node TEXT="ElementNotEnabledException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_113934956" CREATED="1578750729884" MODIFIED="1578751344296">
+<edge COLOR="#666666"/>
+</node>
+</node>
+</node>
+<node TEXT="InvalidProgramException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_336346495" CREATED="1578748345442" MODIFIED="1578751933543"/>
+<node TEXT="MemberAccessException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1113674183" CREATED="1578748345721" MODIFIED="1578751959387">
+<node TEXT="FieldAccessException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1393955871" CREATED="1578749719482" MODIFIED="1578751344297">
+<edge COLOR="#666666"/>
+</node>
+<node TEXT="MethodAccessException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1506786135" CREATED="1578749726539" MODIFIED="1578751344297">
+<edge COLOR="#666666"/>
+</node>
+<node TEXT="MissingMemberException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1982814631" CREATED="1578749727554" MODIFIED="1578751344297">
+<edge COLOR="#666666"/>
+<node TEXT="MissingFieldException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_244544629" CREATED="1578749755490" MODIFIED="1578751344297">
+<edge COLOR="#666666"/>
+</node>
+<node TEXT="MissingMethodException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_50509528" CREATED="1578749757185" MODIFIED="1578751344297">
+<edge COLOR="#666666"/>
+</node>
+</node>
+</node>
+<node TEXT="MulticastNotSupportedException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1286094353" CREATED="1578751979718" MODIFIED="1578751981135"/>
+<node TEXT="NotImplementedException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_485537542" CREATED="1578748346074" MODIFIED="1578751999048"/>
+<node TEXT="NotSupportedException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1666650055" CREATED="1578748346393" MODIFIED="1578752034706">
+<node TEXT="PlatformNotSupportedException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_842785812" CREATED="1578749787841" MODIFIED="1578751344297">
+<edge COLOR="#666666"/>
+</node>
+</node>
+<node TEXT="NullReferenceException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1654709623" CREATED="1578748417658" MODIFIED="1578752049047"/>
+<node TEXT="OperationCanceledException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_854263403" CREATED="1578748418242" MODIFIED="1578752101860">
+<node TEXT="System.Threading.Tasks" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_743307116" CREATED="1578749855546" MODIFIED="1578751344297">
+<edge COLOR="#666666"/>
+<node TEXT="TaskCanceledException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_77515389" CREATED="1578749858882" MODIFIED="1578751344297">
+<edge COLOR="#666666"/>
+</node>
+</node>
+</node>
+<node TEXT="OutOfMemoryException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1046437833" CREATED="1578748419114" MODIFIED="1578752120341">
+<node TEXT="InsufficientMemoryException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_313422615" CREATED="1578750010984" MODIFIED="1578751344298">
+<edge COLOR="#666666"/>
+</node>
+</node>
+<node TEXT="RankException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1217217256" CREATED="1578748430962" MODIFIED="1578752133440"/>
+<node TEXT="StackOverflowException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1572761564" CREATED="1578752154956" MODIFIED="1578752157639"/>
+<node TEXT="TimeoutException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1463984932" CREATED="1578748432025" MODIFIED="1578754156060">
+<node TEXT="System.Text.RegularExpressions" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_321467431" CREATED="1578750230919" MODIFIED="1578754156060">
+<edge COLOR="#666666"/>
+<node TEXT="RegexMatchTimeoutException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_279012005" CREATED="1578750239775" MODIFIED="1578751344299">
+<edge COLOR="#666666"/>
+</node>
+</node>
+</node>
+<node TEXT="TypeInitializationException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1312975946" CREATED="1578748447161" MODIFIED="1578752223149"/>
+<node TEXT="TypeLoadException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_170152673" CREATED="1578748451377" MODIFIED="1578754159898">
+<node TEXT="DllNotFoundException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1267428638" CREATED="1578750276231" MODIFIED="1578751344299">
+<edge COLOR="#666666"/>
+</node>
+<node TEXT="EntryPointNotFoundException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1784593163" CREATED="1578750278575" MODIFIED="1578754159898">
+<edge COLOR="#666666"/>
+</node>
+<node TEXT="TypeAccessException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_341084826" CREATED="1578750279503" MODIFIED="1578751344299">
+<edge COLOR="#666666"/>
+</node>
+</node>
+<node TEXT="UnauthorizedAccessException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_846956516" CREATED="1578752236067" MODIFIED="1578752257981">
+<node TEXT="System.Security.AccessControl" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_507529972" CREATED="1578752244187" MODIFIED="1578752281060">
+<node TEXT="PrivilegeNotHeldException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1659955425" CREATED="1578752268531" MODIFIED="1578752273278"/>
+</node>
+</node>
+<node TEXT="UriTemplateMatchException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_246357442" CREATED="1578752259532" MODIFIED="1578752293540"/>
+<node TEXT="System.Collections.Generic" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_778510153" CREATED="1578752389035" MODIFIED="1578752868746">
+<node TEXT="KeyNotFoundException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_803237942" CREATED="1578752871817" MODIFIED="1578752890736"/>
+</node>
+<node TEXT="System.ComponentModel" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_774698129" CREATED="1578753959771" MODIFIED="1578753982605">
+<node TEXT="LicenseException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_860920325" CREATED="1578753983594" MODIFIED="1578753990216"/>
+<node TEXT="WarningException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1382249657" CREATED="1578753990753" MODIFIED="1578753994955"/>
+</node>
+<node TEXT="System.ComponentModel.Design.Serialization" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_5659393" CREATED="1578754208665" MODIFIED="1578754216418">
+<node TEXT="CodeDomSerializerException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_867909677" CREATED="1578754216953" MODIFIED="1578754271497"/>
+</node>
+<node TEXT="System.Configuration" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_110937919" CREATED="1578754297928" MODIFIED="1578754299801">
+<node TEXT="ConfigurationException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1273583571" CREATED="1578754300288" MODIFIED="1578754308154">
+<node TEXT="ConfigurationErrorsException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_257265167" CREATED="1578754315752" MODIFIED="1578754320994"/>
+</node>
+</node>
+<node TEXT="System.Configuration.Install" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_926528443" CREATED="1578754336320" MODIFIED="1578754338220">
+<node TEXT="InstallException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_107121867" CREATED="1578754303096" MODIFIED="1578754321609"/>
+</node>
+<node TEXT="System.Data" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_1983333278" CREATED="1578754374873" MODIFIED="1578754377561">
+<node TEXT="DataException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_585247501" CREATED="1578754381720" MODIFIED="1578754670006">
+<node TEXT="ConstraintException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1846987483" CREATED="1578754437359" MODIFIED="1578754453042">
+<node TEXT="PropertyConstraintException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_859049209" CREATED="1578754447536" MODIFIED="1578754454025" HGAP_QUANTITY="8.750000156462185 pt" VSHIFT_QUANTITY="0.0 pt"/>
+</node>
+<node TEXT="DeletedRowInaccessibleException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_943055579" CREATED="1578754465031" MODIFIED="1578754466568"/>
+<node TEXT="DuplicateNameException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1901890067" CREATED="1578754470799" MODIFIED="1578754472184"/>
+<node TEXT="EntityException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_17583470" CREATED="1578754488495" MODIFIED="1578754548332">
+<node TEXT="EntityCommandCompilationException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1407436574" CREATED="1578754537207" MODIFIED="1578754549296"/>
+<node TEXT="EntityCommandExecutionException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_667162587" CREATED="1578754549591" MODIFIED="1578754556864"/>
+<node TEXT="EntitySqlException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_821547714" CREATED="1578754550055" MODIFIED="1578754561130"/>
+<node TEXT="MappingException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_242483019" CREATED="1578754551447" MODIFIED="1578754565711"/>
+<node TEXT="MetadataException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_776110463" CREATED="1578754566079" MODIFIED="1578754570376"/>
+<node TEXT="ProviderIncompatibleException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_804291636" CREATED="1578754570822" MODIFIED="1578754575991"/>
+</node>
+<node TEXT="InRowChangingEventException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1856571806" CREATED="1578754489784" MODIFIED="1578754490880"/>
+<node TEXT="InvalidCommandTreeException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1324694580" CREATED="1578754496799" MODIFIED="1578754498264"/>
+<node TEXT="InvalidConstraintException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1463886596" CREATED="1578754502175" MODIFIED="1578754503714"/>
+<node TEXT="InvalidExpressionException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_288012751" CREATED="1578754507895" MODIFIED="1578754508977">
+<node TEXT="EvaluateException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_901480558" CREATED="1578754509519" MODIFIED="1578754523991"/>
+<node TEXT="SyntaxErrorException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1512800271" CREATED="1578754511831" MODIFIED="1578754529680"/>
+</node>
+<node TEXT="MissingPrimaryKeyException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1730892025" CREATED="1578754612350" MODIFIED="1578754613864"/>
+<node TEXT="NoNullAllowedException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1239421858" CREATED="1578754617150" MODIFIED="1578754620695"/>
+<node TEXT="ObjectNotFoundException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1439126379" CREATED="1578754617895" MODIFIED="1578754625072"/>
+<node TEXT="ReadOnlyException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_290397516" CREATED="1578754618591" MODIFIED="1578754629207"/>
+<node TEXT="RowNotInTableException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_57007541" CREATED="1578754619470" MODIFIED="1578754634344"/>
+<node TEXT="StrongTypingException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_430399214" CREATED="1578754634758" MODIFIED="1578754641335"/>
+<node TEXT="TypedDataSetGeneratorException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_836596464" CREATED="1578754642286" MODIFIED="1578754647031"/>
+<node TEXT="UpdateException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1955556730" CREATED="1578754661079" MODIFIED="1578754662496">
+<node TEXT="OptimisticConcurrencyException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1195015979" CREATED="1578754669247" MODIFIED="1578754671872"/>
+</node>
+<node TEXT="VersionNotFoundException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1837214794" CREATED="1578754675718" MODIFIED="1578754677126"/>
+<node TEXT="System.Data.Design" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_459993531" CREATED="1578754684958" MODIFIED="1578754689775">
+<node TEXT="TypedDataSetGeneratorException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_725086533" CREATED="1578754693142" MODIFIED="1578754695383"/>
+</node>
+</node>
+<node TEXT="DBConcurrencyException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1842183752" CREATED="1578754384560" MODIFIED="1578754398961"/>
+<node TEXT="OperationAbortedException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_671163576" CREATED="1578754403368" MODIFIED="1578754404440"/>
+</node>
+<node TEXT="System.Deployment.Application" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_1819343419" CREATED="1578754781281" MODIFIED="1578754806870">
+<node TEXT="DeploymentException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_522280839" CREATED="1578754808581" MODIFIED="1578754813743">
+<node TEXT="DependentPlatformMissingException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_696426601" CREATED="1578754828589" MODIFIED="1578754830750">
+<node TEXT="CompatibleFrameworkMissingException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1050250473" CREATED="1578754831845" MODIFIED="1578754856711"/>
+<node TEXT="SupportedRuntimeMissingException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1116454263" CREATED="1578754854949" MODIFIED="1578754860686"/>
+</node>
+<node TEXT="DeploymentDownloadException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1615083373" CREATED="1578754864838" MODIFIED="1578754866423"/>
+<node TEXT="InvalidDeploymentException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1074286974" CREATED="1578754873622" MODIFIED="1578754874958"/>
+<node TEXT="TrustNotGrantedException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1651966266" CREATED="1578754878589" MODIFIED="1578754879862"/>
+</node>
+</node>
+<node TEXT="System.DirectoryServices.AccountManagement" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_845549800" CREATED="1578754913965" MODIFIED="1578754919958">
+<node TEXT="PrincipalException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_714425441" CREATED="1578754921212" MODIFIED="1578754938438">
+<node TEXT="MultipleMatchesException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_121347017" CREATED="1578754952636" MODIFIED="1578754954270"/>
+<node TEXT="NoMatchingPrincipalException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_873839449" CREATED="1578754959540" MODIFIED="1578754962670"/>
+<node TEXT="PasswordException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1936678832" CREATED="1578754960188" MODIFIED="1578754966934"/>
+<node TEXT="PrincipalExistsException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1365878290" CREATED="1578754967252" MODIFIED="1578754972365"/>
+<node TEXT="PrincipalOperationException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1357455589" CREATED="1578754961396" MODIFIED="1578754978703"/>
+<node TEXT="PrincipalServerDownException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_159485464" CREATED="1578754979021" MODIFIED="1578754983094"/>
+</node>
+</node>
+<node TEXT="System.Drawing.Printing" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_640842203" CREATED="1578754996692" MODIFIED="1578754998246">
+<node TEXT="InvalidPrinterException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_751013242" CREATED="1578754983492" MODIFIED="1578755002774"/>
+</node>
+<node TEXT="System.EnterpriseServices" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_1999009494" CREATED="1578755010268" MODIFIED="1578755014742">
+<node TEXT="RegistrationException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1906355859" CREATED="1578755017052" MODIFIED="1578755022125"/>
+<node TEXT="ServicedComponentException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1827885885" CREATED="1578755036436" MODIFIED="1578755042501"/>
+</node>
+<node TEXT="System.IdentityModel" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_1551698917" CREATED="1578755067075" MODIFIED="1578755072720">
+<node TEXT="LimitExceededException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1550749776" CREATED="1578755072995" MODIFIED="1578755079910"/>
+<node TEXT="SecurityMessageSerializationException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_539340029" CREATED="1578755087628" MODIFIED="1578755102120"/>
+</node>
+<node TEXT="System.IO" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_59029328" CREATED="1578755167251" MODIFIED="1578755168461">
+<node TEXT="InternalBufferOverflowException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1522463349" CREATED="1578755172155" MODIFIED="1578755178164"/>
+<node TEXT="InvalidDataException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_381378893" CREATED="1578755175387" MODIFIED="1578755185396"/>
+<node TEXT="IOException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1945663634" CREATED="1578755176916" MODIFIED="1578755218474">
+<node TEXT="DirectoryNotFoundException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_881222270" CREATED="1578755199195" MODIFIED="1578755219509"/>
+<node TEXT="DriveNotFoundException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1106398857" CREATED="1578755213522" MODIFIED="1578755228245"/>
+<node TEXT="EndOfStreamException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1434352949" CREATED="1578755214459" MODIFIED="1578755232429"/>
+<node TEXT="FileLoadException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_647330337" CREATED="1578755215627" MODIFIED="1578755233885"/>
+<node TEXT="FileNotFoundException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_372418252" CREATED="1578755216883" MODIFIED="1578755238644"/>
+<node TEXT="PathTooLongException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1381248128" CREATED="1578755238971" MODIFIED="1578755244324"/>
+<node TEXT="PipeException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_879546993" CREATED="1578755239619" MODIFIED="1578755247716"/>
+</node>
+</node>
+<node TEXT="System.Management" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_1524062202" CREATED="1578755303378" MODIFIED="1578755304484">
+<node TEXT="ManagementException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1761177397" CREATED="1578755305450" MODIFIED="1578755310512"/>
+</node>
+<node TEXT="System.Xml" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_1682727500" CREATED="1578750786220" MODIFIED="1578751344298">
+<edge COLOR="#666666"/>
+<node TEXT="XmlException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1993047904" CREATED="1578750811315" MODIFIED="1578751344298">
+<edge COLOR="#666666"/>
+</node>
+<node TEXT="UnauthorizedAccessException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_166532971" CREATED="1578748460537" MODIFIED="1578752232809">
+<node TEXT="System.Security.AccessControl" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_700516376" CREATED="1578750308751" MODIFIED="1578751344299">
+<edge COLOR="#666666"/>
+<node TEXT="PrivilegeNotHeldException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_847738254" CREATED="1578750306895" MODIFIED="1578751344299">
+<edge COLOR="#666666"/>
+</node>
+</node>
+</node>
+</node>
+<node TEXT="System.Xml.Schema" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_274993987" CREATED="1578750817500" MODIFIED="1578751344298">
+<edge COLOR="#666666"/>
+<node TEXT="XmlSchemaException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_206568178" CREATED="1578750816355" MODIFIED="1578751344298">
+<edge COLOR="#666666"/>
+<node TEXT="XmlSchemaInferenceException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_170513345" CREATED="1578750837891" MODIFIED="1578751344298">
+<edge COLOR="#666666"/>
+</node>
+<node TEXT="XmlSchemaValidationException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1382199469" CREATED="1578750848723" MODIFIED="1578751344298">
+<edge COLOR="#666666"/>
+</node>
+</node>
+</node>
+<node TEXT="System.Xml.XPath" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_1574220973" CREATED="1578750815156" MODIFIED="1578751344298">
+<edge COLOR="#666666"/>
+<node TEXT="XPathException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_988243312" CREATED="1578750814404" MODIFIED="1578751344298">
+<edge COLOR="#666666"/>
+<node TEXT="System.ServiceModel.Dispatcher" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_1161731939" CREATED="1578750890324" MODIFIED="1578751344298">
+<edge COLOR="#666666"/>
+<node TEXT="XPathNavigatorException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1455018145" CREATED="1578750892124" MODIFIED="1578751344298">
+<edge COLOR="#666666"/>
+</node>
+</node>
+</node>
+</node>
+<node TEXT="System.Xml.Xsl" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_27263904" CREATED="1578751197690" MODIFIED="1578751344298">
+<edge COLOR="#666666"/>
+<node TEXT="XsltException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1226513994" CREATED="1578751206032" MODIFIED="1578751344298">
+<edge COLOR="#666666"/>
+<node TEXT="XsltCompileException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_951733173" CREATED="1578751219993" MODIFIED="1578751344298">
+<edge COLOR="#666666"/>
+</node>
+</node>
+</node>
+</node>
+<node TEXT="TimeZoneNotFoundException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1960240088" CREATED="1578748446761" MODIFIED="1578754060305"/>
+<node TEXT="System.Activities" LOCALIZED_STYLE_REF="AutomaticLayout.level,1" ID="ID_742017526" CREATED="1578752330235" MODIFIED="1578752430313">
+<node TEXT="InvalidWorkflowException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1802557394" CREATED="1578752414771" MODIFIED="1578752417443"/>
+<node TEXT="VersionMismatchException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_44947797" CREATED="1578752423914" MODIFIED="1578752425900"/>
+<node TEXT="WorkflowApplicationException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_966691868" CREATED="1578752424619" MODIFIED="1578752464638">
+<node TEXT="WorkflowApplicationAbortedException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1141988313" CREATED="1578752453795" MODIFIED="1578752465316"/>
+<node TEXT="WorkflowApplicationCompletedException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1799523348" CREATED="1578752458059" MODIFIED="1578752477229">
+<node TEXT="WorkflowApplicationTerminatedException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_1207781329" CREATED="1578752465619" MODIFIED="1578752478260"/>
+</node>
+<node TEXT="WorkflowApplicationUnloadedException" LOCALIZED_STYLE_REF="AutomaticLayout.level,2" ID="ID_469675444" CREATED="1578752458691" MODIFIED="1578752485724"/>
+</node>
+</node>
+</node>
+</node>
+</map>

@@ -9,12 +9,12 @@ namespace System.Windows.Forms
     /// A label that can be transparent.
     /// </summary>
     /// <remarks>https://www.doogal.co.uk/transparent.php</remarks>
-    public class TransparentLabel : Control
+    internal class LabelDoogalTransparent : Control
     {
         /// <summary>
-        /// Creates a new <see cref="TransparentLabel"/> instance.
+        /// Creates a new <see cref="LabelDoogalTransparent"/> instance.
         /// </summary>
-        public TransparentLabel()
+        public LabelDoogalTransparent()
         {
             TabStop = false;
         }

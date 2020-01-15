@@ -189,7 +189,7 @@ namespace System.Text
             do
             {
                 if (dt < DateTime.Now)
-                    throw new TimeoutException();
+                    throw new RegexMatchTimeoutException(input, pattern, matchTimeout);
 
                 rslt = rslt.Regex(pattern, replacement, options, matchTimeout);
             } while (rslt.RegexIsMatch(pattern, options, matchTimeout));

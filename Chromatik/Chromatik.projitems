@@ -71,9 +71,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)Xml\XmlDocumentWriter.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)ExceptionMap.pdf" />
+    <None Include="$(MSBuildThisFileDirectory)ExceptionMap.mm" />
     <None Include="$(MSBuildThisFileDirectory)Localization\Xliff\Translate XLIFF Files _ Transifex Documentation.url" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)ExceptionMap.png" />
     <Content Include="$(MSBuildThisFileDirectory)Sgml\_Info.txt" />
   </ItemGroup>
 </Project>
