@@ -56,10 +56,7 @@ namespace System.Globalization.Localization
             get { return _targetLang; }
         }
         CultureInfo _targetLang;
-
-        private Xliff() : base()
-        { }
-
+        
         protected Xliff(XmlDocument document) : base()
         {
             XmlElement xliff = document.FirstElement(NodeName);

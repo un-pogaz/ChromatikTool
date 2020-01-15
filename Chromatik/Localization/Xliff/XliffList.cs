@@ -15,7 +15,9 @@ namespace System.Globalization.Localization
 {
     public class XliffIdentifiedListe<T> : Collections.ObjectModel.ReadOnlyCollection<T>
     {
-        public XliffIdentifiedListe(ICollection<T> collection) : base(new T[0])
+        internal XliffIdentifiedListe() : this(new T[0])
+        { }
+        internal XliffIdentifiedListe(ICollection<T> collection) : base(new T[0])
         {
             foreach (T item in collection)
                 Add(item);
@@ -51,13 +53,6 @@ namespace System.Globalization.Localization
         }
         internal void RemoveAt(int index) { Items.RemoveAt(index); }
         #endregion
-        
-        public class IDCollection : Collections.ObjectModel.ReadOnlyCollection<string>
-        {
-            internal IDCollection(IdentifiedCollection list) : base(new string[0])
-            {
-            }
-        }
     }
     public class XliffList<T> : Collections.ObjectModel.ReadOnlyCollection<T>
     {

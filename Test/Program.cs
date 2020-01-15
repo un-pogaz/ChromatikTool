@@ -41,16 +41,25 @@ namespace Test
             //System.Globalization.Localization.QtTranslation trs = System.Globalization.Localization.QtTranslation.LoadTranslation(@"for_translation_sigil_sigil_fr.ts.xml");
             //trs.Save("test.ts.xml");
 
+            /*
             System.Globalization.Localization.Xliff xliff = System.Globalization.Localization.Xliff.LoadXliff("XLIFF_2.xlf");
-
 
             xliff[0].ID = null;
             xliff[0].ID = "f3";
             xliff[0].ID = "f2";
-
-
-            System.Globalization.Localization.XliffList<string> obs = new System.Globalization.Localization.XliffList<string>(new string[] { null, "000", "sdf" });
+            */
             
+
+            List<string> rslt = new List<string>();
+
+            foreach (var item in Directory.EnumerateFiles(@"D:\Ambient music\Brian Eno", "*.mp3", System.IO.SearchOption.AllDirectories))
+            {
+                MusicMetaData meta = new MusicMetaData(item)
+
+
+                ;
+            }
+            ;
 
             XmlDocument xml = XmlDocumentCreate.DocumentXML("<xml><span>kkkkkkk</span> <span de=\"\">yyyy</span><i> 65246541 </i><span>sdfwsfd</span></xml>");
             

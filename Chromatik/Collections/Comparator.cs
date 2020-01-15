@@ -50,8 +50,8 @@ namespace System.Collections.Generic
             {
                 foreach (var fieldName in fields.TrimAll().Distinct().ToArray())
                 {
-                    FieldInfo field = TypeCompared.GetField(fieldName, includePrivate);
-                    MemberInfo prop = TypeCompared.GetProperty(fieldName, includePrivate);
+                    FieldInfo field = TypeCompared.GetField(fieldName);
+                    MemberInfo prop = TypeCompared.GetProperty(fieldName);
 
                     if (field != null)
                         foreach (string testInterface in new string[] { "IComparable`1", "IComparable", "IComparer`1", "IComparer" })

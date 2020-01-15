@@ -61,15 +61,12 @@ namespace System.Globalization.Localization
 
         public void AddUnit(XliffUnit unit)
         {
-            Units.Add(unit);
         }
         public void AddGroup(XliffGroup group)
         {
-            Groups.Add(group);
         }
         public void AddNote(XliffNote note)
         {
-            Notes.Add(note);
         }
     }
 }
