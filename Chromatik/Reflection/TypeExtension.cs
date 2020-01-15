@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -9,87 +9,102 @@ namespace System.Reflection
     /// </summary>
     public static class TypeExtension
     {
+        static private BindingFlags bindingFlags = BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.FlattenHierarchy;
+
         /// <summary>
-        /// Get the value of a the Field
+        /// Get the value of a Field or Property
         /// </summary>
         /// <param name="obj"></param>
         /// <param name="fieldName"></param>
         /// <returns></returns>
-        static public object GetValueOf(this object obj, string fieldName)
-        {
-            return obj.GetValueOf(fieldName, false);
-        }
-
+        static public object GetValueOf(this object obj, string fieldName) { return obj.ExistedValueOf(fieldName, bindingFlags).Value; }
         /// <summary>
-        /// Get the value of a the Field, includ the Private and Protected
+        /// Get the value of a Field or Property
         /// </summary>
         /// <param name="obj"></param>
         /// <param name="fieldName"></param>
-        /// <param name="incluedPrivate">True for includ the Private and Protected</param>
         /// <returns></returns>
-        static public object GetValueOf(this object obj, string fieldName, bool incluedPrivate)
-        {
-            if (incluedPrivate)
-                return obj.GetValueOf(fieldName, BindingFlags.Instance | BindingFlags.Public | BindingFlags.Static | BindingFlags.NonPublic);
-            else
-                return obj.GetValueOf(fieldName, BindingFlags.Instance | BindingFlags.Public | BindingFlags.Static);
-        }
-
+        static public T GetValueOf<T>(this object obj, string fieldName) { return obj.ExistedValueOf(fieldName, bindingFlags).CastValueOrDefault<T>(fieldName); }
+        
+        static public object GetValueOf(this object obj, string fieldName, BindingFlags bindingFlags) { return obj.ExistedValueOf(fieldName, bindingFlags).Value; }
         /// <summary>
-        /// Get the value of a the Field with the specified <see cref="BindingFlags"/>
+        /// Get the value of a Field or Property with the specified <see cref="BindingFlags"/>
         /// </summary>
         /// <param name="obj"></param>
         /// <param name="fieldName"></param>
         /// <param name="bindingFlags"></param>
         /// <returns></returns>
-        static public object GetValueOf(this object obj, string fieldName, BindingFlags bindingFlags)
+        static public T GetValueOf<T>(this object obj, string fieldName, BindingFlags bindingFlags) { return obj.ExistedValueOf(fieldName, bindingFlags).CastValueOrDefault<T>(fieldName); }
+
+        static private KeyValuePair<bool, object> ExistedValueOf(this object obj, string fieldName, BindingFlags bindingFlags)
         {
             if (obj == null)
-                return null;
+                return new KeyValuePair<bool, object>(false, null);
 
             try
             {
                 FieldInfo field = obj.GetType().GetField(fieldName, bindingFlags);
 
-                if (field != null && (field.IsPublic || field.IsPrivate && bindingFlags.HasFlag(BindingFlags.NonPublic)))
-                    return field.GetValue(obj);
+                if (field != null)
+                    return new KeyValuePair<bool, object>(true, field.GetValue(obj));
                 else
-                    return null;
+                {
+                    PropertyInfo propertie = obj.GetType().GetProperty(fieldName, bindingFlags);
+
+                    object r = propertie.GetValue(obj);
+                    if (propertie != null)
+                        return new KeyValuePair<bool, object>(true, propertie.GetValue(obj));
+
+                    return new KeyValuePair<bool, object>(false, null);
+                }
             }
             catch (Exception)
             {
-                return null;
+                return new KeyValuePair<bool, object>(false, null);
             }
         }
-
-        /// <summary>
-        /// Get the <see cref="FieldInfo"/>, includ the Private and Protected
-        /// </summary>
-        /// <param name="type"></param>
-        /// <param name="name"></param>
-        /// <param name="includePrivate">True for includ the Private and Protected</param>
-        /// <returns></returns>
-        static public FieldInfo GetField(this Type type, string name, bool includePrivate)
+        
+        static private T CastValueOrDefault<T>(this KeyValuePair<bool, object> existedObj, string fieldName)
         {
-            if (includePrivate)
-                return type.GetField(name, BindingFlags.Instance | BindingFlags.Public | BindingFlags.Static | BindingFlags.NonPublic);
+            Type tType = typeof(T);
+
+            if (tType.IsEnum)
+            {
+                if (existedObj.Key)
+                {
+                    if (existedObj.Value is T)
+                        return (T)existedObj.Value;
+                }
+                else
+                    return default(T);
+            }
             else
-                return type.GetField(name, BindingFlags.Instance | BindingFlags.Public | BindingFlags.Static);
+            {
+                if (existedObj.Key)
+                {
+                    if (existedObj.Value == null)
+                        return default(T);
+                    else if (existedObj.Value is T)
+                        return (T)existedObj.Value;
+                }
+                else
+                    return default(T);
+            }
+
+            throw new InvalidCastException("The value of the requested Field '"+ fieldName + "' is not of the Type called.");
         }
 
-        /// <summary>
-        /// Get the <see cref="FieldInfo"/>, includ the Private and Protected
-        /// </summary>
-        /// <param name="type"></param>
-        /// <param name="name"></param>
-        /// <param name="includePrivate">True for includ the Private and Protected</param>
-        /// <returns></returns>
-        static public PropertyInfo GetProperty(this Type type, string name, bool includePrivate)
+        static public FieldInfo GetField(this Type type, string fieldName)
         {
-            if (includePrivate)
-                return type.GetProperty(name, BindingFlags.Instance | BindingFlags.Public | BindingFlags.Static | BindingFlags.NonPublic);
-            else
-                return type.GetProperty(name, BindingFlags.Instance | BindingFlags.Public | BindingFlags.Static);
+            if (type == null)
+                throw new ArgumentNullException(nameof(type));
+            return type.GetField(fieldName, bindingFlags);
+        }
+        static public PropertyInfo GetProperty(this Type type, string fieldName)
+        {
+            if (type == null)
+                throw new ArgumentNullException(nameof(type));
+            return type.GetProperty(fieldName, bindingFlags);
         }
     }
 }
