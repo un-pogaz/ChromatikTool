@@ -12,6 +12,38 @@ namespace System.Text
     static public class RegexHelper
     {
         /// <summary>
+        /// Pattern for test the validity of an email address (used in <see cref="System.Net.Mail.MailAddress"/>)
+        /// </summary>
+        public const string EmailAddress = @"(?("")("".+?(?<!\\)""@)|(([0-9A-Za-z]((\.(?!\.))|[-!#\$%&'\*\+/=\?\^`\{\}\|~\w])*)(?<=[0-9A-Za-z])@))(?(\[)(\[(\d{1,3}\.){3}\d{1,3}\])|(([0-9A-Za-z][-\w]*[0-9A-Za-z]*\.)+[A-Za-z0-9][\-A-Za-z0-9]{0,22}[A-Za-z0-9]))";
+
+        /// <summary>
+        /// Basic pattern for test the validity of an email address
+        /// </summary>
+        public const string EmailAddressBasic = @"[A-Za-z0-9._%+\-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}";
+
+        /// <summary>
+        /// W3C pattern for test the validity of an email address
+        /// </summary>
+        public const string EmailAddressW3C = @"[A-Za-z0-9.!#$%&’*+/=?^_`{|}~-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*";
+        
+        /// <summary>
+        /// .NET pattern for test the validity of an email address
+        /// </summary>
+        public const string EmailAddressNET = @"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)";
+
+        /// <summary>
+        /// Strict RFC 5322 pattern for test the validity of an email address
+        /// </summary>
+        public const string EmailAddressRFC_5322_Strict = @"(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|""(?:[\x01 -\x08\x0b\x0c\x0e -\x1f\x21\x23 -\x5b\x5d -\x7f] |\\[\x01-\x09\x0b\x0c\x0e-\x7f])*"")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])";
+
+        /// <summary>
+        /// Simpliefed RFC 5322 pattern for test the validity of an email address
+        /// </summary>
+        public const string EmailAddressRFC_5322_Simpliefed = @"[a-z0-9!#$%&'*+/=?^_‘{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_‘{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?";
+
+
+
+        /// <summary>
         /// Execute a simple Search/Replace loop until the pattern disappears.
         /// </summary>
         /// <param name="input"></param>

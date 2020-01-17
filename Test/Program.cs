@@ -37,29 +37,22 @@ namespace Test
 
             string t1 = Settings.Args.GetNextArg("--test1");
             string t2 = Settings.Args.GetNextArg("--test2");
-            
+
             //System.Globalization.Localization.QtTranslation trs = System.Globalization.Localization.QtTranslation.LoadTranslation(@"for_translation_sigil_sigil_fr.ts.xml");
             //trs.Save("test.ts.xml");
 
-            /*
+            bool m = "_".RegexIsMatch("[A-Za-z]");
+
+            string mail = RegexHelper.EmailAddress;
+
+            ;
+            ;
             System.Globalization.Localization.Xliff xliff = System.Globalization.Localization.Xliff.LoadXliff("XLIFF_2.xlf");
 
             xliff[0].ID = null;
             xliff[0].ID = "f3";
             xliff[0].ID = "f2";
-            */
-            
 
-            List<string> rslt = new List<string>();
-
-            foreach (var item in Directory.EnumerateFiles(@"D:\Ambient music\Brian Eno", "*.mp3", System.IO.SearchOption.AllDirectories))
-            {
-                MusicMetaData meta = new MusicMetaData(item)
-
-
-                ;
-            }
-            ;
 
             XmlDocument xml = XmlDocumentCreate.DocumentXML("<xml><span>kkkkkkk</span> <span de=\"\">yyyy</span><i> 65246541 </i><span>sdfwsfd</span></xml>");
             

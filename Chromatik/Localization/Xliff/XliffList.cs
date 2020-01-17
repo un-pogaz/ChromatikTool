@@ -30,6 +30,7 @@ namespace System.Globalization.Localization
         const string XliffIdentifiedClass = "This action is not supported.\nOnly " + nameof(XliffIdentified) + " or inherited class are allowed.";
 
         new public T this[int index] { get { return Items[index]; } }
+        
 
         #region ICollection<T>
         internal void Add(T item)
