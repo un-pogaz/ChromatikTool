@@ -45,6 +45,11 @@ namespace Test
 
             string mail = RegexHelper.EmailAddress;
 
+            if (System.Text.RegexHelper.RegexIsMatch("sdfsdf.fsdg@yahoo.fr", "^" + System.Text.RegexHelper.EmailAddressRFC_5322_Simpliefed + "$"))
+                mail = "";
+            else
+                throw new System.ArgumentException();
+
             ;
             ;
             System.Globalization.Localization.Xliff xliff = System.Globalization.Localization.Xliff.LoadXliff("XLIFF_2.xlf");
