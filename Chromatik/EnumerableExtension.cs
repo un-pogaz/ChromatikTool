@@ -103,8 +103,50 @@ namespace System.Linq
 
             return Enumerable.Distinct(tbl, comparer).ToArray();
         }
+        
+        /// <summary>
+        /// Reverses the order of the elements in a sequence
+        /// </summary>
+        static public T[] Reverse<T>(this T[] tbl)
+        {
+            if (tbl == null)
+                tbl = new T[0];
 
+            return Enumerable.Reverse(tbl).ToArray();
+        }
 
+        /// <summary>
+        /// Obtains a filter array to the elements of a <see cref="IEnumerable"/> according to the specified type
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        static public T[] OfType<T>(this Array source)
+        {
+            return source.OfType<T>();
+        }
+        /// <summary>
+        /// Obtains a filter array to the elements of a <see cref="IEnumerable"/> according to the specified type
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        static public T[] OfTypeArray<T>(this IEnumerable source)
+        {
+            return Enumerable.OfType<T>(source).ToArray();
+        }
+
+        /// <summary>
+        /// Set all values of a array
+        /// </summary>
+        public static T[] SetAllValue<T>(this T[] input, T value)
+        {
+            if (input != null)
+                for (int i = 0; i < input.Length; i++)
+                    input[0] = value;
+
+            return input;
+        }
 
         public static bool IsEmpty<T>(this IEnumerable<T> enumerable)
         {
@@ -153,7 +195,7 @@ namespace System.Linq
         /// <returns></returns>
         static public IEnumerable<object> ToObjectEnumerable(this IEnumerable source)
         {
-            return source.OfType<object>();
+            return Enumerable.OfType<object>(source);
         }
         /// <summary>
         /// Convert <see cref="IEnumerable"/> to a <see cref="object"/> array
@@ -163,16 +205,6 @@ namespace System.Linq
         static public object[] ToObjectArray(this IEnumerable source)
         {
             return source.ToObjectEnumerable().ToArray();
-        }
-        /// <summary>
-        /// Obtains a filter array to the elements of a <see cref="IEnumerable"/> according to the specified type
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="source"></param>
-        /// <returns></returns>
-        static public T[] OfTypeArray<T>(this IEnumerable source)
-        {
-            return source.OfType<T>().ToArray();
         }
     }
 }

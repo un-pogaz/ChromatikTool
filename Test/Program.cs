@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Xml;
+using System.Globalization.Localization;
 
 
 namespace Test
@@ -40,21 +41,13 @@ namespace Test
 
             //System.Globalization.Localization.QtTranslation trs = System.Globalization.Localization.QtTranslation.LoadTranslation(@"for_translation_sigil_sigil_fr.ts.xml");
             //trs.Save("test.ts.xml");
-
-            bool m = "_".RegexIsMatch("[A-Za-z]");
-
-            string mail = RegexHelper.EmailAddress;
-
-            if (System.Text.RegexHelper.RegexIsMatch("sdfsdf.fsdg@yahoo.fr", "^" + System.Text.RegexHelper.EmailAddressRFC_5322_Simpliefed + "$"))
-                mail = "";
-            else
-                throw new System.ArgumentException();
-
+            
             ;
-            ;
-            System.Globalization.Localization.Xliff xliff = System.Globalization.Localization.Xliff.LoadXliff("XLIFF_2.xlf");
+            Xliff xliff = Xliff.LoadXliff("XLIFF_2.xlf");
 
-            xliff[0].ID = null;
+            string f = xliff.IDs[1];
+            
+
             xliff[0].ID = "f3";
             xliff[0].ID = "f2";
 

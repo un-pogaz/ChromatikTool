@@ -29,7 +29,7 @@ namespace System.Xml
         /// <returns></returns>
         static public IEnumerable<XmlElement> EnumerableElement(this XmlNodeList nodeList)
         {
-            return nodeList.OfType<XmlElement>();
+            return Enumerable.OfType<XmlElement>(nodeList);
         }
 
         /// <summary>

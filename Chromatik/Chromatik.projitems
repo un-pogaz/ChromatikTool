@@ -9,6 +9,7 @@
     <Import_RootNamespace>Chromatik</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Collections\AutoRefreshReadOnlyCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EventArgs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EnumerableExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Collections\Comparator.cs" />
