@@ -39,14 +39,19 @@ namespace Test
             string t1 = Settings.Args.GetNextArg("--test1");
             string t2 = Settings.Args.GetNextArg("--test2");
 
+            string[] tbl = new string[10];
+
+            tbl.ForEach(Incremente);
+
             //System.Globalization.Localization.QtTranslation trs = System.Globalization.Localization.QtTranslation.LoadTranslation(@"for_translation_sigil_sigil_fr.ts.xml");
             //trs.Save("test.ts.xml");
-            
+
             ;
             Xliff xliff = Xliff.LoadXliff("XLIFF_2.xlf");
 
-            string f = xliff.IDs[1];
-            
+            string fI = xliff.IDs[1];
+            XliffFile fS = xliff.Identifieds[1];
+
 
             xliff[0].ID = "f3";
             xliff[0].ID = "f2";
@@ -59,6 +64,13 @@ namespace Test
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
+        }
+
+       
+
+        static public void Incremente(string input)
+        {
+            input = "456";
         }
         
         public static void renameXMLNode(XmlNode node, string oldName, string newName)

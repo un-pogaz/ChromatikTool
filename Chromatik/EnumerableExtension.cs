@@ -114,7 +114,6 @@ namespace System.Linq
 
             return Enumerable.Reverse(tbl).ToArray();
         }
-
         /// <summary>
         /// Obtains a filter array to the elements of a <see cref="IEnumerable"/> according to the specified type
         /// </summary>
@@ -125,20 +124,13 @@ namespace System.Linq
         {
             return source.OfType<T>();
         }
-        /// <summary>
-        /// Obtains a filter array to the elements of a <see cref="IEnumerable"/> according to the specified type
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="source"></param>
-        /// <returns></returns>
-        static public T[] OfTypeArray<T>(this IEnumerable source)
-        {
-            return Enumerable.OfType<T>(source).ToArray();
-        }
 
         /// <summary>
-        /// Set all values of a array
+        /// Set all entry of a array to the specified value.
         /// </summary>
+        /// <param name="input"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public static T[] SetAllValue<T>(this T[] input, T value)
         {
             if (input != null)
@@ -147,45 +139,41 @@ namespace System.Linq
 
             return input;
         }
-
+        /// <summary>
+        /// Test if the enumeration is empty
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="enumerable"></param>
+        /// <returns></returns>
         public static bool IsEmpty<T>(this IEnumerable<T> enumerable)
         {
             return !enumerable.Any();
         }
-
+        /// <summary>
+        /// Test if the enumeration contains a single entry
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="enumerable"></param>
+        /// <returns></returns>
         public static bool IsSingle<T>(this IEnumerable<T> enumerable)
         {
             return enumerable.Count() == 1;
         }
 
-        public static bool HasMany<T>(this IEnumerable<T> enumerable)
-        {
-            return enumerable.Count() > 1;
-        }
-
-        public static IEnumerable<TSource> DistinctBy<TSource, TKey>(this IEnumerable<TSource> enumerable, Func<TSource, TKey> keySelector)
-        {
-            HashSet<TKey> knownKeys = new HashSet<TKey>();
-            foreach (TSource element in enumerable)
-            {
-                if (knownKeys.Add(keySelector(element)))
-                {
-                    yield return element;
-                }
-            }
-        }
-
+        /// <summary>
+        /// Executes an <see cref="Action"/> for each element of an instance
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="enumerable"></param>
+        /// <param name="action"></param>
+        /// <returns></returns>
         public static IEnumerable<T> ForEach<T>(this IEnumerable<T> enumerable, Action<T> action)
         {
             foreach (var item in enumerable)
-            {
                 action(item);
-            }
 
             return enumerable;
         }
-
-
 
 
         /// <summary>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace System.Collections.ObjectModel
 {
@@ -38,8 +39,7 @@ namespace System.Collections.ObjectModel
         virtual public void Refresh()
         {
             Clear();
-            foreach (T item in SourceCollection)
-                Add(item);
+            SourceCollection.ForEach(Add);
         }
 
         /// <summary>

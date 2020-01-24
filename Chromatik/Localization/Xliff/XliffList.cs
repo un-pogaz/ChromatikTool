@@ -20,8 +20,7 @@ namespace System.Globalization.Localization
         { }
         internal XliffIdentifiedListe(ICollection<T> collection) : base(new List<T>())
         {
-            foreach (T item in collection)
-                Add(item);
+            collection.ForEach(Add);
         }
         private void IDchangedEvent(object sender, StringChangedEventArgs e)
         {
@@ -45,18 +44,17 @@ namespace System.Globalization.Localization
         /// </summary>
         public class IDCollection : System.Collections.ObjectModel.AutoRefreshReadOnlyCollection<string>
         {
-
             new protected XliffIdentifiedListe<T> SourceCollection { get; }
             internal IDCollection(XliffIdentifiedListe<T> identifiedListe) : base()
             {
                 if (identifiedListe == null)
-                    throw new ArgumentNullException(null, "The source " + nameof(ICollection<T>) + " cannot be null.");
+                    throw new ArgumentNullException(null, "The source " + nameof(XliffIdentifiedListe<T>) + " cannot be null.");
 
                 SourceCollection = identifiedListe;
             }
 
             /// <summary>
-            /// Refresh the content of the <see cref="AutoRefreshReadOnlyCollection{T}"/>
+            /// Refresh the content of the <see cref="IDCollection"/>
             /// </summary>
             public override void Refresh()
             {
