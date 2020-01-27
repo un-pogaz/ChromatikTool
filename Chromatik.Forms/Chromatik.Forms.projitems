@@ -9,7 +9,6 @@
     <Import_RootNamespace>Chromatik.Forms</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)ChromatikToolStrip.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ControlExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PictureBoxTransparent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LabelTransparent.cs">
