@@ -39,7 +39,15 @@ namespace Test
             string t1 = Settings.Args.GetNextArg("--test1");
             string t2 = Settings.Args.GetNextArg("--test2");
 
-            string[] tbl = new string[10];
+            string[] tbl = new string[] {
+                HashKey.DigestFile(HashAlgorithmEnum.MD5, "XLIFF_2.xlf"),
+                HashKey.DigestFile(HashAlgorithmEnum.SHA1, "XLIFF_2.xlf"),
+                HashKey.DigestFile(HashAlgorithmEnum.SHA256, "XLIFF_2.xlf"),
+                HashKey.DigestFile(HashAlgorithmEnum.SHA384, "XLIFF_2.xlf"),
+                HashKey.DigestFile(HashAlgorithmEnum.SHA512, "XLIFF_2.xlf"),
+                HashKey.DigestFile(HashAlgorithmEnum.KeyedHashAlgorithm, "XLIFF_2.xlf"),
+                HashKey.DigestFile(HashAlgorithmEnum.RIPEMD160, "XLIFF_2.xlf"),
+            };
 
             tbl.ForEach(Incremente);
 
