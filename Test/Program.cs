@@ -37,7 +37,7 @@ namespace Test
 
             ;
             
-            string t1 = Settings.Args.GetNextArg("--test1") + vv;
+            string t1 = Settings.Args.GetNextArg("--test1");
             ;
             string t2 = t1;
 

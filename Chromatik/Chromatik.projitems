@@ -10,7 +10,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Collections\AutoRefreshReadOnlyCollection.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)CSSrule\CSSrulePack.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CSSrule\CSSstyleSheets.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CSSrule\CSSrule.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CSSrule\CSSproperty.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)CSSrule\CSSunit.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EnumStringValueAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EventArgs.cs" />
