@@ -10,6 +10,7 @@ using System.IO;
 using System.Xml;
 using System.Globalization.Localization;
 
+using System.Reflection;
 
 namespace Test
 {
@@ -35,9 +36,12 @@ namespace Test
             /// string rslt3 = enigma3.Process(test);
 
             ;
+            
+            string t1 = Settings.Args.GetNextArg("--test1") + vv;
+            ;
+            string t2 = t1;
 
-            string t1 = Settings.Args.GetNextArg("--test1");
-            string t2 = Settings.Args.GetNextArg("--test2");
+            t2 = "00";
 
             string[] tbl = new string[] {
                 HashKey.DigestFile(HashAlgorithmEnum.MD5, "XLIFF_2.xlf"),

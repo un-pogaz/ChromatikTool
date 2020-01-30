@@ -54,23 +54,23 @@ namespace System
         /// <summary>
         /// Minimal value = 0
         /// </summary>
-        static public Hexa MinValue { get { return New(ulong.MinValue); } }
+        static public Hexa MinValue { get { return new Hexa(ulong.MinValue); } }
         /// <summary>
         /// <see cref="byte"/> value = FF (255)
         /// </summary>
-        static public Hexa ByteValue { get { return New(byte.MaxValue); } }
+        static public Hexa ByteValue { get { return new Hexa(byte.MaxValue); } }
         /// <summary>
         /// <see cref="ushort"/> value = FFFF (65535)
         /// </summary>
-        static public Hexa UShortValue { get { return New(ushort.MaxValue); } }
+        static public Hexa UShortValue { get { return new Hexa(ushort.MaxValue); } }
         /// <summary>
         /// <see cref="uint"/> value = FFFFFFFF (4294967295)
         /// </summary>
-        static public Hexa UIntValue { get { return New(uint.MaxValue); } }
+        static public Hexa UIntValue { get { return new Hexa(uint.MaxValue); } }
         /// <summary>
         /// Maximal value = FFFFFFFFFFFFFFFF (18446744073709551615)
         /// </summary>
-        static public Hexa MaxValue { get { return New(ulong.MaxValue); } }
+        static public Hexa MaxValue { get { return new Hexa(ulong.MaxValue); } }
 
         /// <summary>
         /// Create new hexadecimal variable
@@ -111,49 +111,7 @@ namespace System
 
             MinStringLenght = minStringLenght;
         }
-
-        /// <summary>
-        /// Create new hexadecimal variable
-        /// </summary>
-        static public Hexa New(string value)
-        {
-            return new Hexa(value);
-        }
-        /// <summary>
-        /// Create new hexadecimal variable
-        /// </summary>
-        static public Hexa New(string value, int minStringLenght)
-        {
-            return new Hexa(value, minStringLenght);
-        }
-        /// <summary>
-        /// Create new hexadecimal variable
-        /// </summary>
-        static public Hexa New(ulong value)
-        {
-            return new Hexa(value);
-        }
-        /// <summary>
-        /// Create new hexadecimal variable
-        /// </summary>
-        static public Hexa New(ulong value, int minStringLenght)
-        {
-            return new Hexa(value, minStringLenght);
-        }
-        /// <summary>
-        /// Create new hexadecimal variable
-        /// </summary>
-        static public Hexa New(long value)
-        {
-            return new Hexa(value);
-        }
-        /// <summary>
-        /// Create new hexadecimal variable
-        /// </summary>
-        static public Hexa New(long value, int minStringLenght)
-        {
-            return new Hexa(value, minStringLenght);
-        }
+        
 
         /// <summary> </summary>
         static NumberStyles defaultNumberStyles = (NumberStyles.HexNumber);

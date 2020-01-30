@@ -122,7 +122,7 @@ namespace System.Linq
         /// <returns></returns>
         static public T[] OfType<T>(this Array source)
         {
-            return source.OfType<T>();
+            return Enumerable.OfType<T>(source).ToArray();
         }
 
         /// <summary>

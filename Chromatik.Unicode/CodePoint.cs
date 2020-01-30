@@ -94,10 +94,10 @@ namespace Chromatik.Unicode
 
 
                     foreach (Hexa subitem in Range(RangeSplit[0], RangeSplit[1]))
-                        lst.Add(Hexa.New(subitem));
+                        lst.Add(new Hexa(subitem));
                 }
                 else
-                    lst.Add(Hexa.New(item));
+                    lst.Add(new Hexa(item));
 
             }
 
@@ -240,7 +240,7 @@ namespace Chromatik.Unicode
         /// <returns></returns>
         static public Hexa HexaFromInt(int code)
         {
-            return Hexa.New(code);
+            return new Hexa(code);
         }
         
 
@@ -251,7 +251,7 @@ namespace Chromatik.Unicode
         /// <returns></returns>
         static public Hexa HexaFromChar(string c)
         {
-            return Hexa.New(ConvertExtend.HexaFromChar(c));
+            return new Hexa(ConvertExtend.HexaFromChar(c));
         }
         /// <summary>
         /// Get the character of the Code Point

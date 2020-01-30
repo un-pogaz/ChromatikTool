@@ -184,8 +184,8 @@ namespace Chromatik.Unicode
             if (string.IsNullOrWhiteSpace(CodeRangeXml.GetAttribute("start")) || string.IsNullOrWhiteSpace(CodeRangeXml.GetAttribute("end")))
                 throw InvalidXmlBlockException.DefautMessage;
 
-            result.CodeStart = Hexa.New(CodeRangeXml.GetAttribute("start"));
-            result.CodeEnd = Hexa.New(CodeRangeXml.GetAttribute("end"));
+            result.CodeStart = new Hexa(CodeRangeXml.GetAttribute("start"));
+            result.CodeEnd = new Hexa(CodeRangeXml.GetAttribute("end"));
 
             string codeRangeTxt = "";
             foreach (XmlElement Range in CodeRangeXml.GetElements("Range"))
