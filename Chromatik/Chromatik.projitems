@@ -58,7 +58,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Sgml\DesktopEntityResolver.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sgml\EmbeddedResourceEntityContent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sgml\IEntityResolver.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Sgml\SgmlParser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sgml\SgmlParse.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sgml\SgmlReader.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Text\ByteCharacter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Text\ControlCharacter.cs" />

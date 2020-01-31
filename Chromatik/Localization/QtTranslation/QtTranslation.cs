@@ -152,6 +152,6 @@ namespace System.Globalization.Localization
             XmlDocumentWriter.Document(filePath, GetXmlDocument(), settings, DocumentType);
         }
 
-        static public DocumentType DocumentType { get; } = new DocumentType("TS", false, null, null);
+        static public DocumentType DocumentType { get; } = new DocumentType("TS");
     }
 }

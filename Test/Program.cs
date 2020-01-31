@@ -36,7 +36,21 @@ namespace Test
             /// string rslt3 = enigma3.Process(test);
 
             ;
-            
+
+            DocumentType type = DocumentType.GetFromFile(@"C:\Users\demeure.t\Downloads\Octicons.html");
+            if (type.Equals(DocumentType.HTML5))
+            {
+
+            }
+            if (type.Equals(DocumentType.XHTML1_1))
+            {
+
+            }
+
+            XmlDocument doc = XmlDocumentCreate.ParseHTML(@"C:\Users\demeure.t\Downloads\Octicons.html");
+            XmlDocumentType dt = doc.CreateDocumentType("name", "fdsdf", null, null);
+            XmlDocumentWriter.Document(@"C:\Users\demeure.t\Downloads\Octicons - Copie.html.xml", doc);
+
             string t1 = Settings.Args.GetNextArg("--test1");
             ;
             string t2 = t1;

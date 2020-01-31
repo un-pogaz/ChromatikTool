@@ -5,26 +5,26 @@ using System.Linq;
 
 namespace System.Xml
 {
-    public class DocumentType
+    public class DocumentType : IEquatable<DocumentType>
     {
+        static char[] InvalideChar = WhiteCharacter.WhiteCharacters.Concat(ControlCharacter.ControlCharacters, ControlCharacterSupplement.ControlCharactersSupplements);
+
         public string Name { get; }
-        public string Id { get; }
-        public string Uri { get; }
+        public string PublicId { get; }
+        public string SystemId { get; }
         public string Subset { get; }
 
-        public bool IsSystem { get; }
-
-        public DocumentType(string name, bool isSystem, string id, string uri) : this(name, isSystem, id, uri, null)
+        public DocumentType(string name) : this(name, null, null)
         { }
-        public DocumentType(string name, bool isSystem, string id,  string uri, string subset)
+        public DocumentType(string name, string publicId, string systemId) : this(name, publicId, systemId, null)
+        { }
+        public DocumentType(string name, string publicId,  string systemId, string subset)
         {
-            char[] InvalideChar = WhiteCharacter.WhiteCharacters.Concat(ControlCharacter.ControlCharacters, ControlCharacterSupplement.ControlCharactersSupplements);
-
             if (name == null)
                 throw new ArgumentNullException(nameof(name));
 
             name = name.Trim(InvalideChar);
-            if (string.IsNullOrWhiteSpace(name))
+            if (name.IsNullOrWhiteSpace())
                 throw new ArgumentException("The Name can't be empty or WhiteSpace.", nameof(name));
 
             foreach (char item in InvalideChar)
@@ -33,89 +33,86 @@ namespace System.Xml
 
             Name = name;
 
-            if (id != null)
-                id = id.Trim(InvalideChar).Replace(InvalideChar.ToStringArray(), "");
-            if (string.IsNullOrWhiteSpace(id))
-                Id = null;
+            if (systemId != null)
+                systemId = systemId.Trim(InvalideChar).Replace(InvalideChar.ToStringArray(), "");
+            if (systemId.IsNullOrWhiteSpace())
+                SystemId = null;
             else
-                Id = id;
+                SystemId = systemId;
 
-            IsSystem = isSystem;
-
-            if (uri != null)
-                uri = uri.Trim(InvalideChar).Replace(InvalideChar.ToStringArray(), "");
-            if (string.IsNullOrWhiteSpace(uri))
-                Uri = null;
+            if (publicId != null)
+                publicId = publicId.Trim(InvalideChar).Replace(InvalideChar.ToStringArray(), "");
+            if (publicId.IsNullOrWhiteSpace())
+                PublicId = null;
             else
-                Uri = uri;
+                PublicId = publicId;
 
-            if (subset != null)
-                subset = subset.Trim(InvalideChar).Replace(InvalideChar.ToStringArray(), "");
-            if (string.IsNullOrWhiteSpace(subset))
-                subset = null;
-            else
-                Subset = subset;
+            if (PublicId != null && SystemId == null)
+                SystemId = string.Empty;
+
+            if (publicId != null || systemId != null)
+            {
+                if (subset != null)
+                    subset = subset.Trim(InvalideChar).Replace(InvalideChar.ToStringArray(), "");
+                if (subset.IsNullOrWhiteSpace())
+                    subset = null;
+                else
+                    Subset = subset;
+            }
         }
         
-        static public DocumentType GetDocumentTypeOfFile(string path)
+        static public DocumentType GetFromFile(string path)
         {
-            return GetDocumentTypeFromXML(IO.File.ReadAllText(path));
+            return GetFromText(IO.File.ReadAllText(path));
         }
-        static public DocumentType GetDocumentTypeFromXML(string xml)
+        static public DocumentType GetFromText(string xml)
         {
             Text.RegularExpressions.RegexOptions RegexOptions = RegexHelper.RegexOptions | System.Text.RegularExpressions.RegexOptions.IgnoreCase;
             string match = xml.RegexGetMatch(@"<!\s*DOCTYPE[^>]*>", RegexOptions);
             if (string.IsNullOrWhiteSpace(match))
                 return null;
 
-            string name, sys = null, sub = null, id = null, uri = null;
-            bool system;
+            string name, publicId = null, systemId = null, subset = null;
 
-            name = match.Regex("<!\\s*DOCTYPE\\s+([^\\s]*)\\s*[^>]*>", "$1", RegexOptions);
+            name = match.Regex(@"<!\s*DOCTYPE\s+([^\s>]*)[^>]*>", "$1", RegexOptions);
 
-            if (match.RegexIsMatch("<!\\s*DOCTYPE\\s+[^\\s]*\\s+([^\\s>]*)[^>]*>", RegexOptions))
-                sys = match.Regex("<!\\s*DOCTYPE\\s+[^\\s]*\\s+([^\\s>]*)[^>]*>", "$1", RegexOptions);
+            if (match.RegexIsMatch(@"<!\s*DOCTYPE\s+[^\s]*\s+SYSTEM\s+""([^""]*)""[^>]*>", RegexOptions))
+            {
+                systemId = match.Regex(@"<!\s*DOCTYPE\s+[^\s]*\s+SYSTEM\s+""([^""]*)""[^>]*>", "$1", RegexOptions);
+            }
+            else if(match.RegexIsMatch(@"<!\s*DOCTYPE\s+[^\s]*\s+PUBLIC\s+""([^""]*)""[^>]*>", RegexOptions))
+            {
+                publicId = match.Regex(@"<!\s*DOCTYPE\s+[^\s]*\s+PUBLIC\s+""([^""]*)""[^>]*>", "$1", RegexOptions);
 
-            if (match.RegexIsMatch("<!\\s*DOCTYPE\\s+[^\\s]*\\s+[^\\s>]*\\s+\"([^\"]*)\"[^>]*>", RegexOptions))
-                id = match.Regex("<!\\s*DOCTYPE\\s+[^\\s]*\\s+[^\\s>]*\\s+\"([^\"]*)\"[^>]*>", "$1", RegexOptions);
+                if (match.RegexIsMatch(@"<!\s*DOCTYPE\s+[^\s]*\s+PUBLIC\s+""[^""]*""\s+""([^""]*)""[^>]*>", RegexOptions))
+                    systemId = match.Regex(@"<!\s*DOCTYPE\s+[^\s]*\s+PUBLIC\s+""[^""]*""\s+""([^""]*)""[^>]*>", "$1", RegexOptions);
+            }
 
-            if (match.RegexIsMatch("<!\\s*DOCTYPE\\s+[^\\s]*\\s+[^\\s>]*\\s+\"[^\"]*\"\\s+\"([^\"]*)\"[^>]*>", RegexOptions))
-                uri = match.Regex("<!\\s*DOCTYPE\\s+[^\\s]*\\s+[^\\s>]*\\s+\"[^\"]*\"\\s+\"([^\"]*)\"[^>]*>", "$1", RegexOptions);
+            if (publicId != null || systemId != null)
+            {
+                if (match.RegexIsMatch(@"<!\s*DOCTYPE\s+[^\[]*\[([^\[]*)\][^>]*>", RegexOptions))
+                    subset = match.Regex(@"<!\s*DOCTYPE\s+[^\[]*\[([^\[]*)\][^>]*>", "$1", RegexOptions);
+            }
 
-            if (match.RegexIsMatch("<!\\s*DOCTYPE\\s+[^\\s]*\\s+[^>\\[]*\\[([^>\\[]*)\\][^>]*>", RegexOptions))
-                sub = match.Regex("<!\\s*DOCTYPE\\s+[^\\s]*\\s+[^>\\[]*\\[([^>\\[]*)\\][^>]*>", "$1", RegexOptions);
-
-            if (sys.Equals("SYSTEM", StringComparison.InvariantCultureIgnoreCase))
-                system = true;
-            else
-                system = false;
-
-            return new DocumentType(name, system, id,  uri, sub);
+            return new DocumentType(name, publicId,  systemId, subset);
         }
 
-        /// <summary></summary>
-        /// <returns></returns>
-        public override string ToString()
+        public override bool Equals(object obj)
         {
-            string rslt = "DocumentType, Name=\"" + Name + "\"";
+            if (obj == null)
+                return false;
 
-            if (Id != null)
-            {
-                if (IsSystem)
-                    rslt += ", SYSTEM =\"" + Id + "\"";
-                else
-                    rslt += ", PUBLIC=\"" + Id + "\"";
-            }
+            if (obj is DocumentType)
+                return Equals((DocumentType)obj);
             else
-            {
-                if (IsSystem)
-                    rslt += ", SYSTEM";
-            }
+                return false;
+        }
+        public bool Equals(DocumentType obj)
+        {
+            if (Text.Equals(obj.Text, StringComparison.InvariantCultureIgnoreCase))
+                return true;
 
-            if (Subset != null)
-                rslt += ", Value=\"" + Subset + "\"";
-
-            return rslt;
+            return false;
         }
 
         /// <summary>
@@ -127,55 +124,67 @@ namespace System.Xml
             {
                 string rslt = "<!DOCTYPE " + Name;
 
-                if (Id != null)
+                if (SystemId != null)
                 {
-                    if (IsSystem)
-                        rslt += " SYSTEM \"" + Id + "\"";
+                    if (PublicId == null)
+                        rslt += " SYSTEM \"" + SystemId + "\"";
                     else
-                        rslt += " PUBLIC \"" + Id + "\"";
-                }
-                else
-                {
-                    if (IsSystem)
-                        rslt += " SYSTEM";
-                }
+                        rslt += " PUBLIC \"" + PublicId + "\" \"" + SystemId + "\"";
 
-                if (Uri != null)
-                    rslt += " \"" + Uri + "\"";
-
-                if (Subset != null)
-                    rslt += " [" + Subset + "]";
+                    if (Subset != null)
+                        rslt += " [" + Subset + "]";
+                }
 
                 return rslt + ">";
             }
         }
 
         /// <summary></summary>
-        static public DocumentType HTML5 { get; } = new DocumentType("html", false, null, null);
-        /// <summary></summary>
-        static public DocumentType XHTML1_1 { get; } = new DocumentType("html", false, "-//W3C//DTD XHTML 1.1//EN", "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd");
+        /// <returns></returns>
+        public override string ToString()
+        {
+            string rslt = "DocumentType, Name=\"" + Name + "\"";
+
+            if (SystemId != null)
+            {
+                if (PublicId == null)
+                    rslt += ", SYSTEM =\"" + SystemId + "\"";
+                else
+                    rslt += ", PUBLIC=\"" + PublicId + "\"";
+
+                if (Subset != null)
+                    rslt += ", Value=\"" + Subset + "\"";
+            }
+
+            return rslt;
+        }
 
         /// <summary></summary>
-        static public DocumentType NCX { get; } = new DocumentType("ncx", false, "-//NISO//DTD ncx 2005-1//EN", "http://www.daisy.org/z3986/2005/ncx-2005-1.dtd");
+        static public DocumentType HTML5 { get; } = new DocumentType("html");
+        /// <summary></summary>
+        static public DocumentType XHTML1_1 { get; } = new DocumentType("html", "-//W3C//DTD XHTML 1.1//EN", "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd");
 
         /// <summary></summary>
-        static public DocumentType MathML2 { get; } = new DocumentType("math", false, "-//W3C//DTD MathML 2.0//EN",  "http://www.w3.org/Math/DTD/mathml2/mathml2.dtd");
-        /// <summary></summary>
-        static public DocumentType MathML1 { get; } = new DocumentType("math", true, null, "http://www.w3.org/Math/DTD/mathml1/mathml.dtd");
+        static public DocumentType NCX { get; } = new DocumentType("ncx", "-//NISO//DTD ncx 2005-1//EN", "http://www.daisy.org/z3986/2005/ncx-2005-1.dtd");
 
         /// <summary></summary>
-        static public DocumentType XHTML1strict { get; } = new DocumentType("html", false, "-//W3C//DTD XHTML 1.0 Strict//EN",  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd");
+        static public DocumentType MathML2 { get; } = new DocumentType("math", "-//W3C//DTD MathML 2.0//EN",  "http://www.w3.org/Math/DTD/mathml2/mathml2.dtd");
         /// <summary></summary>
-        static public DocumentType XHTML1transitional { get; } = new DocumentType("html", false, "-//W3C//DTD XHTML 1.0 Transitional//EN",  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd");
-        /// <summary></summary>
-        static public DocumentType XHTML1frameset { get; } = new DocumentType("html", false, "-//W3C//DTD XHTML 1.0 Frameset//EN", "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd");
+        static public DocumentType MathML1 { get; } = new DocumentType("math", null, "http://www.w3.org/Math/DTD/mathml1/mathml.dtd");
 
         /// <summary></summary>
-        static public DocumentType HTML4strict { get; } = new DocumentType("html", false, "-//W3C//DTD HTML 4.01//EN",  "http://www.w3.org/TR/html4/strict.dtd");
+        static public DocumentType XHTML1strict { get; } = new DocumentType("html", "-//W3C//DTD XHTML 1.0 Strict//EN",  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd");
         /// <summary></summary>
-        static public DocumentType HTML4transitional { get; } = new DocumentType("html", false, "-//W3C//DTD HTML 4.01 Transitional//EN",  "http://www.w3.org/TR/html4/loose.dtd");
+        static public DocumentType XHTML1transitional { get; } = new DocumentType("html", "-//W3C//DTD XHTML 1.0 Transitional//EN",  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd");
         /// <summary></summary>
-        static public DocumentType HTML4frameset { get; } = new DocumentType("html", false, "-//W3C//DTD HTML 4.01 Frameset//EN", "http://www.w3.org/TR/html4/frameset.dtd");
+        static public DocumentType XHTML1frameset { get; } = new DocumentType("html", "-//W3C//DTD XHTML 1.0 Frameset//EN", "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd");
+
+        /// <summary></summary>
+        static public DocumentType HTML4strict { get; } = new DocumentType("html", "-//W3C//DTD HTML 4.01//EN",  "http://www.w3.org/TR/html4/strict.dtd");
+        /// <summary></summary>
+        static public DocumentType HTML4transitional { get; } = new DocumentType("html", "-//W3C//DTD HTML 4.01 Transitional//EN",  "http://www.w3.org/TR/html4/loose.dtd");
+        /// <summary></summary>
+        static public DocumentType HTML4frameset { get; } = new DocumentType("html", "-//W3C//DTD HTML 4.01 Frameset//EN", "http://www.w3.org/TR/html4/frameset.dtd");
         
     }
 }

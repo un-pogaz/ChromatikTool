@@ -35,13 +35,16 @@ namespace System.Xml
         /// </summary>
         static public XmlDocument DocumentXML(string xml)
         {
-            XmlDocument doc = new XmlDocument()
+            XmlDocument rslt = new XmlDocument()
             {
                 PreserveWhitespace = false
             };
-            doc.LoadXml(xml.RemoveDOCTYPE());
-            doc.RemoveDeclaration();
-            return doc;
+            
+            rslt.LoadXml(xml.RemoveDOCTYPE());
+            rslt.RemoveDeclaration();
+            if (xml.RegexIsMatch("<!DOCTYPE\\s+html[^>]*>", RegexHelper.RegexOptions| Text.RegularExpressions.RegexOptions.IgnoreCase))
+                rslt.SetDocumentType("html");
+            return rslt;
         }
 
         private static string RemoveDOCTYPE(this string input)
@@ -81,20 +84,25 @@ namespace System.Xml
                 XmlResolver = null
             };
 
-            using (Sgml.SgmlReader sgmlReader = new Sgml.SgmlReader()
-            {
-                DocType = "HTML",
-                WhitespaceHandling = Sgml.WhitespaceHandling.All,
-                CaseFolding = Sgml.CaseFolding.ToLower,
-                InputStream = new StreamReader(StreamExtension.StreamFromString(html.RemoveDOCTYPE()))
-            })
+            using (Sgml.SgmlReader sgmlReader = CreateSgmlReader(html))
             {
                 rslt.Load(sgmlReader);
-                rslt.RemoveDeclaration();
             }
+
+            rslt.RemoveDeclaration();
+            rslt.SetDocumentType("html");
 
             return rslt;
         }
 
+        static private Sgml.SgmlReader CreateSgmlReader(string sgml)
+        {
+            return new Sgml.SgmlReader()
+            {
+                WhitespaceHandling = Sgml.WhitespaceHandling.All,
+                CaseFolding = Sgml.CaseFolding.ToLower,
+                InputStream = new StreamReader(StreamExtension.StreamFromString(sgml.RemoveDOCTYPE()))
+            };
+        }
     }
 }

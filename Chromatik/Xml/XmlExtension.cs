@@ -206,8 +206,109 @@ namespace System.Xml
 
             return node;
         }
-        
+
+        #endregion
+
+        #region DocumentType
+        /// <summary>
+        /// Revove the <see cref="XmlDocumentType"/> of the document
+        /// </summary>
+        /// <param name="document"></param>
+        /// <returns></returns>
+        static public bool RevoveDocumentType(this XmlDocument document)
+        {
+            if (document.DocumentType != null)
+            {
+                document.RemoveChild(document.DocumentType);
+                return true;
+            }
+            else
+                return false;
+        }
+        /// <summary>
+        /// Create a <see cref="XmlDocumentType"/> without any Id
+        /// </summary>
+        /// <param name="document"></param>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        static public XmlDocumentType CreateDocumentType(this XmlDocument document, string name)
+        {
+            return document.CreateDocumentType(name, null, null);
+        }
+        /// <summary>
+        /// Create a <see cref="XmlDocumentType"/> with the specified Id
+        /// </summary>
+        /// <param name="document"></param>
+        /// <param name="name"></param>
+        /// <param name="publicId"></param>
+        /// <param name="systemId"></param>
+        /// <returns></returns>
+        static public XmlDocumentType CreateDocumentType(this XmlDocument document, string name, string publicId, string systemId)
+        {
+            return document.CreateDocumentType(name, publicId, systemId, null);
+        }
+
+        /// <summary>
+        /// Set a <see cref="XmlDocumentType"/> without any Id
+        /// </summary>
+        /// <param name="document"></param>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        static public XmlDocumentType SetDocumentType(this XmlDocument document, string name)
+        {
+            return document.SetDocumentType(name, null, null);
+        }
+        /// <summary>
+        /// Set a <see cref="XmlDocumentType"/> with the specified Ids
+        /// </summary>
+        /// <param name="document"></param>
+        /// <param name="name"></param>
+        /// <param name="publicId"></param>
+        /// <param name="systemId"></param>
+        /// <returns></returns>
+        static public XmlDocumentType SetDocumentType(this XmlDocument document, string name, string publicId, string systemId)
+        {
+            return document.SetDocumentType(name, publicId, systemId, null);
+        }
+        /// <summary>
+        /// Set a <see cref="XmlDocumentType"/> with the specified Ids and internalSubset
+        /// </summary>
+        /// <param name="document"></param>
+        /// <param name="name"></param>
+        /// <param name="publicId"></param>
+        /// <param name="systemId"></param>
+        /// <param name="internalSubset"></param>
+        /// <returns></returns>
+        static public XmlDocumentType SetDocumentType(this XmlDocument document, string name, string publicId, string systemId, string internalSubset)
+        {
+            document.RevoveDocumentType();
+            if (!name.IsNullOrWhiteSpace())
+            {
+                document.InsertBefore(document.CreateDocumentType(name, publicId, systemId, internalSubset), document.FirstElement());
+            }
+            return document.DocumentType;
+        }
+
+        /// <summary>
+        /// Set a <see cref="DocumentType"/> with the specified Ids and internalSubset
+        /// </summary>
+        /// <param name="document"></param>
+        /// <param name="doctype"></param>
+        /// <returns></returns>
+        static public XmlDocumentType SetDocumentType(this XmlDocument document, DocumentType doctype)
+        {
+            return document.SetDocumentType(doctype.Name, doctype.PublicId, doctype.SystemId, doctype.Subset);
+        }
+        /// <summary>
+        /// Create a <see cref="XmlDocumentType"/>
+        /// </summary>
+        /// <param name="document"></param>
+        /// <param name="doctype"></param>
+        /// <returns></returns>
+        static public XmlDocumentType CreateDocumentType(this XmlDocument document, DocumentType doctype)
+        {
+            return document.CreateDocumentType(doctype.Name, doctype.PublicId, doctype.SystemId, doctype.Subset);
+        }
         #endregion
     }
-
 }
