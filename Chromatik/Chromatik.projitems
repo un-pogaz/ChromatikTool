@@ -9,11 +9,9 @@
     <Import_RootNamespace>Chromatik</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)AttributeExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Collections\AutoRefreshReadOnlyCollection.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)CSSrule\CSSstyleSheets.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)CSSrule\CSSrule.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)CSSrule\CSSproperty.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)CSSrule\CSSunit.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Collections\FileSystemComparator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EnumStringValueAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EventArgs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EnumerableExtension.cs" />

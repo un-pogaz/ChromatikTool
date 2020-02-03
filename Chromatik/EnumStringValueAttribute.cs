@@ -27,10 +27,9 @@ namespace System
         /// <returns></returns>
         static public string GetFrom(object value)
         {
-            IEnumerable<EnumStringValueAttribute> attributes = value.GetType().GetField(value.ToString())
-                .GetCustomAttributes(typeof(EnumStringValueAttribute), false).OfType<EnumStringValueAttribute>();
-
-            return attributes.IsEmpty() ? null : attributes.Last().Value;
+            EnumStringValueAttribute rslt = AttributeExtension.GetFrom<EnumStringValueAttribute>(value);
+            
+            return rslt == null ? null : rslt.Value;
         }
     }
 }

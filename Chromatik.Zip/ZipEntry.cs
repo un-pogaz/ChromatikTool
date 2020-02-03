@@ -40,6 +40,21 @@ namespace Chromatik.Zip
             }
         }
 
+        /// <summary></summary>
+        /// <param name="obj"></param>
+        public override bool Equals(object obj)
+        {
+            if (obj is ZipEntry)
+                return ((ZipEntry)obj).zipEntry.Equals(zipEntry);
+            if (obj is Ionic.Zip.ZipEntry)
+                return ((Ionic.Zip.ZipEntry)obj).Equals(zipEntry);
+
+            return false;
+        }
+
+        /// <summary></summary>
+        public override string ToString() { return FileName; }
+
         /// <summary>
         /// The name of the file contained in the ZipEntry.
         /// </summary>
@@ -53,12 +68,6 @@ namespace Chromatik.Zip
                 zipEntry.FileName = ZipFile.ToEntryFormat(value);
             }
         }
-
-        /// <summary>
-        /// Provides a string representation of the instance.
-        /// </summary>
-        /// <returns></returns>
-        new public string ToString() { return FileName; }
 
         /// <summary>
         /// True if the entry is a directory (not a file). This is a readonly property on the entry.

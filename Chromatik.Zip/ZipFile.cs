@@ -107,7 +107,7 @@ namespace Chromatik.Zip
         /// <summary>
         /// The name of this ZIP archive, on disk.
         /// </summary>
-        public string ZipFileName
+        public string FileName
         {
             get { return zipFile.Name; }
             set
@@ -172,79 +172,24 @@ namespace Chromatik.Zip
         /// <param name="entryName"></param>
         /// <returns>null if not found</returns>
         public ZipEntry this[string entryName] { get { return Entries[entryName]; } }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        protected virtual IList<ZipEntry> CreateEntries()
-        {
-            try
-            {
-                IList<ZipEntry> rslt = new List<ZipEntry>();
-                foreach (var item in zipFile)
-                    rslt.Add(new ZipEntry(item));
-
-                return rslt;
-            }
-            catch (Ionic.Zip.ZipException ex)
-            {
-                throw ZipException.FromIonic(ex);
-            }
-            catch (Ionic.Zlib.ZlibException ex)
-            {
-                throw ZipException.FromIonic(ex);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+        
+        ZipEntryCollection _entries;
         /// <summary>
         /// List of entries in the ZIP archive.
         /// </summary>
-        public ZipEntryCollection Entries { get { return new ZipEntryCollection(CreateEntries()); } }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        protected virtual IList<ZipEntry> CreateEntriesSorted()
+        public ZipEntryCollection Entries
         {
-            try
+            get
             {
-                IDictionary<string, ZipEntry> rslt = new SortedList<string, ZipEntry>(StringComparer.InvariantCultureIgnoreCase);
-                foreach (var item in zipFile)
-                {
-                    ZipEntry entry = new ZipEntry(item);
-                    rslt.Add(entry.FileName, entry);
-                }
-                return rslt.Values.ToList();
-            }
-            catch (Ionic.Zip.ZipException ex)
-            {
-                throw ZipException.FromIonic(ex);
-            }
-            catch (Ionic.Zlib.ZlibException ex)
-            {
-                throw ZipException.FromIonic(ex);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
+                if (_entries == null)
+                    _entries = new ZipEntryCollection(zipFile.Entries);
+
+                return _entries;
             }
         }
-        /// <summary>
-        /// Sorted list of entries in the ZIP archive.
-        /// </summary>
-        public ZipEntryCollection EntriesSorted { get { return new ZipEntryCollection(CreateEntriesSorted()); } }
+        ZipEntryCollection _entriesSorted;
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="entyName"></param>
-        /// <returns></returns>
-        public ZipEntry GetEntry(string entyName) { return Entries[entyName]; }
+        List<string> _entriesNames;
         /// <summary>
         /// List only the entries name in the ZIP archive.
         /// </summary>
@@ -252,12 +197,23 @@ namespace Chromatik.Zip
         {
             get
             {
-                List<string> lst = new List<string>();
+                if (true)
+                     _entriesNames = new List<string>();
+
+                _entriesNames.Clear();
                 foreach (var item in Entries)
-                    lst.Add(item.FileName);
-                return lst;
+                    _entriesNames.Add(item.FileName);
+
+                return _entriesNames;
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="entyName"></param>
+        /// <returns></returns>
+        public ZipEntry GetEntry(string entyName) { return Entries[entyName]; }
 
         /// <summary>
         /// Add a text entrie in the ZIP archive.

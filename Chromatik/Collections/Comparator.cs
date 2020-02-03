@@ -13,7 +13,7 @@ namespace System.Collections.Generic
     /// <typeparam name="T"></typeparam>
     public class Comparator<T> : IComparer<T>, IComparer, IEqualityComparer<T>, IEqualityComparer
     {
-        /// <summary> </summary>
+        /// <summary></summary>
         static public Comparator<T> Default { get; } = new Comparator<T>();
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace System.Collections.Generic
         }
 
         /// <summary> </summary>
-        public int Compare(T x, T y)
+        public virtual int Compare(T x, T y)
         {
             if (x == null && y == null)
                 return 0;
@@ -104,19 +104,22 @@ namespace System.Collections.Generic
         {
             if (x == null && y == null)
                 return 0;
+
             else if (y == null)
                 return 1;
             else if (x == null)
                 return -1;
-
-            try
+            if (x is T != y is T)
             {
-                return Compare((T)x, (T)y);
+                try
+                {
+                    return Compare((T)x, (T)y);
+                }
+                catch
+                {
+                }
             }
-            catch
-            {
-                return 0;
-            }
+            return 0;
         }
 
         /// <summary> </summary>
@@ -288,9 +291,5 @@ namespace System.Collections.Generic
             }
         }
     }
-
-    public class Comparator
-    {
-
-    }
+    
 }
