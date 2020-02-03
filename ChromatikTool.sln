@@ -63,7 +63,6 @@ Global
 		Chromatik.Zip\Chromatik.Zip.projitems*{faef10d3-e8cf-4c58-975b-bd2385ff8dc7}*SharedItemsImports = 4
 		Chromatik\Chromatik.projitems*{faef10d3-e8cf-4c58-975b-bd2385ff8dc7}*SharedItemsImports = 4
 		Chromatik.Forms\Chromatik.Forms.projitems*{faef10d3-e8cf-4c58-975b-bd2385ff8dc7}*SharedItemsImports = 4
-		Chromatik.Svg\Chromatik.Svg.projitems*{faef10d3-e8cf-4c58-975b-bd2385ff8dc7}*SharedItemsImports = 4
 		Chromatik.Unicode\Chromatik.Unicode.projitems*{41404c61-0dbe-4a5e-8d3e-ff30a8bc1b47}*SharedItemsImports = 4
 		Chromatik\Chromatik.projitems*{41404c61-0dbe-4a5e-8d3e-ff30a8bc1b47}*SharedItemsImports = 4
 		Chromatik.SQLite\Chromatik.SQLite.projitems*{41404c61-0dbe-4a5e-8d3e-ff30a8bc1b47}*SharedItemsImports = 4

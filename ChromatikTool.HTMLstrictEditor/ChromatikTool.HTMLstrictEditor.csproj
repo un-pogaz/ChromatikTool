@@ -36,9 +36,6 @@
       <HintPath>..\packages\Ionic.Zip.1.9.1.8\lib\Ionic.Zip.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Svg">
-      <HintPath>..\packages\Svg.3.0.49\lib\net452\Svg.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -73,7 +70,6 @@
   <Import Project="..\Chromatik\Chromatik.projitems" Label="Shared" />
   <Import Project="..\Chromatik.Forms\Chromatik.Forms.projitems" Label="Shared" />
   <Import Project="..\Chromatik.Unicode\Chromatik.Unicode.projitems" Label="Shared" />
-  <Import Project="..\Chromatik.Svg\Chromatik.Svg.projitems" Label="Shared" />
   <Import Project="..\Chromatik.Drawing\Chromatik.Drawing.projitems" Label="Shared" />
   <Import Project="..\Chromatik.Zip\Chromatik.Zip.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
