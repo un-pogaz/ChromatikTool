@@ -13,7 +13,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Collections\AutoRefreshReadOnlyCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Collections\FileSystemComparator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EnumStringValueAttribute.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)EventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)StringChangedEventArgs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EnumerableExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Collections\Comparator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Collections\ListExtension.cs" />
