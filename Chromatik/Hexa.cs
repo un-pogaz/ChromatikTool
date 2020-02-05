@@ -297,9 +297,7 @@ namespace System
                 Hexa hx;
                 Hexa hy;
                 if (TryParseObject(x, out hx) && TryParseObject(y, out hy))
-                {
                     return Compare(hx, hy);
-                }
 
                 return 0;
             }
@@ -342,7 +340,21 @@ namespace System
         /// <summary></summary>
         new static public bool Equals(object x, object y)
         {
-            return Compare(x, y) == 0;
+            if (x == null && y != null)
+                return false;
+            if (x != null && y == null)
+                return false;
+            else if (x == null && y == null)
+                return true;
+            else
+            {
+                Hexa hx;
+                Hexa hy;
+                if (TryParseObject(x, out hx) && TryParseObject(y, out hy))
+                    return Equals(hx, hy);
+
+                return false;
+            }
         }
         bool IEqualityComparer.Equals(object x, object y)
         {
