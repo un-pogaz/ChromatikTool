@@ -192,6 +192,12 @@ namespace System
             if (s == null)
                 throw new ArgumentNullException(nameof(s));
 
+            return new Hexa(ulong.Parse(FiltreString(s), style, provider));
+        }
+
+        static private string FiltreString(string s)
+        {
+
             s = s.Trim(WhiteCharacter.WhiteCharacters);
             if (s.StartsWith("#"))
             {
@@ -203,14 +209,10 @@ namespace System
                         s[2].ToString() + s[2].ToString();
                 }
             }
-            else if (s.StartsWith("&#x"))
-            {
-                s = s.Regex("^&#x", "").TrimEnd(WhiteCharacter.WhiteCharacters.Concat(';'));
-            }
             else
-                s = s.Regex("^((0|h|%|#)?x|&h|U+|%|$)", "", RegexHelper.DefaultRegexOptions| Text.RegularExpressions.RegexOptions.IgnoreCase);
+                s = s.Regex("^((0|h|%|#)?x|&h|U+|%|$)", "", RegexHelper.DefaultRegexOptions | Text.RegularExpressions.RegexOptions.IgnoreCase);
 
-            return new Hexa(ulong.Parse(s.Trim(WhiteCharacter.WhiteCharacters), style, provider));
+            return s;
         }
 
         /// <summary> </summary>
@@ -227,7 +229,7 @@ namespace System
         static public bool TryParse(string s, NumberStyles style, IFormatProvider provider, out Hexa result)
         {
             ulong v = 0;
-            bool rslt = ulong.TryParse(s, style, provider, out v);
+            bool rslt = ulong.TryParse(FiltreString(s), style, provider, out v);
             result = new Hexa(v);
             return rslt;
         }
