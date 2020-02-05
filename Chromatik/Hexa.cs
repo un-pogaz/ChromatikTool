@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,7 +14,7 @@ namespace System
     [Serializable]
     [System.Runtime.InteropServices.StructLayout(Runtime.InteropServices.LayoutKind.Sequential)]
     [System.Runtime.InteropServices.ComVisible(true)]
-    public struct Hexa : IComparable, IFormattable, IConvertible, IComparable<Hexa>, IEquatable<Hexa>
+    public struct Hexa : IFormattable, IConvertible, IComparable<Hexa>, IComparable, IComparer<Hexa>, IComparer, IEquatable<Hexa>, IEqualityComparer<Hexa>, IEqualityComparer
     {
         /// <summary>
         /// The <see cref="ulong"/> absolute value of variable
@@ -171,38 +172,59 @@ namespace System
         }
 
         /// <summary> </summary>
-        public static Hexa Parse(string s)
+        static public Hexa Parse(string s)
         {
             return Parse(s, defaultNumberStyles);
         }
         /// <summary> </summary>
-        public static Hexa Parse(string s, IFormatProvider provider)
+        static public Hexa Parse(string s, IFormatProvider provider)
         {
             return Parse(s, defaultNumberStyles, provider);
         }
         /// <summary> </summary>
-        public static Hexa Parse(string s, NumberStyles style)
+        static public Hexa Parse(string s, NumberStyles style)
         {
             return Parse(s, defaultNumberStyles, defaultFormatProvider);
         }
         /// <summary> </summary>
-        public static Hexa Parse(string s, NumberStyles style, IFormatProvider provider)
+        static public Hexa Parse(string s, NumberStyles style, IFormatProvider provider)
         {
-            return new Hexa(ulong.Parse(s, style, provider));
+            if (s == null)
+                throw new ArgumentNullException(nameof(s));
+
+            s = s.Trim(WhiteCharacter.WhiteCharacters);
+            if (s.StartsWith("#"))
+            {
+                s = s.TrimStart('#');
+                if (s.Length == 3)
+                {
+                    s = s[0].ToString() + s[0].ToString() +
+                        s[1].ToString() + s[1].ToString() +
+                        s[2].ToString() + s[2].ToString();
+                }
+            }
+            else if (s.StartsWith("&#x"))
+            {
+                s = s.Regex("^&#x", "").TrimEnd(WhiteCharacter.WhiteCharacters.Concat(';'));
+            }
+            else
+                s = s.Regex("^((0|h|%|#)?x|&h|U+|%|$)", "", RegexHelper.DefaultRegexOptions| Text.RegularExpressions.RegexOptions.IgnoreCase);
+
+            return new Hexa(ulong.Parse(s.Trim(WhiteCharacter.WhiteCharacters), style, provider));
         }
 
         /// <summary> </summary>
-        public static bool TryParse(string s, out Hexa result)
+        static public bool TryParse(string s, out Hexa result)
         {
             return TryParse(s, defaultNumberStyles, out result);
         }
         /// <summary> </summary>
-        public static bool TryParse(string s, NumberStyles style, out Hexa result)
+        static public bool TryParse(string s, NumberStyles style, out Hexa result)
         {
             return TryParse(s, style, defaultFormatProvider, out result);
         }
         /// <summary> </summary>
-        public static bool TryParse(string s, NumberStyles style, IFormatProvider provider, out Hexa result)
+        static public bool TryParse(string s, NumberStyles style, IFormatProvider provider, out Hexa result)
         {
             ulong v = 0;
             bool rslt = ulong.TryParse(s, style, provider, out v);
@@ -210,69 +232,138 @@ namespace System
             return rslt;
         }
 
-        /// <summary> </summary>
-        public int CompareTo(object value)
+        static private bool TryParseObject(object obj, out Hexa result)
         {
-            if (value == null)
-                return 1;
-            if (value is Hexa)
-                return CompareTo((Hexa)value);
-            if (value is string)
-                return CompareTo((string)value);
-            if (value is ulong)
-                return CompareTo((ulong)value);
+            result = MinValue;
+            if (obj != null)
+            {
+                if (obj is Hexa)
+                {
+                    result = (Hexa)obj;
+                    return true;
+                }
+                else if(obj is string)
+                {
+                    result = new Hexa((string)obj);
+                    return true;
+                }
+                //else if (obj is byte || obj is short || obj is int || obj is long)
+                //{
+                //    result = new Hexa((long)obj);
+                //    return true;
+                //}
+                //else if (obj is sbyte || obj is ushort || obj is uint || obj is ulong)
+                //{
+                //    result = new Hexa((ulong)obj);
+                //    return true;
+                //}
+            }
 
+            return false;
+        }
+
+        #region IComparer 
+
+        /// <summary>
+        /// Compare two instance of <see cref="Hexa"/>
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        static public int Compare(Hexa x, Hexa y)
+        {
+            return y.AbsolutValue.CompareTo(y.AbsolutValue);
+        }
+        int IComparer<Hexa>.Compare(Hexa x, Hexa y)
+        {
+            return Compare(x, y);
+        }
+        /// <summary>
+        /// Compare two instance of <see cref="object"/> if they are valides <see cref="Hexa"/>
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        static public int Compare(object x, object y)
+        {
+            if (x == null && y != null)
+                return 1;
+            if (x != null && y == null)
+                return -1;
+            else if (x == null && y == null)
+                return 0;
             else
-                return AbsolutValue.CompareTo(value);
+            {
+                Hexa hx;
+                Hexa hy;
+                if (TryParseObject(x, out hx) && TryParseObject(y, out hy))
+                {
+                    return Compare(hx, hy);
+                }
+
+                return 0;
+            }
+        }
+        int IComparer.Compare(object x, object y)
+        {
+            return Compare(x, y);
+        }
+
+        /// <summary> </summary>
+        public int CompareTo(object obj)
+        {
+            return Compare(this, obj);
         }
         /// <summary> </summary>
         public int CompareTo(string value)
         {
-            if (value == null)
-                return 1;
-            return CompareTo(new Hexa(value));
+            return Compare(this, value);
         }
         /// <summary> </summary>
         public int CompareTo(Hexa value)
         {
-            return CompareTo(value.AbsolutValue);
+            return Compare(this, value);
         }
-        /// <summary> </summary>
-        private int CompareTo(ulong value)
+
+        #endregion
+
+        #region IEquatable
+
+        /// <summary></summary>
+        static public bool Equals(Hexa x, Hexa y)
         {
-            return AbsolutValue.CompareTo(value);
+            return Compare(x, y) == 0;
         }
+        bool IEqualityComparer<Hexa>.Equals(Hexa x, Hexa y)
+        {
+            return Equals(x, y);
+        }
+
+        /// <summary></summary>
+        new static public bool Equals(object x, object y)
+        {
+            return Compare(x, y) == 0;
+        }
+        bool IEqualityComparer.Equals(object x, object y)
+        {
+            return Equals(x, y);
+        }
+
 
         /// <summary> </summary>
         public override bool Equals(object obj)
         {
-            if (obj is Hexa)
-                return Equals((Hexa)obj);
-            else if (obj is string)
-                return Equals((string)obj);
-            else if (obj is ulong)
-                return Equals((ulong)obj);
-            else
-                return false;
+            return Equals(this, obj);
         }
         /// <summary> </summary>
         public bool Equals(string obj)
         {
-            Hexa hexa = MinValue;
-            if (TryParse(obj, out hexa))
-                return Equals(hexa);
-            else
-                return false;
+            return Equals(this, obj);
         }
         /// <summary> </summary>
-        public bool Equals(Hexa obj)
+        public bool Equals(Hexa hexa)
         {
-            return Equals(obj.AbsolutValue);
-        }
-        /// <summary> </summary>
-        private bool Equals(ulong obj)
-        {
-            return (AbsolutValue == obj);
+            return Equals(this, hexa);
         }
 
         /// <summary> </summary>
@@ -280,14 +371,316 @@ namespace System
         {
             return AbsolutValue.GetHashCode();
         }
+        
+        int IEqualityComparer<Hexa>.GetHashCode(Hexa hexa)
+        {
+            return hexa.GetHashCode();
+        }
+        int IEqualityComparer.GetHashCode(object obj)
+        {
+            return obj.GetHashCode();
+        }
 
         /// <summary> </summary>
         public TypeCode GetTypeCode()
         {
             return AbsolutValue.GetTypeCode();
         }
+        #endregion
 
-        #region IConvertible internal
+
+        #region Operator
+
+        #region cast
+
+        /// <summary> </summary>
+        static public implicit operator byte(Hexa value)
+        {
+            return (byte)value.AbsolutValue;
+        }
+        /// <summary> </summary>
+        static public implicit operator ushort(Hexa value)
+        {
+            return (ushort)value.AbsolutValue;
+        }
+        /// <summary> </summary>
+        static public implicit operator uint(Hexa value)
+        {
+            return (uint)value.AbsolutValue;
+        }
+        /// <summary> </summary>
+        static public implicit operator ulong(Hexa value)
+        {
+            return (ulong)value.AbsolutValue;
+        }
+
+        /// <summary> </summary>
+        static public explicit operator short(Hexa value)
+        {
+            return (short)value.AbsolutValue;
+        }
+        /// <summary> </summary>
+        static public explicit operator int(Hexa value)
+        {
+            return (int)value.AbsolutValue;
+        }
+        /// <summary> </summary>
+        static public explicit operator long(Hexa value)
+        {
+            return (long)value.AbsolutValue;
+        }
+
+        /// <summary> </summary>
+        static public explicit operator float(Hexa value)
+        {
+            return value.AbsolutValue;
+        }
+        /// <summary> </summary>
+        static public explicit operator double(Hexa value)
+        {
+            return value.AbsolutValue;
+        }
+        /// <summary> </summary>
+        static public explicit operator decimal(Hexa value)
+        {
+            return value.AbsolutValue;
+        }
+
+        #endregion
+
+        #region compare Hexa & string
+
+        #region =
+        /// <summary> </summary>
+        static public bool operator ==(Hexa left, Hexa right)
+        {
+            return left.Equals(right);
+        }
+        /// <summary> </summary>
+        static public bool operator !=(Hexa left, Hexa right)
+        {
+            return !(left == right);
+        }
+
+        /// <summary> </summary>
+        static public bool operator ==(Hexa left, string right)
+        {
+            return left.Equals(right);
+        }
+        /// <summary> </summary>
+        static public bool operator !=(Hexa left, string right)
+        {
+            return !(left == right);
+        }
+        /// <summary> </summary>
+        static public bool operator ==(string left, Hexa right)
+        {
+            return (right == left);
+        }
+        /// <summary> </summary>
+        static public bool operator !=(string left, Hexa right)
+        {
+            return (right != left);
+        }
+        #endregion
+
+        #region <
+
+        /// <summary> </summary>
+        static public bool operator <(Hexa left, Hexa right)
+        {
+            return (left.AbsolutValue < right.AbsolutValue);
+        }
+        /// <summary> </summary>
+        static public bool operator >(Hexa left, Hexa right)
+        {
+            return (right < left);
+        }
+
+
+        /// <summary> </summary>
+        static public bool operator <(Hexa left, string right)
+        {
+            Hexa hexa = MinValue;
+            if (TryParse(right, out hexa))
+                return (left < hexa);
+            else
+                return false;
+        }
+        /// <summary> </summary>
+        static public bool operator >(Hexa left, string right)
+        {
+            Hexa hexa = MinValue;
+            if (TryParse(right, out hexa))
+                return (left > hexa);
+            else
+                return false;
+        }
+
+        /// <summary> </summary>
+        static public bool operator <(string left, Hexa right)
+        {
+            return (right > left);
+        }
+        /// <summary> </summary>
+        static public bool operator >(string left, Hexa right)
+        {
+            return (right < left);
+        }
+        #endregion
+
+        #region <= 
+
+        /// <summary> </summary>
+        static public bool operator <=(Hexa left, Hexa right)
+        {
+            return ((left == right) || (left < right));
+        }
+        /// <summary> </summary>
+        static public bool operator >=(Hexa left, Hexa right)
+        {
+            return ((left == right) || (left > right));
+        }
+
+
+        /// <summary> </summary>
+        static public bool operator <=(Hexa left, string right)
+        {
+            return ((left == right) || (left < right));
+        }
+        /// <summary> </summary>
+        static public bool operator >=(Hexa left, string right)
+        {
+            return ((left == right) || (left > right));
+        }
+
+        /// <summary> </summary>
+        static public bool operator <=(string left, Hexa right)
+        {
+            return ((left == right) || (left < right));
+        }
+        /// <summary> </summary>
+        static public bool operator >=(string left, Hexa right)
+        {
+            return ((left == right) || (left > right));
+        }
+        #endregion
+
+        #endregion
+
+        static private int BigStringLenght(Hexa left, Hexa right)
+        {
+            if (left.MinStringLenght > right.MinStringLenght)
+                return left.MinStringLenght;
+            else
+                return right.MinStringLenght;
+
+        }
+
+        #region operation plus/moins
+
+        /// <summary> </summary>
+        static public Hexa operator ++(Hexa value)
+        {
+            return value + 1;
+        }
+        /// <summary> </summary>
+        static public Hexa operator +(Hexa left, Hexa right)
+        {
+            return new Hexa(left.AbsolutValue + right.AbsolutValue, BigStringLenght(left, right));
+        }
+        /// <summary> </summary>
+        static public Hexa operator +(Hexa left, ulong right)
+        {
+            return new Hexa(left.AbsolutValue + right, left.MinStringLenght);
+        }
+        /// <summary> </summary>
+        static public Hexa operator +(Hexa left, long right)
+        {
+            if (right >= 0)
+                return (left + (ulong)right);
+            else
+                return (left - (ulong)-right);
+        }
+
+
+        /// <summary> </summary>
+        static public Hexa operator --(Hexa value)
+        {
+            return value - 1;
+        }
+        /// <summary> </summary>
+        static public Hexa operator -(Hexa left, Hexa right)
+        {
+            return new Hexa(left.AbsolutValue - right.AbsolutValue, BigStringLenght(left, right));
+        }
+        /// <summary> </summary>
+        static public Hexa operator -(Hexa left, ulong right)
+        {
+            return new Hexa(left.AbsolutValue - right, left.MinStringLenght);
+        }
+        /// <summary> </summary>
+        static public Hexa operator -(Hexa left, long right)
+        {
+            return (left + (-right));
+        }
+
+        #endregion
+
+        #region operation mul/div/modulo
+
+        /// <summary> </summary>
+        static public Hexa operator *(Hexa left, Hexa right)
+        {
+            return new Hexa(left.AbsolutValue * right.AbsolutValue, BigStringLenght(left, right));
+        }
+        /// <summary> </summary>
+        static public Hexa operator *(Hexa left, ulong right)
+        {
+            return new Hexa(left.AbsolutValue * right, left.MinStringLenght);
+        }
+        /// <summary> </summary>
+        static public Hexa operator *(Hexa left, long right)
+        {
+            return (left * (ulong)right);
+        }
+
+        /// <summary> </summary>
+        static public Hexa operator %(Hexa left, Hexa right)
+        {
+            return new Hexa(left.AbsolutValue % right.AbsolutValue, BigStringLenght(left, right));
+        }
+        /// <summary> </summary>
+        static public Hexa operator %(Hexa left, ulong right)
+        {
+            return new Hexa(left.AbsolutValue % right, left.MinStringLenght);
+        }
+        /// <summary> </summary>
+        static public Hexa operator %(Hexa left, long right)
+        {
+            return (left % (ulong)right);
+        }
+
+        /// <summary> </summary>
+        static public Hexa operator /(Hexa left, Hexa right)
+        {
+            return new Hexa(left.AbsolutValue / right.AbsolutValue, BigStringLenght(left, right));
+        }
+        /// <summary> </summary>
+        static public Hexa operator /(Hexa left, ulong right)
+        {
+            return new Hexa(left.AbsolutValue / right, left.MinStringLenght);
+        }
+        /// <summary> </summary>
+        static public Hexa operator /(Hexa left, long right)
+        {
+            return (left / (ulong)right);
+        }
+        #endregion
+
+        #endregion
+
+        #region IConvertible
 
         /// <summary> </summary>
         bool IConvertible.ToBoolean(IFormatProvider provider)
@@ -378,298 +771,6 @@ namespace System
         {
             return Convert.ChangeType(this, type, provider);
         }
-        #endregion
-
-
-        #region Operator
-
-        #region cast
-
-        /// <summary> </summary>
-        public static implicit operator byte(Hexa value)
-        {
-            return (byte)value.AbsolutValue;
-        }
-        /// <summary> </summary>
-        public static implicit operator ushort(Hexa value)
-        {
-            return (ushort)value.AbsolutValue;
-        }
-        /// <summary> </summary>
-        public static implicit operator uint(Hexa value)
-        {
-            return (uint)value.AbsolutValue;
-        }
-        /// <summary> </summary>
-        public static implicit operator ulong(Hexa value)
-        {
-            return (ulong)value.AbsolutValue;
-        }
-
-        /// <summary> </summary>
-        public static explicit operator short(Hexa value)
-        {
-            return (short)value.AbsolutValue;
-        }
-        /// <summary> </summary>
-        public static explicit operator int(Hexa value)
-        {
-            return (int)value.AbsolutValue;
-        }
-        /// <summary> </summary>
-        public static explicit operator long(Hexa value)
-        {
-            return (long)value.AbsolutValue;
-        }
-
-        /// <summary> </summary>
-        public static explicit operator float(Hexa value)
-        {
-            return value.AbsolutValue;
-        }
-        /// <summary> </summary>
-        public static explicit operator double(Hexa value)
-        {
-            return value.AbsolutValue;
-        }
-        /// <summary> </summary>
-        public static explicit operator decimal(Hexa value)
-        {
-            return value.AbsolutValue;
-        }
-
-        #endregion
-
-        #region compare Hexa & string
-
-        #region =
-        /// <summary> </summary>
-        public static bool operator ==(Hexa left, Hexa right)
-        {
-            return left.Equals(right);
-        }
-        /// <summary> </summary>
-        public static bool operator !=(Hexa left, Hexa right)
-        {
-            return !(left == right);
-        }
-        
-        /// <summary> </summary>
-        public static bool operator ==(Hexa left, string right)
-        {
-            return left.Equals(right);
-        }
-        /// <summary> </summary>
-        public static bool operator !=(Hexa left, string right)
-        {
-            return !(left == right);
-        }
-        /// <summary> </summary>
-        public static bool operator ==(string left, Hexa right)
-        {
-            return (right == left);
-        }
-        /// <summary> </summary>
-        public static bool operator !=(string left, Hexa right)
-        {
-            return (right != left);
-        }
-        #endregion
-
-        #region <
-
-        /// <summary> </summary>
-        public static bool operator <(Hexa left, Hexa right)
-        {
-            return (left.AbsolutValue < right.AbsolutValue);
-        }
-        /// <summary> </summary>
-        public static bool operator >(Hexa left, Hexa right)
-        {
-            return (right < left);
-        }
-        
-
-        /// <summary> </summary>
-        public static bool operator <(Hexa left, string right)
-        {
-            Hexa hexa = MinValue;
-            if (TryParse(right, out hexa))
-                return (left < hexa);
-            else
-                return false;
-        }
-        /// <summary> </summary>
-        public static bool operator >(Hexa left, string right)
-        {
-            Hexa hexa = MinValue;
-            if (TryParse(right, out hexa))
-                return (left > hexa);
-            else
-                return false;
-        }
-
-        /// <summary> </summary>
-        public static bool operator <(string left, Hexa right)
-        {
-            return (right > left);
-        }
-        /// <summary> </summary>
-        public static bool operator >(string left, Hexa right)
-        {
-            return (right < left);
-        }
-        #endregion
-
-        #region <= 
-
-        /// <summary> </summary>
-        public static bool operator <=(Hexa left, Hexa right)
-        {
-            return ((left == right) || (left < right));
-        }
-        /// <summary> </summary>
-        public static bool operator >=(Hexa left, Hexa right)
-        {
-            return ((left == right) || (left > right));
-        }
-
-
-        /// <summary> </summary>
-        public static bool operator <=(Hexa left, string right)
-        {
-            return ((left == right) || (left < right));
-        }
-        /// <summary> </summary>
-        public static bool operator >=(Hexa left, string right)
-        {
-            return ((left == right) || (left > right));
-        }
-
-        /// <summary> </summary>
-        public static bool operator <=(string left, Hexa right)
-        {
-            return ((left == right) || (left < right));
-        }
-        /// <summary> </summary>
-        public static bool operator >=(string left, Hexa right)
-        {
-            return ((left == right) || (left > right));
-        }
-        #endregion
-
-        #endregion
-
-        static private int BigStringLenght(Hexa left, Hexa right)
-        {
-            if (left.MinStringLenght > right.MinStringLenght)
-                return left.MinStringLenght;
-            else
-                return right.MinStringLenght;
-
-        }
-
-        #region operation plus/moins
-
-        /// <summary> </summary>
-        public static Hexa operator ++(Hexa value)
-        {
-            return value + 1;
-        }
-        /// <summary> </summary>
-        public static Hexa operator +(Hexa left, Hexa right)
-        {
-            return new Hexa(left.AbsolutValue + right.AbsolutValue, BigStringLenght(left, right));
-        }
-        /// <summary> </summary>
-        public static Hexa operator +(Hexa left, ulong right)
-        {
-            return new Hexa(left.AbsolutValue + right, left.MinStringLenght);
-        }
-        /// <summary> </summary>
-        public static Hexa operator +(Hexa left, long right)
-        {
-            if (right >= 0)
-                return (left + (ulong)right);
-            else
-                return (left - (ulong)-right);
-        }
-        
-
-        /// <summary> </summary>
-        public static Hexa operator --(Hexa value)
-        {
-            return value - 1;
-        }
-        /// <summary> </summary>
-        public static Hexa operator -(Hexa left, Hexa right)
-        {
-            return new Hexa(left.AbsolutValue - right.AbsolutValue, BigStringLenght(left, right));
-        }
-        /// <summary> </summary>
-        public static Hexa operator -(Hexa left, ulong right)
-        {
-            return new Hexa(left.AbsolutValue - right, left.MinStringLenght);
-        }
-        /// <summary> </summary>
-        public static Hexa operator -(Hexa left, long right)
-        {
-            return (left + (-right));
-        }
-
-        #endregion
-
-        #region operation mul/div/modulo
-
-        /// <summary> </summary>
-        public static Hexa operator *(Hexa left, Hexa right)
-        {
-            return new Hexa(left.AbsolutValue * right.AbsolutValue, BigStringLenght(left, right));
-        }
-        /// <summary> </summary>
-        public static Hexa operator *(Hexa left, ulong right)
-        {
-            return new Hexa(left.AbsolutValue * right, left.MinStringLenght);
-        }
-        /// <summary> </summary>
-        public static Hexa operator *(Hexa left, long right)
-        {
-            return (left * (ulong)right);
-        }
-
-        /// <summary> </summary>
-        public static Hexa operator %(Hexa left, Hexa right)
-        {
-            return new Hexa(left.AbsolutValue % right.AbsolutValue, BigStringLenght(left, right));
-        }
-        /// <summary> </summary>
-        public static Hexa operator %(Hexa left, ulong right)
-        {
-            return new Hexa(left.AbsolutValue % right, left.MinStringLenght);
-        }
-        /// <summary> </summary>
-        public static Hexa operator %(Hexa left, long right)
-        {
-            return (left % (ulong)right);
-        }
-
-        /// <summary> </summary>
-        public static Hexa operator /(Hexa left, Hexa right)
-        {
-            return new Hexa(left.AbsolutValue / right.AbsolutValue, BigStringLenght(left, right));
-        }
-        /// <summary> </summary>
-        public static Hexa operator /(Hexa left, ulong right)
-        {
-            return new Hexa(left.AbsolutValue / right, left.MinStringLenght);
-        }
-        /// <summary> </summary>
-        public static Hexa operator /(Hexa left, long right)
-        {
-            return (left / (ulong)right);
-        }
-        #endregion
-
         #endregion
     }
 }
