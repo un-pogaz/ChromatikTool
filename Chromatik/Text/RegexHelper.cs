@@ -128,20 +128,13 @@ namespace System.Text
         /// <summary>
         /// Default execution time for Regex Search/Replace (30s). 
         /// </summary>
-        static public TimeSpan DefaultTimeout { get; set; } = new TimeSpan(0, 0, 30);
-        /// <summary>
-        /// Execution time for Regex Search/Replace. 
-        /// </summary>
-        static public TimeSpan Timeout { get; set; } = DefaultTimeout;
+        static public TimeSpan Timeout { get { return new TimeSpan(0, 0, 30); } }
 
         /// <summary>
         /// Default <see cref="RegularExpressions.RegexOptions"/> for regex operations.
         /// </summary>
-        static public RegexOptions DefaultRegexOptions { get { return (RegexOptions.Singleline | RegexOptions.Multiline | RegexOptions.CultureInvariant); } }
-        /// <summary>
-        /// <see cref="RegularExpressions.RegexOptions"/> for regex operations.
-        /// </summary>
-        static public RegexOptions RegexOptions { get; set; } = DefaultRegexOptions;
+        static public RegexOptions RegexOptions { get { return (RegexOptions.Singleline | RegexOptions.Multiline | RegexOptions.CultureInvariant); } }
+
 
         /// <summary>
         /// Execute a single regex Search/Replace.

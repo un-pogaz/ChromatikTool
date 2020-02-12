@@ -210,7 +210,7 @@ namespace System
                 }
             }
             else
-                s = s.Regex("^((0|h|%|#)?x|&h|U+|%|$)", "", RegexHelper.DefaultRegexOptions | Text.RegularExpressions.RegexOptions.IgnoreCase);
+                s = s.Regex("^((0|h|%|#)?x|&h|U+|%|$)", "", RegexHelper.RegexOptions | Text.RegularExpressions.RegexOptions.IgnoreCase);
 
             return s;
         }
