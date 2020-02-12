@@ -11,17 +11,17 @@ namespace System.IO
     public class FileSystemComparator : Comparator<string>
     {
         /// <summary></summary>
-        static public FileSystemComparator CurrentCulture { get; } = new FileSystemComparator(StringComparer.CurrentCultureIgnoreCase, false);
+        static public FileSystemComparator CurrentCulture { get; } = new FileSystemComparator(StringComparer.CurrentCultureIgnoreCase, true);
         /// <summary></summary>
         static public FileSystemComparator CurrentCultureFolderAfter { get; } = new FileSystemComparator(StringComparer.CurrentCultureIgnoreCase, true);
 
         /// <summary></summary>
-        static public FileSystemComparator InvariantCulture { get; } = new FileSystemComparator(StringComparer.InvariantCultureIgnoreCase, false);
+        static public FileSystemComparator InvariantCulture { get; } = new FileSystemComparator(StringComparer.InvariantCultureIgnoreCase, true);
         /// <summary></summary>
         static public FileSystemComparator InvariantCultureFolderAfter { get; } = new FileSystemComparator(StringComparer.InvariantCultureIgnoreCase, true);
         
         /// <summary></summary>
-        static public FileSystemComparator Ordinal { get; } = new FileSystemComparator(StringComparer.OrdinalIgnoreCase, false);
+        static public FileSystemComparator Ordinal { get; } = new FileSystemComparator(StringComparer.OrdinalIgnoreCase, true);
         /// <summary></summary>
         static public FileSystemComparator OrdinalFolderAfter { get; } = new FileSystemComparator(StringComparer.OrdinalIgnoreCase, true);
         

@@ -281,7 +281,7 @@ namespace System.Sgml
         public void CopyAttributes(Node n) {
             for (int i = 0, len = n.attributes.Count; i < len; i++) {
                 Attribute a = (Attribute)n.attributes[i];
-                Attribute na = this.AddAttribute(a.Name, a.Value, a.QuoteChar, false);
+                Attribute na = this.AddAttribute(a.Name, a.Value, a.QuoteChar, true);
                 na.DtdType = a.DtdType;
             }
         }
@@ -1520,7 +1520,7 @@ namespace System.Sgml
                         Pop();
                         goto case State.Markup;
                     case State.PartialText:
-                        if (ParseText(this.m_current.Lastchar, false))
+                        if (ParseText(this.m_current.Lastchar, true))
                         {
                             this.m_node.NodeType = XmlNodeType.Whitespace;
                         }
@@ -1624,7 +1624,7 @@ namespace System.Sgml
                 }
                 else
                 {
-                    string name = this.m_current.ScanToken(this.m_sb, SgmlReader.declterm, false);
+                    string name = this.m_current.ScanToken(this.m_sb, SgmlReader.declterm, true);
                     if (string.Equals(name, "DOCTYPE", StringComparison.OrdinalIgnoreCase))
                     {
                         ParseDocType();
@@ -1671,7 +1671,7 @@ namespace System.Sgml
 
         private string ScanName(string terminators)
         {
-            string name = this.m_current.ScanToken(this.m_sb, terminators, false);
+            string name = this.m_current.ScanToken(this.m_sb, terminators, true);
             switch (this.m_folding)
             {
                 case CaseFolding.ToUpper:
@@ -1776,7 +1776,7 @@ namespace System.Sgml
                     else if (ch != '>')
                     {
                         string term = SgmlReader.avterm;
-                        value = this.m_current.ScanToken(this.m_sb, term, false);
+                        value = this.m_current.ScanToken(this.m_sb, term, true);
                     }
                 }
 
@@ -1909,7 +1909,7 @@ namespace System.Sgml
         {
             char ch = m_current.ReadChar(); // skip '['
             ch = m_current.SkipWhitespace();
-            string name = m_current.ScanToken(m_sb, cdataterm, false);
+            string name = m_current.ScanToken(m_sb, cdataterm, true);
             if (name.StartsWith("if "))
             {
                 // 'downlevel-revealed' comment (another atrocity of the IE team)
@@ -1954,7 +1954,7 @@ namespace System.Sgml
 
                 if (ch != '[')
                 {
-                    string token = this.m_current.ScanToken(this.m_sb, SgmlReader.dtterm, false);
+                    string token = this.m_current.ScanToken(this.m_sb, SgmlReader.dtterm, true);
                     if (string.Equals(token, "PUBLIC", StringComparison.OrdinalIgnoreCase))
                     {
                         ch = this.m_current.SkipWhitespace();
@@ -2010,7 +2010,7 @@ namespace System.Sgml
         private const string piterm = " \t\r\n?";
         private bool ParsePI()
         {
-            string name = this.m_current.ScanToken(this.m_sb, SgmlReader.piterm, false);
+            string name = this.m_current.ScanToken(this.m_sb, SgmlReader.piterm, true);
             string value = null;
             if (this.m_current.Lastchar != '?')
             {

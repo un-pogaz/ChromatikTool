@@ -10,7 +10,7 @@ namespace System
         static public T GetFrom<T>(object value)
         {
             IEnumerable<T> attributes = value.GetType().GetField(value.ToString())
-                .GetCustomAttributes(typeof(T), false).OfType<T>();
+                .GetCustomAttributes(typeof(T), true).OfType<T>();
 
             return attributes.IsEmpty() ? default(T) : attributes.Last();
         }

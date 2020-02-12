@@ -915,7 +915,7 @@ namespace System.Sgml {
         /// </summary>
         ~Entity()
         {
-            Dispose(false);
+            Dispose(true);
         }
 
         /// <summary>
@@ -1072,7 +1072,7 @@ namespace System.Sgml {
 
                     case 0xfffe: 
                         index += 2; 
-                        return new UnicodeEncoding(false, false).GetDecoder();
+                        return new UnicodeEncoding(false, true).GetDecoder();
 
                     case 0x3c00: 
                         goto case 0xfeff;
@@ -2726,7 +2726,7 @@ namespace System.Sgml {
         {
             // almost the same as this.current.ScanToken, except we also terminate on ';'
             this.m_current.ReadChar();
-            string name =  this.m_current.ScanToken(this.m_sb, ";"+term, false);
+            string name =  this.m_current.ScanToken(this.m_sb, ";"+term, true);
             if (this.m_current.Lastchar == ';') 
                 this.m_current.ReadChar();
             Entity e = GetParameterEntity(name);
@@ -2867,7 +2867,7 @@ namespace System.Sgml {
                 }
                 else if (ch == '-') 
                 {
-                    ch = ParseDeclComment(false);
+                    ch = ParseDeclComment(true);
                 } 
                 else 
                 {
@@ -3172,9 +3172,9 @@ namespace System.Sgml {
 
             if (ch == '(') 
             {
-                //attdef.EnumValues = ParseNameGroup(ch, false);  
+                //attdef.EnumValues = ParseNameGroup(ch, true);  
                 //attdef.Type = AttributeType.ENUMERATION;
-                attdef.SetEnumeratedType(ParseNameGroup(ch, false), AttributeType.ENUMERATION);
+                attdef.SetEnumeratedType(ParseNameGroup(ch, true), AttributeType.ENUMERATION);
             } 
             else 
             {
@@ -3227,7 +3227,7 @@ namespace System.Sgml {
                 }
                 else
                 {
-                    string name = this.m_current.ScanToken(this.m_sb, SgmlDtd.WhiteSpace, false);
+                    string name = this.m_current.ScanToken(this.m_sb, SgmlDtd.WhiteSpace, true);
                     name = name.ToUpperInvariant();
                     attdef.Default = name; // bugbug - must be one of the enumerated names.
                     ch = this.m_current.SkipWhitespace();

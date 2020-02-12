@@ -1362,7 +1362,7 @@ namespace System.MimeType
         /// </summary>
         /// <param name="extension"></param>
         /// <returns>String array of MINE types associated with the extension</returns>
-        public static string GetMimeType(string extension) { return GetMimeType(extension, false); }
+        public static string GetMimeType(string extension) { return GetMimeType(extension, true); }
         /// <summary>
         /// Get the first MINE types associated with the extension
         /// </summary>
@@ -1376,7 +1376,7 @@ namespace System.MimeType
         /// </summary>
         /// <param name="extension"></param>
         /// <returns>String array of MINE types associated with the extension</returns>
-        public static string[] GetMimeTypes(string extension) { return GetMimeTypes(extension, false); }
+        public static string[] GetMimeTypes(string extension) { return GetMimeTypes(extension, true); }
         /// <summary>
         /// Get the MINE types associated with the extension
         /// </summary>
@@ -1414,7 +1414,7 @@ namespace System.MimeType
         /// </summary>
         /// <param name="mimeType"></param>
         /// <returns>String array of the extensions associated with the MimeType</returns>
-        public static string GetExtension(string mimeType) { return GetExtension(mimeType, false); }
+        public static string GetExtension(string mimeType) { return GetExtension(mimeType, true); }
         /// <summary>
         /// Get the extensions associated with the MINE type
         /// </summary>
@@ -1429,7 +1429,7 @@ namespace System.MimeType
         /// </summary>
         /// <param name="mimeType"></param>
         /// <returns>String array of extensions associated with the MINE type</returns>
-        public static string[] GetExtensions(string mimeType) { return GetExtensions(mimeType, false); }
+        public static string[] GetExtensions(string mimeType) { return GetExtensions(mimeType, true); }
         /// <summary>
         /// Get the extensions associated with the MINE type
         /// </summary>

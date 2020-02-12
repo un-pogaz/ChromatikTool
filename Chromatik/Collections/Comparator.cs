@@ -32,7 +32,7 @@ namespace System.Collections.Generic
         /// Create a comparator with a fields
         /// </summary>
         /// <param name="fields"></param>
-        public Comparator(params string[] fields) : this(fields, false)
+        public Comparator(params string[] fields) : this(fields, true)
         { }
         /// <summary>
         /// Create a comparator with a fields
@@ -230,8 +230,8 @@ namespace System.Collections.Generic
             else
                 ValueComparator = valueCompare;
 
-            OnlyKeys = new Comparator<TKey, TValue>(KeyComparator, ValueComparator, true, false);
-            OnlyValues = new Comparator<TKey, TValue>(KeyComparator, ValueComparator, false, false);
+            OnlyKeys = new Comparator<TKey, TValue>(KeyComparator, ValueComparator, true, true);
+            OnlyValues = new Comparator<TKey, TValue>(KeyComparator, ValueComparator, false, true);
 
             KeysAndValues = new Comparator<TKey, TValue>(KeyComparator, ValueComparator, true, true);
             ValuesAndKeys = new Comparator<TKey, TValue>(KeyComparator, ValueComparator, false, true);

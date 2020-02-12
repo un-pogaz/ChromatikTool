@@ -13,6 +13,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Collections\AutoRefreshReadOnlyCollection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Collections\FileSystemComparator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EnumStringValueAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IComparerEquatable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)StringChangedEventArgs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EnumerableExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Collections\Comparator.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Sgml\SgmlReader.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Text\ByteCharacter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Text\ControlCharacter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Text\HtmlXmlEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Text\RegexHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Text\StringExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Text\UTF8SansBomEncoding.cs" />

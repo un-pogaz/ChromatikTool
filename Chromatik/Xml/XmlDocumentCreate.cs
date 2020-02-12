@@ -49,7 +49,7 @@ namespace System.Xml
 
         private static string RemoveDOCTYPE(this string input)
         {
-            return input.Regex("<!DOCTYPE[^>]*>", "", Text.RegularExpressions.RegexOptions.Singleline | Text.RegularExpressions.RegexOptions.Multiline | Text.RegularExpressions.RegexOptions.CultureInvariant | Text.RegularExpressions.RegexOptions.IgnoreCase);
+            return input.Regex("<!DOCTYPE[^>]*>", "", RegexHelper.RegexOptions | Text.RegularExpressions.RegexOptions.IgnoreCase);
         }
 
         /// <summary>
@@ -66,8 +66,10 @@ namespace System.Xml
         {
             long position = stream.Position;
             stream.Position = 0;
-            
-            XmlDocument rslt = ParseHTMLtext(new StreamReader(stream).ReadToEnd());
+
+            XmlDocument rslt;
+            using (StreamReader reader = new StreamReader(stream))
+                rslt = ParseHTMLtext(reader.ReadToEnd());
 
             stream.Position = position;
             return rslt;

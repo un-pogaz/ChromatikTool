@@ -36,16 +36,8 @@ namespace Test
             /// string rslt3 = enigma3.Process(test);
 
             ;
-            object d = 5;
 
-            if (d is long)
-            {
-
-
-            }
-
-            Hexa h = new Hexa(15);
-            h++;
+            HtmlXmlEntity h = new HtmlXmlEntity("nbsp", 160, false);
 
             string t1 = Settings.Args.GetNextArg("--test1");
             ;

@@ -14,7 +14,7 @@ namespace System
     [Serializable]
     [System.Runtime.InteropServices.StructLayout(Runtime.InteropServices.LayoutKind.Sequential)]
     [System.Runtime.InteropServices.ComVisible(true)]
-    public struct Hexa : IFormattable, IConvertible, IComparable<Hexa>, IComparable, IComparer<Hexa>, IComparer, IEquatable<Hexa>, IEqualityComparer<Hexa>, IEqualityComparer
+    public struct Hexa : IComparerEquatable<Hexa>, IFormattable, IConvertible, IEquatable<Hexa>, Collections.Generic.IEqualityComparer<Hexa>, Collections.IEqualityComparer, IComparable<Hexa>, IComparable, Collections.Generic.IComparer<Hexa>, Collections.IComparer
     {
         /// <summary>
         /// The <see cref="ulong"/> absolute value of variable

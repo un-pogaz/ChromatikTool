@@ -181,7 +181,7 @@ namespace System
 
             new public int IndexOf(string value)
             {
-                return IndexOf(value, false);
+                return IndexOf(value, true);
             }
             public int IndexOf(string value, bool caseSensitive)
             {
@@ -201,7 +201,7 @@ namespace System
 
             public string GetNextArg(string value)
             {
-                return GetNextArg(value, false);
+                return GetNextArg(value, true);
             }
             public string GetNextArg(string value, bool caseSensitive)
             {
