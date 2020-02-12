@@ -36,6 +36,32 @@ namespace Test
             /// string rslt3 = enigma3.Process(test);
 
             ;
+            System.Text.RegularExpressions.RegexOptions ro = RegexHelper.RegexOptions;
+            if (ro.HasFlag(System.Text.RegularExpressions.RegexOptions.Compiled))
+            {
+
+            }
+
+            List<string> lst = new List<string>() { "", "12", "sdf" };
+            
+            string f = nameof(lst.Count);
+
+
+            System.Text.RegularExpressions.RegexCompiled.Create(new System.Text.RegularExpressions.RegexCompiledEntryList(), ro);
+
+            if (ro.HasFlag(System.Text.RegularExpressions.RegexOptions.Compiled))
+            {
+
+            }
+
+
+
+            System.Text.RegularExpressions.Regex r1 = new System.Text.RegularExpressions.Regex(@"^<\?xml.+?\?>\s*0", RegexHelper.RegexOptions| System.Text.RegularExpressions.RegexOptions.Compiled);
+
+            System.Text.RegularExpressions.Regex r2 = new System.Text.RegularExpressions.Regex(@"^<\?xml.+?\?>\s*1", RegexHelper.RegexOptions | System.Text.RegularExpressions.RegexOptions.Compiled);
+            System.Text.RegularExpressions.Regex r3 = new System.Text.RegularExpressions.Regex(@"^<\?xml.+?\?>\s*", RegexHelper.RegexOptions);
+
+
 
             HtmlXmlEntity h = new HtmlXmlEntity("nbsp", 160, false);
 

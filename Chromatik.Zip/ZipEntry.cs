@@ -52,6 +52,8 @@ namespace Chromatik.Zip
             return false;
         }
 
+        public override int GetHashCode() { return base.GetHashCode(); }
+
         /// <summary></summary>
         public override string ToString() { return FileName; }
 

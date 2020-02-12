@@ -32,10 +32,6 @@
     <DocumentationFile>..\bin\Release\ChromatikTool.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Ionic.Zip, Version=1.9.1.8, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c, processorArchitecture=MSIL">
-      <HintPath>..\packages\Ionic.Zip.1.9.1.8\lib\Ionic.Zip.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -70,7 +66,6 @@
   <Import Project="..\Chromatik.Forms\Chromatik.Forms.projitems" Label="Shared" />
   <Import Project="..\Chromatik.Unicode\Chromatik.Unicode.projitems" Label="Shared" />
   <Import Project="..\Chromatik.Drawing\Chromatik.Drawing.projitems" Label="Shared" />
-  <Import Project="..\Chromatik.Zip\Chromatik.Zip.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

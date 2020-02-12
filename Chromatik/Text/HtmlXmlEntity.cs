@@ -77,7 +77,7 @@ namespace System.Xml
 
         static public string Parse(string html, params HtmlXmlEntity[] entitys)
         {
-
+            return null;
         }
 
         static public HtmlXmlEntity[] HTMLbase { get; } = new HtmlXmlEntity[]
@@ -250,10 +250,15 @@ namespace System.Xml
         /// <summary></summary>
         static public bool Equals(HtmlXmlEntity x, HtmlXmlEntity y)
         {
-            if (x.IsCaseSensitive && y.IsCaseSensitive)
-                return (x.HTML.Equals(y.HTML, StringComparison.InvariantCulture) && x._XMLvalue == y._XMLvalue);
+            if (x._XMLvalue == y._XMLvalue)
+            {
+                if (x.HTML != null && y.HTML != null)
+                    return string.Equals(x.HTML, y.HTML, StringComparison.InvariantCultureIgnoreCase);
+                else
+                    return true;
+            }
             else
-                return (x.HTML.Equals(y.HTML, StringComparison.InvariantCultureIgnoreCase) && x._XMLvalue == y._XMLvalue);
+                return false;
         }
 
         bool IEqualityComparer<HtmlXmlEntity>.Equals(HtmlXmlEntity x, HtmlXmlEntity y) { return Equals(x, y); }
@@ -281,7 +286,11 @@ namespace System.Xml
         /// <summary></summary>
         static public int Compare(HtmlXmlEntity x, HtmlXmlEntity y)
         {
-            return x._XMLvalue.CompareTo(y._XMLvalue); ;
+            if (x._XMLvalue.CompareTo(y._XMLvalue) == 0)
+                if (x.HTML != null && y.HTML != null)
+                    return string.Compare(x.HTML, y.HTML, StringComparison.InvariantCultureIgnoreCase);
+
+            return 0;
         }
 
         /// <summary></summary>
