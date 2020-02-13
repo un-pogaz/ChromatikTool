@@ -95,5 +95,14 @@ namespace System.Reflection
             throw new InvalidCastException("The value of the requested Field '"+ fieldName + "' is not of the Type called.");
         }
         
+        static public object InvokeConstructor(this Type type)
+        {
+            return type.InvokeConstructor(new object[0]);
+        }
+
+        static public object InvokeConstructor(this Type type, params object[] parameters)
+        {
+            return type.GetConstructors()[0].Invoke(parameters);
+        }
     }
 }

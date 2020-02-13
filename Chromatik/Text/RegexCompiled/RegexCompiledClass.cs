@@ -16,8 +16,10 @@ namespace System.Text.RegularExpressions
         /// </summary>
         internal RegexCompiledClass(Regex regex) : base("temp", "temp", "temp")
         {
+            _regex = regex;
+
             Pattern = regex.ToString();
-            Type t = _regex.GetType();
+            Type t = regex.GetType();
 
             _name = t.Name;
             _namespace = t.Namespace;

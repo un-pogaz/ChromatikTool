@@ -19,6 +19,14 @@ namespace System.Text.RegularExpressions
         }
         string _pattern;
 
+        static private bool IsValideName(string value)
+        {
+            if (value.IsNullOrWhiteSpace() || !value.RegexIsMatch(RegexHelper.ASCII_forCsharpNameClass))
+                return false;
+            else
+                return true;
+        }
+
         /// <summary>
         /// Name of the regex
         /// </summary>
@@ -32,7 +40,7 @@ namespace System.Text.RegularExpressions
 
                 value = value.Trim();
 
-                if (!value.RegexIsMatch(RegexHelper.ASCII_forCsharpNameClass))
+                if (!IsValideName(value))
                     throw new ArgumentException("The " + nameof(Name) + " is invalide. Only a ASCII class name is allowed.", nameof(Name));
 
                 _name = value;
@@ -40,6 +48,15 @@ namespace System.Text.RegularExpressions
         }
         /// <summary></summary>
         protected string _name;
+
+
+        static private bool IsValideNamespace(string value)
+        {
+            if (!value.IsNullOrWhiteSpace() && !value.RegexIsMatch(RegexHelper.ASCII_forCsharpNameSpace))
+                return false;
+            else
+                return true;
+        }
 
         /// <summary>
         /// Namespace of the regex
@@ -53,7 +70,7 @@ namespace System.Text.RegularExpressions
 
                 value = value.Trim();
 
-                if (!value.IsNullOrWhiteSpace() && !value.RegexIsMatch(RegexHelper.ASCII_forCsharpNameSpace))
+                if (!IsValideNamespace(value))
                     throw new ArgumentException("The " + nameof(Namespace) + " is invalide. Only a ASCII namespace is allowed.", nameof(Namespace));
 
                 _namespace = value;
@@ -82,6 +99,33 @@ namespace System.Text.RegularExpressions
         {
             return Pattern;
         }
+
+        public bool MatchFullQualifiedName(string FullQualifiedName)
+        {
+            if (FullQualifiedName == null)
+                return false;
+
+            FullQualifiedName = FullQualifiedName.TrimEnd('(', ')');
+
+            int i = FullQualifiedName.LastIndexOf(".");
+            if (i < 0)
+            {
+                if (!IsValideName(FullQualifiedName))
+                    return false;
+                else
+                    return MatchFullQualifiedName(new RegexCompiledEntry("", FullQualifiedName, ""));
+            }
+            else
+            {
+                string name = FullQualifiedName.Substring(i+1);
+                string space = FullQualifiedName.Substring(0,i);
+                if (!IsValideName(name) && !IsValideNamespace(space))
+                    return false;
+                else
+                    return MatchFullQualifiedName(new RegexCompiledEntry("", name, space));
+            }
+        }
+        internal bool MatchFullQualifiedName(RegexCompiledBase items) { return string.Equals(FullQualifiedName, items.FullQualifiedName, StringComparison.InvariantCultureIgnoreCase); }
 
 
         /// <summary></summary>

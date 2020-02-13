@@ -53,7 +53,7 @@ namespace Test
             {
 
             }
-
+            
             System.Text.RegularExpressions.RegexCompiledList reg = new System.Text.RegularExpressions.RegexCompiledList()
             {
                 new System.Text.RegularExpressions.RegexCompiledEntry(@"^<\?xml.+?\?>\s*0", "Declaration", ""),
@@ -61,7 +61,15 @@ namespace Test
                 new System.Text.RegularExpressions.RegexCompiledEntry(@"^<\?xml.+?\?>\s*0", "Entity", "Doctype"),
             };
 
-            System.Text.RegularExpressions.RegexCompiled co = System.Text.RegularExpressions.RegexCompiled.Create(reg);
+            if (reg[2].MatchFullQualifiedName("Doctype.Entity"))
+            {
+
+            }
+
+            System.Text.RegularExpressions.RegexCompiled comp1 = System.Text.RegularExpressions.RegexCompiled.Compile(reg);
+
+            System.Text.RegularExpressions.RegexCompiled comp2 = System.Text.RegularExpressions.RegexCompiled.CreateAssembly("RegLib.reg", reg);
+
 
             System.Text.RegularExpressions.Regex r1 = new System.Text.RegularExpressions.Regex(@"^<\?xml.+?\?>\s*0", RegexHelper.RegexOptions| System.Text.RegularExpressions.RegexOptions.Compiled);
 

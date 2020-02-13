@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using System.Reflection;
 
 namespace System.Text.RegularExpressions
 {
@@ -13,8 +14,10 @@ namespace System.Text.RegularExpressions
         new public int Count { get { return Items.Count; } }
 
         new public T this[int index] { get { return (T)Items[index]; } }
+        
 
         new public bool Contains(T value) { return Items.Contains(value); }
+
         new public void CopyTo(T[] array, int index) { Items.CopyTo(array, index); }
         new public int IndexOf(T value) { return Items.IndexOf(value); }
 
@@ -41,15 +44,15 @@ namespace System.Text.RegularExpressions
     {
         #region static
         
-        static public RegexCompiled Create(RegexCompiledList list)
+        static public RegexCompiled Compile(RegexCompiledList list)
         {
-            return Create(list, RegexHelper.RegexOptions);
+            return Compile(list, RegexHelper.RegexOptions);
         }
-        static public RegexCompiled Create(RegexCompiledList list, RegexOptions options)
+        static public RegexCompiled Compile(RegexCompiledList list, RegexOptions options)
         {
-            return Create(list, options, RegexHelper.Timeout);
+            return Compile(list, options, RegexHelper.Timeout);
         }
-        static public RegexCompiled Create(RegexCompiledList list, RegexOptions options, TimeSpan matchTimeout)
+        static public RegexCompiled Compile(RegexCompiledList list, RegexOptions options, TimeSpan matchTimeout)
         {
             return new RegexCompiled(list, options, matchTimeout);
         }
@@ -71,28 +74,30 @@ namespace System.Text.RegularExpressions
             return new RegexCompiled(assembly);
         }
 
-        static public string CreateAssembly(string name, RegexCompiledList list)
+
+
+        static public RegexCompiled CreateAssembly(string name, RegexCompiledList list)
         {
             return CreateAssembly(name, list, RegexHelper.RegexOptions);
         }
-        static public string CreateAssembly(string name, RegexCompiledList list, RegexOptions options)
+        static public RegexCompiled CreateAssembly(string name, RegexCompiledList list, RegexOptions options)
         {
             return CreateAssembly(name, list, options, RegexHelper.Timeout);
         }
-        static public string CreateAssembly(string name, RegexCompiledList list, RegexOptions options, TimeSpan matchTimeout)
+        static public RegexCompiled CreateAssembly(string name, RegexCompiledList list, RegexOptions options, TimeSpan matchTimeout)
         {
             if (name.IsNullOrWhiteSpace())
                 throw new ArgumentNullException(nameof(name));
 
             name = name.Trim();
-            if (name.RegexIsMatch(RegexHelper.ASCII_forCsharpNameSpace))
+            if (!name.RegexIsMatch(RegexHelper.ASCII_forCsharpNameSpace))
                 throw new IO.InvalidPathException("Invalide " + nameof(name) + ". Contain a non-ASCII character.");
             if (name.RegexIsMatch(@"[\\/:*?\"" <>|]"))
                 throw new IO.InvalidPathException("Invalide " + nameof(name) + ". Contain a invalid file name character.");
 
             return CreateAssembly(new Reflection.AssemblyName(name + ", Version=1.0.0, Culture=neutral, PublicKeyToken=null"), list, options, matchTimeout);
         }
-        static public string CreateAssembly(Reflection.AssemblyName assemblyName, RegexCompiledList list, RegexOptions options, TimeSpan matchTimeout)
+        static public RegexCompiled CreateAssembly(Reflection.AssemblyName assemblyName, RegexCompiledList list, RegexOptions options, TimeSpan matchTimeout)
         {
             if (list == null)
                 throw new ArgumentNullException(nameof(list));
@@ -109,16 +114,22 @@ namespace System.Text.RegularExpressions
 
             Regex.CompileToAssembly(lst.ToArray(), assemblyName);
 
-            return IO.Path.GetFullPath(assemblyName.Name + ".dll");
+            return LoadAssembly(Reflection.Assembly.Load(assemblyName));
         }
         #endregion
 
         
         public Reflection.Assembly Assembly { get; }
 
+        static private Type RegexType = new System.Text.RegularExpressions.Regex("\0").GetType();
+
+        /// <summary></summary>
         protected RegexCompiled(Reflection.Assembly assembly)
         {
             Assembly = assembly;
+            foreach (Type item in Assembly.ExportedTypes)
+                if (item.BaseType == RegexType)
+                    Items.Add(new RegexCompiledClass((System.Text.RegularExpressions.Regex)item.InvokeConstructor()));
         }
         protected RegexCompiled(RegexCompiledList list, RegexOptions options, TimeSpan matchTimeout)
         {
@@ -128,6 +139,8 @@ namespace System.Text.RegularExpressions
             List<Reflection.Assembly> lst = new List<Reflection.Assembly>();
             foreach (var item in list)
                 Items.Add(new RegexCompiledClass(item, options, matchTimeout));
+
+            Assembly = Items.Last().GetType().Assembly;
         }
 
     }
