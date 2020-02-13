@@ -5,33 +5,31 @@ using System.Linq;
 
 namespace System.Text.RegularExpressions
 {
-    public interface IRegexCompiledEntry : IEquatable<IRegexCompiledEntry>, IEqualityComparer<IRegexCompiledEntry>, Collections.IEqualityComparer
+    public interface IRegexCompiledEntry : IComparerEquatable<IRegexCompiledEntry>
     {
         /// <summary>
         /// Pattern of the regex
         /// </summary>
         string Pattern { get; }
         /// <summary>
-        /// FullNamespace of the regex
-        /// </summary>
-        string FullNamespace { get; }
-        /// <summary>
         /// Name of the regex
         /// </summary>
         string Name { get; }
+        /// <summary>
+        /// Namespace of the regex
+        /// </summary>
+        string Namespace { get; }
 
         /// <summary>
-        /// Test if the item has the same FullNamespace
+        /// FullNamespace of the regex
         /// </summary>
-        /// <param name="item"></param>
-        /// <returns></returns>
-        bool TestNamespace(IRegexCompiledEntry item);
+        string FullNamespace { get; }
     }
 
     /// <summary>
     /// A compiled regex entry
     /// </summary>
-    public class RegexCompiledEntry : IRegexCompiledEntry
+    public class RegexPreCompiledEntry : IRegexCompiledEntry
     {
         /// <summary>
         /// Pattern of the regex
@@ -46,7 +44,7 @@ namespace System.Text.RegularExpressions
         /// </summary>
         public string Name { get; }
         /// <summary></summary>
-        public RegexCompiledEntry(string pattern, string fullnamespace, string name)
+        public RegexPreCompiledEntry(string pattern, string fullnamespace, string name)
         {
             if (pattern.IsNullOrWhiteSpace())
                 pattern = "";
@@ -93,8 +91,8 @@ namespace System.Text.RegularExpressions
         {
             if (x == null && y == null)
                 return true;
-            if (x is RegexCompiledEntry && y is RegexCompiledEntry)
-                return Equals((RegexCompiledEntry)x, (RegexCompiledEntry)y);
+            if (x is RegexPreCompiledEntry && y is RegexPreCompiledEntry)
+                return Equals((RegexPreCompiledEntry)x, (RegexPreCompiledEntry)y);
             return false;
         }
         /// <summary></summary>
@@ -134,270 +132,51 @@ namespace System.Text.RegularExpressions
 
         int Collections.IEqualityComparer.GetHashCode(object obj) { return obj.GetHashCode(); }
         #endregion
-
-        static internal RegexCompiledEntry GetNamespace(string fullNamespace)
-        {
-            string name = "";
-            string fullname = "";
-            int i = fullNamespace.LastIndexOf(".");
-            if (i > 0)
-            {
-                name = fullNamespace.Substring(i - 1);
-                fullname = fullNamespace.Substring(0, i);
-            }
-            else
-                name = fullNamespace;
-
-            return new RegexCompiledEntry("", fullname, name);
-        }
     }
 
     /// <summary>
     /// A compiled <see cref="Regex"/>
     /// </summary>
-    public class CompiledRegex : Regex, IRegexCompiledEntry
+    public class RegexCompiledEntry : IRegexCompiledEntry
     {
-        /// <summary>
-        /// Pattern of the regex
-        /// </summary>
-        public string Pattern { get { return _entry.Pattern; } }
-        /// <summary>
-        /// FullNamespace of the regex
-        /// </summary>
-        public string FullNamespace { get { return _entry.FullNamespace; } }
-        /// <summary>
-        /// Name of the regex
-        /// </summary>
-        public string Name { get { return _entry.Name; } }
 
-        internal RegexCompiledEntry _entry;
+        Regex _regex;
 
-        static RegexOptions SetCompiled(RegexOptions options)
+        internal RegexCompiledEntry(Regex regex)
         {
-            if (!options.HasFlag(RegexOptions.Compiled))
-                options |= RegexOptions.Compiled;
 
-            return options;
         }
-
-        internal CompiledRegex(RegexCompiledEntry entry, RegexOptions options, TimeSpan matchTimeout) : base(entry.Pattern, SetCompiled(options), matchTimeout)
+        internal RegexCompiledEntry(RegexPreCompiledEntry regex)
         {
-            _entry = entry;
-        }
-        private CompiledRegex(RegexCompiledEntry entry) : base()
-        {
-            _entry = entry;
-        }
 
-        internal bool TestNamespace(IRegexCompiledEntry item)
-        {
-            return _entry.TestNamespace(item);
-        }
-        bool IRegexCompiledEntry.TestNamespace(IRegexCompiledEntry item) { return TestNamespace(item); }
-
-        /// <summary></summary>
-        public override string ToString()
-        {
-            return RegexCompiledEntry.ToString(this);
-        }
-
-        #region interface
-
-        /// <summary></summary>
-        new static bool Equals(object x, object y)
-        {
-            if (x == null && y == null)
-                return true;
-            if (x is RegexCompiledEntry && y is RegexCompiledEntry)
-                return Equals((RegexCompiledEntry)x, (RegexCompiledEntry)y);
-            return false;
-        }
-        /// <summary></summary>
-        static bool Equals(IRegexCompiledEntry x, IRegexCompiledEntry y)
-        {
-            return Equals(x, y, true);
-        }
-        /// <summary></summary>
-        static bool Equals(IRegexCompiledEntry x, IRegexCompiledEntry y, bool caseSensitivePattern)
-        {
-            if (x == null && y == null)
-                return true;
-            else if (x != null && y != null)
-            {
-                if (string.Equals(x.ToString(), y.ToString(), StringComparison.InvariantCultureIgnoreCase))
-                {
-                    if (caseSensitivePattern)
-                        return string.Equals(x.Pattern, y.Pattern, StringComparison.InvariantCulture);
-                    else
-                        return string.Equals(x.Pattern, y.Pattern, StringComparison.InvariantCultureIgnoreCase);
-                }
-            }
-            return false;
-        }
-
-        /// <summary></summary>
-        public override int GetHashCode() { return base.GetHashCode(); }
-
-        /// <summary></summary>
-        public override bool Equals(object obj) { return Equals(this, obj); }
-        /// <summary></summary>
-        public bool Equals(IRegexCompiledEntry obj) { return Equals(this, obj); }
-
-        bool IEqualityComparer<IRegexCompiledEntry>.Equals(IRegexCompiledEntry x, IRegexCompiledEntry y) { return Equals(x, y); }
-        bool Collections.IEqualityComparer.Equals(object x, object y) { return Equals(x, y); }
-        int IEqualityComparer<IRegexCompiledEntry>.GetHashCode(IRegexCompiledEntry obj) { return obj.GetHashCode(); }
-
-        int Collections.IEqualityComparer.GetHashCode(object obj) { return obj.GetHashCode(); }
-        #endregion
-
-        static internal CompiledRegex GetNamespace(string fullNamespace)
-        {
-            return new CompiledRegex(RegexCompiledEntry.GetNamespace(fullNamespace));
         }
     }
 
+
     /// <summary></summary>
-    public class RegexCompiledList : List<RegexCompiledEntry>
+    public abstract class RegexCompiledList<T> : Collections.ObjectModel.ReadOnlyCollection<IRegexCompiledEntry> where T : IRegexCompiledEntry
     {
-        /// <summary></summary>
-        public RegexCompiledList() : base() { }
-
-        internal const string msgException = "The input '" + nameof(RegexCompiledList) + "' must contain at least one entry.";
+        protected List<T> Items { get { return (List<T>)base.Items; } }
 
         /// <summary></summary>
-        public RegexCompiledEntry this[string fullNamespace] { get { return Find(GetNamespace(fullNamespace).TestNamespace); } }
+        public RegexCompiledList() : base(new List<IRegexCompiledEntry>())
+        { }
 
-        /// <summary></summary>
-        protected RegexCompiledEntry GetNamespace(string fullNamespace) { return RegexCompiledEntry.GetNamespace(fullNamespace); }
+    }
 
-        /// <summary></summary>
-        new public void Add(RegexCompiledEntry item)
-        {
-            if (Contains(item))
-                throw new InvalidOperationException("A entry with the same " + nameof(item.Name)+ " and " + nameof(item.FullNamespace) + " is present in the collection.");
-            base.Add(item);
-        }
-        /// <summary></summary>
-        new public void AddRange(IEnumerable<RegexCompiledEntry> collection)
-        {
-            foreach (var item in collection)
-                if (Contains(item))
-                    throw new InvalidOperationException("A entry with the same " + nameof(item.Name) + " and " + nameof(item.FullNamespace) + " of one of the range is present in the collection.");
-            base.AddRange(collection);
-        }
+    public class RegexPreCompileList : RegexCompiledList<RegexPreCompiledEntry>
+    {
 
-        /// <summary></summary>
-        new public void Insert(int index, RegexCompiledEntry item)
-        {
-            if (Contains(item))
-                throw new InvalidOperationException("A entry with the same " + nameof(item.Name) + " and " + nameof(item.FullNamespace) + " is present in the collection.");
-            base.Insert(index, item);
-        }
-        /// <summary></summary>
-        new public void InsertRange(int index, IEnumerable<RegexCompiledEntry> collection)
-        {
-            foreach (var item in collection)
-                if (Contains(item))
-                    throw new InvalidOperationException("A entry with the same " + nameof(item.Name) + " and " + nameof(item.FullNamespace) + " of one of the range is present in the collection.");
-            base.InsertRange(index, collection);
-        }
-
-        /// <summary></summary>
-        public bool Contains(string fullNamespace)
-        {
-            return Contains(GetNamespace(fullNamespace));
-        }
-        /// <summary></summary>
-        new public bool Contains(RegexCompiledEntry item)
-        {
-            return Exists(item.TestNamespace);
-        }
-
-        /// <summary></summary>
-        public bool Remove(string fullNamespace)
-        {
-            return Remove(GetNamespace(fullNamespace));
-        }
-        /// <summary></summary>
-        new public bool Remove(RegexCompiledEntry item)
-        {
-            RegexCompiledEntry f = Find(item.TestNamespace);
-            if (f == null)
-                return base.Remove(f);
-            else
-                return false;
-        }
-
-        /// <summary></summary>
-        public int IndexOf(string fullNamespace)
-        {
-            return IndexOf(GetNamespace(fullNamespace));
-        }
-        /// <summary></summary>
-        public int IndexOf(string fullNamespace, int index)
-        {
-            return IndexOf(GetNamespace(fullNamespace), index);
-        }
-        /// <summary></summary>
-        public int IndexOf(string fullNamespace, int index, int count)
-        {
-            return IndexOf(GetNamespace(fullNamespace), count, index);
-        }
-
-        /// <summary></summary>
-        new public int IndexOf(RegexCompiledEntry item)
-        {
-            return FindIndex(item.TestNamespace);
-        }
-        /// <summary></summary>
-        new public int IndexOf(RegexCompiledEntry item, int index)
-        {
-            return FindIndex(index, item.TestNamespace);
-        }
-        /// <summary></summary>
-        new public int IndexOf(RegexCompiledEntry item, int index, int count)
-        {
-            return FindIndex(count, index, item.TestNamespace);
-        }
-
-        /// <summary></summary>
-        new public int LastIndexOf(RegexCompiledEntry item)
-        {
-            return FindLastIndex(item.TestNamespace);
-        }
-        /// <summary></summary>
-        new public int LastIndexOf(RegexCompiledEntry item, int index)
-        {
-            return FindLastIndex(index, item.TestNamespace);
-        }
-        /// <summary></summary>
-        new public int LastIndexOf(RegexCompiledEntry item, int index, int count)
-        {
-            return FindLastIndex(count, index, item.TestNamespace);
-        }
-
-        /// <summary></summary>
-        public int LastIndexOf(string fullNamespace)
-        {
-            return LastIndexOf(GetNamespace(fullNamespace));
-        }
-        /// <summary></summary>
-        public int LastIndexOf(string fullNamespace, int index)
-        {
-            return LastIndexOf(GetNamespace(fullNamespace), index);
-        }
-        /// <summary></summary>
-        public int LastIndexOf(string fullNamespace, int index, int count)
-        {
-            return LastIndexOf(GetNamespace(fullNamespace), count, index);
-        }
+    }
+    public class RegexCompileList : RegexCompiledList<RegexCompiledEntry>
+    {
 
     }
 
     /// <summary>
-    /// Collection of <see cref="CompiledRegex"/>
+    /// Collection of <see cref="RegexCompiledEntry"/>
     /// </summary>
-    public class RegexCompiled : Collections.ObjectModel.ReadOnlyCollection<CompiledRegex>
+    public class RegexCompiled : RegexCompiledList<RegexCompiledEntry>
     {
         #region static
 
@@ -406,15 +185,15 @@ namespace System.Text.RegularExpressions
         /// </summary>
         /// <param name="list"></param>
         /// <returns></returns>
-        static public RegexCompiled Create(RegexCompiledList list)
+        static public RegexCompiled Create(RegexPreCompileList list)
         {
             return Create(list, RegexHelper.RegexOptions);
         }
-        static public RegexCompiled Create(RegexCompiledList list, RegexOptions options)
+        static public RegexCompiled Create(RegexPreCompileList list, RegexOptions options)
         {
             return Create(list, options, RegexHelper.Timeout);
         }
-        static public RegexCompiled Create(RegexCompiledList list, RegexOptions options, TimeSpan matchTimeout)
+        static public RegexCompiled Create(RegexPreCompileList list, RegexOptions options, TimeSpan matchTimeout)
         {
             return new RegexCompiled(list, options, matchTimeout);
         }
@@ -432,15 +211,15 @@ namespace System.Text.RegularExpressions
 
         }
 
-        static public string CreateAssembly(string name, RegexCompiledList list)
+        static public string CreateAssembly(string name, RegexPreCompileList list)
         {
             return CreateAssembly(name, list, RegexHelper.RegexOptions);
         }
-        static public string CreateAssembly(string name, RegexCompiledList list, RegexOptions options)
+        static public string CreateAssembly(string name, RegexPreCompileList list, RegexOptions options)
         {
             return CreateAssembly(name, list, options, RegexHelper.Timeout);
         }
-        static public string CreateAssembly(string name, RegexCompiledList list, RegexOptions options, TimeSpan matchTimeout)
+        static public string CreateAssembly(string name, RegexPreCompileList list, RegexOptions options, TimeSpan matchTimeout)
         {
             if (name.IsNullOrWhiteSpace())
                 throw new ArgumentNullException(nameof(name));
@@ -453,7 +232,7 @@ namespace System.Text.RegularExpressions
 
             return CreateAssembly(new Reflection.AssemblyName(name + ", Version=1.0.0, Culture=neutral, PublicKeyToken=null"), list, options, matchTimeout);
         }
-        static public string CreateAssembly(Reflection.AssemblyName assemblyName, RegexCompiledList list, RegexOptions options, TimeSpan matchTimeout)
+        static public string CreateAssembly(Reflection.AssemblyName assemblyName, RegexPreCompileList list, RegexOptions options, TimeSpan matchTimeout)
         {
             if (list == null)
                 throw new ArgumentNullException(nameof(list));
@@ -474,24 +253,23 @@ namespace System.Text.RegularExpressions
         }
        
         
-        
         #endregion
         
 
         /// <summary></summary>
-        new protected List<CompiledRegex> Items { get { return (List<CompiledRegex>)base.Items; } }
+        new protected List<RegexCompiledEntry> Items { get { return (List<RegexCompiledEntry>)base.Items; } }
 
-        private RegexCompiled(RegexCompiledList list, RegexOptions options, TimeSpan matchTimeout) : base(new List<CompiledRegex>())
+        private RegexCompiled(RegexCompiledList list, RegexOptions options, TimeSpan matchTimeout) : base(new List<RegexCompiledEntry>())
         {
 
             foreach (var item in list)
-                base.Items.Add(new CompiledRegex(item, options, matchTimeout));
+                base.Items.Add(new RegexCompiledEntry(item, options, matchTimeout));
         }
         /// <summary></summary>
-        protected CompiledRegex GetNamespace(string fullNamespace) { return CompiledRegex.GetNamespace(fullNamespace); }
+        protected RegexCompiledEntry GetNamespace(string fullNamespace) { return RegexCompiledEntry.GetNamespace(fullNamespace); }
 
         /// <summary></summary>
-        public CompiledRegex this[string fullNamespace] { get { return Items.Find(GetNamespace(fullNamespace).TestNamespace); } }
+        public RegexCompiledEntry this[string fullNamespace] { get { return Items.Find(GetNamespace(fullNamespace).TestNamespace); } }
 
 
         /// <summary></summary>
@@ -500,7 +278,7 @@ namespace System.Text.RegularExpressions
             return Items.Contains(GetNamespace(fullNamespace));
         }
         /// <summary></summary>
-        new public bool Contains(CompiledRegex item)
+        new public bool Contains(RegexCompiledEntry item)
         {
             return Items.Exists(item.TestNamespace);
         }
@@ -522,33 +300,33 @@ namespace System.Text.RegularExpressions
         }
 
         /// <summary></summary>
-        new public int IndexOf(CompiledRegex item)
+        new public int IndexOf(RegexCompiledEntry item)
         {
             return Items.FindIndex(item.TestNamespace);
         }
         /// <summary></summary>
-        int IndexOf(CompiledRegex item, int index)
+        int IndexOf(RegexCompiledEntry item, int index)
         {
             return Items.FindIndex(index, item.TestNamespace);
         }
         /// <summary></summary>
-        public int IndexOf(CompiledRegex item, int index, int count)
+        public int IndexOf(RegexCompiledEntry item, int index, int count)
         {
             return Items.FindIndex(count, index, item.TestNamespace);
         }
 
         /// <summary></summary>
-        public int LastIndexOf(CompiledRegex item)
+        public int LastIndexOf(RegexCompiledEntry item)
         {
             return Items.FindLastIndex(item.TestNamespace);
         }
         /// <summary></summary>
-        public int LastIndexOf(CompiledRegex item, int index)
+        public int LastIndexOf(RegexCompiledEntry item, int index)
         {
             return Items.FindLastIndex(index, item.TestNamespace);
         }
         /// <summary></summary>
-        public int LastIndexOf(CompiledRegex item, int index, int count)
+        public int LastIndexOf(RegexCompiledEntry item, int index, int count)
         {
             return Items.FindLastIndex(count, index, item.TestNamespace);
         }
