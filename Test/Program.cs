@@ -12,6 +12,7 @@ using System.Globalization.Localization;
 
 using System.Reflection;
 
+
 namespace Test
 {
     static class Program
@@ -47,14 +48,20 @@ namespace Test
             string f = nameof(lst.Count);
 
 
-            System.Text.RegularExpressions.RegexCompiled.Create(new System.Text.RegularExpressions.RegexCompiledEntryList(), ro);
 
             if (ro.HasFlag(System.Text.RegularExpressions.RegexOptions.Compiled))
             {
 
             }
 
+            System.Text.RegularExpressions.RegexCompiledList reg = new System.Text.RegularExpressions.RegexCompiledList()
+            {
+                new System.Text.RegularExpressions.RegexCompiledEntry(@"^<\?xml.+?\?>\s*0", "", "Declaration"),
+                new System.Text.RegularExpressions.RegexCompiledEntry(@"^<\?xml.+?\?>\s*0", "", "Doctype"),
+                new System.Text.RegularExpressions.RegexCompiledEntry(@"^<\?xml.+?\?>\s*0", "Entity", "Doctype"),
+            };
 
+            System.Text.RegularExpressions.RegexCompiled co = System.Text.RegularExpressions.RegexCompiled.Create(reg);
 
             System.Text.RegularExpressions.Regex r1 = new System.Text.RegularExpressions.Regex(@"^<\?xml.+?\?>\s*0", RegexHelper.RegexOptions| System.Text.RegularExpressions.RegexOptions.Compiled);
 
