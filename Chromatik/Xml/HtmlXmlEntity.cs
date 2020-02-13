@@ -77,7 +77,7 @@ namespace System.Xml
 
         static public string Parse(string html, params HtmlXmlEntity[] entitys)
         {
-            return null;
+
         }
 
         static public HtmlXmlEntity[] HTMLbase { get; } = new HtmlXmlEntity[]
@@ -210,6 +210,23 @@ namespace System.Xml
         /// </summary>
         static public HtmlXmlEntity[] Html4 { get; } = new HtmlXmlEntity[]
         {
+            new HtmlXmlEntity("OElig", 338, true),
+            new HtmlXmlEntity("oelig", 339, true),
+
+            new HtmlXmlEntity("Scaron", 352, true),
+            new HtmlXmlEntity("scaron", 353, true),
+
+            new HtmlXmlEntity("Yuml", 376, true),
+
+            new HtmlXmlEntity("fnof", 402, true),
+
+            new HtmlXmlEntity("circ", 710, true),
+
+            new HtmlXmlEntity("tilde", 732, true),
+
+            new HtmlXmlEntity("fnof", 402, true),
+
+            new HtmlXmlEntity("fnof", 402, true),
 
         };
 
@@ -218,7 +235,7 @@ namespace System.Xml
         /// </summary>
         static public HtmlXmlEntity[] Html5 { get; } = new HtmlXmlEntity[]
         {
-            new HtmlXmlEntity("vellip", 8942, true),
+
         };
 
         /// <summary></summary>

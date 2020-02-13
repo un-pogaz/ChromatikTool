@@ -62,13 +62,13 @@
     <Compile Include="$(MSBuildThisFileDirectory)Text\ByteCharacter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Text\RegexCompiled.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Text\ControlCharacter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Text\HtmlXmlEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Text\RegexHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Text\StringExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Text\UTF8SansBomEncoding.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Text\WhiteCharacter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Version.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Xml\DocumentType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Xml\HtmlXmlEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Xml\XmlExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Xml\XmlDocumentCreate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Xml\XmlEnumertor.cs" />
