@@ -419,6 +419,19 @@ namespace System.Text.RegularExpressions
             return new RegexCompiled(list, options, matchTimeout);
         }
 
+        static public RegexCompiled LoadAssembly(string assemblyName)
+        {
+            return LoadAssembly(Reflection.AssemblyName.GetAssemblyName(assemblyName));
+        }
+        static public RegexCompiled LoadAssembly(Reflection.AssemblyName assemblyName)
+        {
+            Reflection.Assembly ass = Reflection.Assembly.Load(assemblyName);
+        }
+        static public RegexCompiled LoadAssemblyFile(string assemblyPath)
+        {
+
+        }
+
         static public string CreateAssembly(string name, RegexCompiledList list)
         {
             return CreateAssembly(name, list, RegexHelper.RegexOptions);
@@ -459,6 +472,9 @@ namespace System.Text.RegularExpressions
 
             return IO.Path.GetFullPath(assemblyName.Name + ".dll");
         }
+       
+        
+        
         #endregion
         
 

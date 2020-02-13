@@ -65,6 +65,7 @@ namespace System.Xml
                 throw new ArgumentException("The XML value of the entity cannot be negative.", nameof(xml));
 
             Character = char.ConvertFromUtf32(xml);
+
         }
 
         /// <summary>
@@ -77,7 +78,7 @@ namespace System.Xml
 
         static public string Parse(string html, params HtmlXmlEntity[] entitys)
         {
-
+            return null;
         }
 
         static public HtmlXmlEntity[] HTMLbase { get; } = new HtmlXmlEntity[]

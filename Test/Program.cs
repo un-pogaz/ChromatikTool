@@ -43,10 +43,10 @@ namespace Test
 
             }
 
+            System.Text.RegularExpressions.Regex re = new System.Text.RegularExpressions.Regex(@"dfgdfg\\ f\d+");
             List<string> lst = new List<string>() { "", "12", "sdf" };
             
             string f = nameof(lst.Count);
-
 
 
             if (ro.HasFlag(System.Text.RegularExpressions.RegexOptions.Compiled))
