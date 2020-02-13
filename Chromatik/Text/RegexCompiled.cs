@@ -11,21 +11,42 @@ namespace System.Text.RegularExpressions
     /// </summary>
     public abstract class RegexCompiledList<T> : Collections.ObjectModel.ReadOnlyCollection<RegexCompiledBase> where T : RegexCompiledBase
     {
+        /// <summary></summary>
+        public RegexCompiledList() : base(new List<RegexCompiledBase>())
+        {
+        }
+
+        protected List<RegexCompiledBase> Items { get { return (List<RegexCompiledBase >)base.Items; } }
+
         new public int Count { get { return Items.Count; } }
 
         new public T this[int index] { get { return (T)Items[index]; } }
-        
+
+        public T this[string fullqualifiedname] { get { return Find(fullqualifiedname); } }
+
 
         new public bool Contains(T value) { return Items.Contains(value); }
+        new public bool Contains(string fullqualifiedname) { return Find(fullqualifiedname) == null; }
+        new public bool Contains(string name, string fullnamespace) { return Find(name, fullnamespace) == null; }
+
+        T Find(string fullqualifiedname)
+        {
+            KeyValuePair<string, string> pair = RegexCompiledBase.SplitFullQualifiedName(fullqualifiedname);
+            return Find(pair.Key, pair.Value);
+        }
+        T Find(string name, string fullnamespace)
+        {
+            foreach (var item in Items)
+                if (RegexCompiledBase.EqualsFullQualifiedName(item, name, fullnamespace))
+                    return (T)item;
+
+            return null;
+        }
 
         new public void CopyTo(T[] array, int index) { Items.CopyTo(array, index); }
         new public int IndexOf(T value) { return Items.IndexOf(value); }
 
         new public IEnumerator<T> GetEnumerator() { return Items.OfType<T>().GetEnumerator(); }
-
-        /// <summary></summary>
-        public RegexCompiledList() : base(new List<RegexCompiledBase>())
-        { }
 
     }
 
@@ -34,6 +55,10 @@ namespace System.Text.RegularExpressions
         public void Add(RegexCompiledEntry item)
         {
             Items.Add(item);
+        }
+        public void Remove(RegexCompiledEntry item)
+        {
+
         }
     }
 
@@ -44,26 +69,26 @@ namespace System.Text.RegularExpressions
     {
         #region static
         
-        static public RegexCompiled Compile(RegexCompiledList list)
+        static public RegexCompiled CompileToRuntime(RegexCompiledList list)
         {
-            return Compile(list, RegexHelper.RegexOptions);
+            return CompileToRuntime(list, RegexHelper.RegexOptions);
         }
-        static public RegexCompiled Compile(RegexCompiledList list, RegexOptions options)
+        static public RegexCompiled CompileToRuntime(RegexCompiledList list, RegexOptions options)
         {
-            return Compile(list, options, RegexHelper.Timeout);
+            return CompileToRuntime(list, options, RegexHelper.Timeout);
         }
-        static public RegexCompiled Compile(RegexCompiledList list, RegexOptions options, TimeSpan matchTimeout)
+        static public RegexCompiled CompileToRuntime(RegexCompiledList list, RegexOptions options, TimeSpan matchTimeout)
         {
             return new RegexCompiled(list, options, matchTimeout);
         }
 
-        static public RegexCompiled LoadAssembly(string assemblyName)
+        static public RegexCompiled LoadToAssembly(string assemblyName)
         {
-            return LoadAssembly(Reflection.AssemblyName.GetAssemblyName(assemblyName));
+            return LoadToAssembly(Reflection.AssemblyName.GetAssemblyName(assemblyName));
         }
-        static public RegexCompiled LoadAssembly(Reflection.AssemblyName assemblyName)
+        static public RegexCompiled LoadToAssembly(Reflection.AssemblyName assemblyName)
         {
-            return LoadAssembly(Reflection.Assembly.Load(assemblyName));
+            return LoadAssembly(Assembly.Load(assemblyName));
         }
         static public RegexCompiled LoadAssemblyFile(string assemblyPath)
         {

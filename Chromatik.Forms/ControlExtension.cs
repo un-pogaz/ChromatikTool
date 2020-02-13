@@ -105,7 +105,7 @@ namespace System.Windows.Forms
             {
                 borderStyle = control.GetValueOf<BorderStyle>("BorderStyle");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 borderStyle = BorderStyle.None;
             }

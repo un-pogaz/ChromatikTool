@@ -93,6 +93,24 @@ namespace System.Text.RegularExpressions
             Namespace = fullnamespace;
             Name = name;
         }
+        private RegexCompiledBase(string pattern, KeyValuePair<string, string> pair) : this(pattern, pair.Key, pair.Value)
+        { }
+        public RegexCompiledBase(string pattern, string fullqualifiedname) : this(pattern, SplitFullQualifiedName(fullqualifiedname))
+        { }
+
+        static internal KeyValuePair<string, string> SplitFullQualifiedName(string fullqualifiedname)
+        {
+            if (fullqualifiedname.IsNullOrWhiteSpace())
+                throw new ArgumentNullException(nameof(fullqualifiedname));
+
+            fullqualifiedname = fullqualifiedname.TrimEnd('(', ')');
+
+            int i = fullqualifiedname.LastIndexOf(".");
+            if (i < 0)
+                return new KeyValuePair<string, string>(fullqualifiedname, "");
+            else
+                return new KeyValuePair<string, string>(fullqualifiedname.Substring(i + 1), fullqualifiedname.Substring(0, i));
+        }
 
         /// <summary></summary>
         public override string ToString()
@@ -100,36 +118,8 @@ namespace System.Text.RegularExpressions
             return Pattern;
         }
 
-        public bool MatchFullQualifiedName(string FullQualifiedName)
-        {
-            if (FullQualifiedName == null)
-                return false;
-
-            FullQualifiedName = FullQualifiedName.TrimEnd('(', ')');
-
-            int i = FullQualifiedName.LastIndexOf(".");
-            if (i < 0)
-            {
-                if (!IsValideName(FullQualifiedName))
-                    return false;
-                else
-                    return MatchFullQualifiedName(new RegexCompiledEntry("", FullQualifiedName, ""));
-            }
-            else
-            {
-                string name = FullQualifiedName.Substring(i+1);
-                string space = FullQualifiedName.Substring(0,i);
-                if (!IsValideName(name) && !IsValideNamespace(space))
-                    return false;
-                else
-                    return MatchFullQualifiedName(new RegexCompiledEntry("", name, space));
-            }
-        }
-        internal bool MatchFullQualifiedName(RegexCompiledBase items) { return string.Equals(FullQualifiedName, items.FullQualifiedName, StringComparison.InvariantCultureIgnoreCase); }
-
-
         /// <summary></summary>
-        new static bool Equals(object x, object y)
+        new public static bool Equals(object x, object y)
         {
             if (x == null && y == null)
                 return true;
@@ -138,12 +128,12 @@ namespace System.Text.RegularExpressions
             return false;
         }
         /// <summary></summary>
-        static bool Equals(RegexCompiledBase x, RegexCompiledBase y)
+        static public bool Equals(RegexCompiledBase x, RegexCompiledBase y)
         {
             return Equals(x, y, true);
         }
         /// <summary></summary>
-        static bool Equals(RegexCompiledBase x, RegexCompiledBase y, bool caseSensitivePattern)
+        static public bool Equals(RegexCompiledBase x, RegexCompiledBase y, bool caseSensitivePattern)
         {
             if (x == null && y == null)
                 return true;
@@ -159,6 +149,19 @@ namespace System.Text.RegularExpressions
             }
             return false;
         }
+        
+
+        static internal bool EqualsFullQualifiedName(RegexCompiledBase x, string fullqualifiedname)
+        {
+            KeyValuePair<string, string> pair = SplitFullQualifiedName(fullqualifiedname);
+            return EqualsFullQualifiedName(x, pair.Key, pair.Value);
+        }
+        static internal bool EqualsFullQualifiedName(RegexCompiledBase x, string name, string fullnamespace)
+        {
+            return string.Equals(x.Namespace, fullnamespace, StringComparison.InvariantCultureIgnoreCase)
+                && string.Equals(x.Name, name, StringComparison.InvariantCultureIgnoreCase);
+        }
+
 
 
         /// <summary></summary>
@@ -206,5 +209,82 @@ namespace System.Text.RegularExpressions
         int IComparer<RegexCompiledBase>.Compare(RegexCompiledBase x, RegexCompiledBase y) { return Compare(x, y); }
         int Collections.IComparer.Compare(object x, object y) { return Compare(x, y); }
         #endregion
+    }
+
+    /// <summary>
+    /// A PreCompiled regex entry
+    /// </summary>
+    public class RegexCompiledEntry : RegexCompiledBase
+    {
+        /// <summary>
+        /// Pattern of the regex
+        /// </summary>
+        new public string Pattern
+        {
+            get { return base.Pattern; }
+            set { base.Name = value; }
+        }
+
+        /// <summary>
+        /// Name of the regex
+        /// </summary>
+        new public string Name
+        {
+            get { return base.Name; }
+            set { base.Name = value; }
+        }
+
+        /// <summary>
+        /// Namespace of the regex
+        /// </summary>
+        new public string Namespace
+        {
+            get { return base.Namespace; }
+            set { base.Namespace = value; }
+        }
+
+        /// <summary>
+        /// Initialise a <see cref="RegexCompiledEntry"/> with the specified pattern, name and Namespace
+        /// </summary>
+        public RegexCompiledEntry(string pattern, string name, string fullnamespace) : base(pattern, name, fullnamespace)
+        { }
+
+        /// <summary>
+        /// Initialise a <see cref="RegexCompiledEntry"/> with the specified pattern and FullQualifiedName
+        /// </summary>
+        public RegexCompiledEntry(string pattern, string fullqualifiedname) : base(pattern, fullqualifiedname)
+        { }
+    }
+    /// <summary>
+    /// A compiled <see cref="Regex"/>
+    /// </summary>
+    public class RegexCompiledClass : RegexCompiledBase
+    {
+        internal Regex _regex;
+
+        /// <summary>
+        /// Initialise a <see cref="RegexCompiledEntry"/> with the specified pattern, name and Namespace
+        /// </summary>
+        internal RegexCompiledClass(Regex regex) : base("temp", "temp", "temp")
+        {
+            _regex = regex;
+
+            Pattern = regex.ToString();
+            Type t = regex.GetType();
+
+            _name = t.Name;
+            _namespace = t.Namespace;
+        }
+
+        /// <summary>
+        /// Initialise on base of the specified <see cref="RegexCompiledEntry"/>, <see cref="RegexOptions"/> and <see cref="TimeSpan"/>
+        /// </summary>
+        internal RegexCompiledClass(RegexCompiledBase regex, RegexOptions options, TimeSpan matchTimeout) : base(regex.Pattern, regex.Name, regex.Namespace)
+        {
+            if (!options.HasFlag(RegexOptions.Compiled))
+                options |= RegexOptions.Compiled;
+
+            _regex = new Regex(regex.Pattern, options, matchTimeout);
+        }
     }
 }

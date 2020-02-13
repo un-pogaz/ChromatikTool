@@ -102,7 +102,50 @@ namespace System.Reflection
 
         static public object InvokeConstructor(this Type type, params object[] parameters)
         {
-            return type.GetConstructors()[0].Invoke(parameters);
+
+            return type.GetConstructors().InvokeConstructor(parameters);
+        }
+        static public object InvokeConstructor(this ConstructorInfo[] constructors, params object[] parameters)
+        {
+            if (parameters == null)
+                parameters = new object[0];
+
+            Type[] parametersType = new Type[parameters.Length];
+            for (int i = 0; i < parameters.Length; i++)
+                parametersType[i] = parameters[i].GetType();
+
+            foreach (var item in constructors)
+            {
+                ParameterInfo[] param = item.GetParameters();
+                if (param.Length == parametersType.Length)
+                {
+                    bool valide = true;
+                    for (int i = 0; i < parametersType.Length; i++)
+                        if (param[i].ParameterType != parametersType[i])
+                        {
+                            valide = false;
+                            break;
+                        }
+
+                    if (valide)
+                        return item.Invoke(parameters);
+                }
+            }
+
+            return null;
+        }
+        
+        static public bool IsChildOf(this Type type, Type parent)
+        {
+            if (type == null || parent == null)
+                return false;
+            else if (type.BaseType == null)
+                return false;
+            else if (type.BaseType == parent)
+                return true;
+            else
+                return type.BaseType.IsChildOf(parent);
+
         }
     }
 }

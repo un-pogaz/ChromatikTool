@@ -49,6 +49,9 @@ namespace Test
             string f = nameof(lst.Count);
 
 
+            Type ts = typeof(string);
+            Type tos = typeof(object);
+
             if (ro.HasFlag(System.Text.RegularExpressions.RegexOptions.Compiled))
             {
 
@@ -56,17 +59,14 @@ namespace Test
             
             System.Text.RegularExpressions.RegexCompiledList reg = new System.Text.RegularExpressions.RegexCompiledList()
             {
-                new System.Text.RegularExpressions.RegexCompiledEntry(@"^<\?xml.+?\?>\s*0", "Declaration", ""),
+                new System.Text.RegularExpressions.RegexCompiledEntry(@"^<\?xml.+?\?>\s*0", "XXX", ""),
                 new System.Text.RegularExpressions.RegexCompiledEntry(@"^<\?xml.+?\?>\s*0", "Doctype", ""),
                 new System.Text.RegularExpressions.RegexCompiledEntry(@"^<\?xml.+?\?>\s*0", "Entity", "Doctype"),
             };
 
-            if (reg[2].MatchFullQualifiedName("Doctype.Entity"))
-            {
 
-            }
 
-            System.Text.RegularExpressions.RegexCompiled comp1 = System.Text.RegularExpressions.RegexCompiled.Compile(reg);
+            System.Text.RegularExpressions.RegexCompiled comp1 = System.Text.RegularExpressions.RegexCompiled.CompileToRuntime(reg);
 
             System.Text.RegularExpressions.RegexCompiled comp2 = System.Text.RegularExpressions.RegexCompiled.CreateAssembly("RegLib.reg", reg);
 

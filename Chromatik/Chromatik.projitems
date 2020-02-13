@@ -61,10 +61,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Sgml\SgmlReader.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Text\ByteCharacter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Text\ControlCharacter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Text\RegexCompiled\RegexCompiled.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Text\RegexCompiled\RegexCompiledClass.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Text\RegexCompiled\RegexCompiledEntry.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Text\RegexCompiled\RegexCompiledBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Text\RegexCompiled.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Text\RegexCompiledBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Text\RegexHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Text\StringExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Text\UTF8SansBomEncoding.cs" />
