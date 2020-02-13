@@ -56,9 +56,9 @@ namespace Test
 
             System.Text.RegularExpressions.RegexCompiledList reg = new System.Text.RegularExpressions.RegexCompiledList()
             {
-                new System.Text.RegularExpressions.RegexPreCompiledEntry(@"^<\?xml.+?\?>\s*0", "", "Declaration"),
-                new System.Text.RegularExpressions.RegexPreCompiledEntry(@"^<\?xml.+?\?>\s*0", "", "Doctype"),
-                new System.Text.RegularExpressions.RegexPreCompiledEntry(@"^<\?xml.+?\?>\s*0", "Entity", "Doctype"),
+                new System.Text.RegularExpressions.RegexCompiledEntry(@"^<\?xml.+?\?>\s*0", "Declaration", ""),
+                new System.Text.RegularExpressions.RegexCompiledEntry(@"^<\?xml.+?\?>\s*0", "Doctype", ""),
+                new System.Text.RegularExpressions.RegexCompiledEntry(@"^<\?xml.+?\?>\s*0", "Entity", "Doctype"),
             };
 
             System.Text.RegularExpressions.RegexCompiled co = System.Text.RegularExpressions.RegexCompiled.Create(reg);

@@ -43,7 +43,24 @@ namespace System.Text
         /// </summary>
         /// <remarks>https://www.regular-expressions.info/email.html</remarks>
         public const string EmailAddressRFC_5322_Simpliefed = @"[A-Za-z0-9!#$%&'*+/=?^_‘{|}~-]+(?:\.[A-Za-z0-9!#$%&'*+/=?^_‘{|}~-]+)*@(?:[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\.)+[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?";
+
+        /// <summary>
+        /// Pattern for match a No ASCII character
+        /// </summary>
+        public const string NoASCII = @"[^ -~]";
+        /// <summary>
+        /// Pattern for match a ASCII character
+        /// </summary>
+        public const string ASCII = @"[ -~]";
         
+        /// <summary>
+        /// Pattern for match a ASCII <see langword="namespace"/> in C#
+        /// </summary>
+        public const string ASCII_forCsharpNameSpace = @"^([A-Z_a-z][0-9A-Z_a-z]*(\.[A-Z_a-z][0-9A-Z_a-z]*)*)$";
+        /// <summary>
+        /// Pattern for match a ASCII <see langword="class"/> in C#
+        /// </summary>
+        public const string ASCII_forCsharpNameClass = @"^([A-Z_a-z][0-9A-Z_a-z]*)$";
 
         /// <summary>
         /// Execute a simple Search/Replace loop until the pattern disappears.
