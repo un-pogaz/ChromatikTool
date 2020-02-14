@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Globalization;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,6 +16,10 @@ namespace System
     [System.Runtime.InteropServices.ComVisible(true)]
     public struct Hexa : IComparerEquatable<Hexa>, IFormattable, IConvertible, IEquatable<Hexa>, Collections.Generic.IEqualityComparer<Hexa>, Collections.IEqualityComparer, IComparable<Hexa>, IComparable, Collections.Generic.IComparer<Hexa>, Collections.IComparer
     {
+        static Hexa _null { get; } = new Hexa(0);
+        static public IEqualityComparer<Hexa> EqualityComparer { get; } = _null;
+        static public IComparer<Hexa> Comparator { get; } = _null;
+
         /// <summary>
         /// The <see cref="ulong"/> absolute value of variable
         /// </summary>
@@ -112,7 +116,7 @@ namespace System
 
             MinStringLenght = minStringLenght;
         }
-        
+
 
         /// <summary> </summary>
         static NumberStyles defaultNumberStyles = (NumberStyles.HexNumber);
@@ -244,7 +248,7 @@ namespace System
                     result = (Hexa)obj;
                     return true;
                 }
-                else if(obj is string)
+                else if (obj is string)
                 {
                     result = new Hexa((string)obj);
                     return true;
@@ -304,40 +308,22 @@ namespace System
                 return 0;
             }
         }
-        int IComparer.Compare(object x, object y)
-        {
-            return Compare(x, y);
-        }
+        int IComparer.Compare(object x, object y) { return Compare(x, y); }
 
         /// <summary> </summary>
-        public int CompareTo(object obj)
-        {
-            return Compare(this, obj);
-        }
+        public int CompareTo(object obj) { return Compare(this, obj); }
         /// <summary> </summary>
-        public int CompareTo(string value)
-        {
-            return Compare(this, value);
-        }
+        public int CompareTo(string value) { return Compare(this, value); }
         /// <summary> </summary>
-        public int CompareTo(Hexa value)
-        {
-            return Compare(this, value);
-        }
+        public int CompareTo(Hexa value) { return Compare(this, value); }
 
         #endregion
 
         #region IEquatable
 
         /// <summary></summary>
-        static public bool Equals(Hexa x, Hexa y)
-        {
-            return Compare(x, y) == 0;
-        }
-        bool IEqualityComparer<Hexa>.Equals(Hexa x, Hexa y)
-        {
-            return Equals(x, y);
-        }
+        static public bool Equals(Hexa x, Hexa y)  { return Compare(x, y) == 0; }
+        bool IEqualityComparer<Hexa>.Equals(Hexa x, Hexa y) { return Equals(x, y); }
 
         /// <summary></summary>
         new static public bool Equals(object x, object y)
@@ -346,9 +332,9 @@ namespace System
                 return false;
             if (x != null && y == null)
                 return false;
-            else if (x == null && y == null)
+            if (x == null && y == null)
                 return true;
-            else
+            else 
             {
                 Hexa hx;
                 Hexa hy;
@@ -358,48 +344,24 @@ namespace System
                 return false;
             }
         }
-        bool IEqualityComparer.Equals(object x, object y)
-        {
-            return Equals(x, y);
-        }
+        bool IEqualityComparer.Equals(object x, object y) { return Equals(x, y); }
 
 
         /// <summary> </summary>
-        public override bool Equals(object obj)
-        {
-            return Equals(this, obj);
-        }
+        public override bool Equals(object obj) { return Equals(this, obj); }
         /// <summary> </summary>
-        public bool Equals(string obj)
-        {
-            return Equals(this, obj);
-        }
+        public bool Equals(string obj) { return Equals(this, obj); }
         /// <summary> </summary>
-        public bool Equals(Hexa hexa)
-        {
-            return Equals(this, hexa);
-        }
+        public bool Equals(Hexa hexa) { return Equals(this, hexa); }
 
         /// <summary> </summary>
-        public override int GetHashCode()
-        {
-            return AbsolutValue.GetHashCode();
-        }
+        public override int GetHashCode() { return HashCode; }
+
+        static int HashCode = Runtime.CompilerServices.RuntimeHelpers.GetHashCode(_null);
+
+        int IEqualityComparer<Hexa>.GetHashCode(Hexa obj) { return obj.GetHashCode(); }
+        int IEqualityComparer.GetHashCode(object obj) { return obj.GetHashCode(); }
         
-        int IEqualityComparer<Hexa>.GetHashCode(Hexa hexa)
-        {
-            return hexa.GetHashCode();
-        }
-        int IEqualityComparer.GetHashCode(object obj)
-        {
-            return obj.GetHashCode();
-        }
-
-        /// <summary> </summary>
-        public TypeCode GetTypeCode()
-        {
-            return AbsolutValue.GetTypeCode();
-        }
         #endregion
 
 
