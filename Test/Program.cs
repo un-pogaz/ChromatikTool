@@ -33,10 +33,8 @@ namespace Test
             /// 
             /// Enigma enigma3 = enigma1.Clone(true);
             /// string rslt3 = enigma3.Process(test);
+            
 
-            System.Text.RegularExpressions.CompiledRegex comp = System.Text.RegularExpressions.CompiledRegex.LoadAssemblyFile(@"F:\Projet\GitHub\RegexLib.dll");
-
-            comp[0].
 
             XmlHtmlEntity h = new XmlHtmlEntity("nbsp", 160, false);
 

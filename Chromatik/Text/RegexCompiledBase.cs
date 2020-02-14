@@ -378,7 +378,7 @@ namespace System.Text.RegularExpressions
 
             Pattern = regex.ToString();
             Type t = regex.GetType();
-
+            
             Name = t.Name;
             Namespace = t.Namespace;
         }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using System.Reflection;
 
 namespace System.Xml
 {
@@ -13,6 +14,63 @@ namespace System.Xml
     /// </summary>
     public class XmlHtmlEntity : IComparerEquatable<XmlHtmlEntity>
     {
+        static XmlHtmlEntity()
+        {
+            System.Text.RegularExpressions.RegexCompilationInfo[] info = new System.Text.RegularExpressions.RegexCompilationInfo[]
+            {
+                new System.Text.RegularExpressions.RegexCompilationInfo("><", System.Text.RegularExpressions.RegexOptions.Compiled, "name", "fullname", true),
+                new System.Text.RegularExpressions.RegexCompilationInfo("<>", System.Text.RegularExpressions.RegexOptions.Compiled, "name2", "fullname", true),
+            };
+            System.Reflection.AssemblyName na = new System.Reflection.AssemblyName("Regelib, Version=1.0.0, Culture=neutral, PublicKeyToken=null");
+            System.Text.RegularExpressions.Regex.CompileToAssembly(info, na);
+
+            System.Reflection.Assembly ass = System.Reflection.Assembly.Load(na);
+
+            object o = InvokeConstructor(GetType(ass, info[0].Name, info[0].Namespace));
+        }
+
+        static Type GetType(Assembly assembly, string name, string fullnamespace)
+        {
+            if (assembly == null)
+                return null;
+
+            return assembly.GetType(fullnamespace + "." + name, false, true);
+        }
+        static object InvokeConstructor(Type type, params object[] parameters)
+        {
+            if (type == null)
+                return null;
+
+            ConstructorInfo[] constructors = type.GetConstructors();
+            if (parameters == null)
+                parameters = new object[0];
+
+            Type[] parametersType = new Type[parameters.Length];
+            for (int i = 0; i < parameters.Length; i++)
+                parametersType[i] = parameters[i].GetType();
+
+            foreach (var item in constructors)
+            {
+                Reflection.ParameterInfo[] param = item.GetParameters();
+                if (param.Length == parametersType.Length)
+                {
+                    bool valide = true;
+                    for (int i = 0; i < parametersType.Length; i++)
+                        if (param[i].ParameterType != parametersType[i])
+                        {
+                            valide = false;
+                            break;
+                        }
+
+                    if (valide)
+                        return item.Invoke(parameters);
+                }
+            }
+
+            return null;
+        }
+        
+
         /// <summary>
         /// HTML name of the entity
         /// </summary>

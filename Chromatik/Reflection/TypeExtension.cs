@@ -118,6 +118,9 @@ namespace System.Reflection
         /// <returns></returns>
         static public object InvokeConstructor(this Type type, params object[] parameters)
         {
+            if (type == null)
+                return null;
+
             return type.GetConstructors().InvokeConstructor(parameters);
         }
         /// <summary>
@@ -128,6 +131,9 @@ namespace System.Reflection
         /// <returns></returns>
         static public object InvokeConstructor(this ConstructorInfo[] constructors, params object[] parameters)
         {
+            if (constructors == null)
+                return null;
+
             if (parameters == null)
                 parameters = new object[0];
 
@@ -174,6 +180,21 @@ namespace System.Reflection
             else
                 return type.BaseType.IsInheritanceOf(parent);
 
+        }
+
+        /// <summary>
+        /// Get the type specified to the namespace and the name.
+        /// </summary>
+        /// <param name="assembly"></param>
+        /// <param name="name"></param>
+        /// <param name="fullnamespace"></param>
+        /// <returns></returns>
+        static Type GetType(this Assembly assembly, string name, string fullnamespace)
+        {
+            if (assembly == null)
+                return null;
+
+            return assembly.GetType(fullnamespace + "." + name, false, true);
         }
     }
 }

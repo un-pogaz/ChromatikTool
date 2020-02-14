@@ -243,7 +243,7 @@ namespace System.Text.RegularExpressions
             if (name.RegexIsMatch(@"[\\/:*?\"" <>|]"))
                 throw new IO.InvalidPathException("Invalide " + nameof(name) + ". Contain a invalid file name character.");
 
-            return CompileToAssembly(new Reflection.AssemblyName(name + ", Version=1.0.0, Culture=neutral, PublicKeyToken=null"), list, options, matchTimeout);
+            return CompileToAssembly(new AssemblyName(name + ", Version=1.0.0, Culture=neutral, PublicKeyToken=null"), list, options, matchTimeout);
         }
         /// <summary>
         /// Compile a <see cref="CompiledRegexList"/> into a Assembly file (.dll)
@@ -315,17 +315,21 @@ namespace System.Text.RegularExpressions
         static private Type RegexType = new global::System.Text.RegularExpressions.Regex("\0").GetType();
 
         /// <summary>
-        /// Source <see cref="Assembly"/> of this collection
+        /// Source <see cref="SourceAssembly"/> of this collection
         /// </summary>
-        public Assembly Assembly { get; }
+        public Assembly SourceAssembly { get; }
 
         /// <summary></summary>
         protected CompiledRegex(Assembly assembly)
         {
-            Assembly = assembly;
-            foreach (Type item in Assembly.ExportedTypes)
+            SourceAssembly = assembly;
+            foreach (Type item in SourceAssembly.ExportedTypes)
                 if (item.IsInheritanceOf(RegexType))
-                    Items.Add(new CompiledRegexClass((global::System.Text.RegularExpressions.Regex)item.InvokeConstructor()));
+                {
+                    Regex regex = (global::System.Text.RegularExpressions.Regex)item.InvokeConstructor();
+                    if (regex != null)
+                        Items.Add(new CompiledRegexClass(regex));
+                }
         }
         /// <summary></summary>
         protected CompiledRegex(CompiledRegexList list, RegexOptions options, TimeSpan matchTimeout)
@@ -337,7 +341,7 @@ namespace System.Text.RegularExpressions
             foreach (var item in list)
                 Items.Add(new CompiledRegexClass(item, options, matchTimeout));
 
-            Assembly = Items.Last().GetType().Assembly;
+            SourceAssembly = Items.Last().GetType().Assembly;
         }
 
     }
