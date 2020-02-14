@@ -17,8 +17,13 @@ namespace System
     public struct Hexa : IComparerEquatable<Hexa>, IFormattable, IConvertible, IEquatable<Hexa>, Collections.Generic.IEqualityComparer<Hexa>, Collections.IEqualityComparer, IComparable<Hexa>, IComparable, Collections.Generic.IComparer<Hexa>, Collections.IComparer
     {
         static Hexa _null { get; } = new Hexa(0);
+        /// <summary></summary>
         static public IEqualityComparer<Hexa> EqualityComparer { get; } = _null;
+        /// <summary></summary>
         static public IComparer<Hexa> Comparator { get; } = _null;
+        /// <summary></summary>
+        public override int GetHashCode() { return AbsolutValue.GetHashCode(); }
+
 
         /// <summary>
         /// The <see cref="ulong"/> absolute value of variable
@@ -118,17 +123,17 @@ namespace System
         }
 
 
-        /// <summary> </summary>
+        /// <summary></summary>
         static NumberStyles defaultNumberStyles = (NumberStyles.HexNumber);
-        /// <summary> </summary>
+        /// <summary></summary>
         static IFormatProvider defaultFormatProvider = NumberFormatInfo.InvariantInfo;
 
-        /// <summary> </summary>
+        /// <summary></summary>
         public override string ToString()
         {
             return ToString(MinStringLenght);
         }
-        /// <summary> </summary>
+        /// <summary></summary>
         public string ToString(IFormatProvider provider)
         {
             return ToString(MinStringLenght, provider);
@@ -174,23 +179,24 @@ namespace System
         {
             return AbsolutValue.ToString(format, provider);
         }
+        
 
-        /// <summary> </summary>
+        /// <summary></summary>
         static public Hexa Parse(string s)
         {
             return Parse(s, defaultNumberStyles);
         }
-        /// <summary> </summary>
+        /// <summary></summary>
         static public Hexa Parse(string s, IFormatProvider provider)
         {
             return Parse(s, defaultNumberStyles, provider);
         }
-        /// <summary> </summary>
+        /// <summary></summary>
         static public Hexa Parse(string s, NumberStyles style)
         {
             return Parse(s, defaultNumberStyles, defaultFormatProvider);
         }
-        /// <summary> </summary>
+        /// <summary></summary>
         static public Hexa Parse(string s, NumberStyles style, IFormatProvider provider)
         {
             if (s == null)
@@ -219,17 +225,17 @@ namespace System
             return s;
         }
 
-        /// <summary> </summary>
+        /// <summary></summary>
         static public bool TryParse(string s, out Hexa result)
         {
             return TryParse(s, defaultNumberStyles, out result);
         }
-        /// <summary> </summary>
+        /// <summary></summary>
         static public bool TryParse(string s, NumberStyles style, out Hexa result)
         {
             return TryParse(s, style, defaultFormatProvider, out result);
         }
-        /// <summary> </summary>
+        /// <summary></summary>
         static public bool TryParse(string s, NumberStyles style, IFormatProvider provider, out Hexa result)
         {
             ulong v = 0;
@@ -310,11 +316,11 @@ namespace System
         }
         int IComparer.Compare(object x, object y) { return Compare(x, y); }
 
-        /// <summary> </summary>
+        /// <summary></summary>
         public int CompareTo(object obj) { return Compare(this, obj); }
-        /// <summary> </summary>
+        /// <summary></summary>
         public int CompareTo(string value) { return Compare(this, value); }
-        /// <summary> </summary>
+        /// <summary></summary>
         public int CompareTo(Hexa value) { return Compare(this, value); }
 
         #endregion
@@ -347,17 +353,12 @@ namespace System
         bool IEqualityComparer.Equals(object x, object y) { return Equals(x, y); }
 
 
-        /// <summary> </summary>
+        /// <summary></summary>
         public override bool Equals(object obj) { return Equals(this, obj); }
-        /// <summary> </summary>
+        /// <summary></summary>
         public bool Equals(string obj) { return Equals(this, obj); }
-        /// <summary> </summary>
+        /// <summary></summary>
         public bool Equals(Hexa hexa) { return Equals(this, hexa); }
-
-        /// <summary> </summary>
-        public override int GetHashCode() { return HashCode; }
-
-        static int HashCode = Runtime.CompilerServices.RuntimeHelpers.GetHashCode(_null);
 
         int IEqualityComparer<Hexa>.GetHashCode(Hexa obj) { return obj.GetHashCode(); }
         int IEqualityComparer.GetHashCode(object obj) { return obj.GetHashCode(); }
@@ -369,54 +370,54 @@ namespace System
 
         #region cast
 
-        /// <summary> </summary>
+        /// <summary></summary>
         static public implicit operator byte(Hexa value)
         {
             return (byte)value.AbsolutValue;
         }
-        /// <summary> </summary>
+        /// <summary></summary>
         static public implicit operator ushort(Hexa value)
         {
             return (ushort)value.AbsolutValue;
         }
-        /// <summary> </summary>
+        /// <summary></summary>
         static public implicit operator uint(Hexa value)
         {
             return (uint)value.AbsolutValue;
         }
-        /// <summary> </summary>
+        /// <summary></summary>
         static public implicit operator ulong(Hexa value)
         {
             return (ulong)value.AbsolutValue;
         }
 
-        /// <summary> </summary>
+        /// <summary></summary>
         static public explicit operator short(Hexa value)
         {
             return (short)value.AbsolutValue;
         }
-        /// <summary> </summary>
+        /// <summary></summary>
         static public explicit operator int(Hexa value)
         {
             return (int)value.AbsolutValue;
         }
-        /// <summary> </summary>
+        /// <summary></summary>
         static public explicit operator long(Hexa value)
         {
             return (long)value.AbsolutValue;
         }
 
-        /// <summary> </summary>
+        /// <summary></summary>
         static public explicit operator float(Hexa value)
         {
             return value.AbsolutValue;
         }
-        /// <summary> </summary>
+        /// <summary></summary>
         static public explicit operator double(Hexa value)
         {
             return value.AbsolutValue;
         }
-        /// <summary> </summary>
+        /// <summary></summary>
         static public explicit operator decimal(Hexa value)
         {
             return value.AbsolutValue;
@@ -427,33 +428,33 @@ namespace System
         #region compare Hexa & string
 
         #region =
-        /// <summary> </summary>
+        /// <summary></summary>
         static public bool operator ==(Hexa left, Hexa right)
         {
             return left.Equals(right);
         }
-        /// <summary> </summary>
+        /// <summary></summary>
         static public bool operator !=(Hexa left, Hexa right)
         {
             return !(left == right);
         }
 
-        /// <summary> </summary>
+        /// <summary></summary>
         static public bool operator ==(Hexa left, string right)
         {
             return left.Equals(right);
         }
-        /// <summary> </summary>
+        /// <summary></summary>
         static public bool operator !=(Hexa left, string right)
         {
             return !(left == right);
         }
-        /// <summary> </summary>
+        /// <summary></summary>
         static public bool operator ==(string left, Hexa right)
         {
             return (right == left);
         }
-        /// <summary> </summary>
+        /// <summary></summary>
         static public bool operator !=(string left, Hexa right)
         {
             return (right != left);
@@ -462,19 +463,19 @@ namespace System
 
         #region <
 
-        /// <summary> </summary>
+        /// <summary></summary>
         static public bool operator <(Hexa left, Hexa right)
         {
             return (left.AbsolutValue < right.AbsolutValue);
         }
-        /// <summary> </summary>
+        /// <summary></summary>
         static public bool operator >(Hexa left, Hexa right)
         {
             return (right < left);
         }
 
 
-        /// <summary> </summary>
+        /// <summary></summary>
         static public bool operator <(Hexa left, string right)
         {
             Hexa hexa = MinValue;
@@ -483,7 +484,7 @@ namespace System
             else
                 return false;
         }
-        /// <summary> </summary>
+        /// <summary></summary>
         static public bool operator >(Hexa left, string right)
         {
             Hexa hexa = MinValue;
@@ -493,12 +494,12 @@ namespace System
                 return false;
         }
 
-        /// <summary> </summary>
+        /// <summary></summary>
         static public bool operator <(string left, Hexa right)
         {
             return (right > left);
         }
-        /// <summary> </summary>
+        /// <summary></summary>
         static public bool operator >(string left, Hexa right)
         {
             return (right < left);
@@ -507,35 +508,35 @@ namespace System
 
         #region <= 
 
-        /// <summary> </summary>
+        /// <summary></summary>
         static public bool operator <=(Hexa left, Hexa right)
         {
             return ((left == right) || (left < right));
         }
-        /// <summary> </summary>
+        /// <summary></summary>
         static public bool operator >=(Hexa left, Hexa right)
         {
             return ((left == right) || (left > right));
         }
 
 
-        /// <summary> </summary>
+        /// <summary></summary>
         static public bool operator <=(Hexa left, string right)
         {
             return ((left == right) || (left < right));
         }
-        /// <summary> </summary>
+        /// <summary></summary>
         static public bool operator >=(Hexa left, string right)
         {
             return ((left == right) || (left > right));
         }
 
-        /// <summary> </summary>
+        /// <summary></summary>
         static public bool operator <=(string left, Hexa right)
         {
             return ((left == right) || (left < right));
         }
-        /// <summary> </summary>
+        /// <summary></summary>
         static public bool operator >=(string left, Hexa right)
         {
             return ((left == right) || (left > right));
@@ -555,22 +556,22 @@ namespace System
 
         #region operation plus/moins
 
-        /// <summary> </summary>
+        /// <summary></summary>
         static public Hexa operator ++(Hexa value)
         {
             return value + 1;
         }
-        /// <summary> </summary>
+        /// <summary></summary>
         static public Hexa operator +(Hexa left, Hexa right)
         {
             return new Hexa(left.AbsolutValue + right.AbsolutValue, BigStringLenght(left, right));
         }
-        /// <summary> </summary>
+        /// <summary></summary>
         static public Hexa operator +(Hexa left, ulong right)
         {
             return new Hexa(left.AbsolutValue + right, left.MinStringLenght);
         }
-        /// <summary> </summary>
+        /// <summary></summary>
         static public Hexa operator +(Hexa left, long right)
         {
             if (right >= 0)
@@ -580,22 +581,22 @@ namespace System
         }
 
 
-        /// <summary> </summary>
+        /// <summary></summary>
         static public Hexa operator --(Hexa value)
         {
             return value - 1;
         }
-        /// <summary> </summary>
+        /// <summary></summary>
         static public Hexa operator -(Hexa left, Hexa right)
         {
             return new Hexa(left.AbsolutValue - right.AbsolutValue, BigStringLenght(left, right));
         }
-        /// <summary> </summary>
+        /// <summary></summary>
         static public Hexa operator -(Hexa left, ulong right)
         {
             return new Hexa(left.AbsolutValue - right, left.MinStringLenght);
         }
-        /// <summary> </summary>
+        /// <summary></summary>
         static public Hexa operator -(Hexa left, long right)
         {
             return (left + (-right));
@@ -605,49 +606,49 @@ namespace System
 
         #region operation mul/div/modulo
 
-        /// <summary> </summary>
+        /// <summary></summary>
         static public Hexa operator *(Hexa left, Hexa right)
         {
             return new Hexa(left.AbsolutValue * right.AbsolutValue, BigStringLenght(left, right));
         }
-        /// <summary> </summary>
+        /// <summary></summary>
         static public Hexa operator *(Hexa left, ulong right)
         {
             return new Hexa(left.AbsolutValue * right, left.MinStringLenght);
         }
-        /// <summary> </summary>
+        /// <summary></summary>
         static public Hexa operator *(Hexa left, long right)
         {
             return (left * (ulong)right);
         }
 
-        /// <summary> </summary>
+        /// <summary></summary>
         static public Hexa operator %(Hexa left, Hexa right)
         {
             return new Hexa(left.AbsolutValue % right.AbsolutValue, BigStringLenght(left, right));
         }
-        /// <summary> </summary>
+        /// <summary></summary>
         static public Hexa operator %(Hexa left, ulong right)
         {
             return new Hexa(left.AbsolutValue % right, left.MinStringLenght);
         }
-        /// <summary> </summary>
+        /// <summary></summary>
         static public Hexa operator %(Hexa left, long right)
         {
             return (left % (ulong)right);
         }
 
-        /// <summary> </summary>
+        /// <summary></summary>
         static public Hexa operator /(Hexa left, Hexa right)
         {
             return new Hexa(left.AbsolutValue / right.AbsolutValue, BigStringLenght(left, right));
         }
-        /// <summary> </summary>
+        /// <summary></summary>
         static public Hexa operator /(Hexa left, ulong right)
         {
             return new Hexa(left.AbsolutValue / right, left.MinStringLenght);
         }
-        /// <summary> </summary>
+        /// <summary></summary>
         static public Hexa operator /(Hexa left, long right)
         {
             return (left / (ulong)right);
@@ -658,94 +659,100 @@ namespace System
 
         #region IConvertible
 
-        /// <summary> </summary>
+        /// <summary></summary>
         bool IConvertible.ToBoolean(IFormatProvider provider)
         {
             return Convert.ToBoolean(AbsolutValue);
         }
 
-        /// <summary> </summary>
+        /// <summary></summary>
         char IConvertible.ToChar(IFormatProvider provider)
         {
             return Convert.ToChar(AbsolutValue);
         }
 
-        /// <summary> </summary>
+        /// <summary></summary>
         sbyte IConvertible.ToSByte(IFormatProvider provider)
         {
             return Convert.ToSByte(AbsolutValue);
         }
 
-        /// <summary> </summary>
+        /// <summary></summary>
         byte IConvertible.ToByte(IFormatProvider provider)
         {
             return Convert.ToByte(AbsolutValue);
         }
 
-        /// <summary> </summary>
+        /// <summary></summary>
         short IConvertible.ToInt16(IFormatProvider provider)
         {
             return Convert.ToInt16(AbsolutValue);
         }
 
-        /// <summary> </summary>
+        /// <summary></summary>
         ushort IConvertible.ToUInt16(IFormatProvider provider)
         {
             return Convert.ToUInt16(AbsolutValue);
         }
 
-        /// <summary> </summary>
+        /// <summary></summary>
         int IConvertible.ToInt32(IFormatProvider provider)
         {
             return Convert.ToInt32(AbsolutValue);
         }
 
-        /// <summary> </summary>
+        /// <summary></summary>
         uint IConvertible.ToUInt32(IFormatProvider provider)
         {
             return Convert.ToUInt32(AbsolutValue);
         }
 
-        /// <summary> </summary>
+        /// <summary></summary>
         long IConvertible.ToInt64(IFormatProvider provider)
         {
             return Convert.ToInt64(AbsolutValue);
         }
 
-        /// <summary> </summary>
+        /// <summary></summary>
         ulong IConvertible.ToUInt64(IFormatProvider provider)
         {
             return AbsolutValue;
         }
 
-        /// <summary> </summary>
+        /// <summary></summary>
         float IConvertible.ToSingle(IFormatProvider provider)
         {
             return Convert.ToSingle(AbsolutValue);
         }
 
-        /// <summary> </summary>
+        /// <summary></summary>
         double IConvertible.ToDouble(IFormatProvider provider)
         {
             return Convert.ToDouble(AbsolutValue);
         }
 
-        /// <summary> </summary>
+        /// <summary></summary>
         Decimal IConvertible.ToDecimal(IFormatProvider provider)
         {
             return Convert.ToDecimal(AbsolutValue);
         }
 
-        /// <summary> </summary>
+        /// <summary></summary>
         DateTime IConvertible.ToDateTime(IFormatProvider provider)
         {
             return Convert.ToDateTime(AbsolutValue);
         }
 
-        /// <summary> </summary>
+        /// <summary></summary>
         Object IConvertible.ToType(Type type, IFormatProvider provider)
         {
             return Convert.ChangeType(this, type, provider);
+        }
+
+        /// <summary></summary>
+        public TypeCode GetTypeCode()
+        {
+           return AbsolutValue.GetTypeCode();
         }
         #endregion
     }

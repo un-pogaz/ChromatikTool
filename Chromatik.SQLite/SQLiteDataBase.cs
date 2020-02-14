@@ -37,14 +37,14 @@ namespace Chromatik.SQLite
             FilePath = dbPath.Trim();
         }
 
-        /// <summary> </summary>
+        /// <summary></summary>
         public override string ToString()
         {
             return "\""+Path.GetFileName(FilePath)+"\"; Connecting: " + ConnectionIsOpen.ToString().ToLower() + "; Requests: " +Logs.Count+";"; 
         }
 
         private bool disposed = true;
-        /// <summary> </summary>
+        /// <summary></summary>
         public void Dispose()
         {
             CloseConnection();

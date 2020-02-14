@@ -60,7 +60,6 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Numerics" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -71,38 +70,48 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Unicode.Initialisation.cs" />
+    <Compile Include="Unicode\Unicode.Initialisation.cs" />
+    <Compile Include="Unicode\ResourcesUnicode.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ResourcesUnicode.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Unicode\ResourcesUnicode.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>ResourcesUnicode.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="RegexStatic" />
     <None Include="packages.config" />
-    <None Include="Resources\Html.dtd" />
+    <None Include="Html.dtd" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\unicode.charsets.xml" />
+    <None Include="Unicode\unicode.charsets.xml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\unicode.conscript.xml" />
+    <None Include="Unicode\unicode.conscript.xml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\unicode.unicode.xml" />
+    <None Include="Unicode\unicode.unicode.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\HelloWorld.ts.xml" />
+    <Content Include="Unicode\HelloWorld.ts.xml" />
   </ItemGroup>
-  <Import Project="..\Chromatik\Chromatik.projitems" Label="Shared" />
   <Import Project="..\Chromatik.Forms\Chromatik.Forms.projitems" Label="Shared" />
   <Import Project="..\Chromatik.Unicode\Chromatik.Unicode.projitems" Label="Shared" />
   <Import Project="..\Chromatik.Drawing\Chromatik.Drawing.projitems" Label="Shared" />
   <Import Project="..\Chromatik.RAmen\Chromatik.RAmen.projitems" Label="Shared" />
   <Import Project="..\Chromatik.Enigma\Chromatik.Enigma.projitems" Label="Shared" />
   <Import Project="..\Chromatik.Zip\Chromatik.Zip.projitems" Label="Shared" />
+  <Import Project="..\Chromatik\Chromatik.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

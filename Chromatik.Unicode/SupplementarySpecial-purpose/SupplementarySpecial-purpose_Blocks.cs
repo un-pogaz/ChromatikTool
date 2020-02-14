@@ -7,16 +7,16 @@ namespace Chromatik.Unicode
 {
     partial class SupplementarySpecial_purpose
     {
-        /// <summary> </summary>
+        /// <summary></summary>
         public struct SSP
         {
-            /// <summary> </summary>
+            /// <summary></summary>
             static public CodeBlock Tags
             {
                 get { return CodeBlock.LoadFromXml(XmlSSP, XmlLang, "Tags"); }
             }
 
-            /// <summary> </summary>
+            /// <summary></summary>
             static public CodeBlock VariationSelectorsSupplement
             {
                 get { return CodeBlock.LoadFromXml(XmlSSP, XmlLang, "Variation Selectors Supplement"); }

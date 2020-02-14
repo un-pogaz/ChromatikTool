@@ -13,10 +13,8 @@ namespace System.Xml
     /// <summary>
     /// Represents an HTML entity / XML Entity with the corresponding character.
     /// </summary>
-    public class XmlHtmlEntity // : IComparerEquatable<XmlHtmlEntity>
-        : IEquatable<XmlHtmlEntity>, IEqualityComparer<XmlHtmlEntity>, Collections.IEqualityComparer, IComparer<XmlHtmlEntity>, Collections.IComparer, IComparable<XmlHtmlEntity>, IComparable
+    public class XmlHtmlEntity : IComparerEquatable<XmlHtmlEntity>
     {
-
         static private RegexOptions regOption = RegexOptions.CultureInvariant;
         static private TimeSpan timeout = new TimeSpan(0, 0, 10);
         static private Globalization.CultureInfo InvariantCulture = Globalization.CultureInfo.InvariantCulture;
@@ -27,13 +25,15 @@ namespace System.Xml
 
         static XmlHtmlEntity()
         {
-            new XmlHtmlEntity(0);
 
-            Type t = typeof(XmlHtmlEntity);
+        }
+        
 
+        static public RegexCompilationInfo[] GetRegexCompilationInfo()
+        {
             IEnumerable<XmlHtmlEntity> enumerable = new XmlHtmlEntity[0];
 
-            foreach (var item in t.GetProperties(BindingFlags.IgnoreCase | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic))
+            foreach (var item in typeof(XmlHtmlEntity).GetProperties(BindingFlags.IgnoreCase | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic))
                 if (item.PropertyType.GetInterface("System.Collections.IEnumerable") != null)
                     enumerable = enumerable.Concat(((Collections.IEnumerable)item.GetValue(null)).OfType<XmlHtmlEntity>());
 
@@ -50,11 +50,11 @@ namespace System.Xml
                 {
                     string n = item.HTML.Trim('&', ';');
 
-                    lst.Add(new RegexCompilationInfo(item.Character, regOption, "c"+ item._XMLvalue.ToString(InvariantCulture) + "_" + n, spaceChar, true, timeout));
+                    lst.Add(new RegexCompilationInfo(item.Character, regOption, "c" + item._XMLvalue.ToString(InvariantCulture) + "_" + n, spaceChar, true, timeout));
                     lst.Add(new RegexCompilationInfo(item.XML, regOption, "x" + item._XMLvalue.ToString(InvariantCulture) + "_" + n, spaceXml, true, timeout));
 
                     if (item.IsCaseSensitive)
-                        lst.Add(new RegexCompilationInfo(item.HTML, regOption, "h" + item._XMLvalue.ToString(InvariantCulture) +"_"+ n, spaceHtml, true, timeout));
+                        lst.Add(new RegexCompilationInfo(item.HTML, regOption, "h" + item._XMLvalue.ToString(InvariantCulture) + "_" + n, spaceHtml, true, timeout));
                     else
                         lst.Add(new RegexCompilationInfo(item.HTML, regOption | RegexOptions.IgnoreCase, "h_" + n + item._XMLvalue.ToString(InvariantCulture), spaceHtml, true, timeout));
                 }
@@ -68,37 +68,8 @@ namespace System.Xml
                 pair.Add(new KeyValuePair<XmlHtmlEntity, RegexCompilationInfo>(item, lst.Last()));
             }
 
-            AssemblyName asName = new AssemblyName(space+", Version=1.0.0, Culture=neutral, PublicKeyToken=null");
-
-            List<string> s = new List<string>(lst.Count);
-            foreach (var item in lst)
-                s.Add(item.Namespace + "." + item.Name);
-
-            s.Sort();
-
-            string[] du = s.GroupBy(x => x)
-                .Where(g => g.Count() > 1)
-                .Select(y => y.Key)
-                .ToArray();
-
-            IDictionary<string, int> dd = s.GroupBy(x => x)
-              .Where(g => g.Count() > 1)
-              .ToDictionary(x => x.Key, y => y.Count());
-            
-            ;
-
-            //Regex.CompileToAssembly(lst.ToArray(), asName);
-
-            Assembly assembly = Assembly.Load(asName);
-            foreach (KeyValuePair<XmlHtmlEntity, RegexCompilationInfo> item in pair)
-            {
-                object o = InvokeConstructor(GetType(assembly, item.Value.Name, spaceXml));
-                if (o is Regex)
-                    item.Key._regexXML = (Regex)o;
-            }
-            
+            return lst.ToArray();
         }
-
 
         static public string Parse(string html, params XmlHtmlEntity[] entitys)
         {

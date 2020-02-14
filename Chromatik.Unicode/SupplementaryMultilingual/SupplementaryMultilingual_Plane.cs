@@ -16,13 +16,13 @@ namespace Chromatik.Unicode
 
         static private string NameID  = "Supplementary Multilingual Plane";
 
-        /// <summary> </summary>
+        /// <summary></summary>
         static public CodePlane Blocks { get; private set; } = new CodePlane(NameID);
 
-        /// <summary> </summary>
+        /// <summary></summary>
         static public string Name { get; } = Blocks.Name;
 
-        /// <summary> </summary>
+        /// <summary></summary>
         static public string Description { get; } = Blocks.Description;
 
         /// <summary>

@@ -11,7 +11,7 @@ namespace Chromatik.Unicode
     /// </summary>
     public class CodeBlockList : Dictionary<string, CodeBlock>
     {
-        /// <summary> </summary>
+        /// <summary></summary>
         public CodeBlock this[int index]
         {
             get {
@@ -44,14 +44,14 @@ namespace Chromatik.Unicode
                 }
             }
         }
-        /// <summary> </summary>
+        /// <summary></summary>
         new public IEnumerator<CodeBlock> GetEnumerator()
         {
             foreach (CodeBlock item in this.Values)
                 yield return item;
         }
 
-        /// <summary> </summary>
+        /// <summary></summary>
         public void Add(CodeBlock codeBlock) { this.Add(codeBlock.Name, codeBlock); }
 
     }
@@ -61,7 +61,7 @@ namespace Chromatik.Unicode
     /// </summary>
     public class CodePlaneList : Dictionary<string, CodePlane>
     {
-        /// <summary> </summary>
+        /// <summary></summary>
         public CodePlane this[int index]
         {
             get {
@@ -93,14 +93,14 @@ namespace Chromatik.Unicode
                 }
             }
         }
-        /// <summary> </summary>
+        /// <summary></summary>
         new public IEnumerator<CodePlane> GetEnumerator()
         {
             foreach (CodePlane item in this.Values)
                 yield return item;
         }
 
-        /// <summary> </summary>
+        /// <summary></summary>
         public void Add(CodePlane codePlane) { this.Add(codePlane.Name, codePlane); }
         
     }

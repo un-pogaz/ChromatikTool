@@ -71,7 +71,7 @@ namespace Chromatik.SQLite
                 throw new System.Data.SQLite.SQLiteException(System.Data.SQLite.SQLiteErrorCode.CantOpen, "Database is not open");
         }
 
-        /// <summary> </summary>
+        /// <summary></summary>
         public override string ToString()
         {
             return DataBase.ToString() + " {" + clsName + "}";
@@ -79,9 +79,9 @@ namespace Chromatik.SQLite
 
         bool OpenOnStart = false;
 
-        /// <summary> </summary>
+        /// <summary></summary>
         protected bool disposed = true;
-        /// <summary> </summary>
+        /// <summary></summary>
         public void Dispose()
         {
             if (ConnectionIsOpen && !OpenOnStart)
@@ -89,14 +89,14 @@ namespace Chromatik.SQLite
 
             disposed = true;
         }
-        /// <summary> </summary>
+        /// <summary></summary>
         protected void IsDisposed()
         {
             if (disposed)
                 throw new ObjectDisposedException(clsName);
         }
 
-        /// <summary> </summary>
+        /// <summary></summary>
         ~SQLiteEdit()
         {
 

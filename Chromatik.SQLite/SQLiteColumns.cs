@@ -10,15 +10,15 @@ namespace Chromatik.SQLite
     /// </summary>
     public enum SQLiteColumnsType
     {
-        /// <summary> </summary>
+        /// <summary></summary>
         Integer,
-        /// <summary> </summary>
+        /// <summary></summary>
         DateTime,
-        /// <summary> </summary>
+        /// <summary></summary>
         Real,
-        /// <summary> </summary>
+        /// <summary></summary>
         Text,
-        /// <summary> </summary>
+        /// <summary></summary>
         BLOB,
     }
 
@@ -75,7 +75,7 @@ namespace Chromatik.SQLite
                 throw new ArgumentException("The key name and the column name as not equal.");
         }
 
-        /// <summary> </summary>
+        /// <summary></summary>
         override public string ToString()
         {
             if (Count > 0)
@@ -159,7 +159,7 @@ namespace Chromatik.SQLite
             }
         }
 
-        /// <summary> </summary>
+        /// <summary></summary>
         override public string ToString()
         {
             string rslt = Name.ToSQLiteFormat() + " " + GetTypeString(Type);

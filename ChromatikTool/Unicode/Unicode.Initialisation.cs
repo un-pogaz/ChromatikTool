@@ -20,9 +20,9 @@ namespace Chromatik.Unicode
         /// </summary>
         static public void Load(string lang)
         {
-            LoadFromXml(Resources.Unicode_XML, lang);
-            Charset.LoadFromXml(Resources.Charsets_XML, lang);
-            ConScript.LoadFromXml(Resources.ConScript_XML, lang);
+            LoadFromXml(ResourcesUnicode.Unicode_XML, lang);
+            Charset.LoadFromXml(ResourcesUnicode.Charsets_XML, lang);
+            ConScript.LoadFromXml(ResourcesUnicode.ConScript_XML, lang);
         }
     }
 }

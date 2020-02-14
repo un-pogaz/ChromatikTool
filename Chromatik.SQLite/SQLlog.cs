@@ -50,7 +50,7 @@ namespace Chromatik.SQLite
         /// </summary>
         public string msgErr { get; } = string.Empty;
 
-        /// <summary> </summary>
+        /// <summary></summary>
         override public string ToString()
         {
             return msgErr;

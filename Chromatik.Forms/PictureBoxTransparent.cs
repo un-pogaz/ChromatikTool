@@ -22,7 +22,7 @@ namespace System.Windows.Forms
         }
         Timer timer = new Timer();
 
-        /// <summary> </summary>
+        /// <summary></summary>
         /// <param name="disposing"></param>
         protected override void Dispose(bool disposing)
         {

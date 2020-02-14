@@ -5,7 +5,7 @@ using System.Data;
 
 namespace Chromatik.SQLite
 {
-    /// <summary> </summary>
+    /// <summary></summary>
     public struct SQLiteAssociateTable
     {
         /// <summary>
@@ -28,7 +28,7 @@ namespace Chromatik.SQLite
             SQL = sql;
         }
 
-        /// <summary> </summary>
+        /// <summary></summary>
         public override string ToString()
         {
             return Name + " ["+ AssociateTable + "]";

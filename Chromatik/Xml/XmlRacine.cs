@@ -4,7 +4,7 @@ using System.Text;
 
 namespace System.Xml
 {
-    /// <summary> </summary>
+    /// <summary></summary>
     public class XmlRacine : XmlElement
     {
         /// <summary>

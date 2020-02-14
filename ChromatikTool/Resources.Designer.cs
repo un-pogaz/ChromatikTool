@@ -61,75 +61,6 @@ namespace Chromatik {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-        ///&lt;XML&gt;
-        ///  &lt;Charsets&gt;
-        ///    
-        ///    &lt;Charset nameID=&quot;ASCII&quot;&gt;
-        ///      &lt;Name lang=&quot;en&quot;&gt;ASCII&lt;/Name&gt;
-        ///      &lt;Description lang=&quot;en&quot;&gt;&lt;/Description&gt;
-        ///      &lt;Localisable&gt;
-        ///        &lt;Languages lang=&quot;en&quot;&gt;&lt;/Languages&gt;
-        ///        &lt;Countries lang=&quot;en&quot;&gt;&lt;/Countries&gt;
-        ///      &lt;/Localisable&gt;
-        ///      &lt;CodeRange&gt;
-        ///        &lt;Range&gt;0000-007F&lt;/Range&gt;
-        ///      &lt;/CodeRange&gt;
-        ///    &lt;/Charset&gt;
-        ///    &lt;Charset nameID=&quot;Latin-1&quot;&gt;
-        ///      &lt;Name lang=&quot;en&quot;&gt;Latin-1&lt;/Name&gt;
-        ///      &lt;Description lang=&quot;en&quot;&gt;Latin-1 Western European&lt;/Descript [le reste de la chaîne a été tronqué]&quot;;.
-        /// </summary>
-        internal static string Charsets_XML {
-            get {
-                return ResourceManager.GetString("Charsets_XML", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-        ///&lt;XML&gt;
-        ///  &lt;ConScript&gt;
-        ///    &lt;Plane nameID=&quot;ConScript Unicode Registry&quot;&gt;
-        ///      &lt;Name lang=&quot;en&quot;&gt;ConScript Unicode Registry&lt;/Name&gt;
-        ///      &lt;Description lang=&quot;en&quot;&gt;&lt;/Description&gt;
-        ///      
-        ///      &lt;Block nameID=&quot;Tengwar&quot;&gt;
-        ///        &lt;Name lang=&quot;en&quot;&gt;Tengwar&lt;/Name&gt;
-        ///        &lt;Description lang=&quot;en&quot;&gt;&lt;/Description&gt;
-        ///        &lt;Localisable&gt;
-        ///          &lt;Languages lang=&quot;en&quot;&gt;&lt;/Languages&gt;
-        ///          &lt;Countries lang=&quot;en&quot;&gt;&lt;/Countries&gt;
-        ///        &lt;/Localisable&gt;
-        ///        &lt;WebCharTable url=&quot;https://www.evertype.c [le reste de la chaîne a été tronqué]&quot;;.
-        /// </summary>
-        internal static string ConScript_XML {
-            get {
-                return ResourceManager.GetString("ConScript_XML", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une chaîne localisée semblable à &lt;?xml version=&quot;1.0&quot; ?&gt;
-        ///&lt;!DOCTYPE TS&gt;
-        ///&lt;TS language=&quot;fr&quot; version=&quot;2.1&quot;&gt;
-        ///&lt;context&gt;
-        ///  &lt;name&gt;About&lt;/name&gt;
-        ///  &lt;message&gt;
-        ///    &lt;location filename=&quot;../../Form_Files/About.ui&quot; line=&quot;14&quot;/&gt;
-        ///    &lt;source&gt;About&lt;/source&gt;
-        ///    &lt;translation&gt;À propos&lt;/translation&gt;
-        ///  &lt;/message&gt;
-        ///&lt;/context&gt;
-        ///&lt;/TS&gt;.
-        /// </summary>
-        internal static string HelloWorld_ts {
-            get {
-                return ResourceManager.GetString("HelloWorld_ts", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Recherche une chaîne localisée semblable à &lt;!--
         ///    This HTML DTD is based on loose.dtd from the W3C, but it is even looser
         ///    so as to allow for the types of real world messy HTML you find out on the
@@ -144,8 +75,7 @@ namespace Chromatik {
         ///    &lt;html&gt;
         ///    &lt;head&gt;
         ///    ...
-        ///    &lt;/head&gt;
-        ///    [le reste de la chaîne a été tronqué]&quot;;.
+        ///  [le reste de la chaîne a été tronqué]&quot;;.
         /// </summary>
         internal static string Html_dtd {
             get {
@@ -154,25 +84,18 @@ namespace Chromatik {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-        ///&lt;XML&gt;
-        ///  &lt;Unicode&gt;
-        ///    &lt;Plane nameID=&quot;Basic Multilingual Plane&quot;&gt;
-        ///      &lt;Name lang=&quot;en&quot;&gt;Basic Multilingual Plane&lt;/Name&gt;
-        ///      &lt;Name lang=&quot;fr&quot;&gt;Plan multilingue de base&lt;/Name&gt;
-        ///      &lt;Description lang=&quot;en&quot;&gt;&lt;/Description&gt;
-        ///      &lt;Block nameID=&quot;C0 Controls&quot;&gt;
-        ///        &lt;Name lang=&quot;en&quot;&gt;C0 Controls&lt;/Name&gt;
-        ///        &lt;Name lang=&quot;fr&quot;&gt;Controle C0&lt;/Name&gt;
-        ///        &lt;Description lang=&quot;en&quot;&gt;&lt;/Description&gt;
-        ///        &lt;Localisable&gt;
-        ///          &lt;Languages&gt;&lt;/Languages&gt;
-        ///          &lt;Countries&gt;&lt;/Countries&gt;
-        /// [le reste de la chaîne a été tronqué]&quot;;.
+        ///   Recherche une chaîne localisée semblable à public static class {0} {
+        ///static internal Regex _regex = new Regex(&quot;{1}&quot;, ({2}), new TimeSpan({3}));
+        ///static public string Pattern { get { return _regex.ToString(); } }
+        ///static public RegexOptions Options { get { return _regex.Options; } }
+        ///static public TimeSpan MatchTimeout { get { return _regex.MatchTimeout; } }
+        ///static public bool RightToLeft { get { return _regex.RightToLeft; } }
+        ///static public string[] GetGroupNames() { return _regex.GetGroupNames(); }
+        ///static public int[] GetGroupNumbers() { return _ [le reste de la chaîne a été tronqué]&quot;;.
         /// </summary>
-        internal static string Unicode_XML {
+        internal static string RegexStatic {
             get {
-                return ResourceManager.GetString("Unicode_XML", resourceCulture);
+                return ResourceManager.GetString("RegexStatic", resourceCulture);
             }
         }
     }

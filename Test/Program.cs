@@ -39,10 +39,18 @@ namespace Test
             XmlHtmlEntity h = new XmlHtmlEntity("nbsp", 160, false);
 
             string t1 = Settings.Args.GetNextArg("--test1");
-            ;
-            string t2 = t1;
 
-            t2 = "00";
+            
+            System.Text.RegularExpressions.CompiledRegex comp = System.Text.RegularExpressions.CompiledRegex.LoadFromAssemblyFile(@"F:\Projet\GitHub\RegexLib.dll");
+
+            System.Text.RegularExpressions.CompiledRegex.GenerateFile("CompiledRegex.cs", comp);
+
+            System.Text.RegularExpressions.CompiledRegex.GenerateFile("CompiledRegex.Xml.XmlHtmlEntity.cs", XmlHtmlEntity.GetRegexCompilationInfo());
+
+            ;
+
+            
+            
 
             string[] tbl = new string[] {
                 HashKey.DigestFile(HashAlgorithmEnum.MD5, "XLIFF_2.xlf"),
@@ -59,6 +67,7 @@ namespace Test
             //System.Globalization.Localization.QtTranslation trs = System.Globalization.Localization.QtTranslation.LoadTranslation(@"for_translation_sigil_sigil_fr.ts.xml");
             //trs.Save("test.ts.xml");
 
+
             ;
             Xliff xliff = Xliff.LoadXliff("XLIFF_2.xlf");
 
@@ -68,8 +77,7 @@ namespace Test
 
             xliff[0].ID = "f3";
             xliff[0].ID = "f2";
-
-
+            
             XmlDocument xml = XmlDocumentCreate.DocumentXML("<xml><span>kkkkkkk</span> <span de=\"\">yyyy</span><i> 65246541 </i><span>sdfwsfd</span></xml>");
             
             XmlDocumentWriter.Document("test.0.xml", xml, DocumentType.HTML5);
@@ -78,8 +86,8 @@ namespace Test
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
         }
+        
 
-       
 
         static public void Incremente(string input)
         {

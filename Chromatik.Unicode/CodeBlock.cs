@@ -7,18 +7,18 @@ using System.Xml;
 
 namespace Chromatik.Unicode
 {
-    /// <summary> </summary>
+    /// <summary></summary>
     public enum LanguageType
     {
-        /// <summary> </summary>
+        /// <summary></summary>
         Udefined,
-        /// <summary> </summary>
+        /// <summary></summary>
         Systeme,
-        /// <summary> </summary>
+        /// <summary></summary>
         Alphabet,
-        /// <summary> </summary>
+        /// <summary></summary>
         AlphabetSupplement,
-        /// <summary> </summary>
+        /// <summary></summary>
         NotUsed
     }
 
@@ -64,13 +64,13 @@ namespace Chromatik.Unicode
         }
         private Hexa[] _codePoints;
 
-        /// <summary> </summary>
+        /// <summary></summary>
         public Hexa this[int index]
         {
             get { return _codePoints[index]; }
             set { _codePoints[index] = value; }
         }
-        /// <summary> </summary>
+        /// <summary></summary>
         public IEnumerator<Hexa> GetEnumerator()
         {
             foreach (Hexa item in CodePoints)
@@ -144,10 +144,10 @@ namespace Chromatik.Unicode
         /// </summary>
         public string WebCharTable { get; set; }
 
-        /// <summary> </summary>
+        /// <summary></summary>
         public LanguageType Type { get; set; }
 
-        /// <summary> </summary>
+        /// <summary></summary>
         public bool RigthToLeft { get; set; }
 
         /// <summary>

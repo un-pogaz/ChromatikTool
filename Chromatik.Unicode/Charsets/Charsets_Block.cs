@@ -87,28 +87,28 @@ namespace Chromatik.Unicode
                 throw XmlUnicodeException.NoLoaded;
         }
 
-        /// <summary> </summary>
+        /// <summary></summary>
         public struct Sets
         {
-            /// <summary> </summary>
+            /// <summary></summary>
             static public CodeBlock ASCII
             {
                 get { return  CharsetFromXml(XmlCharset, XmlLang, "ASCII"); }
             }
 
-            /// <summary> </summary>
+            /// <summary></summary>
             static public CodeBlock Latin_1
             {
                 get { return CharsetFromXml(XmlCharset, XmlLang, "Latin-1"); }
             }
 
-            /// <summary> </summary>
+            /// <summary></summary>
             static public CodeBlock Latin_9
             {
                 get { return CharsetFromXml(XmlCharset, XmlLang, "Latin-9"); }
             }
 
-            /// <summary> </summary>
+            /// <summary></summary>
             static public CodeBlock Windows_1252
             {
                 get { return CharsetFromXml(XmlCharset, XmlLang, "Windows-1252"); }

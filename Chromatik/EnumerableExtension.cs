@@ -175,24 +175,26 @@ namespace System.Linq
             return enumerable;
         }
 
+        /// <summary>
+        /// Get the duplicate entry in a enumeration
+        /// </summary>
+        /// <param name="enumerable"></param>
+        /// <returns></returns>
+        static public T[] GetDuplicate<T>(this IEnumerable<T> enumerable)
+        {
+            return enumerable.GetDuplicateCounted().Keys.ToArray();
+        }
 
         /// <summary>
-        /// Convert <see cref="IEnumerable"/> to a <see cref="object"/> <see cref="IEnumerable{T}"/> collection
+        /// Get the duplicate entry in a enumeration with the count
         /// </summary>
-        /// <param name="source"></param>
+        /// <param name="enumerable"></param>
         /// <returns></returns>
-        static public IEnumerable<object> ToObjectEnumerable(this IEnumerable source)
+        static public IDictionary<T, int> GetDuplicateCounted<T>(this IEnumerable<T> enumerable)
         {
-            return Enumerable.OfType<object>(source);
-        }
-        /// <summary>
-        /// Convert <see cref="IEnumerable"/> to a <see cref="object"/> array
-        /// </summary>
-        /// <param name="source"></param>
-        /// <returns></returns>
-        static public object[] ToObjectArray(this IEnumerable source)
-        {
-            return source.ToObjectEnumerable().ToArray();
+            return enumerable.GroupBy(x => x)
+              .Where(g => g.Count() > 1)
+              .ToDictionary(x => x.Key, y => y.Count());
         }
     }
 }

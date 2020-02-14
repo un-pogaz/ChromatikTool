@@ -20,7 +20,7 @@ namespace Chromatik.SQLite
             items = new List<SQLlog>(collection);
         }
 
-        /// <summary> </summary>
+        /// <summary></summary>
         public SQLlog this[int index]
         {
             get { return items[index]; }
@@ -34,7 +34,7 @@ namespace Chromatik.SQLite
                 items.RemoveAt(items.Count - 1);
         }
 
-        /// <summary> </summary>
+        /// <summary></summary>
         public bool ContainFailedRequest { get { return (Failed.Count > 0); } }
 
         /// <summary>
@@ -81,7 +81,7 @@ namespace Chromatik.SQLite
             }
         }
 
-        /// <summary> </summary>
+        /// <summary></summary>
         public IEnumerator<SQLlog> GetEnumerator()
         {
             return items.GetEnumerator();
@@ -91,7 +91,7 @@ namespace Chromatik.SQLite
             return items.GetEnumerator();
         }
 
-        /// <summary> </summary>
+        /// <summary></summary>
         public int Count { get { return items.Count; } }
     }
 }

@@ -16,13 +16,13 @@ namespace Chromatik.Unicode
 
         static private string NameID = "Charsets";
 
-        /// <summary> </summary>
+        /// <summary></summary>
         static public CodePlane Charsets { get; private set; } = new CodePlane(NameID);
 
-        /// <summary> </summary>
+        /// <summary></summary>
         static public string Name { get; } = Charsets.Name;
 
-        /// <summary> </summary>
+        /// <summary></summary>
         static public string Description { get; } = Charsets.Description;
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace Chromatik.Unicode
 
         }
 
-        /// <summary> </summary>
+        /// <summary></summary>
         static public string[] GetBlocksNames()
         {
             return Charsets.GetBlocksNames();

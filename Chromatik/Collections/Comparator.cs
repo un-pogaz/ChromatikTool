@@ -65,7 +65,7 @@ namespace System.Collections.Generic
             }
         }
 
-        /// <summary> </summary>
+        /// <summary></summary>
         public virtual int Compare(T x, T y)
         {
             if (x == null && y == null)
@@ -99,7 +99,7 @@ namespace System.Collections.Generic
             return 0;
         }
 
-        /// <summary> </summary>
+        /// <summary></summary>
         public int Compare(object x, object y)
         {
             if (x == null && y == null)
@@ -122,23 +122,23 @@ namespace System.Collections.Generic
             return 0;
         }
 
-        /// <summary> </summary>
+        /// <summary></summary>
         public bool Equals(T x, T y)
         {
             return (Compare(x, y) == 0);
         }
-        /// <summary> </summary>
+        /// <summary></summary>
         new public bool Equals(object x, object y)
         {
             return (Compare(x, y) == 0);
         }
 
-        /// <summary> </summary>
+        /// <summary></summary>
         public int GetHashCode(T obj)
         {
             return obj.GetHashCode();
         }
-        /// <summary> </summary>
+        /// <summary></summary>
         public int GetHashCode(object obj)
         {
             return obj.GetHashCode();
@@ -165,16 +165,16 @@ namespace System.Collections.Generic
         /// </summary>
         public static IComparer<TValue> DefaultalueComparator { get; } = comp.ValueComparator;
 
-        /// <summary> </summary>
+        /// <summary></summary>
         public static IComparer<KeyValuePair<TKey, TValue>> DefaultOnlyKeys { get; } = comp.OnlyKeys;
 
-        /// <summary> </summary>
+        /// <summary></summary>
         public static IComparer<KeyValuePair<TKey, TValue>> DefaultOnlyValues { get; } = comp.OnlyValues;
 
-        /// <summary> </summary>
+        /// <summary></summary>
         public static IComparer<KeyValuePair<TKey, TValue>> DefaultKeysAndValues { get; } = comp.KeysAndValues;
 
-        /// <summary> </summary>
+        /// <summary></summary>
         public static IComparer<KeyValuePair<TKey, TValue>> DefaultValuesAndKeys { get; } = comp.ValuesAndKeys;
 
         /// <summary>== KeysAndValues</summary>
@@ -202,22 +202,22 @@ namespace System.Collections.Generic
         /// </summary>
         public Type TypeOfValue;
 
-        /// <summary> </summary>
+        /// <summary></summary>
         public IComparer<KeyValuePair<TKey, TValue>> OnlyKeys { get; }
 
-        /// <summary> </summary>
+        /// <summary></summary>
         public IComparer<KeyValuePair<TKey, TValue>> OnlyValues { get; }
 
-        /// <summary> </summary>
+        /// <summary></summary>
         public IComparer<KeyValuePair<TKey, TValue>> KeysAndValues { get; }
 
-        /// <summary> </summary>
+        /// <summary></summary>
         public IComparer<KeyValuePair<TKey, TValue>> ValuesAndKeys { get; }
 
-        /// <summary> </summary>
+        /// <summary></summary>
         public Comparator() : this(null, null)
         { }
-        /// <summary> </summary>
+        /// <summary></summary>
         public Comparator(IComparer<TKey> keyCompare, IComparer<TValue> valueCompare)
         {
             if (keyCompare == null)
@@ -271,7 +271,7 @@ namespace System.Collections.Generic
 
         }
 
-        /// <summary> </summary>
+        /// <summary></summary>
         public int Compare(object x, object y)
         {
             if (x == null && y == null)

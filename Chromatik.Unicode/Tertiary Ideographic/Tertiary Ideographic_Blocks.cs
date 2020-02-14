@@ -7,7 +7,7 @@ namespace Chromatik.Unicode
 {
     partial class TertiaryIdeographic
     {
-        /// <summary> </summary>
+        /// <summary></summary>
         public struct TIP
         {
 

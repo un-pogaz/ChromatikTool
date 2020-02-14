@@ -234,16 +234,15 @@ namespace System.Text.RegularExpressions
         /// <returns></returns>
         static public CompiledRegex CompileToAssembly(string name, CompiledRegexList list, RegexOptions options, TimeSpan matchTimeout)
         {
-            if (name.IsNullOrWhiteSpace())
-                throw new ArgumentNullException(nameof(name));
+            if (list == null)
+                throw new ArgumentNullException(nameof(list));
+            if (list.Count == 0)
+                throw new ArgumentException("The input list must have at least one entry.", nameof(list));
 
-            name = name.Trim();
-            if (!name.RegexIsMatch(RegexHelper.ASCII_forCsharpNameSpace))
-                throw new IO.InvalidPathException("Invalide " + nameof(name) + ". Contain a non-ASCII character.");
-            if (name.RegexIsMatch(@"[\\/:*?\"" <>|]"))
-                throw new IO.InvalidPathException("Invalide " + nameof(name) + ". Contain a invalid file name character.");
+            if (options.HasFlag(RegexOptions.Compiled))
+                options ^= RegexOptions.Compiled;
 
-            return CompileToAssembly(new AssemblyName(name + ", Version=1.0.0, Culture=neutral, PublicKeyToken=null"), list, options, matchTimeout);
+            return CompileToAssembly(name, Convert(list, options, matchTimeout));
         }
         /// <summary>
         /// Compile a <see cref="CompiledRegexList"/> into a Assembly file (.dll)
@@ -263,15 +262,141 @@ namespace System.Text.RegularExpressions
             if (options.HasFlag(RegexOptions.Compiled))
                 options ^= RegexOptions.Compiled;
 
-            List<RegexCompilationInfo> lst = new List<RegexCompilationInfo>(list.Count);
+            return CompileToAssembly(assemblyName, Convert(list, options, matchTimeout));
+        }
 
-            foreach (var item in list)
-                lst.Add(new RegexCompilationInfo(item.Pattern, options, item.Name, item.Namespace, true, matchTimeout));
+        static private RegexCompilationInfo[] Convert(IEnumerable<CompiledRegexBase> enumerable, RegexOptions options, TimeSpan matchTimeout)
+        {
+            List<RegexCompilationInfo> rslt = new List<RegexCompilationInfo>(enumerable.Count());
+            RegexOptions opt;
+            TimeSpan timeout;
 
-            Regex.CompileToAssembly(lst.ToArray(), assemblyName);
+            foreach (var item in enumerable)
+            {
+                if (item.MatchTimeout.HasValue)
+                    timeout = item.MatchTimeout.Value;
+                else
+                    timeout = matchTimeout;
 
+                if (item.Options.HasValue)
+                    opt = item.Options.Value;
+                else
+                    opt = options;
+
+                rslt.Add(new RegexCompilationInfo(item.Pattern, opt, item.Name, item.Namespace, true, timeout));
+            }
+
+            return rslt.ToArray();
+        }
+
+        /// <summary>
+        /// Compile a enumeration into a Assembly file (.dll)
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="compilationInfos"></param>
+        static public CompiledRegex CompileToAssembly(string name, IEnumerable<RegexCompilationInfo> compilationInfos)
+        {
+            if (name.IsNullOrWhiteSpace())
+                throw new ArgumentNullException(nameof(name));
+
+            name = name.Trim();
+            if (!name.RegexIsMatch(RegexHelper.ASCII_forCsharpNameSpace))
+                throw new IO.InvalidPathException("Invalide " + nameof(name) + ". Contain a non-ASCII character.");
+            if (name.RegexIsMatch(@"[\\/:*?\"" <>|]"))
+                throw new IO.InvalidPathException("Invalide " + nameof(name) + ". Contain a invalid file name character.");
+
+            return CompileToAssembly(new AssemblyName(name + ", Version=1.0.0, Culture=neutral, PublicKeyToken=null"), compilationInfos);
+        }
+        /// <summary>
+        /// Compile a enumeration into a Assembly file (.dll)
+        /// </summary>
+        /// <param name="assemblyName"></param>
+        /// <param name="compilationInfos"></param>
+        static public CompiledRegex CompileToAssembly(AssemblyName assemblyName, IEnumerable<RegexCompilationInfo> compilationInfos)
+        {
+            Regex.CompileToAssembly(compilationInfos.ToArray(), assemblyName);
             return LoadFromAssembly(Assembly.Load(assemblyName));
         }
+
+        /// <summary>
+        /// Generate a C# file corresponding to the collection
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <param name="enumerable"></param>
+        static public void GenerateFile(string filePath, IEnumerable<CompiledRegexBase> enumerable)
+        {
+            GenerateFile(filePath, enumerable, RegexHelper.RegexOptions);
+        }
+        /// <summary>
+        /// Generate a C# file corresponding to the collection
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <param name="enumerable"></param>
+        /// <param name="options"></param>
+        static public void GenerateFile(string filePath, IEnumerable<CompiledRegexBase> enumerable, RegexOptions options)
+        {
+            GenerateFile(filePath, enumerable, options, RegexHelper.Timeout);
+        }
+        /// <summary>
+        /// Generate a C# file corresponding to the collection
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <param name="enumerable"></param>
+        /// <param name="options"></param>
+        /// <param name="matchTimeout"></param>
+        static public void GenerateFile(string filePath, IEnumerable<CompiledRegexBase> enumerable, RegexOptions options, TimeSpan matchTimeout)
+        {
+            GenerateFile(filePath, Convert(enumerable, options, matchTimeout));
+        }
+        /// <summary>
+        /// Generate a C# file corresponding to the collection
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <param name="compilationInfos"></param>
+        static public void GenerateFile(string filePath, IEnumerable<RegexCompilationInfo> compilationInfos)
+        {
+            SortedDictionary<string, List<RegexCompilationInfo>> dic = new SortedDictionary<string, List<RegexCompilationInfo>>(StringComparer.InvariantCulture);
+            
+            foreach (var item in compilationInfos)
+            {
+                if (dic.ContainsKey(item.Namespace))
+                    dic[item.Namespace].Add(item);
+                else
+                {
+                    dic.Add(item.Namespace, new List<RegexCompilationInfo>());
+                    dic[item.Namespace].Add(item);
+                }
+            }
+
+            StringBuilder rslt = new StringBuilder(2000);
+            rslt.AppendLine("using System;");
+            rslt.AppendLine("using System.Text.RegularExpressions;");
+            rslt.AppendLine();
+
+            foreach (var item in dic)
+            {
+                rslt.AppendLine("namespace " + item.Key);
+                rslt.AppendLine("{");
+                foreach (var reg in item.Value)
+                {
+                    string[] split = RegexHelper.RegexOptions.ToString().Split(",");
+                    for (int i = 0; i < split.Length; i++)
+                        split[i] = "RegexOptions." + split[i].Trim();
+                    string option = split.Join("|", StringJoinOptions.SkipNullAndWhiteSpace);
+                    
+                    rslt.AppendLine("public static class "+ reg.Name + " {");
+                    rslt.AppendLine("static Regex _regex = new Regex(@\""+ reg.Pattern.Replace("\"", "\"\"") +"\", ("+ option + "), new TimeSpan("+ reg.MatchTimeout.Ticks.ToString(Globalization.CultureInfo.InvariantCulture) + "));");
+                    rslt.AppendLine(Chromatik.Resources.RegexStatic);
+                }
+                rslt.AppendLine("}");
+
+                string d = rslt.ToString();
+            }
+
+            IO.File.WriteAllText(filePath, rslt.ToString(), UTF8SansBomEncoding.UTF8SansBom);
+        }
+
+
 
         /// <summary>
         /// Load all compiled regex in the Assembly

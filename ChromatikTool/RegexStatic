@@ -1,0 +1,25 @@
+﻿static public string Pattern { get { return _regex.ToString(); } }
+static public RegexOptions Options { get { return _regex.Options; } }
+static public TimeSpan MatchTimeout { get { return _regex.MatchTimeout; } }
+static public bool RightToLeft { get { return _regex.RightToLeft; } }
+static public string[] GetGroupNames() { return _regex.GetGroupNames(); }
+static public int[] GetGroupNumbers() { return _regex.GetGroupNumbers(); }
+static public string GroupNameFromNumber(int i) { return _regex.GroupNameFromNumber(i); }
+static public int GroupNumberFromName(string name) { return _regex.GroupNumberFromName(name); }
+static public bool IsMatch(string input) { return _regex.IsMatch(input); }
+static public bool IsMatch(string input, int startat) { return _regex.IsMatch(input, startat); }
+static public Match Match(string input) { return _regex.Match(input); }
+static public Match Match(string input, int startat) { return _regex.Match(input, startat); }
+static public Match Match(string input, int startat, int length) { return _regex.Match(input, startat, length); }
+static public MatchCollection Matches(string input) { return _regex.Matches(input); }
+static public MatchCollection Matches(string input, int startat) { return _regex.Matches(input, startat); }
+static public string[] Split(string input) { return _regex.Split(input); }
+static public string[] Split(string input, int count) { return _regex.Split(input, count); }
+static public string[] Split(string input, int count, int startat) { return _regex.Split(input, count, startat); }
+static public string Replace(string input, string replacement) { return _regex.Replace(input, replacement); }
+static public string Replace(string input, string replacement, int count) { return _regex.Replace(input, replacement, count); }
+static public string Replace(string input, string replacement, int count, int startat) { return _regex.Replace(input, replacement, count, startat); }
+static public string Replace(string input, MatchEvaluator evaluator) { return _regex.Replace(input, evaluator); }
+static public string Replace(string input, MatchEvaluator evaluator, int count) { return _regex.Replace(input, evaluator, count); }
+static public string Replace(string input, MatchEvaluator evaluator, int count, int startat) { return _regex.Replace(input, evaluator, count, startat); }
+}

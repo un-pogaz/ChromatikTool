@@ -9,6 +9,16 @@ namespace System.Text.RegularExpressions
     /// </summary>
     public abstract class CompiledRegexBase : IComparerEquatable<CompiledRegexBase>
     {
+        static CompiledRegexBase _null { get; } = new CompiledRegexEntry("temp", "temp");
+        /// <summary></summary>
+        static public IEqualityComparer<CompiledRegexBase> EqualityComparer { get; } = _null;
+        /// <summary></summary>
+        static public IComparer<CompiledRegexBase> Comparator { get; } = _null;
+        /// <summary></summary>
+        public override int GetHashCode() { return HashCode; }
+
+        static int HashCode = Runtime.CompilerServices.RuntimeHelpers.GetHashCode(_null);
+
         /// <summary>
         /// Pattern of the regex
         /// </summary>
@@ -17,7 +27,8 @@ namespace System.Text.RegularExpressions
             get { return _pattern; }
             set { _pattern = value ?? string.Empty; }
         }
-        string _pattern;
+        /// <summary></summary>
+        protected string _pattern;
 
         static private bool IsValideName(string value)
         {
@@ -82,11 +93,25 @@ namespace System.Text.RegularExpressions
         /// <summary>
         /// Default options for this regex
         /// </summary>
-        public RegexOptions? Options { get; set; }
+        public RegexOptions? Options
+        {
+            get { return _options; }
+            set { _options = value; }
+        }
+        /// <summary></summary>
+        protected RegexOptions? _options;
+
+
         /// <summary>
         /// Default MatchTimeout for this regex
         /// </summary>
-        public TimeSpan? MatchTimeout { get; set; }
+        public TimeSpan? MatchTimeout
+        {
+            get { return _matchTimeout; }
+            set { _matchTimeout = value; }
+        }
+        /// <summary></summary>
+        protected TimeSpan? _matchTimeout;
 
         /// <summary>
         /// Full qualified name of the regex
@@ -171,6 +196,8 @@ namespace System.Text.RegularExpressions
 
             return false;
         }
+        
+        
 
         /// <summary>
         /// Test if the is the same FullQualifiedName (IgnoreCase)
@@ -295,8 +322,6 @@ namespace System.Text.RegularExpressions
 
         #region interface
 
-        /// <summary></summary>
-        public override int GetHashCode() { return base.GetHashCode(); }
 
         /// <summary></summary>
         public override bool Equals(object obj) { return Equals(this, obj); }
@@ -342,15 +367,15 @@ namespace System.Text.RegularExpressions
         /// <summary>
         /// Pattern of the regex
         /// </summary>
-        new public string Pattern { get; }
+        new public string Pattern { get { return _pattern; } }
         /// <summary>
         /// Name of the regex
         /// </summary>
-        new public string Name { get; }
+        new public string Name { get { return _name; } }
         /// <summary>
         /// Namespace of the regex
         /// </summary>
-        new public string Namespace { get; }
+        new public string Namespace { get { return _namespace; } }
 
         /// <summary>
         /// Full qualified name of the regex
@@ -372,15 +397,18 @@ namespace System.Text.RegularExpressions
         /// <summary>
         /// Initialise a <see cref="CompiledRegexEntry"/> with the specified pattern, name and Namespace
         /// </summary>
-        internal CompiledRegexClass(Regex regex) : base("temp", "temp", "temp")
+        internal CompiledRegexClass(Regex regex) : base("temp", "temp")
         {
             _regex = regex;
 
-            Pattern = regex.ToString();
+            _pattern = _regex.ToString();
+
+            _matchTimeout = _regex.MatchTimeout;
+            _options = _regex.Options;
+
             Type t = regex.GetType();
-            
-            Name = t.Name;
-            Namespace = t.Namespace;
+            _name = t.Name;
+            _namespace = t.Namespace;
         }
 
         /// <summary>
@@ -398,6 +426,12 @@ namespace System.Text.RegularExpressions
                 options = regex.Options.Value;
 
             _regex = new Regex(regex.Pattern, options, matchTimeout);
+        }
+
+        /// <summary></summary>
+        public override string ToString()
+        {
+            return Pattern;
         }
 
         /// <summary>
@@ -519,11 +553,68 @@ namespace System.Text.RegularExpressions
         /// <exception cref="RegexMatchTimeoutException">The timeout period has expired.For more information on timeouts, see Notes.</exception>
         public string[] Split(string input, int count, int startat) { return _regex.Split(input, count, startat); }
 
+        /// <summary>
+        /// In the specified input substring, replaces the specified maximum number of strings that match a regular expression pattern with a specific replacement string.
+        /// </summary>
+        /// <param name="input">String in which a match is to be searched.</param>
+        /// <param name="replacement">Replacement chain.</param>
+        /// <returns>New string identical to the <paramref name="input"/> string, except that the <paramref name="replacement"/> string replaces each matching string. If the regular expression pattern has no match in the current instance, the method returns the current instance unchanged.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="input"/> or <paramref name="replacement"/> has the value null.</exception>
+        /// <exception cref="RegexMatchTimeoutException">The timeout period has expired.For more information on timeouts, see Notes.</exception>
         public string Replace(string input, string replacement) { return _regex.Replace(input, replacement); }
+        /// <summary>
+        /// In the specified input substring, replaces the specified maximum number of strings that match a regular expression pattern with a specific replacement string.
+        /// </summary>
+        /// <param name="input">String in which a match is to be searched.</param>
+        /// <param name="replacement">Replacement chain.</param>
+        /// <param name="count">Maximum number of times the splitting can take place.</param>
+        /// <returns>New string identical to the <paramref name="input"/> string, except that the <paramref name="replacement"/> string replaces each matching string. If the regular expression pattern has no match in the current instance, the method returns the current instance unchanged.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="input"/> or <paramref name="replacement"/> has the value null.</exception>
+        /// <exception cref="RegexMatchTimeoutException">The timeout period has expired.For more information on timeouts, see Notes.</exception>
         public string Replace(string input, string replacement, int count) { return _regex.Replace(input, replacement, count); }
+        /// <summary>
+        /// In the specified input substring, replaces the specified maximum number of strings that match a regular expression pattern with a specific replacement string.
+        /// </summary>
+        /// <param name="input">String in which a match is to be searched.</param>
+        /// <param name="replacement">Replacement chain.</param>
+        /// <param name="count">Maximum number of times the splitting can take place.</param>
+        /// <param name="startat">Position of the character where the search should start.</param>
+        /// <returns>New string identical to the <paramref name="input"/> string, except that the <paramref name="replacement"/> string replaces each matching string. If the regular expression pattern has no match in the current instance, the method returns the current instance unchanged.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="input"/> or <paramref name="replacement"/> has the value null.</exception>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="startat"/> is less than zero or greater than the <paramref name="input"/> lenght.</exception>
+        /// <exception cref="RegexMatchTimeoutException">The timeout period has expired.For more information on timeouts, see Notes.</exception>
         public string Replace(string input, string replacement, int count, int startat) { return _regex.Replace(input, replacement, count, startat); }
+
+        /// <summary>
+        /// In the specified input string, replaces all strings that match a specified regular expression with a string returned by a System.Text.RegularExpressions.MatchEvaluator delegate.
+        /// </summary>
+        /// <param name="input">String in which a match is to be searched.</param>
+        /// <param name="evaluator">A custom method that examines each match and returns the original match string or a replacement string.</param>
+        /// <returns>New string identical to the <paramref name="input"/> string, except that a replacement string replaces each matching string. If the regular expression pattern has no match in the current instance, the method returns the current instance unchanged.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="input"/> or <paramref name="evaluator"/> has the value null.</exception>
+        /// <exception cref="RegexMatchTimeoutException">The timeout period has expired.For more information on timeouts, see Notes.</exception>
         public string Replace(string input, MatchEvaluator evaluator) { return _regex.Replace(input, evaluator); }
+        /// <summary>
+        /// In the specified input string, replaces all strings that match a specified regular expression with a string returned by a System.Text.RegularExpressions.MatchEvaluator delegate.
+        /// </summary>
+        /// <param name="input">String in which a match is to be searched.</param>
+        /// <param name="evaluator">A custom method that examines each match and returns the original match string or a replacement string.</param>
+        /// <param name="count">Maximum number of times the splitting can take place.</param>
+        /// <returns>New string identical to the <paramref name="input"/> string, except that a replacement string replaces each matching string. If the regular expression pattern has no match in the current instance, the method returns the current instance unchanged.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="input"/> or <paramref name="evaluator"/> has the value null.</exception>
+        /// <exception cref="RegexMatchTimeoutException">The timeout period has expired.For more information on timeouts, see Notes.</exception>
         public string Replace(string input, MatchEvaluator evaluator, int count) { return _regex.Replace(input, evaluator, count); }
+        /// <summary>
+        /// In the specified input string, replaces all strings that match a specified regular expression with a string returned by a System.Text.RegularExpressions.MatchEvaluator delegate.
+        /// </summary>
+        /// <param name="input">String in which a match is to be searched.</param>
+        /// <param name="evaluator">A custom method that examines each match and returns the original match string or a replacement string.</param>
+        /// <param name="count">Maximum number of times the splitting can take place.</param>
+        /// <param name="startat">Position of the character where the search should start.</param>
+        /// <returns>New string identical to the <paramref name="input"/> string, except that a replacement string replaces each matching string. If the regular expression pattern has no match in the current instance, the method returns the current instance unchanged.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="input"/> or <paramref name="evaluator"/> has the value null.</exception>
+        /// <exception cref="ArgumentOutOfRangeException"><paramref name="startat"/> is less than zero or greater than the <paramref name="input"/> lenght.</exception>
+        /// <exception cref="RegexMatchTimeoutException">The timeout period has expired.For more information on timeouts, see Notes.</exception>
         public string Replace(string input, MatchEvaluator evaluator, int count, int startat) { return _regex.Replace(input, evaluator, count, startat); }
     }
 }

@@ -11,295 +11,295 @@ namespace Chromatik.Unicode
         /// </summary>
         public struct CSUR
         {
-            /// <summary> </summary>
+            /// <summary></summary>
             static public CodeBlock Tengwar
             {
                 get { return CodeBlock.LoadFromXml(XmlCSUR, XmlLang, "Tengwar"); }
             }
 
-            /// <summary> </summary>
+            /// <summary></summary>
             static public CodeBlock Cirth
             {
                 get { return CodeBlock.LoadFromXml(XmlCSUR, XmlLang, "Cirth"); }
             }
 
-            /// <summary> </summary>
+            /// <summary></summary>
             static public CodeBlock Engsvanyali
             {
                 get { return CodeBlock.LoadFromXml(XmlCSUR, XmlLang, "Engsvanyáli"); }
             }
 
-            /// <summary> </summary>
+            /// <summary></summary>
             static public CodeBlock Kinya
             {
                 get { return CodeBlock.LoadFromXml(XmlCSUR, XmlLang, "Kinya"); }
             }
 
-            /// <summary> </summary>
+            /// <summary></summary>
             static public CodeBlock Ilianore
             {
                 get { return CodeBlock.LoadFromXml(XmlCSUR, XmlLang, "Ilianore"); }
             }
 
-            /// <summary> </summary>
+            /// <summary></summary>
             static public CodeBlock Syai
             {
                 get { return CodeBlock.LoadFromXml(XmlCSUR, XmlLang, "Syai"); }
             }
 
-            /// <summary> </summary>
+            /// <summary></summary>
             static public CodeBlock Verdurian
             {
                 get { return CodeBlock.LoadFromXml(XmlCSUR, XmlLang, "Verdurian"); }
             }
 
-            /// <summary> </summary>
+            /// <summary></summary>
             static public CodeBlock aUI
             {
                 get { return CodeBlock.LoadFromXml(XmlCSUR, XmlLang, "aUI"); }
             }
 
-            /// <summary> </summary>
+            /// <summary></summary>
             static public CodeBlock AmmanIar
             {
                 get { return CodeBlock.LoadFromXml(XmlCSUR, XmlLang, "Amman-Iar"); }
             }
 
-            /// <summary> </summary>
+            /// <summary></summary>
             static public CodeBlock Streich
             {
                 get { return CodeBlock.LoadFromXml(XmlCSUR, XmlLang, "Streich"); }
             }
 
-            /// <summary> </summary>
+            /// <summary></summary>
             static public CodeBlock Xaini
             {
                 get { return CodeBlock.LoadFromXml(XmlCSUR, XmlLang, "Xaîni"); }
             }
 
-            /// <summary> </summary>
+            /// <summary></summary>
             static public CodeBlock Mizarian
             {
                 get { return CodeBlock.LoadFromXml(XmlCSUR, XmlLang, "Mizarian"); }
             }
 
-            /// <summary> </summary>
+            /// <summary></summary>
             static public CodeBlock Ziri_nnka
             {
                 get { return CodeBlock.LoadFromXml(XmlCSUR, XmlLang, "Zírí:nnka"); }
             }
 
-            /// <summary> </summary>
+            /// <summary></summary>
             static public CodeBlock Sarkai
             {
                 get { return CodeBlock.LoadFromXml(XmlCSUR, XmlLang, "Sarkai"); }
             }
 
-            /// <summary> </summary>
+            /// <summary></summary>
             static public CodeBlock Thelwik
             {
                 get { return CodeBlock.LoadFromXml(XmlCSUR, XmlLang, "Thelwik"); }
             }
 
-            /// <summary> </summary>
+            /// <summary></summary>
             static public CodeBlock Olaetyan
             {
                 get { return CodeBlock.LoadFromXml(XmlCSUR, XmlLang, "Olaetyan"); }
             }
 
-            /// <summary> </summary>
+            /// <summary></summary>
             static public CodeBlock Niskloz
             {
                 get { return CodeBlock.LoadFromXml(XmlCSUR, XmlLang, "Nísklôz"); }
             }
 
-            /// <summary> </summary>
+            /// <summary></summary>
             static public CodeBlock Kazat_akkorou
             {
                 get { return CodeBlock.LoadFromXml(XmlCSUR, XmlLang, "Kazat ?akkorou"); }
             }
 
-            /// <summary> </summary>
+            /// <summary></summary>
             static public CodeBlock Kazvarad
             {
                 get { return CodeBlock.LoadFromXml(XmlCSUR, XmlLang, "Kazvarad"); }
             }
 
-            /// <summary> </summary>
+            /// <summary></summary>
             static public CodeBlock Zarkhand
             {
                 get { return CodeBlock.LoadFromXml(XmlCSUR, XmlLang, "Zarkhánd"); }
             }
 
-            /// <summary> </summary>
+            /// <summary></summary>
             static public CodeBlock Rozhxh
             {
                 get { return CodeBlock.LoadFromXml(XmlCSUR, XmlLang, "Røzhxh"); }
             }
 
-            /// <summary> </summary>
+            /// <summary></summary>
             static public CodeBlock Serivelna
             {
                 get { return CodeBlock.LoadFromXml(XmlCSUR, XmlLang, "Serivelna"); }
             }
 
-            /// <summary> </summary>
+            /// <summary></summary>
             static public CodeBlock Kelwathi
             {
                 get { return CodeBlock.LoadFromXml(XmlCSUR, XmlLang, "Kelwathi"); }
             }
 
-            /// <summary> </summary>
+            /// <summary></summary>
             static public CodeBlock Saklor
             {
                 get { return CodeBlock.LoadFromXml(XmlCSUR, XmlLang, "Saklor"); }
             }
 
-            /// <summary> </summary>
+            /// <summary></summary>
             static public CodeBlock Rynnan
             {
                 get { return CodeBlock.LoadFromXml(XmlCSUR, XmlLang, "Rynnan"); }
             }
 
-            /// <summary> </summary>
+            /// <summary></summary>
             static public CodeBlock Alzetjan
             {
                 get { return CodeBlock.LoadFromXml(XmlCSUR, XmlLang, "Alzetjan"); }
             }
 
-            /// <summary> </summary>
+            /// <summary></summary>
             static public CodeBlock Telarasso
             {
                 get { return CodeBlock.LoadFromXml(XmlCSUR, XmlLang, "Telarasso"); }
             }
 
-            /// <summary> </summary>
+            /// <summary></summary>
             static public CodeBlock Ssuraki
             {
                 get { return CodeBlock.LoadFromXml(XmlCSUR, XmlLang, "Ssûraki"); }
             }
 
-            /// <summary> </summary>
+            /// <summary></summary>
             static public CodeBlock Gargoyle
             {
                 get { return CodeBlock.LoadFromXml(XmlCSUR, XmlLang, "Gargoyle"); }
             }
 
-            /// <summary> </summary>
+            /// <summary></summary>
             static public CodeBlock Ophidian
             {
                 get { return CodeBlock.LoadFromXml(XmlCSUR, XmlLang, "Ophidian"); }
             }
 
-            /// <summary> </summary>
+            /// <summary></summary>
             static public CodeBlock Ferengi
             {
                 get { return CodeBlock.LoadFromXml(XmlCSUR, XmlLang, "Ferengi"); }
             }
 
-            /// <summary> </summary>
+            /// <summary></summary>
             static public CodeBlock SeussianLatinExtensions
             {
                 get { return CodeBlock.LoadFromXml(XmlCSUR, XmlLang, "Seussian Latin Extensions"); }
             }
 
-            /// <summary> </summary>
+            /// <summary></summary>
             static public CodeBlock Sylabica
             {
                 get { return CodeBlock.LoadFromXml(XmlCSUR, XmlLang, "Sylabica"); }
             }
 
-            /// <summary> </summary>
+            /// <summary></summary>
             static public CodeBlock Ewellic
             {
                 get { return CodeBlock.LoadFromXml(XmlCSUR, XmlLang, "Ewellic"); }
             }
 
-            /// <summary> </summary>
+            /// <summary></summary>
             static public CodeBlock Unifon
             {
                 get { return CodeBlock.LoadFromXml(XmlCSUR, XmlLang, "Unifon"); }
             }
 
-            /// <summary> </summary>
+            /// <summary></summary>
             static public CodeBlock Solresol
             {
                 get { return CodeBlock.LoadFromXml(XmlCSUR, XmlLang, "Solresol"); }
             }
 
-            /// <summary> </summary>
+            /// <summary></summary>
             static public CodeBlock VisibleSpeech
             {
                 get { return CodeBlock.LoadFromXml(XmlCSUR, XmlLang, "Visible Speech"); }
             }
 
-            /// <summary> </summary>
+            /// <summary></summary>
             static public CodeBlock Monofon
             {
                 get { return CodeBlock.LoadFromXml(XmlCSUR, XmlLang, "Monofon"); }
             }
 
-            /// <summary> </summary>
+            /// <summary></summary>
             static public CodeBlock Dni
             {
                 get { return CodeBlock.LoadFromXml(XmlCSUR, XmlLang, "Dni"); }
             }
 
-            /// <summary> </summary>
+            /// <summary></summary>
             static public CodeBlock Aurebesh
             {
                 get { return CodeBlock.LoadFromXml(XmlCSUR, XmlLang, "Aurebesh"); }
             }
 
-            /// <summary> </summary>
+            /// <summary></summary>
             static public CodeBlock Tonal
             {
                 get { return CodeBlock.LoadFromXml(XmlCSUR, XmlLang, "Tonal"); }
             }
 
-            /// <summary> </summary>
+            /// <summary></summary>
             static public CodeBlock Glaitha_A
             {
                 get { return CodeBlock.LoadFromXml(XmlCSUR, XmlLang, "Glaitha-A"); }
             }
 
-            /// <summary> </summary>
+            /// <summary></summary>
             static public CodeBlock Glaitha_B
             {
                 get { return CodeBlock.LoadFromXml(XmlCSUR, XmlLang, "Glaitha-B"); }
             }
 
-            /// <summary> </summary>
+            /// <summary></summary>
             static public CodeBlock Lhenazi
             {
                 get { return CodeBlock.LoadFromXml(XmlCSUR, XmlLang, "Lhenazi"); }
             }
 
-            /// <summary> </summary>
+            /// <summary></summary>
             static public CodeBlock Wanya
             {
                 get { return CodeBlock.LoadFromXml(XmlCSUR, XmlLang, "Wanya"); }
             }
 
-            /// <summary> </summary>
+            /// <summary></summary>
             static public CodeBlock Dein
             {
                 get { return CodeBlock.LoadFromXml(XmlCSUR, XmlLang, "Dein"); }
             }
 
-            /// <summary> </summary>
+            /// <summary></summary>
             static public CodeBlock Niji
             {
                 get { return CodeBlock.LoadFromXml(XmlCSUR, XmlLang, "Niji"); }
             }
 
-            /// <summary> </summary>
+            /// <summary></summary>
             static public CodeBlock Aiha
             {
                 get { return CodeBlock.LoadFromXml(XmlCSUR, XmlLang, "Aiha"); }
             }
 
-            /// <summary> </summary>
+            /// <summary></summary>
             static public CodeBlock Klingon
             {
                 get { return CodeBlock.LoadFromXml(XmlCSUR, XmlLang, "Klingon"); }
@@ -307,13 +307,13 @@ namespace Chromatik.Unicode
 
             //////  F0000 //////
 
-            /// <summary> </summary>
+            /// <summary></summary>
             static public CodeBlock KinyaSyllables
             {
                 get { return CodeBlock.LoadFromXml(XmlCSUR, XmlLang, "Kinya Syllables"); }
             }
 
-            /// <summary> </summary>
+            /// <summary></summary>
             static public CodeBlock Pikto
             {
                 get { return CodeBlock.LoadFromXml(XmlCSUR, XmlLang, "Pikto"); }

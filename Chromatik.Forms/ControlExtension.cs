@@ -131,7 +131,7 @@ namespace System.Windows.Forms
                             g.TranslateTransform(item.Left - control.Left, item.Top - control.Top);
                             break;
                     }
-                    g.DrawImageUnscaled(bmp, Point.Empty);
+                    g.DrawImageUnscaled(bmp, System.Drawing.Point.Empty);
                     g.TranslateTransform(control.Left - item.Left, control.Top - item.Top);
                     bmp.Dispose();
                 }
