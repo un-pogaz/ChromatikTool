@@ -26,7 +26,13 @@ namespace System.Reflection
         /// <param name="fieldName"></param>
         /// <returns></returns>
         static public T GetValueOf<T>(this object obj, string fieldName) { return obj.ExistedValueOf(fieldName, bindingFlags).CastValueOrDefault<T>(fieldName); }
-        
+        /// <summary>
+        /// Get the value of a Field or Property with the specified <see cref="BindingFlags"/>
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <param name="fieldName"></param>
+        /// <param name="bindingFlags"></param>
+        /// <returns></returns>
         static public object GetValueOf(this object obj, string fieldName, BindingFlags bindingFlags) { return obj.ExistedValueOf(fieldName, bindingFlags).Value; }
         /// <summary>
         /// Get the value of a Field or Property with the specified <see cref="BindingFlags"/>
@@ -94,17 +100,32 @@ namespace System.Reflection
 
             throw new InvalidCastException("The value of the requested Field '"+ fieldName + "' is not of the Type called.");
         }
-        
+
+        /// <summary>
+        /// Invokes the void constructor
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
         static public object InvokeConstructor(this Type type)
         {
             return type.InvokeConstructor(new object[0]);
         }
-
+        /// <summary>
+        /// Invokes the constructor corresponding to the specified parameter
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="parameters"></param>
+        /// <returns></returns>
         static public object InvokeConstructor(this Type type, params object[] parameters)
         {
-
             return type.GetConstructors().InvokeConstructor(parameters);
         }
+        /// <summary>
+        /// Invokes the constructor corresponding to the specified parameter
+        /// </summary>
+        /// <param name="constructors"></param>
+        /// <param name="parameters"></param>
+        /// <returns></returns>
         static public object InvokeConstructor(this ConstructorInfo[] constructors, params object[] parameters)
         {
             if (parameters == null)
@@ -134,17 +155,24 @@ namespace System.Reflection
 
             return null;
         }
-        
-        static public bool IsChildOf(this Type type, Type parent)
+        /// <summary>
+        /// Determines if the type is an inheritance from a other.
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="parent"></param>
+        /// <returns></returns>
+        static public bool IsInheritanceOf(this Type type, Type parent)
         {
             if (type == null || parent == null)
                 return false;
             else if (type.BaseType == null)
                 return false;
+            else if (type == parent)
+                return true;
             else if (type.BaseType == parent)
                 return true;
             else
-                return type.BaseType.IsChildOf(parent);
+                return type.BaseType.IsInheritanceOf(parent);
 
         }
     }

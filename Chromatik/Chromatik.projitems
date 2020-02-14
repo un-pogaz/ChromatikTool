@@ -69,7 +69,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Text\WhiteCharacter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Version.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Xml\DocumentType.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Xml\HtmlXmlEntity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Xml\XmlHtmlEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Xml\XmlExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Xml\XmlDocumentCreate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Xml\XmlEnumertor.cs" />

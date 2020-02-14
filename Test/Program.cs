@@ -10,8 +10,6 @@ using System.IO;
 using System.Xml;
 using System.Globalization.Localization;
 
-using System.Reflection;
-
 
 namespace Test
 {
@@ -36,49 +34,11 @@ namespace Test
             /// Enigma enigma3 = enigma1.Clone(true);
             /// string rslt3 = enigma3.Process(test);
 
-            ;
-            System.Text.RegularExpressions.RegexOptions ro = RegexHelper.RegexOptions;
-            if (ro.HasFlag(System.Text.RegularExpressions.RegexOptions.Compiled))
-            {
+            System.Text.RegularExpressions.CompiledRegex comp = System.Text.RegularExpressions.CompiledRegex.LoadAssemblyFile(@"F:\Projet\GitHub\RegexLib.dll");
 
-            }
+            comp[0].
 
-            System.Text.RegularExpressions.Regex re = new System.Text.RegularExpressions.Regex(@"dfgdfg\\ f\d+");
-            List<string> lst = new List<string>() { "", "12", "sdf" };
-            
-            string f = nameof(lst.Count);
-
-
-            Type ts = typeof(string);
-            Type tos = typeof(object);
-
-            if (ro.HasFlag(System.Text.RegularExpressions.RegexOptions.Compiled))
-            {
-
-            }
-            
-            System.Text.RegularExpressions.RegexCompiledList reg = new System.Text.RegularExpressions.RegexCompiledList()
-            {
-                new System.Text.RegularExpressions.RegexCompiledEntry(@"^<\?xml.+?\?>\s*0", "XXX", ""),
-                new System.Text.RegularExpressions.RegexCompiledEntry(@"^<\?xml.+?\?>\s*0", "Doctype", ""),
-                new System.Text.RegularExpressions.RegexCompiledEntry(@"^<\?xml.+?\?>\s*0", "Entity", "Doctype"),
-            };
-
-
-
-            System.Text.RegularExpressions.RegexCompiled comp1 = System.Text.RegularExpressions.RegexCompiled.CompileToRuntime(reg);
-
-            System.Text.RegularExpressions.RegexCompiled comp2 = System.Text.RegularExpressions.RegexCompiled.CreateAssembly("RegLib.reg", reg);
-
-
-            System.Text.RegularExpressions.Regex r1 = new System.Text.RegularExpressions.Regex(@"^<\?xml.+?\?>\s*0", RegexHelper.RegexOptions| System.Text.RegularExpressions.RegexOptions.Compiled);
-
-            System.Text.RegularExpressions.Regex r2 = new System.Text.RegularExpressions.Regex(@"^<\?xml.+?\?>\s*1", RegexHelper.RegexOptions | System.Text.RegularExpressions.RegexOptions.Compiled);
-            System.Text.RegularExpressions.Regex r3 = new System.Text.RegularExpressions.Regex(@"^<\?xml.+?\?>\s*", RegexHelper.RegexOptions);
-
-
-
-            HtmlXmlEntity h = new HtmlXmlEntity("nbsp", 160, false);
+            XmlHtmlEntity h = new XmlHtmlEntity("nbsp", 160, false);
 
             string t1 = Settings.Args.GetNextArg("--test1");
             ;

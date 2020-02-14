@@ -229,16 +229,17 @@ namespace System.Text
         static public string RegexLoop(this string input, string pattern, string replacement, RegexOptions options, TimeSpan matchTimeout)
         {
             DateTime dt = DateTime.Now + matchTimeout;
-            string rslt = input;
+            Regex regexp = new Regex(pattern, options, matchTimeout);
             do
             {
                 if (dt < DateTime.Now)
                     throw new RegexMatchTimeoutException(input, pattern, matchTimeout);
 
-                rslt = rslt.Regex(pattern, replacement, options, matchTimeout);
-            } while (rslt.RegexIsMatch(pattern, options, matchTimeout));
+                input = regexp.Replace(input, replacement);
 
-            return rslt;
+            } while (regexp.IsMatch(input));
+
+            return input;
         }
 
         /// <summary> 

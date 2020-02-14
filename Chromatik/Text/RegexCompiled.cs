@@ -7,109 +7,232 @@ using System.Reflection;
 namespace System.Text.RegularExpressions
 {
     /// <summary>
-    /// Base list for <see cref="RegexCompiledList"/> and <see cref="RegexCompiled"/>
+    /// Base list for <see cref="CompiledRegexList"/> and <see cref="CompiledRegex"/>
     /// </summary>
-    public abstract class RegexCompiledList<T> : Collections.ObjectModel.ReadOnlyCollection<RegexCompiledBase> where T : RegexCompiledBase
+    public abstract class CompiledRegexList<T> : Collections.ObjectModel.ReadOnlyCollection<CompiledRegexBase> where T : CompiledRegexBase
     {
         /// <summary></summary>
-        public RegexCompiledList() : base(new List<RegexCompiledBase>())
-        {
-        }
+        public CompiledRegexList() : base(new List<CompiledRegexBase>())
+        { }
 
-        protected List<RegexCompiledBase> Items { get { return (List<RegexCompiledBase >)base.Items; } }
-
+        /// <summary></summary>
         new public int Count { get { return Items.Count; } }
 
+        /// <summary></summary>
         new public T this[int index] { get { return (T)Items[index]; } }
 
+        /// <summary></summary>
         public T this[string fullqualifiedname] { get { return Find(fullqualifiedname); } }
 
 
-        new public bool Contains(T value) { return Items.Contains(value); }
-        new public bool Contains(string fullqualifiedname) { return Find(fullqualifiedname) == null; }
-        new public bool Contains(string name, string fullnamespace) { return Find(name, fullnamespace) == null; }
-
-        T Find(string fullqualifiedname)
-        {
-            KeyValuePair<string, string> pair = RegexCompiledBase.SplitFullQualifiedName(fullqualifiedname);
-            return Find(pair.Key, pair.Value);
-        }
-        T Find(string name, string fullnamespace)
+        /// <summary>
+        /// Determines whether <see cref="CompiledRegexList{T}"/> contains the exact same value.
+        /// </summary>
+        public virtual bool Contains(T value)
         {
             foreach (var item in Items)
-                if (RegexCompiledBase.EqualsFullQualifiedName(item, name, fullnamespace))
+                if (CompiledRegexBase.Equals(item, value))
+                    return true;
+
+            return false; }
+        /// <summary>
+        /// Determines whether <see cref="CompiledRegexList{T}"/> contains a value with the same <see cref="CompiledRegexBase.FullQualifiedName"/>.
+        /// </summary>
+        public virtual bool Contains(string fullqualifiedname) { return Find(fullqualifiedname) != null; }
+        /// <summary>
+        /// Determines whether <see cref="CompiledRegexList{T}"/> contains a value with the same <see cref="CompiledRegexBase.Name"/> and  <see cref="CompiledRegexBase.Namespace"/>.
+        /// </summary>
+        public virtual bool Contains(string name, string fullnamespace) { return Find(name, fullnamespace) != null; }
+
+
+        /// <summary>
+        /// Find the <see cref="CompiledRegexBase"/> with the same <see cref="CompiledRegexBase.FullQualifiedName"/>.
+        /// </summary>
+        public T Find(string fullqualifiedname)
+        {
+            KeyValuePair<string, string> pair = CompiledRegexBase.SplitFullQualifiedName(fullqualifiedname);
+            return Find(pair.Key, pair.Value);
+        }
+        /// <summary>
+        /// Find the <see cref="CompiledRegexBase"/> with the same <see cref="CompiledRegexBase.Name"/> and  <see cref="CompiledRegexBase.Namespace"/>.
+        /// </summary>
+        public T Find(string name, string fullnamespace)
+        {
+            foreach (var item in Items)
+                if (CompiledRegexBase.EqualsFullQualifiedName(item, name, fullnamespace))
                     return (T)item;
 
             return null;
         }
 
-        new public void CopyTo(T[] array, int index) { Items.CopyTo(array, index); }
-        new public int IndexOf(T value) { return Items.IndexOf(value); }
+        /// <summary></summary>
+        public void CopyTo(T[] array, int index) { Items.CopyTo(array, index); }
 
+        /// <summary>
+        /// Determines the index of a <see cref="CompiledRegexBase"/> with the exact same value.
+        /// </summary>
+        public virtual int IndexOf(T value)
+        {
+            for (int i = 0; i < Items.Count; i++)
+                if (CompiledRegexBase.Equals(Items[i], value))
+                    return i;
+
+            return -1;
+        }
+        /// <summary>
+        /// Determines the index of a <see cref="CompiledRegexBase"/> with the same <see cref="CompiledRegexBase.FullQualifiedName"/>.
+        /// </summary>
+        public virtual int IndexOf(string fullqualifiedname)
+        {
+            for (int i = 0; i < Items.Count; i++)
+                if (CompiledRegexBase.EqualsFullQualifiedName(Items[i], fullqualifiedname))
+                    return i;
+
+            return -1;
+        }
+        /// <summary>
+        /// Determines the index of a <see cref="CompiledRegexBase"/> with the same <see cref="CompiledRegexBase.Name"/> and  <see cref="CompiledRegexBase.Namespace"/>.
+        /// </summary>
+        public virtual int IndexOf(string name, string fullnamespace)
+        {
+            for (int i = 0; i < Items.Count; i++)
+                if (CompiledRegexBase.EqualsFullQualifiedName(Items[i], name, fullnamespace))
+                    return i;
+
+            return -1;
+        }
+
+        /// <summary></summary>
         new public IEnumerator<T> GetEnumerator() { return Items.OfType<T>().GetEnumerator(); }
-
-    }
-
-    public class RegexCompiledList : RegexCompiledList<RegexCompiledEntry>
-    {
-        public void Add(RegexCompiledEntry item)
-        {
-            Items.Add(item);
-        }
-        public void Remove(RegexCompiledEntry item)
-        {
-
-        }
     }
 
     /// <summary>
-    /// Collection of <see cref="RegexCompiledClass"/>
+    /// Represent a collection of regex to compiled 
     /// </summary>
-    public class RegexCompiled : RegexCompiledList<RegexCompiledClass>
+    public class CompiledRegexList : CompiledRegexList<CompiledRegexEntry>
+    {
+        /// <summary>
+        /// Add a element to the <see cref="CompiledRegexList"/>
+        /// </summary>
+        /// <param name="item"></param>
+        public void Add(CompiledRegexEntry item)
+        {
+            if (Contains(item.FullQualifiedName))
+                throw new ArgumentException("The collection already contains one item with the same '"+nameof(CompiledRegexEntry.FullQualifiedName) + "'.\n\n"+ item.FullQualifiedName, nameof(item));
+
+            Items.Add(item);
+        }
+
+        /// <summary>
+        /// Remove the specified element of the <see cref="CompiledRegexList"/>
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        public bool Remove(CompiledRegexEntry item)
+        {
+            for (int i = 0; i < Items.Count; i++)
+                if (CompiledRegexBase.Equals(item, Items[i]))
+                    return Items.Remove(Items[i]);
+
+            return false;
+        }
+        /// <summary>
+        /// Remove the element with the specified index number.
+        /// </summary>
+        /// <returns></returns>
+        public bool RemoveAt(int index)
+        {
+            if (index >= 0 && index < Count)
+            {
+                Items.RemoveAt(index);
+                return true;
+            }
+            else
+                return false;
+        }
+
+        /// <summary>
+        /// Remove the element with the same FullQualifiedName (IgnoreCase).
+        /// </summary>
+        /// <returns></returns>
+        public bool RemoveQualifiedName(string fullqualifiedname)
+        {
+            CompiledRegexEntry t = Find(fullqualifiedname);
+            if (t == null)
+                return Items.Remove(t);
+            else
+                return false;
+        }
+        /// <summary>
+        /// Remove the element with the same Name and FullNamespace (IgnoreCase).
+        /// </summary>
+        /// <returns></returns>
+        public bool RemoveQualifiedName(string name, string fullnamespace)
+        {
+            CompiledRegexEntry t = Find(name, fullnamespace);
+            if (t == null)
+                return Items.Remove(t);
+            else
+                return false;
+        }
+    }
+
+    /// <summary> 
+    /// Represent a collection of compiled regex in a Assembly
+    /// </summary>
+    public class CompiledRegex : CompiledRegexList<CompiledRegexClass>
     {
         #region static
-        
-        static public RegexCompiled CompileToRuntime(RegexCompiledList list)
+
+        /// <summary>
+        /// Compile a <see cref="CompiledRegexList"/> into a <see cref="RuntimeAssembly"/>
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        static public CompiledRegex CompileToRuntime(CompiledRegexList list) { return CompileToRuntime(list, RegexHelper.RegexOptions); }
+        /// <summary>
+        /// Compile a <see cref="CompiledRegexList"/> into a <see cref="RuntimeAssembly"/>
+        /// </summary>
+        /// <param name="list"></param>
+        /// <param name="options"></param>
+        /// <returns></returns>
+        static public CompiledRegex CompileToRuntime(CompiledRegexList list, RegexOptions options) { return CompileToRuntime(list, options, RegexHelper.Timeout); }
+        /// <summary>
+        /// Compile a <see cref="CompiledRegexList"/> into a <see cref="RuntimeAssembly"/>
+        /// </summary>
+        /// <param name="list"></param>
+        /// <param name="options"></param>
+        /// <param name="matchTimeout"></param>
+        /// <returns></returns>
+        static public CompiledRegex CompileToRuntime(CompiledRegexList list, RegexOptions options, TimeSpan matchTimeout)
         {
-            return CompileToRuntime(list, RegexHelper.RegexOptions);
-        }
-        static public RegexCompiled CompileToRuntime(RegexCompiledList list, RegexOptions options)
-        {
-            return CompileToRuntime(list, options, RegexHelper.Timeout);
-        }
-        static public RegexCompiled CompileToRuntime(RegexCompiledList list, RegexOptions options, TimeSpan matchTimeout)
-        {
-            return new RegexCompiled(list, options, matchTimeout);
+            return new CompiledRegex(list, options, matchTimeout);
         }
 
-        static public RegexCompiled LoadToAssembly(string assemblyName)
-        {
-            return LoadToAssembly(Reflection.AssemblyName.GetAssemblyName(assemblyName));
-        }
-        static public RegexCompiled LoadToAssembly(Reflection.AssemblyName assemblyName)
-        {
-            return LoadAssembly(Assembly.Load(assemblyName));
-        }
-        static public RegexCompiled LoadAssemblyFile(string assemblyPath)
-        {
-            return LoadAssembly(Reflection.Assembly.LoadFile(assemblyPath));
-        }
-        static public RegexCompiled LoadAssembly(Reflection.Assembly assembly)
-        {
-            return new RegexCompiled(assembly);
-        }
-
-
-
-        static public RegexCompiled CreateAssembly(string name, RegexCompiledList list)
-        {
-            return CreateAssembly(name, list, RegexHelper.RegexOptions);
-        }
-        static public RegexCompiled CreateAssembly(string name, RegexCompiledList list, RegexOptions options)
-        {
-            return CreateAssembly(name, list, options, RegexHelper.Timeout);
-        }
-        static public RegexCompiled CreateAssembly(string name, RegexCompiledList list, RegexOptions options, TimeSpan matchTimeout)
+        /// <summary>
+        /// Compile a <see cref="CompiledRegexList"/> into a Assembly file (.dll)
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        static public CompiledRegex CompileToAssembly(string name, CompiledRegexList list) { return CompileToAssembly(name, list, RegexHelper.RegexOptions); }
+        /// <summary>
+        /// Compile a <see cref="CompiledRegexList"/> into a Assembly file (.dll)
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="list"></param>
+        /// <param name="options"></param>
+        /// <returns></returns>
+        static public CompiledRegex CompileToAssembly(string name, CompiledRegexList list, RegexOptions options) { return CompileToAssembly(name, list, options, RegexHelper.Timeout); }
+        /// <summary>
+        /// Compile a <see cref="CompiledRegexList"/> into a Assembly file (.dll)
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="list"></param>
+        /// <param name="options"></param>
+        /// <param name="matchTimeout"></param>
+        /// <returns></returns>
+        static public CompiledRegex CompileToAssembly(string name, CompiledRegexList list, RegexOptions options, TimeSpan matchTimeout)
         {
             if (name.IsNullOrWhiteSpace())
                 throw new ArgumentNullException(nameof(name));
@@ -120,9 +243,17 @@ namespace System.Text.RegularExpressions
             if (name.RegexIsMatch(@"[\\/:*?\"" <>|]"))
                 throw new IO.InvalidPathException("Invalide " + nameof(name) + ". Contain a invalid file name character.");
 
-            return CreateAssembly(new Reflection.AssemblyName(name + ", Version=1.0.0, Culture=neutral, PublicKeyToken=null"), list, options, matchTimeout);
+            return CompileToAssembly(new Reflection.AssemblyName(name + ", Version=1.0.0, Culture=neutral, PublicKeyToken=null"), list, options, matchTimeout);
         }
-        static public RegexCompiled CreateAssembly(Reflection.AssemblyName assemblyName, RegexCompiledList list, RegexOptions options, TimeSpan matchTimeout)
+        /// <summary>
+        /// Compile a <see cref="CompiledRegexList"/> into a Assembly file (.dll)
+        /// </summary>
+        /// <param name="assemblyName"></param>
+        /// <param name="list"></param>
+        /// <param name="options"></param>
+        /// <param name="matchTimeout"></param>
+        /// <returns></returns>
+        static public CompiledRegex CompileToAssembly(AssemblyName assemblyName, CompiledRegexList list, RegexOptions options, TimeSpan matchTimeout)
         {
             if (list == null)
                 throw new ArgumentNullException(nameof(list));
@@ -139,31 +270,72 @@ namespace System.Text.RegularExpressions
 
             Regex.CompileToAssembly(lst.ToArray(), assemblyName);
 
-            return LoadAssembly(Reflection.Assembly.Load(assemblyName));
+            return LoadFromAssembly(Assembly.Load(assemblyName));
+        }
+
+        /// <summary>
+        /// Load all compiled regex in the Assembly
+        /// </summary>
+        /// <param name="assemblyName"></param>
+        /// <returns></returns>
+        static public CompiledRegex LoadToAssembly(string assemblyName)
+        {
+            return LoadFromAssembly(AssemblyName.GetAssemblyName(assemblyName));
+        }
+        /// <summary>
+        /// Load all compiled regex in the Assembly
+        /// </summary>
+        /// <param name="assemblyName"></param>
+        /// <returns></returns>
+        static public CompiledRegex LoadFromAssembly(AssemblyName assemblyName)
+        {
+            return LoadFromAssembly(Assembly.Load(assemblyName));
+        }
+        /// <summary>
+        /// Load all compiled regex in a Assembly file (.dll)
+        /// </summary>
+        /// <param name="assemblyPath"></param>
+        /// <returns></returns>
+        static public CompiledRegex LoadFromAssemblyFile(string assemblyPath)
+        {
+            return LoadFromAssembly(Assembly.LoadFile(assemblyPath));
+        }
+        /// <summary>
+        /// Load all compiled regex in the Assembly
+        /// </summary>
+        /// <param name="assembly"></param>
+        /// <returns></returns>
+        static public CompiledRegex LoadFromAssembly(Assembly assembly)
+        {
+            return new CompiledRegex(assembly);
         }
         #endregion
 
-        
-        public Reflection.Assembly Assembly { get; }
 
-        static private Type RegexType = new System.Text.RegularExpressions.Regex("\0").GetType();
+        static private Type RegexType = new global::System.Text.RegularExpressions.Regex("\0").GetType();
+
+        /// <summary>
+        /// Source <see cref="Assembly"/> of this collection
+        /// </summary>
+        public Assembly Assembly { get; }
 
         /// <summary></summary>
-        protected RegexCompiled(Reflection.Assembly assembly)
+        protected CompiledRegex(Assembly assembly)
         {
             Assembly = assembly;
             foreach (Type item in Assembly.ExportedTypes)
-                if (item.BaseType == RegexType)
-                    Items.Add(new RegexCompiledClass((System.Text.RegularExpressions.Regex)item.InvokeConstructor()));
+                if (item.IsInheritanceOf(RegexType))
+                    Items.Add(new CompiledRegexClass((global::System.Text.RegularExpressions.Regex)item.InvokeConstructor()));
         }
-        protected RegexCompiled(RegexCompiledList list, RegexOptions options, TimeSpan matchTimeout)
+        /// <summary></summary>
+        protected CompiledRegex(CompiledRegexList list, RegexOptions options, TimeSpan matchTimeout)
         {
             if (!options.HasFlag(RegexOptions.Compiled))
                 options |= RegexOptions.Compiled;
 
-            List<Reflection.Assembly> lst = new List<Reflection.Assembly>();
+            List<Assembly> lst = new List<Assembly>();
             foreach (var item in list)
-                Items.Add(new RegexCompiledClass(item, options, matchTimeout));
+                Items.Add(new CompiledRegexClass(item, options, matchTimeout));
 
             Assembly = Items.Last().GetType().Assembly;
         }
