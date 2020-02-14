@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
@@ -21,7 +21,7 @@ namespace System.Xml
         static private TimeSpan timeout = new TimeSpan(0, 0, 10);
         static private Globalization.CultureInfo InvariantCulture = Globalization.CultureInfo.InvariantCulture;
 
-        static XmlHtmlEntity _null { get; } = new XmlHtmlEntity(0);
+        static XmlHtmlEntity _null { get; } = new XmlHtmlEntity(1);
         static public IEqualityComparer<XmlHtmlEntity> EqualityComparer { get; } = _null;
         static public IComparer<XmlHtmlEntity> Comparator { get; } = _null;
 
@@ -50,11 +50,11 @@ namespace System.Xml
                 {
                     string n = item.HTML.Trim('&', ';');
 
-                    lst.Add(new RegexCompilationInfo(item.Character, regOption, "c_" +n + item._XMLvalue.ToString(InvariantCulture), spaceChar, true, timeout));
-                    lst.Add(new RegexCompilationInfo(item.XML, regOption, "x_" + n + item._XMLvalue.ToString(InvariantCulture), spaceXml, true, timeout));
+                    lst.Add(new RegexCompilationInfo(item.Character, regOption, "c"+ item._XMLvalue.ToString(InvariantCulture) + "_" + n, spaceChar, true, timeout));
+                    lst.Add(new RegexCompilationInfo(item.XML, regOption, "x" + item._XMLvalue.ToString(InvariantCulture) + "_" + n, spaceXml, true, timeout));
 
                     if (item.IsCaseSensitive)
-                        lst.Add(new RegexCompilationInfo(item.HTML, regOption, "h_" + n + item._XMLvalue.ToString(InvariantCulture), spaceHtml, true, timeout));
+                        lst.Add(new RegexCompilationInfo(item.HTML, regOption, "h" + item._XMLvalue.ToString(InvariantCulture) +"_"+ n, spaceHtml, true, timeout));
                     else
                         lst.Add(new RegexCompilationInfo(item.HTML, regOption | RegexOptions.IgnoreCase, "h_" + n + item._XMLvalue.ToString(InvariantCulture), spaceHtml, true, timeout));
                 }
@@ -73,6 +73,8 @@ namespace System.Xml
             List<string> s = new List<string>(lst.Count);
             foreach (var item in lst)
                 s.Add(item.Namespace + "." + item.Name);
+
+            s.Sort();
 
             string[] du = s.GroupBy(x => x)
                 .Where(g => g.Count() > 1)
@@ -620,6 +622,68 @@ namespace System.Xml
         /// </summary>
         static public XmlHtmlEntity[] Html_Arrow { get; } = new XmlHtmlEntity[]
         {
+            new XmlHtmlEntity("loarr", 8701),
+            new XmlHtmlEntity("roarr", 8702),
+            new XmlHtmlEntity("hoarr", 8703),
+            
+            new XmlHtmlEntity("xlarr", 10229),
+            new XmlHtmlEntity("longleftarrow", 10229),
+            new XmlHtmlEntity("LongLeftArrow", 10229),
+            new XmlHtmlEntity("xrarr", 10230),
+            new XmlHtmlEntity("longrightarrow", 10230),
+            new XmlHtmlEntity("LongRightArrow", 10230),
+            new XmlHtmlEntity("xharr", 10231),
+            new XmlHtmlEntity("longleftrightarrow", 10231),
+            new XmlHtmlEntity("LongLeftRightArrow", 10231),
+            new XmlHtmlEntity("xlArr", 10232),
+            new XmlHtmlEntity("Longleftarrow", 10232),
+            new XmlHtmlEntity("DoubleLongLeftArrow", 10232),
+            new XmlHtmlEntity("xrArr", 10233),
+            new XmlHtmlEntity("Longrightarrow", 10233),
+            new XmlHtmlEntity("DoubleLongRightArrow", 10233),
+            new XmlHtmlEntity("xhArr", 10234),
+            new XmlHtmlEntity("Longleftrightarrow", 10234),
+            new XmlHtmlEntity("DoubleLongLeftRightArrow", 10234),
+
+            new XmlHtmlEntity("xmap", 10236),
+            new XmlHtmlEntity("longmapsto", 10236),
+
+            new XmlHtmlEntity("dzigrarr", 10239),
+            new XmlHtmlEntity("nvlArr", 10498),
+            new XmlHtmlEntity("nvrArr", 10499),
+            new XmlHtmlEntity("nvHarr", 10500),
+            new XmlHtmlEntity("Map", 10501),
+
+            new XmlHtmlEntity("lbarr", 10508),
+            new XmlHtmlEntity("rbarr", 10509),
+            new XmlHtmlEntity("bkarow", 10509),
+            new XmlHtmlEntity("lBarr", 10510),
+            new XmlHtmlEntity("rBarr", 10511),
+            new XmlHtmlEntity("dbkarow", 10511),
+            new XmlHtmlEntity("RBarr", 10512),
+            new XmlHtmlEntity("drbkarow", 10512),
+            new XmlHtmlEntity("DDotrahd", 10513),
+            new XmlHtmlEntity("UpArrowBar", 10514),
+            new XmlHtmlEntity("DownArrowBar", 10515),
+
+            new XmlHtmlEntity("Rarrtl", 10518),
+
+            new XmlHtmlEntity("latail", 10521),
+            new XmlHtmlEntity("ratail", 10522),
+            new XmlHtmlEntity("lAtail", 10523),
+            new XmlHtmlEntity("rAtail", 10524),
+            new XmlHtmlEntity("larrfs", 10525),
+            new XmlHtmlEntity("rarrfs", 10526),
+            new XmlHtmlEntity("larrbfs", 10527),
+            new XmlHtmlEntity("rarrbfs", 10528),
+
+            new XmlHtmlEntity("nwarhk", 10531),
+            new XmlHtmlEntity("nearhk", 10532),
+            new XmlHtmlEntity("hkswarow", 10533),
+            new XmlHtmlEntity("hksearow", 10533),
+            new XmlHtmlEntity("swarhk", 10534),
+            new XmlHtmlEntity("hkswarow", 10534),
+
             new XmlHtmlEntity("nwnear", 10535),
             new XmlHtmlEntity("nesear", 10537),
             new XmlHtmlEntity("toea", 10537),
