@@ -39,18 +39,9 @@ namespace Test
             XmlHtmlEntity h = new XmlHtmlEntity("nbsp", 160, false);
 
             string t1 = Settings.Args.GetNextArg("--test1");
-
             
-            System.Text.RegularExpressions.CompiledRegex comp = System.Text.RegularExpressions.CompiledRegex.LoadFromAssemblyFile(@"F:\Projet\GitHub\RegexLib.dll");
 
-            System.Text.RegularExpressions.CompiledRegex.GenerateFile("CompiledRegex.cs", comp);
 
-            System.Text.RegularExpressions.CompiledRegex.GenerateFile("CompiledRegex.Xml.XmlHtmlEntity.cs", XmlHtmlEntity.GetRegexCompilationInfo());
-
-            ;
-
-            
-            
 
             string[] tbl = new string[] {
                 HashKey.DigestFile(HashAlgorithmEnum.MD5, "XLIFF_2.xlf"),

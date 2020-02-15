@@ -28,49 +28,6 @@ namespace System.Xml
 
         }
         
-
-        static public RegexCompilationInfo[] GetRegexCompilationInfo()
-        {
-            IEnumerable<XmlHtmlEntity> enumerable = new XmlHtmlEntity[0];
-
-            foreach (var item in typeof(XmlHtmlEntity).GetProperties(BindingFlags.IgnoreCase | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic))
-                if (item.PropertyType.GetInterface("System.Collections.IEnumerable") != null)
-                    enumerable = enumerable.Concat(((Collections.IEnumerable)item.GetValue(null)).OfType<XmlHtmlEntity>());
-
-            string space = "CompiledRegex.Xml.XmlHtmlEntity";
-            string spaceXml = string.Join(".", space, "Xml");
-            string spaceHtml = string.Join(".", space, "Html");
-            string spaceChar = string.Join(".", space, "Char");
-
-            List<RegexCompilationInfo> lst = new List<RegexCompilationInfo>(3000);
-            List<KeyValuePair<XmlHtmlEntity, RegexCompilationInfo>> pair = new List<KeyValuePair<XmlHtmlEntity, RegexCompilationInfo>>(3000);
-            foreach (XmlHtmlEntity item in enumerable.Distinct())
-            {
-                if (item.HTML != null)
-                {
-                    string n = item.HTML.Trim('&', ';');
-
-                    lst.Add(new RegexCompilationInfo(item.Character, regOption, "c" + item._XMLvalue.ToString(InvariantCulture) + "_" + n, spaceChar, true, timeout));
-                    lst.Add(new RegexCompilationInfo(item.XML, regOption, "x" + item._XMLvalue.ToString(InvariantCulture) + "_" + n, spaceXml, true, timeout));
-
-                    if (item.IsCaseSensitive)
-                        lst.Add(new RegexCompilationInfo(item.HTML, regOption, "h" + item._XMLvalue.ToString(InvariantCulture) + "_" + n, spaceHtml, true, timeout));
-                    else
-                        lst.Add(new RegexCompilationInfo(item.HTML, regOption | RegexOptions.IgnoreCase, "h_" + n + item._XMLvalue.ToString(InvariantCulture), spaceHtml, true, timeout));
-                }
-                else
-                {
-                    lst.Add(new RegexCompilationInfo(item.Character, regOption, "c" + item._XMLvalue.ToString(InvariantCulture), spaceChar, true, timeout));
-                    lst.Add(new RegexCompilationInfo(item.XML, regOption, "x" + item._XMLvalue.ToString(InvariantCulture), spaceXml, true, timeout));
-
-                }
-
-                pair.Add(new KeyValuePair<XmlHtmlEntity, RegexCompilationInfo>(item, lst.Last()));
-            }
-
-            return lst.ToArray();
-        }
-
         static public string Parse(string html, params XmlHtmlEntity[] entitys)
         {
             return null;
