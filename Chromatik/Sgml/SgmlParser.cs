@@ -1,20 +1,28 @@
 /*
- * Original Work Copyright (c) 2016 Microsoft Corporation. All rights reserved.
- * Modified work Copyright (c) 2008 MindTouch. All rights reserved. 
  * 
- * Support: lovettchris@hotmail.com 
+ * Copyright (c) 2007-2013 MindTouch. All rights reserved.
+ * www.mindtouch.com  oss@mindtouch.com
+ *
+ * For community documentation and downloads visit wiki.developer.mindtouch.com;
+ * please review the licensing section.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  * 
  *     http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * 
  */
 
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
@@ -24,7 +32,8 @@ using System.Security.Permissions;
 using System.Text;
 using System.Xml;
 
-namespace System.Sgml {
+namespace System.Sgml
+{
     /// <summary>
     /// Thrown if any errors occur while parsing the source.
     /// </summary>
@@ -70,7 +79,7 @@ namespace System.Sgml {
             : base(message, innerException)
         {
         }
-        
+
         /// <summary>
         /// Initializes a new instance of the SgmlParseException class with serialized data. 
         /// </summary>
@@ -93,7 +102,7 @@ namespace System.Sgml {
                 return m_entityContext;
             }
         }
-        
+
         /// <summary>
         /// Populates a SerializationInfo with the data needed to serialize the exception.
         /// </summary>
@@ -145,6 +154,7 @@ namespace System.Sgml {
         [SuppressMessage("Microsoft.Naming", "CA1705", Justification = "The capitalisation is correct since EOF is an acronym.")]
         public const char EOF = (char)65535;
 
+        private string m_proxy;
         private string m_name;
         private bool m_isInternal;
         private string m_publicId;
@@ -156,7 +166,6 @@ namespace System.Sgml {
         private int m_line;
         private char m_lastchar;
         private bool m_isWhitespace;
-        private IEntityResolver m_resolver;
 
         private Encoding m_encoding;
         private Uri m_resolvedUri;
@@ -171,14 +180,14 @@ namespace System.Sgml {
         /// <param name="name">The name of the entity.</param>
         /// <param name="pubid">The public id of the entity.</param>
         /// <param name="uri">The uri of the entity.</param>
-        /// <param name="resolver"></param>
-        public Entity(string name, string pubid, string uri, IEntityResolver resolver)
+        /// <param name="proxy">The proxy server to use when retrieving any web content.</param>
+        public Entity(string name, string pubid, string uri, string proxy)
         {
             m_name = name;
             m_publicId = pubid;
             m_uri = uri;
+            m_proxy = proxy;
             m_isHtml = (name != null && StringUtilities.EqualsIgnoreCase(name, "html"));
-            m_resolver = resolver;
         }
 
         /// <summary>
@@ -186,13 +195,11 @@ namespace System.Sgml {
         /// </summary>
         /// <param name="name">The name of the entity.</param>
         /// <param name="literal">The literal value of the entity.</param>
-        /// <param name="resolver"></param>
-        public Entity(string name, string literal, IEntityResolver resolver)
+        public Entity(string name, string literal)
         {
             m_name = name;
             m_literal = literal;
             m_isInternal = true;
-            m_resolver = resolver;
         }
 
         /// <summary>
@@ -201,15 +208,15 @@ namespace System.Sgml {
         /// <param name="name">The name of the entity.</param>
         /// <param name="baseUri">The baseUri for the entity to read from the TextReader.</param>
         /// <param name="stm">The TextReader to read the entity from.</param>
-        /// <param name="resolver"></param>
-        public Entity(string name, Uri baseUri, TextReader stm, IEntityResolver resolver)
+        /// <param name="proxy">The proxy server to use when retrieving any web content.</param>
+        public Entity(string name, Uri baseUri, TextReader stm, string proxy)
         {
             m_name = name;
             m_isInternal = true;
             m_stm = stm;
             m_resolvedUri = baseUri;
+            m_proxy = proxy;
             m_isHtml = string.Equals(name, "html", StringComparison.OrdinalIgnoreCase);
-            m_resolver = resolver;
         }
 
         /// <summary>
@@ -364,7 +371,18 @@ namespace System.Sgml {
                 return m_isWhitespace;
             }
         }
-        
+
+        /// <summary>
+        /// The proxy server to use when making web requests to resolve entities.
+        /// </summary>
+        public string Proxy
+        {
+            get
+            {
+                return m_proxy;
+            }
+        }
+
         /// <summary>
         /// Reads the next character from the DTD stream.
         /// </summary>
@@ -439,20 +457,78 @@ namespace System.Sgml {
                 }
                 else
                 {
-                    this.m_resolvedUri = new Uri(this.m_uri, UriKind.RelativeOrAbsolute);
+                    this.m_resolvedUri = new Uri(this.m_uri);
                 }
 
-                IEntityContent content = m_resolver.GetContent(this.ResolvedUri);
-                Stream stream = content.Open();
-
-                if (StringUtilities.EqualsIgnoreCase(content.MimeType, "text/html"))
+                Stream stream = null;
+                Encoding e = Encoding.Default;
+                switch (this.m_resolvedUri.Scheme)
                 {
-                    this.m_isHtml = true;
+                    case "file":
+                        {
+                            string path = this.m_resolvedUri.LocalPath;
+                            stream = new FileStream(path, FileMode.Open, FileAccess.Read);
+                        }
+                        break;
+                    default:
+                        //Console.WriteLine("Fetching:" + ResolvedUri.AbsoluteUri);
+                        HttpWebRequest wr = (HttpWebRequest)WebRequest.Create(ResolvedUri);
+                        wr.UserAgent = "Mozilla/4.0 (compatible;);";
+                        wr.Timeout = 10000; // in case this is running in an ASPX page.
+                        if (m_proxy != null)
+                            wr.Proxy = new WebProxy(m_proxy);
+                        wr.PreAuthenticate = false; 
+                        // Pass the credentials of the process. 
+                        wr.Credentials = CredentialCache.DefaultCredentials; 
+
+                        WebResponse resp = wr.GetResponse();
+                        Uri actual = resp.ResponseUri;
+                        if (!string.Equals(actual.AbsoluteUri, this.m_resolvedUri.AbsoluteUri, StringComparison.OrdinalIgnoreCase))
+                        {
+                            this.m_resolvedUri = actual;
+                        }
+                        string contentType = resp.ContentType.ToLowerInvariant();
+                        string mimeType = contentType;
+                        int i = contentType.IndexOf(';');
+                        if (i >= 0)
+                        {
+                            mimeType = contentType.Substring(0, i);
+                        }
+
+                        if (StringUtilities.EqualsIgnoreCase(mimeType, "text/html"))
+                        {
+                            this.m_isHtml = true;
+                        }
+
+                        i = contentType.IndexOf("charset");
+                        e = Encoding.Default;
+                        if (i >= 0)
+                        {                                
+                            int j = contentType.IndexOf("=", i);
+                            int k = contentType.IndexOf(";", j);
+                            if (k < 0)
+                                k = contentType.Length;
+
+                            if (j > 0)
+                            {
+                                j++;
+                                string charset = contentType.Substring(j, k - j).Trim();
+                                try
+                                {
+                                    e = Encoding.GetEncoding(charset);
+                                }
+                                catch (ArgumentException)
+                                {
+                                }
+                            }
+                        }
+
+                        stream = resp.GetResponseStream();
+                        break;
                 }
-                this.m_resolvedUri = content.Redirect;
 
                 this.m_weOwnTheStream = true;
-                HtmlStream html = new HtmlStream(stream, content.Encoding);
+                HtmlStream html = new HtmlStream(stream, e);
                 this.m_encoding = html.Encoding;
                 this.m_stm = html;
             }
@@ -475,7 +551,7 @@ namespace System.Sgml {
         public void Close()
         {
             if (this.m_weOwnTheStream) 
-                this.m_stm.Dispose();
+                this.m_stm.Close();
         }
 
         /// <summary>
@@ -908,14 +984,14 @@ namespace System.Sgml {
             }
         }
 
-#region IDisposable Members
+        #region IDisposable Members
 
         /// <summary>
         /// The finalizer for the Entity class.
         /// </summary>
         ~Entity()
         {
-            Dispose(true);
+            Dispose(false);
         }
 
         /// <summary>
@@ -943,7 +1019,7 @@ namespace System.Sgml {
             }
         }
 
-#endregion
+        #endregion
     }
 
     // This class decodes an HTML/XML stream correctly.
@@ -1017,7 +1093,7 @@ namespace System.Sgml {
                 r.Write(copyBuff, 0, len);
 
             r.Seek(0, SeekOrigin.Begin);                            
-            s.Dispose();
+            s.Close();
             return r;
         }
 
@@ -1072,7 +1148,7 @@ namespace System.Sgml {
 
                     case 0xfffe: 
                         index += 2; 
-                        return new UnicodeEncoding(false, true).GetDecoder();
+                        return new UnicodeEncoding(false, false).GetDecoder();
 
                     case 0x3c00: 
                         goto case 0xfeff;
@@ -1393,11 +1469,8 @@ namespace System.Sgml {
             }
             return sb.ToString();
         }
-
-        protected override void Dispose(bool disposing)
-        {
-            base.Dispose(disposing);
-            stm.Dispose();
+        public override void Close() {
+            stm.Close();
         }
     }
 
@@ -1864,7 +1937,7 @@ namespace System.Sgml {
     public class Group
     {
         private Group m_parent;
-        private List<object> Members;
+        private ArrayList Members;
         private GroupType m_groupType;
         private Occurrence m_occurrence;
         private bool Mixed;
@@ -1910,7 +1983,7 @@ namespace System.Sgml {
         public Group(Group parent)
         {
             m_parent = parent;
-            Members = new List<object>();
+            Members = new ArrayList();
             m_groupType = GroupType.None;
             m_occurrence = Occurrence.Required;
         }
@@ -2410,22 +2483,19 @@ namespace System.Sgml {
         private Dictionary<string, Entity> m_entities;
         private StringBuilder m_sb;
         private Entity m_current;
-        private IEntityResolver m_resolver;
 
         /// <summary>
         /// Initialises a new instance of the <see cref="SgmlDtd"/> class.
         /// </summary>
         /// <param name="name">The name of the DTD.</param>
         /// <param name="nt">The <see cref="XmlNameTable"/> is NOT used.</param>
-        /// <param name="resolver"></param>
-        public SgmlDtd(string name, XmlNameTable nt, IEntityResolver resolver)
+        public SgmlDtd(string name, XmlNameTable nt)
         {
             this.m_name = name;
             this.m_elements = new Dictionary<string,ElementDecl>();
             this.m_pentities = new Dictionary<string, Entity>();
             this.m_entities = new Dictionary<string, Entity>();
             this.m_sb = new StringBuilder();
-            this.m_resolver = resolver;
         }
 
         /// <summary>
@@ -2436,10 +2506,6 @@ namespace System.Sgml {
             get
             {
                 return m_name;
-            }
-            set
-            {
-                m_name = value;
             }
         }
 
@@ -2463,27 +2529,27 @@ namespace System.Sgml {
         /// <param name="pubid"></param>
         /// <param name="url"></param>
         /// <param name="subset"></param>
+        /// <param name="proxy"></param>
         /// <param name="nt">The <see cref="XmlNameTable"/> is NOT used.</param>
-        /// <param name="resolver"></param>
         /// <returns>A new <see cref="SgmlDtd"/> instance that encapsulates the DTD.</returns>
-        public static SgmlDtd Parse(Uri baseUri, string name, string pubid, string url, string subset, XmlNameTable nt, IEntityResolver resolver)
+        public static SgmlDtd Parse(Uri baseUri, string name, string pubid, string url, string subset, string proxy, XmlNameTable nt)
         {
-            SgmlDtd dtd = new SgmlDtd(name, nt, resolver);
+            SgmlDtd dtd = new SgmlDtd(name, nt);
             if (!string.IsNullOrEmpty(url))
             {
-                dtd.PushEntity(baseUri, new Entity(dtd.Name, pubid, url, resolver));
+                dtd.PushEntity(baseUri, new Entity(dtd.Name, pubid, url, proxy));
             }
 
             if (!string.IsNullOrEmpty(subset))
             {
-                dtd.PushEntity(baseUri, new Entity(name, subset, resolver));
+                dtd.PushEntity(baseUri, new Entity(name, subset));
             }
 
             try 
             {
                 dtd.Parse();
             } 
-            catch (Exception e)
+            catch (ApplicationException e)
             {
                 throw new SgmlParseException(e.Message + dtd.m_current.Context());
             }
@@ -2498,24 +2564,24 @@ namespace System.Sgml {
         /// <param name="name">The name of the DTD.</param>
         /// <param name="input">The reader to load the DTD from.</param>
         /// <param name="subset"></param>
+        /// <param name="proxy">The proxy server to use when loading resources.</param>
         /// <param name="nt">The <see cref="XmlNameTable"/> is NOT used.</param>
-        /// <param name="resolver"></param>
         /// <returns>A new <see cref="SgmlDtd"/> instance that encapsulates the DTD.</returns>
         [SuppressMessage("Microsoft.Reliability", "CA2000", Justification = "The entities created here are not temporary and should not be disposed here.")]
-        public static SgmlDtd Parse(Uri baseUri, string name, TextReader input, string subset, XmlNameTable nt, IEntityResolver resolver)
+        public static SgmlDtd Parse(Uri baseUri, string name, TextReader input, string subset, string proxy, XmlNameTable nt)
         {
-            SgmlDtd dtd = new SgmlDtd(name, nt, resolver);
-            dtd.PushEntity(baseUri, new Entity(dtd.Name, baseUri, input, resolver));
+            SgmlDtd dtd = new SgmlDtd(name, nt);
+            dtd.PushEntity(baseUri, new Entity(dtd.Name, baseUri, input, proxy));
             if (!string.IsNullOrEmpty(subset))
             {
-                dtd.PushEntity(baseUri, new Entity(name, subset, resolver));
+                dtd.PushEntity(baseUri, new Entity(name, subset));
             }
 
             try
             {
                 dtd.Parse();
             } 
-            catch (Exception e)
+            catch (ApplicationException e)
             {
                 throw new SgmlParseException(e.Message + dtd.m_current.Context());
             }
@@ -2600,7 +2666,7 @@ namespace System.Sgml {
                         catch (Exception ex) 
                         {
                             // BUG: need an error log.
-                            Debug.WriteLine(ex.Message + this.m_current.Context());
+                            Console.WriteLine(ex.Message + this.m_current.Context());
                         }
                         ch = this.m_current.Lastchar;
                         break;
@@ -2726,7 +2792,7 @@ namespace System.Sgml {
         {
             // almost the same as this.current.ScanToken, except we also terminate on ';'
             this.m_current.ReadChar();
-            string name =  this.m_current.ScanToken(this.m_sb, ";"+term, true);
+            string name =  this.m_current.ScanToken(this.m_sb, ";"+term, false);
             if (this.m_current.Lastchar == ';') 
                 this.m_current.ReadChar();
             Entity e = GetParameterEntity(name);
@@ -2775,7 +2841,7 @@ namespace System.Sgml {
             if (ch == '"' || ch == '\'') 
             {
                 string literal = this.m_current.ScanLiteral(this.m_sb, ch);
-                e = new Entity(name, literal, m_resolver);                
+                e = new Entity(name, literal);                
             } 
             else 
             {
@@ -2786,7 +2852,7 @@ namespace System.Sgml {
                 {
                     ch = this.m_current.SkipWhitespace();
                     string literal = this.m_current.ScanLiteral(this.m_sb, ch);
-                    e = new Entity(name, literal, m_resolver);
+                    e = new Entity(name, literal);
                     e.SetLiteralType(tok);
                 }
                 else 
@@ -2818,7 +2884,7 @@ namespace System.Sgml {
                     {
                         this.m_current.Error("Expecting system identifier literal but found '{0}'",ch);
                     }
-                    e = new Entity(name, pubid, uri, m_resolver);
+                    e = new Entity(name, pubid, uri, this.m_current.Proxy);
                 }
             }
             ch = this.m_current.SkipWhitespace();
@@ -2867,7 +2933,7 @@ namespace System.Sgml {
                 }
                 else if (ch == '-') 
                 {
-                    ch = ParseDeclComment(true);
+                    ch = ParseDeclComment(false);
                 } 
                 else 
                 {
@@ -2908,7 +2974,7 @@ namespace System.Sgml {
         static string ngterm = " \r\n\t|,)";
         string[] ParseNameGroup(char ch, bool nmtokens)
         {
-            List<string> names = new List<string>();
+            ArrayList names = new ArrayList();
             if (ch == '(') 
             {
                 ch = this.m_current.ReadChar();
@@ -2943,10 +3009,10 @@ namespace System.Sgml {
                 name = name.ToUpperInvariant();
                 names.Add(name);
             }
-            return (string[])names.ToArray();
+            return (string[])names.ToArray(typeof(string));
         }
 
-        void ParseNameList(List<string> names, bool nmtokens)
+        void ParseNameList(ArrayList names, bool nmtokens)
         {
             char ch = this.m_current.Lastchar;
             ch = this.m_current.SkipWhitespace();
@@ -3172,9 +3238,9 @@ namespace System.Sgml {
 
             if (ch == '(') 
             {
-                //attdef.EnumValues = ParseNameGroup(ch, true);  
+                //attdef.EnumValues = ParseNameGroup(ch, false);  
                 //attdef.Type = AttributeType.ENUMERATION;
-                attdef.SetEnumeratedType(ParseNameGroup(ch, true), AttributeType.ENUMERATION);
+                attdef.SetEnumeratedType(ParseNameGroup(ch, false), AttributeType.ENUMERATION);
             } 
             else 
             {
@@ -3227,7 +3293,7 @@ namespace System.Sgml {
                 }
                 else
                 {
-                    string name = this.m_current.ScanToken(this.m_sb, SgmlDtd.WhiteSpace, true);
+                    string name = this.m_current.ScanToken(this.m_sb, SgmlDtd.WhiteSpace, false);
                     name = name.ToUpperInvariant();
                     attdef.Default = name; // bugbug - must be one of the enumerated names.
                     ch = this.m_current.SkipWhitespace();

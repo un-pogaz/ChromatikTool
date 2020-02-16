@@ -39,8 +39,9 @@ namespace Test
             XmlHtmlEntity h = new XmlHtmlEntity("nbsp", 160, false);
 
             string t1 = Settings.Args.GetNextArg("--test1");
-            
 
+
+            XmlDocument doc = XmlDocumentCreate.ParseHTML(@"F:\Projet\GitHub\HTMLstrictEditor\HTMLstrictEditor\A joke gone wrong.html");
 
 
             string[] tbl = new string[] {

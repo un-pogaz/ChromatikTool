@@ -14,6 +14,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Collections\FileSystemComparator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EnumStringValueAttribute.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IComparerEquatable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sgml\SgmlParser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sgml\SgmlReader.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)StringChangedEventArgs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)EnumerableExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Collections\Comparator.cs" />
@@ -54,11 +56,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)MimeType\MimeTypes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Reflection\TypeExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Settings.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Sgml\DesktopEntityResolver.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Sgml\EmbeddedResourceEntityContent.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Sgml\IEntityResolver.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Sgml\SgmlParse.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Sgml\SgmlReader.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Text\ByteCharacter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Text\ControlCharacter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Text\RegexCompiled.cs" />
@@ -81,9 +78,9 @@
     <None Include="$(MSBuildThisFileDirectory)ExceptionMap.pdf" />
     <None Include="$(MSBuildThisFileDirectory)ExceptionMap.mm" />
     <None Include="$(MSBuildThisFileDirectory)Localization\Xliff\Translate XLIFF Files _ Transifex Documentation.url" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Sgml\Html.dtd" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="$(MSBuildThisFileDirectory)ExceptionMap.png" />
-    <Content Include="$(MSBuildThisFileDirectory)Sgml\_Info.txt" />
   </ItemGroup>
 </Project>

@@ -1,14 +1,34 @@
 /*
- * Original Work Copyright (c) 2016 Microsoft Corporation. All rights reserved.
- * Modified work Copyright (c) 2008 MindTouch. All rights reserved. 
  * 
- * Support: lovettchris@hotmail.com 
+ * An XmlReader implementation for loading SGML (including HTML) converting it
+ * to well formed XML, by adding missing quotes, empty attribute values, ignoring
+ * duplicate attributes, case folding on tag names, adding missing closing tags
+ * based on SGML DTD information, and so on.
+ *
+ * Copyright (c) 2002 Microsoft Corporation. All rights reserved. (Chris Lovett)
+ *
+ */
+
+/*
+ * 
+ * Copyright (c) 2007-2013 MindTouch. All rights reserved.
+ * www.mindtouch.com  oss@mindtouch.com
+ *
+ * For community documentation and downloads visit wiki.developer.mindtouch.com;
+ * please review the licensing section.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  * 
  *     http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
  */
 
 using System;
@@ -16,7 +36,6 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.IO;
-using System.Net;
 using System.Reflection;
 using System.Text;
 using System.Xml;
@@ -281,7 +300,7 @@ namespace System.Sgml
         public void CopyAttributes(Node n) {
             for (int i = 0, len = n.attributes.Count; i < len; i++) {
                 Attribute a = (Attribute)n.attributes[i];
-                Attribute na = this.AddAttribute(a.Name, a.Value, a.QuoteChar, true);
+                Attribute na = this.AddAttribute(a.Name, a.Value, a.QuoteChar, false);
                 na.DtdType = a.DtdType;
             }
         }
@@ -326,17 +345,7 @@ namespace System.Sgml
         PseudoStartTag, // we pushed a pseudo-start tag, need to continue with previous start tag.
         Eof
     }
-    
-    /// <summary>Specifies how white space is handled.</summary>
-    public enum WhitespaceHandling
-    {
-        /// <summary>Return Whitespace and SignificantWhitespace nodes. This is the default.</summary>
-        All = 0,
-        /// <summary>Return SignificantWhitespace nodes only.</summary>
-        Significant = 1,
-        /// <summary>Return no Whitespace and no SignificantWhitespace nodes.</summary>
-        None = 2
-    }
+
 
     /// <summary>
     /// SgmlReader is an XmlReader API over any SGML document (including built in 
@@ -350,7 +359,7 @@ namespace System.Sgml
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1705", Justification = "SgmlReader's standards for constants are different to Microsoft's and in line with older C++ style constants naming conventions.  Visually, constants using this style are more easily identifiable as such.")]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1707", Justification = "SgmlReader's standards for constants are different to Microsoft's and in line with older C++ style constants naming conventions.  Visually, constants using this style are more easily identifiable as such.")]
         public const string UNDEFINED_NAMESPACE = "#unknown";
-        private XmlReaderSettings m_settings;
+
         private SgmlDtd m_dtd;
         private Entity m_current;
         private State m_state;
@@ -376,7 +385,9 @@ namespace System.Sgml
         private string m_rootElementName;
 
         private string m_href;
+        private string m_errorLogFile;
         private Entity m_lastError;
+        private string m_proxy;
         private TextReader m_inputStream;
         private string m_syslit;
         private string m_pubid;
@@ -387,9 +398,6 @@ namespace System.Sgml
         private bool m_stripDocType = true;
         //private string m_startTag;
         private Dictionary<string, string> unknownNamespaces = new Dictionary<string,string>();
-        private XmlNameTable m_nameTable;
-        private IEntityResolver m_resolver;
-
 
         /// <summary>
         /// Initialises a new instance of the SgmlReader class.
@@ -403,17 +411,6 @@ namespace System.Sgml
         /// </summary>
         /// <param name="nt">The nametable to use.</param>
         public SgmlReader(XmlNameTable nt) {
-            m_nameTable = nt;
-            Init();
-        }
-
-        /// <summary>
-        /// Initialises a new instance of the SgmlReader class.
-        /// </summary>
-        public SgmlReader(XmlReaderSettings settings)
-        {
-            m_settings = settings;
-            m_nameTable = settings.NameTable;
             Init();
         }
 
@@ -438,40 +435,44 @@ namespace System.Sgml
             }
         }
 
-        /// <summary>
-        /// On portable platforms the mechanism for loading files is different.  For example,
-        /// WinRT uses StorageFile, HttpClient and Windows.ApplicationModel.Resources.ResourceLoader.  
-        /// So the caller must implement this interface and provide the platform specific mechanism
-        /// for finding relative resources (DTDs, external entities, etc).
-        /// </summary>
-        public IEntityResolver Resolver
+        private Stream GetManifestResourceDTD(string name)
         {
-            get { return m_resolver; }
-            set { m_resolver = value; }
+            Assembly assembly = typeof(SgmlReader).Assembly;
+            return assembly.GetManifestResourceStream(
+                string.Join(".", assembly.FullName.Split(',')[0], "Sgml", name));
         }
 
         private void LazyLoadDtd(Uri baseUri)
         {
             if (this.m_dtd == null && !this.m_ignoreDtd)
             {
-                if (string.IsNullOrEmpty(this.m_syslit)
-                     // no need to hit the w3.org servers in this case
-                     || this.m_syslit == "http://www.w3.org/TR/html4/loose.dtd")
+                if (string.IsNullOrEmpty(this.m_syslit))
                 {
                     if (this.m_docType != null && StringUtilities.EqualsIgnoreCase(this.m_docType, "html"))
                     {
-                        Stream stream = StreamExtension.StreamFromString(Chromatik.Resources.Html_dtd);
-                        // see if our resolver can find it.
-                        if (stream != null)
+                        Stream stm = GetManifestResourceDTD("Html.dtd");
+                        if (stm != null)
                         {
-                            StreamReader sr = new StreamReader(stream);
-                            this.m_dtd = SgmlDtd.Parse(baseUri, "HTML", sr, null, null, m_resolver);
+                            StreamReader sr = new StreamReader(stm);
+                            this.m_dtd = SgmlDtd.Parse(baseUri, "HTML", sr, null, this.m_proxy, null);
                         }
                     }
                 }
                 else
                 { 
-                    this.m_dtd = SgmlDtd.Parse(baseUri, this.m_docType, this.m_pubid, this.m_syslit, this.m_subset, null, m_resolver);
+                    if (baseUri != null)
+                    {
+                        baseUri = new Uri(baseUri, this.m_syslit);
+                    }
+                    else if (this.m_baseUri != null)
+                    {
+                        baseUri = new Uri(this.m_baseUri, this.m_syslit);
+                    }
+                    else
+                    {
+                        baseUri = new Uri(new Uri(Directory.GetCurrentDirectory() + "\\"), this.m_syslit);
+                    }
+                    this.m_dtd = SgmlDtd.Parse(baseUri, this.m_docType, this.m_pubid, baseUri.AbsoluteUri, this.m_subset, this.m_proxy, null);
                 }
             }
 
@@ -581,29 +582,20 @@ namespace System.Sgml
                 Init();
             }
         }
-        
+
         /// <summary>
         /// Sometimes you need to specify a proxy server in order to load data via HTTP
         /// from outside the firewall.  For example: "itgproxy:80".
         /// </summary>
-        public WebProxy WebProxy
+        public string WebProxy
         {
             get
             {
-                if (m_resolver == null) return null;
-                return ((DesktopEntityResolver)m_resolver).Proxy;
+                return this.m_proxy;
             }
             set
             {
-                DesktopEntityResolver der = m_resolver as DesktopEntityResolver;
-                if (der != null)
-                {
-                    der.Proxy = value;
-                }
-                else
-                {
-                    throw new NotSupportedException("Cannot set WebProxy on unknown IEntityResolver (see Resolver property)");
-                }
+                this.m_proxy = value;
             }
         }
 
@@ -630,9 +622,16 @@ namespace System.Sgml
             {
                 this.m_href = value; 
                 Init();
-                if (this.m_baseUri == null && !string.IsNullOrWhiteSpace(value))
+                if (this.m_baseUri == null)
                 {
-                    this.m_baseUri = new Uri(this.m_href, UriKind.RelativeOrAbsolute);
+                    if (this.m_href.IndexOf("://") > 0)
+                    {
+                        this.m_baseUri = new Uri(this.m_href);
+                    }
+                    else
+                    {
+                        this.m_baseUri = new Uri("file:///" + Directory.GetCurrentDirectory() + "//");
+                    }
                 }
             }
         }
@@ -692,6 +691,22 @@ namespace System.Sgml
             }
         }
 
+        /// <summary>
+        /// DTD validation errors are written to this log file.
+        /// </summary>
+        public string ErrorLogFile
+        {
+            get
+            {
+                return this.m_errorLogFile;
+            }
+            set
+            {
+                this.m_errorLogFile = value;
+                this.m_log = new StreamWriter(value);
+            }
+        }
+
         private void Log(string msg, params string[] args)
         {
             if (ErrorLog != null)
@@ -723,15 +738,6 @@ namespace System.Sgml
 
         private void Init()
         {
-            if (m_nameTable == null)
-            {
-                m_nameTable = new NameTable();
-            }
-            if (m_settings == null)
-            {
-                m_settings = new XmlReaderSettings();
-                m_settings.NameTable = m_nameTable;
-            }
             this.m_state = State.Initial;
             this.m_stack = new HWStack(10);
             this.m_node = Push(null, XmlNodeType.Document, null);
@@ -748,7 +754,6 @@ namespace System.Sgml
             this.m_rootCount = 0;
             this.m_foundRoot = false;
             this.unknownNamespaces.Clear();
-            this.m_resolver = new DesktopEntityResolver();
         }
 
         private Node Push(string name, XmlNodeType nt, string value)
@@ -1090,7 +1095,7 @@ namespace System.Sgml
         /// <remarks>
         /// This property applies only to an attribute node.
         /// </remarks>
-        new public char QuoteChar
+        public override char QuoteChar
         {
             get
             {
@@ -1401,11 +1406,11 @@ namespace System.Sgml
 
             if (this.Href != null)
             {
-                this.m_current = new Entity("#document", null, this.m_href, this.m_resolver);
+                this.m_current = new Entity("#document", null, this.m_href, this.m_proxy);
             }
             else if (this.m_inputStream != null)
             {
-                this.m_current = new Entity("#document", null, this.m_inputStream, this.m_resolver);           
+                this.m_current = new Entity("#document", null, this.m_inputStream, this.m_proxy);           
             }
             else
             {
@@ -1520,7 +1525,7 @@ namespace System.Sgml
                         Pop();
                         goto case State.Markup;
                     case State.PartialText:
-                        if (ParseText(this.m_current.Lastchar, true))
+                        if (ParseText(this.m_current.Lastchar, false))
                         {
                             this.m_node.NodeType = XmlNodeType.Whitespace;
                         }
@@ -1534,7 +1539,7 @@ namespace System.Sgml
                     // strip out whitespace (caller is probably pretty printing the XML).
                     foundnode = false;
                 }
-                if (!foundnode && this.m_state == State.Eof && this.m_stack.Count > 1 && this.m_rootCount == 0)
+                if (!foundnode && this.m_state == State.Eof && this.m_stack.Count > 1)
                 {
                     this.m_poptodepth = 1;
                     this.m_state = State.AutoClose;
@@ -1624,7 +1629,7 @@ namespace System.Sgml
                 }
                 else
                 {
-                    string name = this.m_current.ScanToken(this.m_sb, SgmlReader.declterm, true);
+                    string name = this.m_current.ScanToken(this.m_sb, SgmlReader.declterm, false);
                     if (string.Equals(name, "DOCTYPE", StringComparison.OrdinalIgnoreCase))
                     {
                         ParseDocType();
@@ -1671,7 +1676,7 @@ namespace System.Sgml
 
         private string ScanName(string terminators)
         {
-            string name = this.m_current.ScanToken(this.m_sb, terminators, true);
+            string name = this.m_current.ScanToken(this.m_sb, terminators, false);
             switch (this.m_folding)
             {
                 case CaseFolding.ToUpper:
@@ -1681,8 +1686,7 @@ namespace System.Sgml
                     name = name.ToLowerInvariant();
                     break;
             }
-
-            return m_nameTable.Add(name);
+            return name;
         }
 
         private static bool VerifyName(string name)
@@ -1776,7 +1780,7 @@ namespace System.Sgml
                     else if (ch != '>')
                     {
                         string term = SgmlReader.avterm;
-                        value = this.m_current.ScanToken(this.m_sb, term, true);
+                        value = this.m_current.ScanToken(this.m_sb, term, false);
                     }
                 }
 
@@ -1807,7 +1811,7 @@ namespace System.Sgml
 
             if (this.Depth == 1)
             {
-                if (this.m_rootCount == 1 && m_settings.ConformanceLevel != ConformanceLevel.Fragment)
+                if (this.m_rootCount == 1)
                 {
                     // Hmmm, we found another root level tag, soooo, the only
                     // thing we can do to keep this a valid XML document is stop
@@ -1909,7 +1913,7 @@ namespace System.Sgml
         {
             char ch = m_current.ReadChar(); // skip '['
             ch = m_current.SkipWhitespace();
-            string name = m_current.ScanToken(m_sb, cdataterm, true);
+            string name = m_current.ScanToken(m_sb, cdataterm, false);
             if (name.StartsWith("if "))
             {
                 // 'downlevel-revealed' comment (another atrocity of the IE team)
@@ -1954,7 +1958,7 @@ namespace System.Sgml
 
                 if (ch != '[')
                 {
-                    string token = this.m_current.ScanToken(this.m_sb, SgmlReader.dtterm, true);
+                    string token = this.m_current.ScanToken(this.m_sb, SgmlReader.dtterm, false);
                     if (string.Equals(token, "PUBLIC", StringComparison.OrdinalIgnoreCase))
                     {
                         ch = this.m_current.SkipWhitespace();
@@ -2010,7 +2014,7 @@ namespace System.Sgml
         private const string piterm = " \t\r\n?";
         private bool ParsePI()
         {
-            string name = this.m_current.ScanToken(this.m_sb, SgmlReader.piterm, true);
+            string name = this.m_current.ScanToken(this.m_sb, SgmlReader.piterm, false);
             string value = null;
             if (this.m_current.Lastchar != '?')
             {
@@ -2179,6 +2183,17 @@ namespace System.Sgml
                                 this.m_partial = '!';
                                 break; 
                             }
+#if FIX
+                        } else if (ch == '['){
+                            // We are about to wrap this node as a CDATA block because of it's
+                            // type in the DTD, but since we found a CDATA block in the input
+                            // we have to parse it as a CDATA block, otherwise we will attempt
+                            // to output nested CDATA blocks which of course is illegal.
+                            if (this.ParseConditionalBlock()){
+                                this.partial = ' ';
+                                return true;
+                            }
+#endif
                         }
                         else
                         {
@@ -2340,7 +2355,7 @@ namespace System.Sgml
                         } 
                         else
                         {
-                            Entity ex = new Entity(name, e.PublicId, e.Uri, this.m_resolver);
+                            Entity ex = new Entity(name, e.PublicId, e.Uri, this.m_current.Proxy);
                             e.Open(this.m_current, new Uri(e.Uri));
                             this.m_current = ex;
                             this.m_current.ReadChar();
@@ -2376,11 +2391,11 @@ namespace System.Sgml
             }
         }
 
-        /// <summary></summary>
-        protected override void Dispose(bool disposing)
+        /// <summary>
+        /// Changes the <see cref="ReadState"/> to Closed.
+        /// </summary>
+        public override void Close()
         {
-            base.Dispose(disposing);
-
             if (this.m_current != null)
             {
                 this.m_current.Close();
@@ -2389,7 +2404,7 @@ namespace System.Sgml
 
             if (this.m_log != null)
             {
-                this.m_log.Dispose();
+                this.m_log.Close();
                 this.m_log = null;
             }
         }
@@ -2411,12 +2426,11 @@ namespace System.Sgml
             }
         }
 
-
         /// <summary>
         /// Reads the contents of an element or text node as a string.
         /// </summary>
         /// <returns>The contents of the element or an empty string.</returns>
-        public override string ReadContentAsString()
+        public override string ReadString()
         {
             if (this.m_node.NodeType == XmlNodeType.Element)
             {
@@ -2453,29 +2467,27 @@ namespace System.Sgml
         public override string ReadInnerXml()
         {
             StringWriter sw = new StringWriter(CultureInfo.InvariantCulture);
-            XmlWriterSettings settings = new XmlWriterSettings();
-            settings.Indent = true;
-            settings.ConformanceLevel = ConformanceLevel.Fragment;
-            using (XmlWriter xw = XmlWriter.Create(sw, settings))
+            XmlTextWriter xw = new XmlTextWriter(sw);
+            xw.Formatting = Formatting.Indented;
+            switch (this.NodeType)
             {
-                switch (this.NodeType)
-                {
-                    case XmlNodeType.Element:
-                        Read();
-                        while (!this.EOF && this.NodeType != XmlNodeType.EndElement)
-                        {
-                            xw.WriteNode(this, true);
-                        }
-                        Read(); // consume the end tag
-                        break;
-                    case XmlNodeType.Attribute:
-                        sw.Write(this.Value);
-                        break;
-                    default:
-                        // return empty string according to XmlReader spec.
-                        break;
-                }
+                case XmlNodeType.Element:
+                    Read();
+                    while (!this.EOF && this.NodeType != XmlNodeType.EndElement)
+                    {
+                        xw.WriteNode(this, true);
+                    }
+                    Read(); // consume the end tag
+                    break;
+                case XmlNodeType.Attribute:
+                    sw.Write(this.Value);
+                    break;
+                default:
+                    // return empty string according to XmlReader spec.
+                    break;
             }
+
+            xw.Close();
             return sw.ToString();
         }
 
@@ -2488,12 +2500,10 @@ namespace System.Sgml
         public override string ReadOuterXml()
         {
             StringWriter sw = new StringWriter(CultureInfo.InvariantCulture);
-            XmlWriterSettings settings = new XmlWriterSettings();
-            settings.Indent = true;
-            using (XmlWriter xw = XmlWriter.Create(sw, settings))
-            {
-                xw.WriteNode(this, true);
-            }
+            XmlTextWriter xw = new XmlTextWriter(sw);
+            xw.Formatting = Formatting.Indented;
+            xw.WriteNode(this, true);
+            xw.Close();
             return sw.ToString();
         }
 
@@ -2505,7 +2515,7 @@ namespace System.Sgml
         {
             get
             {
-                return m_nameTable;
+                return null;
             }
         }
 
@@ -2691,6 +2701,5 @@ namespace System.Sgml
                 }
             }
         }
-
     }
 }

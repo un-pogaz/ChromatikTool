@@ -18,6 +18,7 @@ namespace System.Xml
             get {
                 return new XmlWriterSettings()
                 {
+                    Async = false,
                     OmitXmlDeclaration = false,
                     Encoding = UTF8SansBomEncoding.Default,
                     Indent = true,
@@ -30,7 +31,7 @@ namespace System.Xml
                     NewLineHandling = NewLineHandling.Replace,
                     DoNotEscapeUriAttributes = false,
                     WriteEndDocumentOnClose = true,
-                    CloseOutput = true
+                    CloseOutput = true,
                 };
             }
         }

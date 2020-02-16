@@ -7,17 +7,12 @@ using System.Text.RegularExpressions;
 
 namespace System.Xml
 {
-    //https://fr.wikipedia.org/wiki/Liste_des_entités_caractère_de_XML_et_HTML#Entités_caractère_de_HTML
-    //https://en.wikipedia.org/wiki/List_of_XML_and_HTML_character_entity_references#Character_entity_references_in_HTML
-
     /// <summary>
     /// Represents an HTML entity / XML Entity with the corresponding character.
     /// </summary>
-    public class XmlHtmlEntity : IComparerEquatable<XmlHtmlEntity>
+    public class XmlHtmlEntity : IEquatable<XmlHtmlEntity>, IEqualityComparer<XmlHtmlEntity>, System.Collections.IEqualityComparer, IComparable<XmlHtmlEntity>, IComparable, IComparer<XmlHtmlEntity>, System.Collections.IComparer
     {
-        static private RegexOptions regOption = RegexOptions.CultureInvariant;
-        static private TimeSpan timeout = new TimeSpan(0, 0, 10);
-        static private Globalization.CultureInfo InvariantCulture = Globalization.CultureInfo.InvariantCulture;
+        static private System.Globalization.CultureInfo InvariantCulture = System.Globalization.CultureInfo.InvariantCulture;
 
         static XmlHtmlEntity _null { get; } = new XmlHtmlEntity(1);
         static public IEqualityComparer<XmlHtmlEntity> EqualityComparer { get; } = _null;
@@ -27,53 +22,46 @@ namespace System.Xml
         {
 
         }
-        
-        static public string Parse(string html, params XmlHtmlEntity[] entitys)
+
+        /// <summary>
+        /// Parse HTML and XML
+        /// </summary>
+        /// <param name="html"></param>
+        /// <param name="entitys"></param>
+        /// <returns></returns>
+        static public string ParseToCHAR(string html, IEnumerable<XmlHtmlEntity> entitys)
         {
-            return null;
-        }
+            foreach (var item in entitys)
+                html = item.ParseToCHAR(html);
 
-        static Type GetType(Assembly assembly, string name, string fullnamespace)
+            return html;
+        }
+        /// <summary>
+        /// Parse XML and CHAR
+        /// </summary>
+        /// <param name="html"></param>
+        /// <param name="entitys"></param>
+        /// <returns></returns>
+        static public string ParseToHTML(string html, IEnumerable<XmlHtmlEntity> entitys)
         {
-            if (assembly == null)
-                return null;
+            foreach (var item in entitys)
+                html = item.ParseToHTML(html);
 
-            return assembly.GetType(fullnamespace + "." + name, false, true);
+            return html;
         }
-        static object InvokeConstructor(Type type, params object[] parameters)
+        /// <summary>
+        /// Parse HTML and CHAR
+        /// </summary>
+        /// <param name="html"></param>
+        /// <param name="entitys"></param>
+        /// <returns></returns>
+        static public string ParseToXML(string html, IEnumerable<XmlHtmlEntity> entitys)
         {
-            if (type == null)
-                return null;
+            foreach (var item in entitys)
+                html = item.ParseToXML(html);
 
-            ConstructorInfo[] constructors = type.GetConstructors();
-            if (parameters == null)
-                parameters = new object[0];
-
-            Type[] parametersType = new Type[parameters.Length];
-            for (int i = 0; i < parameters.Length; i++)
-                parametersType[i] = parameters[i].GetType();
-
-            foreach (var item in constructors)
-            {
-                Reflection.ParameterInfo[] param = item.GetParameters();
-                if (param.Length == parametersType.Length)
-                {
-                    bool valide = true;
-                    for (int i = 0; i < parametersType.Length; i++)
-                        if (param[i].ParameterType != parametersType[i])
-                        {
-                            valide = false;
-                            break;
-                        }
-
-                    if (valide)
-                        return item.Invoke(parameters);
-                }
-            }
-
-            return null;
+            return html;
         }
-
 
 
         /// <summary>
@@ -98,11 +86,19 @@ namespace System.Xml
         /// If the HTML name of the entity is case sensitive
         /// </summary>
         public bool IsCaseSensitive { get; }
+        
 
-        private Regex _regexXML;
-        private Regex _regexHTML;
-        private Regex _regexCHAR;
-
+        /// <summary>
+        /// Initializes an instance with only the XML format.
+        /// </summary>
+        /// <param name="xml"></param>
+        public XmlHtmlEntity(int xml) : this(null, xml, true) { }
+        /// <summary>
+        /// Initializes an instance with the HTML and the XML format.
+        /// </summary>
+        /// <param name="html">HTML name of the entity</param>
+        /// <param name="xml">XML value of the entity</param>
+        public XmlHtmlEntity(string html, int xml) : this(html, xml, true) { }
         /// <summary>
         /// Initializes an instance with the HTML and the XML format.
         /// </summary>
@@ -135,83 +131,72 @@ namespace System.Xml
                 throw new ArgumentException("The XML value of the entity cannot be negative.", nameof(xml));
 
             Character = char.ConvertFromUtf32(xml);
-
-            _regexXML = new Regex(XML, regOption, timeout);
-            _regexCHAR = new Regex(Character, regOption, timeout);
-            if (HTML != null)
-            {
-                if (IsCaseSensitive)
-                    _regexHTML = new Regex(HTML, regOption, timeout);
-                else
-                    _regexHTML = new Regex(HTML, regOption | RegexOptions.IgnoreCase, timeout);
-            }
-            else
-                _regexHTML = null;
         }
 
         /// <summary>
-        /// Initializes an instance with the HTML and the XML format.
+        /// Parse HTML and CHAR
         /// </summary>
-        /// <param name="html">HTML name of the entity</param>
-        /// <param name="xml">XML value of the entity</param>
-        public XmlHtmlEntity(string html, int xml) : this(html, xml, true) { }
+        public string ParseToXML(string input)
+        {
+            return ParseHTMLtoXML(ParseCHARtoXML(input));
+        }
         /// <summary>
-        /// Initializes an instance with only the XML format.
+        /// Parse XML and CHAR
         /// </summary>
-        /// <param name="xml"></param>
-        public XmlHtmlEntity(int xml) : this(null, xml, true)
-        { }
-
+        public string ParseToHTML(string input)
+        {
+            return ParseCHARtoHTML(ParseXMLtoHTML(input));
+        }
+        /// <summary>
+        /// Parse HTML and XML
+        /// </summary>
+        public string ParseToCHAR(string input)
+        {
+            return ParseHTMLtoCHAR(ParseXMLtoCHAR(input));
+        }
 
         /// <summary></summary>
         public string ParseHTMLtoXML(string input)
         {
-            if (_regexHTML != null && HTML != null)
-                return _regexHTML.Replace(input, XML);
+            if (HTML != null)
+                return input.Replace(HTML, XML);
             else
                 return input;
         }
         /// <summary></summary>
         public string ParseHTMLtoCHAR(string input)
         {
-            if (_regexHTML != null && HTML != null)
-                return _regexHTML.Replace(input, XML);
+            if (HTML != null)
+                return input.Replace(HTML, Character);
             else
                 return input;
         }
         /// <summary></summary>
         public string ParseCHARtoHTML(string input)
         {
-            if (_regexCHAR != null && HTML != null)
-                return _regexCHAR.Replace(input, HTML);
+            if (HTML != null)
+                return input.Replace(Character, HTML);
             else
                 return input;
         }
         /// <summary></summary>
         public string ParseCHARtoXML(string input)
         {
-            if (_regexCHAR != null)
-                return _regexCHAR.Replace(input, XML);
-            else
-                return input;
+            return input.Replace(Character, XML);
         }
         /// <summary></summary>
         public string ParseXMLtoHTML(string input)
         {
-            if (_regexXML != null && HTML != null)
-                return _regexXML.Replace(input, HTML);
+            if (HTML != null)
+                return input.Replace(XML, HTML);
             else
                 return input;
         }
         /// <summary></summary>
         public string ParseXMLtoCHAR(string input)
         {
-            if (_regexXML != null)
-                return _regexXML.Replace(input, Character);
-            else
-                return input;
+            return input.Replace(XML, Character);
         }
-
 
         /// <summary></summary>
         public override string ToString()
@@ -222,16 +207,10 @@ namespace System.Xml
             return rslt;
         }
 
-        public override int GetHashCode()  { return HashCode; }
+        /// <summary></summary>
+        public override int GetHashCode()  { return _XMLvalue; }
         
-		static int HashCode = Runtime.CompilerServices.RuntimeHelpers.GetHashCode(_null);
-
-        ///rdquo, rdquor
-        ///uarr, uparrow
-        ///darr, downarrow
-        ///sub, subset
-
-        static public XmlHtmlEntity[] HTMLbase { get; } = new XmlHtmlEntity[]
+        static public XmlHtmlEntity[] HtmlBase { get; } = new XmlHtmlEntity[]
         {
             new XmlHtmlEntity("quot", 34, false),
             new XmlHtmlEntity("amp", 38, false),
@@ -357,7 +336,7 @@ namespace System.Xml
 
 
         /// <summary>
-        /// HTML 4 entity character
+        /// HTML 4 entity
         /// </summary>
         static public XmlHtmlEntity[] Html4 { get; } = new XmlHtmlEntity[]
         {
@@ -374,6 +353,66 @@ namespace System.Xml
             new XmlHtmlEntity("circ", 710),
 
             new XmlHtmlEntity("tilde", 732),
+            
+            new XmlHtmlEntity("Alpha", 913 ),
+            new XmlHtmlEntity("Beta", 914 ),
+            new XmlHtmlEntity("Gamma", 915 ),
+            new XmlHtmlEntity("Delta", 916 ),
+            new XmlHtmlEntity("Epsilon", 917 ),
+            new XmlHtmlEntity("Zeta", 918 ),
+            new XmlHtmlEntity("Eta", 919 ),
+            new XmlHtmlEntity("Theta", 920 ),
+            new XmlHtmlEntity("Iota", 921 ),
+            new XmlHtmlEntity("Kappa", 922 ),
+            new XmlHtmlEntity("Lambda", 923 ),
+            new XmlHtmlEntity("Mu", 924 ),
+            new XmlHtmlEntity("Nu", 925 ),
+            new XmlHtmlEntity("Xi", 926 ),
+            new XmlHtmlEntity("Omicron", 927 ),
+            new XmlHtmlEntity("Pi", 928 ),
+            new XmlHtmlEntity("Rho", 929 ),
+
+            new XmlHtmlEntity("Sigma", 931 ),
+            new XmlHtmlEntity("Tau", 932 ),
+            new XmlHtmlEntity("Upsilon", 933 ),
+            new XmlHtmlEntity("Phi", 934 ),
+            new XmlHtmlEntity("Chi", 935 ),
+            new XmlHtmlEntity("Psi", 936 ),
+            new XmlHtmlEntity("Omega", 937 ),
+            new XmlHtmlEntity("ohm", 937 ),
+            
+            new XmlHtmlEntity("alpha", 945 ),
+            new XmlHtmlEntity("beta", 946 ),
+            new XmlHtmlEntity("gamma", 947 ),
+            new XmlHtmlEntity("delta", 948 ),
+            new XmlHtmlEntity("epsi", 949 ),
+            new XmlHtmlEntity("epsilon", 949 ),
+            new XmlHtmlEntity("zeta", 950 ),
+            new XmlHtmlEntity("eta", 951 ),
+            new XmlHtmlEntity("theta", 952 ),
+            new XmlHtmlEntity("iota", 953 ),
+            new XmlHtmlEntity("kappa", 954 ),
+            new XmlHtmlEntity("lambda", 955 ),
+            new XmlHtmlEntity("mu", 956 ),
+            new XmlHtmlEntity("nu", 957 ),
+            new XmlHtmlEntity("xi", 958 ),
+            new XmlHtmlEntity("omicron", 959 ),
+            new XmlHtmlEntity("pi", 960 ),
+            new XmlHtmlEntity("rho", 961 ),
+            new XmlHtmlEntity("sigmav", 962 ),
+            new XmlHtmlEntity("sigmaf", 962 ),
+            new XmlHtmlEntity("sigma", 963 ),
+            new XmlHtmlEntity("tau", 964 ),
+            new XmlHtmlEntity("upsi", 965 ),
+            new XmlHtmlEntity("phi", 966 ),
+            new XmlHtmlEntity("chi", 967 ),
+            new XmlHtmlEntity("psi", 968 ),
+            new XmlHtmlEntity("omega", 969 ),
+
+            new XmlHtmlEntity("thetav", 977 ),
+            new XmlHtmlEntity("upsih", 978 ),
+
+            new XmlHtmlEntity("phiv", 981 ),
 
             new XmlHtmlEntity("ensp", 8194),
             new XmlHtmlEntity("emsp", 8195),
@@ -414,13 +453,31 @@ namespace System.Xml
 
             new XmlHtmlEntity("euro", 8364),
 
+            new XmlHtmlEntity("image", 8465),
+
+            new XmlHtmlEntity("weierp", 8472),
+
+            new XmlHtmlEntity("real", 8476),
+
             new XmlHtmlEntity("trade", 8482, false),
 
-        };
+            new XmlHtmlEntity("alefsym", 8501),
 
+            new XmlHtmlEntity("rang", 10217),
+            new XmlHtmlEntity("loz", 9674),
+            new XmlHtmlEntity("spades", 9824),
+            new XmlHtmlEntity("clubs", 9827),
+            new XmlHtmlEntity("hearts", 9829),
+            new XmlHtmlEntity("diams", 9830),
+            new XmlHtmlEntity("lang", 10216),
+            new XmlHtmlEntity("rang", 10217),
+        };
+        
+        ////  Not relevant with Unicode
+        /*
 
         /// <summary>
-        /// HTML 5 entity character
+        /// HTML 5 entity
         /// </summary>
         static public XmlHtmlEntity[] Html5 { get; } = new XmlHtmlEntity[]
         {
@@ -446,86 +503,50 @@ namespace System.Xml
             new XmlHtmlEntity("half", 189),
             
             //HTML 4 retro
-
-            //HTML 5
-        };
-
-        /// <summary>
-        /// HTML entity for Greek letter
-        /// </summary>
-        static public XmlHtmlEntity[] Html_Greek { get; } = new XmlHtmlEntity[]
-        {
-            new XmlHtmlEntity("Alpha", 913 ),
-            new XmlHtmlEntity("Beta", 914 ),
-            new XmlHtmlEntity("Gamma", 915 ),
-            new XmlHtmlEntity("Delta", 916 ),
-            new XmlHtmlEntity("Epsilon", 917 ),
-            new XmlHtmlEntity("Zeta", 918 ),
-            new XmlHtmlEntity("Eta", 919 ),
-            new XmlHtmlEntity("Theta", 920 ),
-            new XmlHtmlEntity("Iota", 921 ),
-            new XmlHtmlEntity("Kappa", 922 ),
-            new XmlHtmlEntity("Lambda", 923 ),
-            new XmlHtmlEntity("Mu", 924 ),
-            new XmlHtmlEntity("Nu", 925 ),
-            new XmlHtmlEntity("Xi", 926 ),
-            new XmlHtmlEntity("Omicron", 927 ),
-            new XmlHtmlEntity("Pi", 928 ),
-            new XmlHtmlEntity("Rho", 929 ),
-
-            new XmlHtmlEntity("Sigma", 931 ),
-            new XmlHtmlEntity("Tau", 932 ),
-            new XmlHtmlEntity("Upsilon", 933 ),
-            new XmlHtmlEntity("Phi", 934 ),
-            new XmlHtmlEntity("Chi", 935 ),
-            new XmlHtmlEntity("Psi", 936 ),
-            new XmlHtmlEntity("Omega", 937 ),
-            new XmlHtmlEntity("ohm", 937 ),
-
-
-            new XmlHtmlEntity("alpha", 945 ),
-            new XmlHtmlEntity("beta", 946 ),
-            new XmlHtmlEntity("gamma", 947 ),
-            new XmlHtmlEntity("delta", 948 ),
-            new XmlHtmlEntity("epsi", 949 ),
-            new XmlHtmlEntity("epsilon", 949 ),
-            new XmlHtmlEntity("epsiv", 949 ),
-            new XmlHtmlEntity("zeta", 950 ),
-            new XmlHtmlEntity("eta", 951 ),
-            new XmlHtmlEntity("theta", 952 ),
-            new XmlHtmlEntity("iota", 953 ),
-            new XmlHtmlEntity("kappa", 954 ),
-            new XmlHtmlEntity("lambda", 955 ),
-            new XmlHtmlEntity("mu", 956 ),
-            new XmlHtmlEntity("nu", 957 ),
-            new XmlHtmlEntity("xi", 958 ),
-            new XmlHtmlEntity("omicron", 959 ),
-            new XmlHtmlEntity("pi", 960 ),
-            new XmlHtmlEntity("rho", 961 ),
-            new XmlHtmlEntity("sigmav", 962 ),
             new XmlHtmlEntity("varsigma", 962 ),
-            new XmlHtmlEntity("sigmaf", 962 ),
-            new XmlHtmlEntity("sigma", 963 ),
-            new XmlHtmlEntity("tau", 964 ),
-            new XmlHtmlEntity("upsilon", 965 ),
-            new XmlHtmlEntity("upsi", 965 ),
-            new XmlHtmlEntity("phi", 966 ),
-            new XmlHtmlEntity("chi", 967 ),
-            new XmlHtmlEntity("psi", 968 ),
-            new XmlHtmlEntity("omega", 969 ),
 
-            new XmlHtmlEntity("thetav", 977 ),
+            new XmlHtmlEntity("epsiv", 949 ),
+
+            new XmlHtmlEntity("upsilon", 965 ),
+
             new XmlHtmlEntity("vartheta", 977 ),
             new XmlHtmlEntity("thetasym", 977 ),
-            new XmlHtmlEntity("upsih", 978 ),
+
             new XmlHtmlEntity("Upsi", 978 ),
 
-            new XmlHtmlEntity("straightphi", 981 ),
-            new XmlHtmlEntity("phiv", 981 ),
-            new XmlHtmlEntity("varphi", 981 ),
-            new XmlHtmlEntity("piv", 982 ),
             new XmlHtmlEntity("varpi", 982 ),
 
+            new XmlHtmlEntity("ThinSpace", 8201 ),
+
+            new XmlHtmlEntity("OpenCurlyQuote", 8216 ),
+            new XmlHtmlEntity("rsquor", 8217 ),
+            new XmlHtmlEntity("CloseCurlyQuote", 8218 ),
+            new XmlHtmlEntity("lsquor", 8218 ),
+            
+            new XmlHtmlEntity("Im", 8465),
+            new XmlHtmlEntity("imagpart", 8465),
+            new XmlHtmlEntity("Ifr", 8465),
+
+            new XmlHtmlEntity("wp", 8472),
+
+            new XmlHtmlEntity("Re", 8476),
+            new XmlHtmlEntity("realpart", 8476),
+            new XmlHtmlEntity("Rfr", 8476),
+
+            new XmlHtmlEntity("aleph", 8501),
+
+            new XmlHtmlEntity("larr", 8592),
+            new XmlHtmlEntity("uarr", 8593),
+            new XmlHtmlEntity("rarr", 8594),
+            new XmlHtmlEntity("darr", 8595),
+            new XmlHtmlEntity("crarr", 8629),
+            new XmlHtmlEntity("lArr", 8656),
+            new XmlHtmlEntity("uArr", 8657),
+            new XmlHtmlEntity("rArr", 8658),
+            new XmlHtmlEntity("dArr", 8659),
+            new XmlHtmlEntity("hArr", 8660),
+
+            //HTML 5
             new XmlHtmlEntity("Gammad", 988 ),
             new XmlHtmlEntity("gammad", 989 ),
             new XmlHtmlEntity("digamma", 989 ),
@@ -543,17 +564,201 @@ namespace System.Xml
 
             new XmlHtmlEntity("iiota", 8489),
 
-        };
+            new XmlHtmlEntity("leftarrow", 8592),
+            new XmlHtmlEntity("LeftArrow", 8592),
+            new XmlHtmlEntity("slarr", 8592),
+            new XmlHtmlEntity("ShortLeftArrow", 8592),
 
-        /// <summary>
-        /// HTML entity for arrows symbols
-        /// </summary>
-        static public XmlHtmlEntity[] Html_Arrow { get; } = new XmlHtmlEntity[]
-        {
+            new XmlHtmlEntity("uparrow", 8593),
+            new XmlHtmlEntity("UpArrow", 8593),
+            new XmlHtmlEntity("ShortUpArrow", 8593),
+
+            new XmlHtmlEntity("rightarrow", 8594),
+            new XmlHtmlEntity("RightArrow", 8594),
+            new XmlHtmlEntity("srarr", 8594),
+            new XmlHtmlEntity("ShortRightArrow", 8594),
+
+            new XmlHtmlEntity("downarrow", 8595),
+            new XmlHtmlEntity("DownArrow", 8595),
+            new XmlHtmlEntity("ShortDownArrow", 8595),
+
+            new XmlHtmlEntity("cularr", 8630),
+            new XmlHtmlEntity("curvearrowleft", 8630),
+            new XmlHtmlEntity("curarr", 8631),
+            new XmlHtmlEntity("curvearrowright", 8631),
+
+            new XmlHtmlEntity("Leftarrow", 8656),
+            new XmlHtmlEntity("DoubleLeftArrow", 8656),
+            new XmlHtmlEntity("Uparrow", 8657),
+            new XmlHtmlEntity("DoubleUpArrow", 8657),
+            new XmlHtmlEntity("Rightarrow", 8658),
+            new XmlHtmlEntity("DoubleRightArrow", 8658),
+            new XmlHtmlEntity("Downarrow", 8659),
+            new XmlHtmlEntity("DoubleDownArrow", 8659),
+            new XmlHtmlEntity("Leftrightarrow", 8660),
+
+            new XmlHtmlEntity("lozenge", 9674),
+
+            new XmlHtmlEntity("spadesuit", 9824),
+            new XmlHtmlEntity("clubsuit", 9827),
+            new XmlHtmlEntity("heartsuit", 9829),
+            new XmlHtmlEntity("diamondsuit", 9830),
+
+
+
+            new XmlHtmlEntity("harr", 8596),
+            new XmlHtmlEntity("leftrightarrow", 8596),
+            new XmlHtmlEntity("LeftRightArrow", 8596),
+            new XmlHtmlEntity("varr", 8597),
+            new XmlHtmlEntity("updownarrow", 8597),
+            new XmlHtmlEntity("UpDownArrow", 8597),
+            new XmlHtmlEntity("nwarr", 8598),
+            new XmlHtmlEntity("UpperLeftArrow", 8598),
+            new XmlHtmlEntity("nwarrow", 8598),
+            new XmlHtmlEntity("nearr", 8599),
+            new XmlHtmlEntity("UpperRightArrow", 8599),
+            new XmlHtmlEntity("nearrow", 8599),
+            new XmlHtmlEntity("searr", 8600),
+            new XmlHtmlEntity("searrow", 8600),
+            new XmlHtmlEntity("LowerRightArrow", 8600),
+            new XmlHtmlEntity("swarr", 8601),
+            new XmlHtmlEntity("swarrow", 8601),
+            new XmlHtmlEntity("LowerLeftArrow", 8601),
+            new XmlHtmlEntity("nlarr", 8602),
+            new XmlHtmlEntity("nleftarrow", 8602),
+            new XmlHtmlEntity("nrarr", 8603),
+            new XmlHtmlEntity("nrightarrow", 8603),
+
+            new XmlHtmlEntity("rarrw", 8605),
+            new XmlHtmlEntity("rightsquigarrow", 8605),
+            new XmlHtmlEntity("Larr", 8606),
+            new XmlHtmlEntity("twoheadleftarrow", 8606),
+            new XmlHtmlEntity("Uarr", 8607),
+            new XmlHtmlEntity("Rarr", 8608),
+            new XmlHtmlEntity("twoheadrightarrow", 8608),
+            new XmlHtmlEntity("Darr", 8609),
+            new XmlHtmlEntity("larrtl", 8610),
+            new XmlHtmlEntity("leftarrowtail", 8610),
+            new XmlHtmlEntity("rarrtl", 8611),
+            new XmlHtmlEntity("rightarrowtail", 8611),
+            new XmlHtmlEntity("mapstoleft", 8612),
+            new XmlHtmlEntity("LeftTeeArrow", 8612),
+            new XmlHtmlEntity("mapstoup", 8613),
+            new XmlHtmlEntity("UpTeeArrow", 8613),
+            new XmlHtmlEntity("map", 8614),
+            new XmlHtmlEntity("RightTeeArrow", 8614),
+            new XmlHtmlEntity("mapsto", 8614),
+            new XmlHtmlEntity("DownTeeArrow", 8615),
+            new XmlHtmlEntity("mapstodown", 8615),
+            new XmlHtmlEntity("larrhk", 8617),
+            new XmlHtmlEntity("hookleftarrow", 8617),
+            new XmlHtmlEntity("rarrhk", 8618),
+            new XmlHtmlEntity("hookrightarrow", 8618),
+            new XmlHtmlEntity("larrlp", 8619),
+            new XmlHtmlEntity("looparrowleft", 8619),
+            new XmlHtmlEntity("rarrlp", 8620),
+            new XmlHtmlEntity("looparrowright", 8620),
+            new XmlHtmlEntity("harrw", 8621),
+            new XmlHtmlEntity("leftrightsquigarrow", 8621),
+            new XmlHtmlEntity("nharr", 8622),
+            new XmlHtmlEntity("nleftrightarrow", 8622),
+            new XmlHtmlEntity("lsh", 8624),
+            new XmlHtmlEntity("Lsh", 8624),
+            new XmlHtmlEntity("rsh", 8625),
+            new XmlHtmlEntity("Rsh", 8625),
+            new XmlHtmlEntity("ldsh", 8626),
+            new XmlHtmlEntity("rdsh", 8627),
+
+            new XmlHtmlEntity("olarr", 8634),
+            new XmlHtmlEntity("circlearrowleft", 8634),
+            new XmlHtmlEntity("orarr", 8635),
+            new XmlHtmlEntity("circlearrowright", 8635),
+            new XmlHtmlEntity("lharu", 8636),
+            new XmlHtmlEntity("LeftVector", 8636),
+            new XmlHtmlEntity("leftharpoonup", 8636),
+            new XmlHtmlEntity("lhard", 8637),
+            new XmlHtmlEntity("leftharpoondown", 8637),
+            new XmlHtmlEntity("DownLeftVector", 8637),
+            new XmlHtmlEntity("uharr", 8638),
+            new XmlHtmlEntity("upharpoonright", 8638),
+            new XmlHtmlEntity("RightUpVector", 8638),
+            new XmlHtmlEntity("uharl", 8639),
+            new XmlHtmlEntity("upharpoonleft", 8639),
+            new XmlHtmlEntity("LeftUpVector", 8639),
+            new XmlHtmlEntity("rharu", 8640),
+            new XmlHtmlEntity("RightVector", 8640),
+            new XmlHtmlEntity("rightharpoonup", 8640),
+            new XmlHtmlEntity("rhard", 8641),
+            new XmlHtmlEntity("rightharpoondown", 8641),
+            new XmlHtmlEntity("DownRightVector", 8641),
+            new XmlHtmlEntity("dharr", 8642),
+            new XmlHtmlEntity("RightDownVector", 8642),
+            new XmlHtmlEntity("downharpoonright", 8642),
+            new XmlHtmlEntity("dharl", 8643),
+            new XmlHtmlEntity("LeftDownVector", 8643),
+            new XmlHtmlEntity("downharpoonleft", 8643),
+            new XmlHtmlEntity("rlarr", 8644),
+            new XmlHtmlEntity("rightleftarrows", 8644),
+            new XmlHtmlEntity("RightArrowLeftArrow", 8644),
+            new XmlHtmlEntity("udarr", 8645),
+            new XmlHtmlEntity("UpArrowDownArrow", 8645),
+            new XmlHtmlEntity("lrarr", 8646),
+            new XmlHtmlEntity("leftrightarrows", 8646),
+            new XmlHtmlEntity("LeftArrowRightArrow", 8646),
+            new XmlHtmlEntity("llarr", 8647),
+            new XmlHtmlEntity("leftleftarrows", 8647),
+            new XmlHtmlEntity("uuarr", 8648),
+            new XmlHtmlEntity("upuparrows", 8648),
+            new XmlHtmlEntity("rrarr", 8649),
+            new XmlHtmlEntity("rightrightarrows", 8649),
+            new XmlHtmlEntity("ddarr", 8650),
+            new XmlHtmlEntity("downdownarrows", 8650),
+            new XmlHtmlEntity("lrhar", 8651),
+            new XmlHtmlEntity("ReverseEquilibrium", 8651),
+            new XmlHtmlEntity("leftrightharpoons", 8651),
+            new XmlHtmlEntity("rlhar", 8652),
+            new XmlHtmlEntity("rightleftharpoons", 8652),
+            new XmlHtmlEntity("Equilibrium", 8652),
+            new XmlHtmlEntity("nlArr", 8653),
+            new XmlHtmlEntity("nLeftarrow", 8653),
+            new XmlHtmlEntity("nhArr", 8654),
+            new XmlHtmlEntity("nLeftrightarrow", 8654),
+            new XmlHtmlEntity("nrArr", 8655),
+            new XmlHtmlEntity("nRightarrow", 8655),
+
+            new XmlHtmlEntity("DoubleLeftRightArrow", 8660),
+            new XmlHtmlEntity("iff", 8660),
+            new XmlHtmlEntity("vArr", 8661),
+            new XmlHtmlEntity("Updownarrow", 8661),
+            new XmlHtmlEntity("DoubleUpDownArrow", 8661),
+            new XmlHtmlEntity("nwArr", 8662),
+            new XmlHtmlEntity("neArr", 8663),
+            new XmlHtmlEntity("seArr", 8664),
+            new XmlHtmlEntity("swArr", 8665),
+            new XmlHtmlEntity("lAarr", 8666),
+            new XmlHtmlEntity("Lleftarrow", 8666),
+            new XmlHtmlEntity("rAarr", 8667),
+            new XmlHtmlEntity("Rrightarrow", 8667),
+            new XmlHtmlEntity("zigrarr", 8669),
+
+            new XmlHtmlEntity("larrb", 8676),
+            new XmlHtmlEntity("LeftArrowBar", 8676),
+
+            new XmlHtmlEntity("rarrb", 8677),
+            new XmlHtmlEntity("RightArrowBar", 8677),
+
+            new XmlHtmlEntity("duarr", 8693),
+            new XmlHtmlEntity("DownArrowUpArrow", 8693),
+
             new XmlHtmlEntity("loarr", 8701),
             new XmlHtmlEntity("roarr", 8702),
             new XmlHtmlEntity("hoarr", 8703),
-            
+
+            new XmlHtmlEntity("langle", 10216),
+            new XmlHtmlEntity("LeftAngleBracket", 10216),
+            new XmlHtmlEntity("rangle", 10217),
+            new XmlHtmlEntity("RightAngleBracket", 10217),
+
             new XmlHtmlEntity("xlarr", 10229),
             new XmlHtmlEntity("longleftarrow", 10229),
             new XmlHtmlEntity("LongLeftArrow", 10229),
@@ -616,7 +821,7 @@ namespace System.Xml
             new XmlHtmlEntity("nesear", 10537),
             new XmlHtmlEntity("toea", 10537),
             new XmlHtmlEntity("seswar", 10537),
-            new XmlHtmlEntity("tosa", 10537), 
+            new XmlHtmlEntity("tosa", 10537),
             new XmlHtmlEntity("swnwar", 10538),
             new XmlHtmlEntity("rarrc", 10547),
             new XmlHtmlEntity("cudarrr", 10549),
@@ -671,24 +876,10 @@ namespace System.Xml
             new XmlHtmlEntity("UpEquilibrium", 10606),
             new XmlHtmlEntity("duhar", 10607),
             new XmlHtmlEntity("ReverseUpEquilibrium", 10607),
-        };
-
-        /// <summary>
-        /// HTML entity for math symbols
-        /// </summary>
-        static public XmlHtmlEntity[] Html_Math { get; } = new XmlHtmlEntity[]
-        {
 
         };
 
-        /// <summary>
-        /// HTML entity for miscellaneous symbols
-        /// </summary>
-        static public XmlHtmlEntity[] Html5_Misc { get; } = new XmlHtmlEntity[]
-        {
-
-        };
-
+        */
 
 
         /// <summary></summary>
@@ -761,17 +952,17 @@ namespace System.Xml
 
         int IEqualityComparer<XmlHtmlEntity>.GetHashCode(XmlHtmlEntity obj) {  return obj.GetHashCode(); }
 
-        bool Collections.IEqualityComparer.Equals(object x, object y) { return Equals(x, y); }
+        bool System.Collections.IEqualityComparer.Equals(object x, object y) { return Equals(x, y); }
 
         /// <summary></summary>
-        int Collections.IEqualityComparer.GetHashCode(object obj) { return obj.GetHashCode(); }
+        int System.Collections.IEqualityComparer.GetHashCode(object obj) { return obj.GetHashCode(); }
         
         /// <summary></summary>
         int IComparer<XmlHtmlEntity>.Compare(XmlHtmlEntity x, XmlHtmlEntity y)
         {
             return Compare(x, y);
         }
-        int Collections.IComparer.Compare(object x, object y)
+        int System.Collections.IComparer.Compare(object x, object y)
         {
             return Compare(x, y);
         }
