@@ -84,18 +84,88 @@ namespace Chromatik {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à public static class {0} {
-        ///static internal Regex _regex = new Regex(&quot;{1}&quot;, ({2}), new TimeSpan({3}));
-        ///static public string Pattern { get { return _regex.ToString(); } }
+        ///   Recherche une chaîne localisée semblable à static public string Pattern { get { return _regex.ToString(); } }
         ///static public RegexOptions Options { get { return _regex.Options; } }
         ///static public TimeSpan MatchTimeout { get { return _regex.MatchTimeout; } }
         ///static public bool RightToLeft { get { return _regex.RightToLeft; } }
         ///static public string[] GetGroupNames() { return _regex.GetGroupNames(); }
-        ///static public int[] GetGroupNumbers() { return _ [le reste de la chaîne a été tronqué]&quot;;.
+        ///static public int[] GetGroupNumbers() { return _regex.GetGroupNumbers(); }
+        ///static public string GroupNameFromNumber(int i) { return _regex.GroupNameFr [le reste de la chaîne a été tronqué]&quot;;.
         /// </summary>
         internal static string RegexStatic {
             get {
                 return ResourceManager.GetString("RegexStatic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+        ///&lt;XML&gt;
+        ///  &lt;Charsets&gt;
+        ///    
+        ///    &lt;Charset nameID=&quot;ASCII&quot;&gt;
+        ///      &lt;Name lang=&quot;en&quot;&gt;ASCII&lt;/Name&gt;
+        ///      &lt;Description lang=&quot;en&quot;&gt;&lt;/Description&gt;
+        ///      &lt;Localisable&gt;
+        ///        &lt;Languages lang=&quot;en&quot;&gt;&lt;/Languages&gt;
+        ///        &lt;Countries lang=&quot;en&quot;&gt;&lt;/Countries&gt;
+        ///      &lt;/Localisable&gt;
+        ///      &lt;CodeRange&gt;
+        ///        &lt;Range&gt;0000-007F&lt;/Range&gt;
+        ///      &lt;/CodeRange&gt;
+        ///    &lt;/Charset&gt;
+        ///    &lt;Charset nameID=&quot;Latin-1&quot;&gt;
+        ///      &lt;Name lang=&quot;en&quot;&gt;Latin-1&lt;/Name&gt;
+        ///      &lt;Description lang=&quot;en&quot;&gt;Latin-1 Western E [le reste de la chaîne a été tronqué]&quot;;.
+        /// </summary>
+        internal static string unicode_charsets {
+            get {
+                return ResourceManager.GetString("unicode_charsets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+        ///&lt;XML&gt;
+        ///  &lt;ConScript&gt;
+        ///    &lt;Plane nameID=&quot;ConScript Unicode Registry&quot;&gt;
+        ///      &lt;Name lang=&quot;en&quot;&gt;ConScript Unicode Registry&lt;/Name&gt;
+        ///      &lt;Description lang=&quot;en&quot;&gt;&lt;/Description&gt;
+        ///      
+        ///      &lt;Block nameID=&quot;Tengwar&quot;&gt;
+        ///        &lt;Name lang=&quot;en&quot;&gt;Tengwar&lt;/Name&gt;
+        ///        &lt;Description lang=&quot;en&quot;&gt;&lt;/Description&gt;
+        ///        &lt;Localisable&gt;
+        ///          &lt;Languages lang=&quot;en&quot;&gt;&lt;/Languages&gt;
+        ///          &lt;Countries lang=&quot;en&quot;&gt;&lt;/Countries&gt;
+        ///        &lt;/Localisable&gt;
+        ///        &lt;WebCharTable url=&quot;https:// [le reste de la chaîne a été tronqué]&quot;;.
+        /// </summary>
+        internal static string unicode_conscript {
+            get {
+                return ResourceManager.GetString("unicode_conscript", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+        ///&lt;XML&gt;
+        ///  &lt;Unicode&gt;
+        ///    &lt;Plane nameID=&quot;Basic Multilingual Plane&quot;&gt;
+        ///      &lt;Name lang=&quot;en&quot;&gt;Basic Multilingual Plane&lt;/Name&gt;
+        ///      &lt;Name lang=&quot;fr&quot;&gt;Plan multilingue de base&lt;/Name&gt;
+        ///      &lt;Description lang=&quot;en&quot;&gt;&lt;/Description&gt;
+        ///      &lt;Block nameID=&quot;C0 Controls&quot;&gt;
+        ///        &lt;Name lang=&quot;en&quot;&gt;C0 Controls&lt;/Name&gt;
+        ///        &lt;Name lang=&quot;fr&quot;&gt;Controle C0&lt;/Name&gt;
+        ///        &lt;Description lang=&quot;en&quot;&gt;&lt;/Description&gt;
+        ///        &lt;Localisable&gt;
+        ///          &lt;Languages&gt;&lt;/Languages&gt;
+        ///          &lt;Countries&gt; [le reste de la chaîne a été tronqué]&quot;;.
+        /// </summary>
+        internal static string unicode_unicode {
+            get {
+                return ResourceManager.GetString("unicode_unicode", resourceCulture);
             }
         }
     }
