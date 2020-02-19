@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>a7ccb438-74f5-4d49-82a5-8675c36b8215</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Chromatik</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Chromatik.Windows.Input\MouseActionInput.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Collections\AutoRefreshReadOnlyCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Collections\Comparator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Collections\FileSystemComparator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Collections\ListExtension.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Drawing\DrawingExtension.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Exception\ChromatikException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Forms\ControlExtension.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Forms\LabelTransparent.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Forms\PictureBoxTransparent.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Ini\IniEnums\IniCommentStarter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Ini\IniEnums\IniCommentType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Ini\IniEnums\IniDuplication.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Ini\IniEnums\IniKeyDelimiter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Ini\IniEnums\IniSectionWrapper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Ini\IniFile.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Ini\IniInternal\DebugCollectionViewer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Ini\IniInternal\GlobalSuppressions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Ini\IniInternal\IItemNameVerifier.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Ini\IniItemsCollection\IniItemCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Ini\IniItemsCollection\IniKeyCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Ini\IniItemsCollection\IniSectionCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Ini\IniItems\IniComment.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Ini\IniItems\IniItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Ini\IniItems\IniKey.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Ini\IniItems\IniSection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Ini\IniOptions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Ini\IniReaderWriter\IniCompressor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Ini\IniReaderWriter\IniEncryptor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Ini\IniReaderWriter\IniReader.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Ini\IniReaderWriter\IniWriter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Ini\IniUtilities\IniSerializationAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Ini\IniUtilities\IniSerializer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Ini\IniUtilities\IniValueBinding.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Ini\IniUtilities\IniValueBindingEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Ini\IniUtilities\IniValueMappings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Ini\IniUtilities\IniValueParser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IO\FileInfoExtension.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IO\PathTool.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IO\PathToolException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IO\RecursiveSearch.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IO\StreamExtension.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IO\StreamString.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Localization\QtTranslation\QtTranslation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Localization\QtTranslation\QtTranslationContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Localization\QtTranslation\QtTranslationException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Localization\QtTranslation\QtTranslationLocation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Localization\QtTranslation\QtTranslationMessage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Localization\Xliff\Xliff.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Localization\Xliff\XliffData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Localization\Xliff\XliffException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Localization\Xliff\XliffFile.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Localization\Xliff\XliffGroup.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Localization\Xliff\XliffIdentified.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Localization\Xliff\XliffList.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Localization\Xliff\XliffNote.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Localization\Xliff\XliffSegment.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Localization\Xliff\XliffSkeleton.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Localization\Xliff\XliffSource.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Localization\Xliff\XliffState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Localization\Xliff\XliffStatic.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Localization\Xliff\XliffTarget.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Localization\Xliff\XliffTranslatable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Localization\Xliff\XliffUnit.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MimeType\Base64.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MimeType\MimeTypes.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Reflection\TypeExtension.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Registry\Registry.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Resources\Chromatik.Designer.cs">
+      <DependentUpon>Chromatik.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Sgml\SgmlParser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Sgml\SgmlReader.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\AttributeExtension.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\ConvertExtend.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\DataTableExtension.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\EnumerableExtension.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\EnumStringValueAttribute.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\HashKey.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\Hexa.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\IComparerEquatable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\Microsoft.Ini.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\Settings.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\StringChangedEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\Version.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Text\ByteCharacter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Text\ControlCharacter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Text\RegexCompiled.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Text\RegexCompiledBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Text\RegexHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Text\StringExtension.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Text\UTF8SansBomEncoding.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Text\WhiteCharacter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Unicode\BasicMultilingual\BasicMultilingual_Blocks.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Unicode\BasicMultilingual\BasicMultilingual_Plane.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Unicode\Charsets\Charsets_Block.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Unicode\Charsets\Charsets_Plane.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Unicode\CodeBlock.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Unicode\CodeList.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Unicode\CodePlane.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Unicode\CodePoint.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Unicode\ConScriptUnicodeRegistry\ConScript Unicode Registry_Block.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Unicode\ConScriptUnicodeRegistry\ConScript Unicode Registry_Plane.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Unicode\SupplementaryIdeographic\SupplementaryIdeographic_Blocks.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Unicode\SupplementaryIdeographic\SupplementaryIdeographic_Plane.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Unicode\SupplementaryMultilingual\SupplementaryMultilingual_Block.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Unicode\SupplementaryMultilingual\SupplementaryMultilingual_Plane.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Unicode\SupplementaryPrivateUseArea\SupplementaryPrivateUseArea_A_Blocks.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Unicode\SupplementaryPrivateUseArea\SupplementaryPrivateUseArea_A_Plane.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Unicode\SupplementaryPrivateUseArea\SupplementaryPrivateUseArea_B_Blocks.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Unicode\SupplementaryPrivateUseArea\SupplementaryPrivateUseArea_B_Plane.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Unicode\SupplementarySpecial-purpose\SupplementarySpecial-purpose_Blocks.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Unicode\SupplementarySpecial-purpose\SupplementarySpecial-purpose_Plane.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Unicode\Tertiary Ideographic\Tertiary Ideographic_Blocks.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Unicode\Tertiary Ideographic\Tertiary Ideographic_Plane.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Unicode\Unicode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Unicode\UnicodeExceptions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Xml\DocumentType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Xml\XmlDocumentCreate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Xml\XmlDocumentWriter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Xml\XmlEnumertor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Xml\XmlExtension.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Xml\XmlHtmlEntity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Xml\XmlNamespace.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Xml\XmlRacine.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)ExceptionMap.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Ini\IniInternal\SharedDocumentationComments.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)Resources\HelloWorld.ts.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)Resources\unicode.charsets.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)Resources\unicode.conscript.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)Resources\unicode.unicode.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)ExceptionMap.mm" />
+    <None Include="$(MSBuildThisFileDirectory)ExceptionMap.pdf" />
+    <None Include="$(MSBuildThisFileDirectory)Localization\Xliff\Translate XLIFF Files _ Transifex Documentation.url" />
+    <None Include="$(MSBuildThisFileDirectory)Resources\Html.dtd" />
+    <None Include="$(MSBuildThisFileDirectory)Resources\RegexStatic" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Resources\Chromatik.resx">
+      <LastGenOutput>Chromatik.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>

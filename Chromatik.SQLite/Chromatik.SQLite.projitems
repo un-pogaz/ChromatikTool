@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>9816f78e-94fe-4b23-8aa9-ca29ca7007d6</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Chromatik.SQLite</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)SQLite.Extension.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SQLiteCaseValue.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SQLiteColumns.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SQLiteData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SQLiteDataBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SQLiteEdit.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SQLiteMaster.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SQLitePragma.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SQLiteTable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)SQLlog.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)StackLog.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)SQLite.Interop.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)SQLite.Interop.dll.x64" />
+    <None Include="$(MSBuildThisFileDirectory)SQLite.Interop.dll.x86" />
+    <None Include="$(MSBuildThisFileDirectory)System.Data.SQLite.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)System.Data.SQLite.xml" />
+  </ItemGroup>
+</Project>

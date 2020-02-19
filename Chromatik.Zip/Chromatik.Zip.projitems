@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>8bc2613b-485c-44b7-a8d8-cdf86d8f835b</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Chromatik.Zip</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)ZipEntry.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ZipEntryCollection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ZipException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ZipFile.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ZipFileStatic.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)DotNetZip.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)DotNetZip.xml" />
+  </ItemGroup>
+</Project>

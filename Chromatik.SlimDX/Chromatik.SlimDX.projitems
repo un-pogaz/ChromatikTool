@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>25309b66-39d8-4afc-bf1d-16bee8985804</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Chromatik.SlimDX</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)DeadZone.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GenericJoystick.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)InversedAxe.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)JoystickDevice.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)SlimDX.dll" />
+  </ItemGroup>
+</Project>

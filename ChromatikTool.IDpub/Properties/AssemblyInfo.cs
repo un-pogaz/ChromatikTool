@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // Les informations générales relatives à un assembly dépendent de 
 // l'ensemble d'attributs suivant. Changez les valeurs de ces attributs pour modifier les informations
 // associées à un assembly.
-[assembly: AssemblyTitle("ChromatikTool.SQLite")]
+[assembly: AssemblyTitle("ChromatikTool.IDpub")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ChromatikTool.SQLite")]
+[assembly: AssemblyProduct("ChromatikTool.IDpub")]
 [assembly: AssemblyCopyright("Copyright ©  2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Le GUID suivant est pour l'ID de la typelib si ce projet est exposé à COM
-[assembly: Guid("fe1c7a74-f021-409c-8088-58eedb019aee")]
+[assembly: Guid("5b3500d1-08d7-4849-864f-f142e252639d")]
 
 // Les informations de version pour un assembly se composent des quatre valeurs suivantes :
 //
