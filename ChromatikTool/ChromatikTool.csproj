@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1B81048C-2F5F-4F46-8AC4-492D100C0824}</ProjectGuid>
+    <ProjectGuid>{9465D1FE-3461-4000-9E2A-AE7EC3201341}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Chromatik</RootNamespace>
@@ -33,73 +33,168 @@
     <DocumentationFile>..\bin\Release\ChromatikTool.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Ionic.Zip, Version=1.9.1.8, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c, processorArchitecture=MSIL">
-      <HintPath>..\packages\Ionic.Zip.1.9.1.8\lib\Ionic.Zip.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="LibNoise, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LibNoise.0.2\lib\NET45\LibNoise.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="SlimDX, Version=4.0.13.43, Culture=neutral, PublicKeyToken=b1b0c32fd1ffe4f9, processorArchitecture=x86">
-      <HintPath>..\packages\SlimDX.4.0.13.44\lib\NET40\SlimDX.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Svg">
-      <HintPath>..\packages\Svg.3.0.49\lib\net452\Svg.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.SQLite, Version=1.0.112.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Chromatik.SQLite\System.Data.SQLite.dll</HintPath>
-    </Reference>
+    <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Numerics" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resources.Designer.cs">
+    <Compile Include="System\AttributeExtension.cs" />
+    <Compile Include="IO\StreamString.cs" />
+    <Compile Include="Collections\AutoRefreshReadOnlyCollection.cs" />
+    <Compile Include="Collections\Comparator.cs" />
+    <Compile Include="Collections\FileSystemComparator.cs" />
+    <Compile Include="Collections\ListExtension.cs" />
+    <Compile Include="System\ConvertExtend.cs" />
+    <Compile Include="System\DataTableExtension.cs" />
+    <Compile Include="System\EnumerableExtension.cs" />
+    <Compile Include="System\EnumStringValueAttribute.cs" />
+    <Compile Include="Exception\ChromatikException.cs" />
+    <Compile Include="System\HashKey.cs" />
+    <Compile Include="System\Hexa.cs" />
+    <Compile Include="System\IComparerEquatable.cs" />
+    <Compile Include="IO\FileInfoExtension.cs" />
+    <Compile Include="IO\PathTool.cs" />
+    <Compile Include="IO\PathToolException.cs" />
+    <Compile Include="IO\RecursiveSearch.cs" />
+    <Compile Include="IO\StreamExtension.cs" />
+    <Compile Include="Localization\QtTranslation\QtTranslation.cs" />
+    <Compile Include="Localization\QtTranslation\QtTranslationContext.cs" />
+    <Compile Include="Localization\QtTranslation\QtTranslationException.cs" />
+    <Compile Include="Localization\QtTranslation\QtTranslationLocation.cs" />
+    <Compile Include="Localization\QtTranslation\QtTranslationMessage.cs" />
+    <Compile Include="Localization\Xliff\Xliff.cs" />
+    <Compile Include="Localization\Xliff\XliffData.cs" />
+    <Compile Include="Localization\Xliff\XliffException.cs" />
+    <Compile Include="Localization\Xliff\XliffFile.cs" />
+    <Compile Include="Localization\Xliff\XliffGroup.cs" />
+    <Compile Include="Localization\Xliff\XliffIdentified.cs" />
+    <Compile Include="Localization\Xliff\XliffList.cs" />
+    <Compile Include="Localization\Xliff\XliffNote.cs" />
+    <Compile Include="Localization\Xliff\XliffSegment.cs" />
+    <Compile Include="Localization\Xliff\XliffSkeleton.cs" />
+    <Compile Include="Localization\Xliff\XliffSource.cs" />
+    <Compile Include="Localization\Xliff\XliffState.cs" />
+    <Compile Include="Localization\Xliff\XliffStatic.cs" />
+    <Compile Include="Localization\Xliff\XliffTarget.cs" />
+    <Compile Include="Localization\Xliff\XliffTranslatable.cs" />
+    <Compile Include="Localization\Xliff\XliffUnit.cs" />
+    <Compile Include="System\Microsoft.Ini.cs" />
+    <Compile Include="MimeType\Base64.cs" />
+    <Compile Include="MimeType\MimeTypes.cs" />
+    <Compile Include="Reflection\TypeExtension.cs" />
+    <Compile Include="System\Settings.cs" />
+    <Compile Include="Sgml\SgmlParser.cs" />
+    <Compile Include="Sgml\SgmlReader.cs" />
+    <Compile Include="System\StringChangedEventArgs.cs" />
+    <Compile Include="Text\ByteCharacter.cs" />
+    <Compile Include="Text\ControlCharacter.cs" />
+    <Compile Include="Text\RegexCompiled.cs" />
+    <Compile Include="Text\RegexCompiledBase.cs" />
+    <Compile Include="Text\RegexHelper.cs" />
+    <Compile Include="Text\StringExtension.cs" />
+    <Compile Include="Text\UTF8SansBomEncoding.cs" />
+    <Compile Include="Text\WhiteCharacter.cs" />
+    <Compile Include="System\Version.cs" />
+    <Compile Include="Xml\DocumentType.cs" />
+    <Compile Include="Xml\XmlDocumentCreate.cs" />
+    <Compile Include="Xml\XmlDocumentWriter.cs" />
+    <Compile Include="Xml\XmlEnumertor.cs" />
+    <Compile Include="Xml\XmlExtension.cs" />
+    <Compile Include="Xml\XmlHtmlEntity.cs" />
+    <Compile Include="Xml\XmlNamespace.cs" />
+    <Compile Include="Xml\XmlRacine.cs" />
+    <Compile Include="Drawing\DrawingExtension.cs" />
+    <Compile Include="Forms\ControlExtension.cs" />
+    <Compile Include="Forms\LabelTransparent.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Forms\PictureBoxTransparent.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Ini\IniEnums\IniCommentStarter.cs" />
+    <Compile Include="Ini\IniEnums\IniCommentType.cs" />
+    <Compile Include="Ini\IniEnums\IniDuplication.cs" />
+    <Compile Include="Ini\IniEnums\IniKeyDelimiter.cs" />
+    <Compile Include="Ini\IniEnums\IniSectionWrapper.cs" />
+    <Compile Include="Ini\IniFile.cs" />
+    <Compile Include="Ini\IniInternal\DebugCollectionViewer.cs" />
+    <Compile Include="Ini\IniInternal\GlobalSuppressions.cs" />
+    <Compile Include="Ini\IniInternal\IItemNameVerifier.cs" />
+    <Compile Include="Ini\IniItemsCollection\IniItemCollection.cs" />
+    <Compile Include="Ini\IniItemsCollection\IniKeyCollection.cs" />
+    <Compile Include="Ini\IniItemsCollection\IniSectionCollection.cs" />
+    <Compile Include="Ini\IniItems\IniComment.cs" />
+    <Compile Include="Ini\IniItems\IniItem.cs" />
+    <Compile Include="Ini\IniItems\IniKey.cs" />
+    <Compile Include="Ini\IniItems\IniSection.cs" />
+    <Compile Include="Ini\IniOptions.cs" />
+    <Compile Include="Ini\IniReaderWriter\IniCompressor.cs" />
+    <Compile Include="Ini\IniReaderWriter\IniEncryptor.cs" />
+    <Compile Include="Ini\IniReaderWriter\IniReader.cs" />
+    <Compile Include="Ini\IniReaderWriter\IniWriter.cs" />
+    <Compile Include="Ini\IniUtilities\IniSerializationAttribute.cs" />
+    <Compile Include="Ini\IniUtilities\IniSerializer.cs" />
+    <Compile Include="Ini\IniUtilities\IniValueBinding.cs" />
+    <Compile Include="Ini\IniUtilities\IniValueBindingEventArgs.cs" />
+    <Compile Include="Ini\IniUtilities\IniValueMappings.cs" />
+    <Compile Include="Ini\IniUtilities\IniValueParser.cs" />
+    <Compile Include="Registry\Registry.cs" />
+    <Compile Include="Resources\Chromatik.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
+      <DependentUpon>Chromatik.resx</DependentUpon>
     </Compile>
-    <Compile Include="Unicode.Initialisation.cs" />
+    <Compile Include="Unicode\BasicMultilingual\BasicMultilingual_Blocks.cs" />
+    <Compile Include="Unicode\BasicMultilingual\BasicMultilingual_Plane.cs" />
+    <Compile Include="Unicode\Charsets\Charsets_Block.cs" />
+    <Compile Include="Unicode\Charsets\Charsets_Plane.cs" />
+    <Compile Include="Chromatik.Windows.Input\MouseActionInput.cs" />
+    <Compile Include="Unicode\CodeBlock.cs" />
+    <Compile Include="Unicode\CodeList.cs" />
+    <Compile Include="Unicode\CodePlane.cs" />
+    <Compile Include="Unicode\CodePoint.cs" />
+    <Compile Include="Unicode\ConScriptUnicodeRegistry\ConScript Unicode Registry_Block.cs" />
+    <Compile Include="Unicode\ConScriptUnicodeRegistry\ConScript Unicode Registry_Plane.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Unicode\SupplementaryIdeographic\SupplementaryIdeographic_Blocks.cs" />
+    <Compile Include="Unicode\SupplementaryIdeographic\SupplementaryIdeographic_Plane.cs" />
+    <Compile Include="Unicode\SupplementaryMultilingual\SupplementaryMultilingual_Block.cs" />
+    <Compile Include="Unicode\SupplementaryMultilingual\SupplementaryMultilingual_Plane.cs" />
+    <Compile Include="Unicode\SupplementaryPrivateUseArea\SupplementaryPrivateUseArea_A_Blocks.cs" />
+    <Compile Include="Unicode\SupplementaryPrivateUseArea\SupplementaryPrivateUseArea_A_Plane.cs" />
+    <Compile Include="Unicode\SupplementaryPrivateUseArea\SupplementaryPrivateUseArea_B_Blocks.cs" />
+    <Compile Include="Unicode\SupplementaryPrivateUseArea\SupplementaryPrivateUseArea_B_Plane.cs" />
+    <Compile Include="Unicode\SupplementarySpecial-purpose\SupplementarySpecial-purpose_Blocks.cs" />
+    <Compile Include="Unicode\SupplementarySpecial-purpose\SupplementarySpecial-purpose_Plane.cs" />
+    <Compile Include="Unicode\Tertiary Ideographic\Tertiary Ideographic_Blocks.cs" />
+    <Compile Include="Unicode\Tertiary Ideographic\Tertiary Ideographic_Plane.cs" />
+    <Compile Include="Unicode\Unicode.cs" />
+    <Compile Include="Unicode\UnicodeExceptions.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources.resx">
+    <Content Include="ExceptionMap.png" />
+    <Content Include="Ini\IniInternal\SharedDocumentationComments.xml" />
+    <Content Include="Resources\HelloWorld.ts.xml" />
+    <Content Include="Resources\unicode.charsets.xml" />
+    <Content Include="Resources\unicode.conscript.xml" />
+    <Content Include="Resources\unicode.unicode.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Chromatik.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <LastGenOutput>Chromatik.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="ExceptionMap.mm" />
+    <None Include="ExceptionMap.pdf" />
+    <None Include="Localization\Xliff\Translate XLIFF Files _ Transifex Documentation.url" />
+    <None Include="Resources\Html.dtd" />
+    <None Include="Resources\RegexStatic" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="RegexStatic" />
-    <None Include="packages.config" />
-    <None Include="Html.dtd" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Unicode\unicode.charsets.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Unicode\unicode.conscript.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Unicode\unicode.unicode.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Unicode\HelloWorld.ts.xml" />
-  </ItemGroup>
-  <Import Project="..\Chromatik.Forms\Chromatik.Forms.projitems" Label="Shared" />
-  <Import Project="..\Chromatik.Unicode\Chromatik.Unicode.projitems" Label="Shared" />
-  <Import Project="..\Chromatik.Drawing\Chromatik.Drawing.projitems" Label="Shared" />
-  <Import Project="..\Chromatik\Chromatik.projitems" Label="Shared" />
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -34,12 +34,15 @@ namespace Test
             /// Enigma enigma3 = enigma1.Clone(true);
             /// string rslt3 = enigma3.Process(test);
             
-
-
             XmlHtmlEntity h = new XmlHtmlEntity("nbsp", 160, false);
 
             string t1 = Settings.Args.GetNextArg("--test1");
 
+            StreamString sr = new StreamString("abcd", Encoding.UTF8);
+            sr.Write("0000");
+
+            string dd = sr.Encoding.GetString(sr.ToArray());
+            ;
 
             XmlDocument doc = XmlDocumentCreate.ParseHTML(@"F:\Projet\GitHub\HTMLstrictEditor\HTMLstrictEditor\A joke gone wrong.html");
 

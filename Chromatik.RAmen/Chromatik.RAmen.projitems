@@ -9,20 +9,6 @@
     <Import_RootNamespace>Chromatik.Cryptography</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)Noise\IModule.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Noise\IModule1D.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Noise\IModule2D.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Noise\IModule3D.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Noise\IModule4D.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Noise\ImprovedPerlin.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Noise\Libnoise.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Noise\LibNoiseExtension.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Noise\NoiseQuality.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Noise\PrimitiveModule.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Noise\SimplexPerlin.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RAmen.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)Noise\NewFolder\" />
   </ItemGroup>
 </Project>

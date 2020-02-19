@@ -1,122 +1,79 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChromatikTool", "ChromatikTool\ChromatikTool.csproj", "{1B81048C-2F5F-4F46-8AC4-492D100C0824}"
-EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Chromatik", "Chromatik\Chromatik.shproj", "{7E078EC5-80B5-40A3-A55F-08B97E642325}"
-EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Chromatik.Compression", "Chromatik.Compression\Chromatik.Compression.shproj", "{01C2A431-8549-4A94-9C51-F1A60621C2A0}"
-EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Chromatik.Drawing", "Chromatik.Drawing\Chromatik.Drawing.shproj", "{7C396CD0-E6B8-438A-8CA5-85B5B520E808}"
-EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Chromatik.Forms", "Chromatik.Forms\Chromatik.Forms.shproj", "{9C65A1F9-699C-45A7-B724-24D706E31637}"
-EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Chromatik.Cryptography", "Chromatik.RAmen\Chromatik.Cryptography.shproj", "{381AAAA2-6761-4711-82BF-2D3932F34C92}"
-EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Chromatik.Zip", "Chromatik.Zip\Chromatik.Zip.shproj", "{E4C23370-C288-4B45-92D2-80B29B8DECDD}"
-EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Chromatik.Unicode", "Chromatik.Unicode\Chromatik.Unicode.shproj", "{010804B0-74F5-4362-A574-3E552221AB30}"
-EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Chromatik.ToolBox", "Chromatik.ToolBox\Chromatik.ToolBox.shproj", "{01CD2CC5-0985-46E7-B029-5C3BB2315B70}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Chromatik.SQLite", "Chromatik.SQLite\Chromatik.SQLite.shproj", "{DB77794D-A9EE-476C-A553-BDDA2849B878}"
-EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Chromatik.Sequence", "Chromatik.Sequence\Chromatik.Sequence.shproj", "{84E88843-7AD5-4B04-A72B-747BDC43AD4D}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{22FD5684-B516-49F3-8F99-3C13F16719D5}"
-EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Chromatik.Svg", "Chromatik.Svg\Chromatik.Svg.shproj", "{80C2E08E-798E-462F-9E63-A73F9F53C1DD}"
-EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Chromatik.SlimDX", "Chromatik.SlimDX\Chromatik.SlimDX.shproj", "{748D4242-3809-4A88-AE97-A4360A535FDD}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Chromatik.LibNoise", "Chromatik.LibNoise\Chromatik.LibNoise.shproj", "{7701FD2D-6C9E-4A06-BAA3-B214D0F82EAF}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Chromatik.LibNoise.Internal", "Chromatik.LibNoise.Internal\Chromatik.LibNoise.Internal.shproj", "{B77F072E-132E-4C18-8294-E0B498761C4C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChromatikTool.IDpub", "ChromatikTool.IDpub\ChromatikTool.IDpub.csproj", "{AF7BFB9E-19A5-40C4-872E-5D71EEA28DE8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChromatikTool", "ChromatikTool\ChromatikTool.csproj", "{9465D1FE-3461-4000-9E2A-AE7EC3201341}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Chromatik.Registry", "Chromatik.Registry\Chromatik.Registry.shproj", "{57E41F0C-BCB8-4D10-8D21-42836D08226B}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Chromatik.RAmen", "Chromatik.RAmen\Chromatik.RAmen.shproj", "{381AAAA2-6761-4711-82BF-2D3932F34C92}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Chromatik.WindowsInput", "Chromatik.WindowsInput\Chromatik.WindowsInput.shproj", "{ABACA8FA-41E7-4D82-9AD9-7AE006AB960D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChromatikTool.SQLite", "ChromatikTool.SQLite\ChromatikTool.SQLite.csproj", "{FE1C7A74-F021-409C-8088-58EEDB019AEE}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Chromatik.NewtonsoftJson", "Chromatik.NewtonsoftJson\Chromatik.NewtonsoftJson.shproj", "{9732E864-65EB-4A5E-923A-F937F2D45D2C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChromatikTool.Zip", "ChromatikTool.Zip\ChromatikTool.Zip.csproj", "{DBA531CD-A16A-427F-A6E4-08FE13AC221F}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Chromatik.Ini", "Chromatik.Ini\Chromatik.Ini.shproj", "{94564B30-DA9A-465B-AD6E-98DACA15F120}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChromatikTool.Svg", "ChromatikTool.Svg\ChromatikTool.Svg.csproj", "{ABDF6E43-AD08-43A2-B214-E781D1646D7A}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Chromatik.Machine", "Chromatik.Enigma\Chromatik.Machine.shproj", "{91DF0AAD-8FB3-4E9A-8540-EB9560CA7EBF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChromatikTool.SlimDX", "ChromatikTool.SlimDX\ChromatikTool.SlimDX.csproj", "{0F2E3477-C4CD-461C-B4EC-F52284137954}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChromatikTool.CommentsCleaner", "ChromatikTool.CommentsCleaner\ChromatikTool.CommentsCleaner.csproj", "{41404C61-0DBE-4A5E-8D3E-FF30A8BC1B47}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChromatikTool.NewtonsoftJson", "ChromatikTool.NewtonsoftJson\ChromatikTool.NewtonsoftJson.csproj", "{E8DDC67C-B738-40A4-B75B-AB115E51D516}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChromatikTool.HTMLstrictEditor", "ChromatikTool.HTMLstrictEditor\ChromatikTool.HTMLstrictEditor.csproj", "{FAEF10D3-E8CF-4C58-975B-BD2385FF8DC7}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Chromatik.Machine", "Chromatik.Machine\Chromatik.Machine.shproj", "{91DF0AAD-8FB3-4E9A-8540-EB9560CA7EBF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChromatikTool.Sequence", "ChromatikTool.Sequence\ChromatikTool.Sequence.csproj", "{BDF68260-58BB-4C05-897E-BD8ECDC26CFB}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		Chromatik.Unicode\Chromatik.Unicode.projitems*{010804b0-74f5-4362-a574-3e552221ab30}*SharedItemsImports = 13
-		Chromatik.Compression\Chromatik.Compression.projitems*{01c2a431-8549-4a94-9c51-f1a60621c2a0}*SharedItemsImports = 13
-		Chromatik.ToolBox\Chromatik.ToolBox.projitems*{01cd2cc5-0985-46e7-b029-5c3bb2315b70}*SharedItemsImports = 13
-		Chromatik.Drawing\Chromatik.Drawing.projitems*{1b81048c-2f5f-4f46-8ac4-492d100c0824}*SharedItemsImports = 4
-		Chromatik.Forms\Chromatik.Forms.projitems*{1b81048c-2f5f-4f46-8ac4-492d100c0824}*SharedItemsImports = 4
-		Chromatik.Unicode\Chromatik.Unicode.projitems*{1b81048c-2f5f-4f46-8ac4-492d100c0824}*SharedItemsImports = 4
-		Chromatik\Chromatik.projitems*{1b81048c-2f5f-4f46-8ac4-492d100c0824}*SharedItemsImports = 4
-		Chromatik.RAmen\Chromatik.RAmen.projitems*{381aaaa2-6761-4711-82bf-2d3932f34c92}*SharedItemsImports = 13
-		Chromatik.Forms\Chromatik.Forms.projitems*{41404c61-0dbe-4a5e-8d3e-ff30a8bc1b47}*SharedItemsImports = 4
-		Chromatik.SQLite\Chromatik.SQLite.projitems*{41404c61-0dbe-4a5e-8d3e-ff30a8bc1b47}*SharedItemsImports = 4
-		Chromatik.Unicode\Chromatik.Unicode.projitems*{41404c61-0dbe-4a5e-8d3e-ff30a8bc1b47}*SharedItemsImports = 4
-		Chromatik\Chromatik.projitems*{41404c61-0dbe-4a5e-8d3e-ff30a8bc1b47}*SharedItemsImports = 4
-		Chromatik.Registry\Chromatik.Registry.projitems*{57e41f0c-bcb8-4d10-8d21-42836d08226b}*SharedItemsImports = 13
-		Chromatik.SlimDX\Chromatik.SlimDX.projitems*{748d4242-3809-4a88-ae97-a4360a535fdd}*SharedItemsImports = 13
 		Chromatik.LibNoise\Chromatik.Noise.projitems*{7701fd2d-6c9e-4a06-baa3-b214d0f82eaf}*SharedItemsImports = 13
-		Chromatik.Drawing\Chromatik.Drawing.projitems*{7c396cd0-e6b8-438a-8ca5-85b5b520e808}*SharedItemsImports = 13
-		Chromatik\Chromatik.projitems*{7e078ec5-80b5-40a3-a55f-08b97e642325}*SharedItemsImports = 13
-		Chromatik.Svg\Chromatik.Svg.projitems*{80c2e08e-798e-462f-9e63-a73f9f53c1dd}*SharedItemsImports = 13
-		Chromatik.Sequence\Chromatik.Sequence.projitems*{84e88843-7ad5-4b04-a72b-747bdc43ad4d}*SharedItemsImports = 13
-		Chromatik.Enigma\Chromatik.Enigma.projitems*{91df0aad-8fb3-4e9a-8540-eb9560ca7ebf}*SharedItemsImports = 13
-		Chromatik.Ini\Chromatik.Ini.projitems*{94564b30-da9a-465b-ad6e-98daca15f120}*SharedItemsImports = 13
-		Chromatik.NewtonsoftJson\Chromatik.NewtonsoftJson.projitems*{9732e864-65eb-4a5e-923a-f937f2d45d2c}*SharedItemsImports = 13
-		Chromatik.Forms\Chromatik.Forms.projitems*{9c65a1f9-699c-45a7-b724-24d706e31637}*SharedItemsImports = 13
-		Chromatik.WindowsInput\Chromatik.WindowsInput.projitems*{abaca8fa-41e7-4d82-9ad9-7ae006ab960d}*SharedItemsImports = 13
-		Chromatik.Drawing\Chromatik.Drawing.projitems*{af7bfb9e-19a5-40c4-872e-5d71eea28de8}*SharedItemsImports = 4
-		Chromatik.Forms\Chromatik.Forms.projitems*{af7bfb9e-19a5-40c4-872e-5d71eea28de8}*SharedItemsImports = 4
-		Chromatik.SQLite\Chromatik.SQLite.projitems*{af7bfb9e-19a5-40c4-872e-5d71eea28de8}*SharedItemsImports = 4
-		Chromatik.Svg\Chromatik.Svg.projitems*{af7bfb9e-19a5-40c4-872e-5d71eea28de8}*SharedItemsImports = 4
-		Chromatik.Unicode\Chromatik.Unicode.projitems*{af7bfb9e-19a5-40c4-872e-5d71eea28de8}*SharedItemsImports = 4
-		Chromatik.Zip\Chromatik.Zip.projitems*{af7bfb9e-19a5-40c4-872e-5d71eea28de8}*SharedItemsImports = 4
-		Chromatik\Chromatik.projitems*{af7bfb9e-19a5-40c4-872e-5d71eea28de8}*SharedItemsImports = 4
+		Chromatik.Machine\Chromatik.Enigma.projitems*{91df0aad-8fb3-4e9a-8540-eb9560ca7ebf}*SharedItemsImports = 13
 		Chromatik.LibNoise.Internal\Chromatik.Noise.Internal.projitems*{b77f072e-132e-4c18-8294-e0b498761c4c}*SharedItemsImports = 13
-		Chromatik.SQLite\Chromatik.SQLite.projitems*{db77794d-a9ee-476c-a553-bdda2849b878}*SharedItemsImports = 13
-		Chromatik.Zip\Chromatik.Zip.projitems*{e4c23370-c288-4b45-92d2-80b29b8decdd}*SharedItemsImports = 13
-		Chromatik.Drawing\Chromatik.Drawing.projitems*{faef10d3-e8cf-4c58-975b-bd2385ff8dc7}*SharedItemsImports = 4
-		Chromatik.Forms\Chromatik.Forms.projitems*{faef10d3-e8cf-4c58-975b-bd2385ff8dc7}*SharedItemsImports = 4
-		Chromatik.Unicode\Chromatik.Unicode.projitems*{faef10d3-e8cf-4c58-975b-bd2385ff8dc7}*SharedItemsImports = 4
-		Chromatik\Chromatik.projitems*{faef10d3-e8cf-4c58-975b-bd2385ff8dc7}*SharedItemsImports = 4
+		Chromatik.ToolBox\Chromatik.ToolBox.projitems*{01cd2cc5-0985-46e7-b029-5c3bb2315b70}*SharedItemsImports = 13
+		Chromatik.RAmen\Chromatik.RAmen.projitems*{381aaaa2-6761-4711-82bf-2d3932f34c92}*SharedItemsImports = 13
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1B81048C-2F5F-4F46-8AC4-492D100C0824}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1B81048C-2F5F-4F46-8AC4-492D100C0824}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1B81048C-2F5F-4F46-8AC4-492D100C0824}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1B81048C-2F5F-4F46-8AC4-492D100C0824}.Release|Any CPU.Build.0 = Release|Any CPU
 		{22FD5684-B516-49F3-8F99-3C13F16719D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{22FD5684-B516-49F3-8F99-3C13F16719D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{22FD5684-B516-49F3-8F99-3C13F16719D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{22FD5684-B516-49F3-8F99-3C13F16719D5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AF7BFB9E-19A5-40C4-872E-5D71EEA28DE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AF7BFB9E-19A5-40C4-872E-5D71EEA28DE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AF7BFB9E-19A5-40C4-872E-5D71EEA28DE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AF7BFB9E-19A5-40C4-872E-5D71EEA28DE8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{41404C61-0DBE-4A5E-8D3E-FF30A8BC1B47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{41404C61-0DBE-4A5E-8D3E-FF30A8BC1B47}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{41404C61-0DBE-4A5E-8D3E-FF30A8BC1B47}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{41404C61-0DBE-4A5E-8D3E-FF30A8BC1B47}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FAEF10D3-E8CF-4C58-975B-BD2385FF8DC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FAEF10D3-E8CF-4C58-975B-BD2385FF8DC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FAEF10D3-E8CF-4C58-975B-BD2385FF8DC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FAEF10D3-E8CF-4C58-975B-BD2385FF8DC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9465D1FE-3461-4000-9E2A-AE7EC3201341}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9465D1FE-3461-4000-9E2A-AE7EC3201341}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9465D1FE-3461-4000-9E2A-AE7EC3201341}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9465D1FE-3461-4000-9E2A-AE7EC3201341}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE1C7A74-F021-409C-8088-58EEDB019AEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE1C7A74-F021-409C-8088-58EEDB019AEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE1C7A74-F021-409C-8088-58EEDB019AEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE1C7A74-F021-409C-8088-58EEDB019AEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DBA531CD-A16A-427F-A6E4-08FE13AC221F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBA531CD-A16A-427F-A6E4-08FE13AC221F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBA531CD-A16A-427F-A6E4-08FE13AC221F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBA531CD-A16A-427F-A6E4-08FE13AC221F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABDF6E43-AD08-43A2-B214-E781D1646D7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABDF6E43-AD08-43A2-B214-E781D1646D7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABDF6E43-AD08-43A2-B214-E781D1646D7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABDF6E43-AD08-43A2-B214-E781D1646D7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F2E3477-C4CD-461C-B4EC-F52284137954}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F2E3477-C4CD-461C-B4EC-F52284137954}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F2E3477-C4CD-461C-B4EC-F52284137954}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F2E3477-C4CD-461C-B4EC-F52284137954}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8DDC67C-B738-40A4-B75B-AB115E51D516}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8DDC67C-B738-40A4-B75B-AB115E51D516}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8DDC67C-B738-40A4-B75B-AB115E51D516}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8DDC67C-B738-40A4-B75B-AB115E51D516}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDF68260-58BB-4C05-897E-BD8ECDC26CFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDF68260-58BB-4C05-897E-BD8ECDC26CFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDF68260-58BB-4C05-897E-BD8ECDC26CFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDF68260-58BB-4C05-897E-BD8ECDC26CFB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

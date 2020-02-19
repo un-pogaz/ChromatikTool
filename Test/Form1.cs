@@ -31,7 +31,6 @@ namespace Test
                 string s = "ByteCharacter.b" + ba.ToOneString(", ByteCharacter.b");
                 lst.Add("new char[] { " + s + " }");
             }
-
             textBox1.Text = lst.ToOneString(WhiteCharacter.EndLineWindows + WhiteCharacter.EndLineWindows);
         }
     }

@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>91df0aad-8fb3-4e9a-8540-eb9560ca7ebf</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Chromatik.Cryptography.Machine</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Alphabet.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Kraken.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MarkMark.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enigma.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IMachine.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Module.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PlugBoard.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Reflector.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Reflector.static.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Rotor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RotorEnigma.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RotorEnigma.static.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)WireMatrix.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)Enigma machine _ Tom MacWright _ Observable.url" />
+  </ItemGroup>
+</Project>
