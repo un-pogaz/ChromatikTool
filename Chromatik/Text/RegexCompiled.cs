@@ -386,7 +386,8 @@ namespace System.Text.RegularExpressions
                     
                     rslt.AppendLine("public static class "+ reg.Name + " {");
                     rslt.AppendLine("static Regex _regex = new Regex(@\""+ reg.Pattern.Replace("\"", "\"\"") +"\", ("+ option + "), new TimeSpan("+ reg.MatchTimeout.Ticks.ToString(Globalization.CultureInfo.InvariantCulture) + "));");
-                    rslt.AppendLine(Chromatik.Resources.Chromatik.RegexStatic);
+
+                    rslt.AppendLine(RegexStatic);
                 }
                 rslt.AppendLine("}");
 
@@ -396,6 +397,15 @@ namespace System.Text.RegularExpressions
             IO.File.WriteAllText(filePath, rslt.ToString(), UTF8SansBomEncoding.UTF8SansBom);
         }
 
+        static private string _regexStatic;
+        static private string RegexStatic {
+            get {
+                if (_regexStatic == null)
+                    _regexStatic = (typeof(CompiledRegex).GetManifestResourceString("Chromatik", "Ressources", "RegexStatic"));
+
+                return _regexStatic;
+            }
+        }
 
 
         /// <summary>

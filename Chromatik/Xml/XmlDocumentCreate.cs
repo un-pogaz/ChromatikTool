@@ -99,6 +99,7 @@ namespace System.Xml
                 sgml = item.ParseXMLtoHTML(sgml);
 
             sgml = XmlHtmlEntity.ParseToCHAR(sgml, XmlHtmlEntity.Html2.Concat(XmlHtmlEntity.Html3, XmlHtmlEntity.Html4));
+            
             return new Sgml.SgmlReader()
             {
                 DocType = "HTML",

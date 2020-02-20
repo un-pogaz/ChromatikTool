@@ -129,9 +129,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ChromatikTool.IDpub\ChromatikTool.IDpub.csproj">
-      <Project>{5b3500d1-08d7-4849-864f-f142e252639d}</Project>
-      <Name>ChromatikTool.IDpub</Name>
+    <ProjectReference Include="..\ChromatikTool\ChromatikTool.csproj">
+      <Project>{9465d1fe-3461-4000-9e2a-ae7ec3201341}</Project>
+      <Name>ChromatikTool</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

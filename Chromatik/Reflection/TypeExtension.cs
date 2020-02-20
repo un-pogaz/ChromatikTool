@@ -200,8 +200,54 @@ namespace System.Reflection
 
         static public IO.Stream GetManifestResourceStream(this Type type, params string[] name)
         {
+            string fullName = name.Join(".");
+            if (type.GetManifestResourceNames().Contains(fullName))
+            { }
+            else
+            {
+                foreach (var item in type.GetManifestResourceNames())
+                    if (item.Equals(fullName, StringComparison.InvariantCultureIgnoreCase))
+                    {
+                        fullName = item;
+                        break;
+                    }
+            }
+
+            return type.Assembly.GetManifestResourceStream(name.Join("."));
+        }
+        static public string GetManifestResourceString(this Type type, params string[] name)
+        {
+            IO.Stream stream = type.GetManifestResourceStream(name);
+            if (stream != null)
+                using (IO.StreamReader reader = new IO.StreamReader(stream, Encoding.UTF8, true, 2048))
+                    return reader.ReadToEnd();
+
+            return null;
+        }
+
+        static public string[] GetManifestResourceNames(this Type type)
+        {
             Assembly assembly = type.Assembly;
-            return assembly.GetManifestResourceStream(new string[] { assembly.FullName.Split(',')[0] }.Concat(name).Join("."));
+            return assembly.GetManifestResourceNames();
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        static public ManifestResourceInfo GetManifestResourceInfo(this Type type, params string[] name)
+        {
+            return type.Assembly.GetManifestResourceInfo(name.Join("."));
+        }
+        /// <summary>
+        /// Get the name of the Assembly of the <see cref="Type"/>
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        static public string GetAssemblyName(this Type type)
+        {
+            return type.Assembly.GetName().Name;
         }
     }
 }

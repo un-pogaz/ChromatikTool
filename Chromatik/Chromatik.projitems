@@ -81,11 +81,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)MimeType\MimeTypes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Reflection\TypeExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Registry\Registry.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Resources\Chromatik.Designer.cs">
-      <DependentUpon>Chromatik.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Sgml\SgmlParser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sgml\SgmlReader.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\AttributeExtension.cs" />
@@ -131,6 +126,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Unicode\Tertiary Ideographic\Tertiary Ideographic_Blocks.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Unicode\Tertiary Ideographic\Tertiary Ideographic_Plane.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Unicode\Unicode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Unicode\Unicode.Load.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Unicode\UnicodeExceptions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Xml\DocumentType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Xml\XmlDocumentCreate.cs" />
@@ -144,22 +140,16 @@
   <ItemGroup>
     <Content Include="$(MSBuildThisFileDirectory)ExceptionMap.png" />
     <Content Include="$(MSBuildThisFileDirectory)Ini\IniInternal\SharedDocumentationComments.xml" />
-    <Content Include="$(MSBuildThisFileDirectory)Resources\HelloWorld.ts.xml" />
-    <Content Include="$(MSBuildThisFileDirectory)Resources\unicode.charsets.xml" />
-    <Content Include="$(MSBuildThisFileDirectory)Resources\unicode.conscript.xml" />
-    <Content Include="$(MSBuildThisFileDirectory)Resources\unicode.unicode.xml" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Ressources\HelloWorld.ts.xml" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Ressources\unicode.charsets.xml" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Ressources\unicode.conscript.xml" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Ressources\unicode.unicode.xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)ExceptionMap.mm" />
     <None Include="$(MSBuildThisFileDirectory)ExceptionMap.pdf" />
     <None Include="$(MSBuildThisFileDirectory)Localization\Xliff\Translate XLIFF Files _ Transifex Documentation.url" />
-    <None Include="$(MSBuildThisFileDirectory)Resources\Html.dtd" />
-    <None Include="$(MSBuildThisFileDirectory)Resources\RegexStatic" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Resources\Chromatik.resx">
-      <LastGenOutput>Chromatik.Designer.cs</LastGenOutput>
-      <Generator>ResXFileCodeGenerator</Generator>
-    </EmbeddedResource>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Ressources\Html.dtd" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Ressources\RegexStatic" />
   </ItemGroup>
 </Project>

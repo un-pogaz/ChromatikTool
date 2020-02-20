@@ -201,8 +201,9 @@ namespace System.Xml
             else
                 doc = node.OwnerDocument;
 
-            if (doc.FirstChild.NodeType == XmlNodeType.XmlDeclaration)
-                doc.RemoveChild(doc.FirstChild);
+            if (doc.FirstChild != null)
+                if (doc.FirstChild.NodeType == XmlNodeType.XmlDeclaration)
+                    doc.RemoveChild(doc.FirstChild);
 
             return node;
         }

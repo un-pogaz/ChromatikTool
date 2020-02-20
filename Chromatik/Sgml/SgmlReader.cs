@@ -450,7 +450,7 @@ namespace System.Sgml
                 {
                     if (this.m_docType != null && StringUtilities.EqualsIgnoreCase(this.m_docType, "html"))
                     {
-                        Stream stm = new StreamString(Chromatik.Resources.Chromatik.Html);
+                        Stream stm = typeof(SgmlReader).GetManifestResourceStream("Chromatik", "Ressources", "Html.dtd");
                         if (stm != null)
                         {
                             StreamReader sr = new StreamReader(stm);

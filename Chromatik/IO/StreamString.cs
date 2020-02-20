@@ -47,6 +47,7 @@ namespace System.IO
                 WriteByte(item);
 
             Write(text);
+            Position = 0;
         }
         /// <summary>
         /// Writer a text to the actual position.
