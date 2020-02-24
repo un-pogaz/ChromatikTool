@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace System.Security.Cryptography.Machine
+namespace Chromatik.Machine
 {
     /// <summary>
     /// Interface represent a cryptography machine

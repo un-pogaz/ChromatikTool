@@ -1,25 +1,23 @@
 ﻿using System;
 
-namespace Chromatik.Data
+namespace Chromatik.ToolBox.Data
 {
-   /// <summary>
-   /// Retour d'erreur
-   /// </summary>
-   public class clsErr
-   {
-      /// <summary>
-      /// Message erreur
-      /// </summary>
-      public string msgErr = "";
-      /// <summary>
-      /// Message pour "plus d'infos"
-      /// </summary>
-      public string msgPlusDinfos = "";
-      /// <summary>
-      /// Exception (Optionnel)
-      /// </summary>
-      public Exception e = null;
-   }
-
-
+    /// <summary>
+    /// Retour d'erreur
+    /// </summary>
+    public class clsErr
+    {
+        /// <summary>
+        /// Message erreur
+        /// </summary>
+        public string msgErr = "";
+        /// <summary>
+        /// Message pour "plus d'infos"
+        /// </summary>
+        public string msgPlusDinfos = "";
+        /// <summary>
+        /// Exception (Optionnel)
+        /// </summary>
+        public Exception e = null;
+    }
 }

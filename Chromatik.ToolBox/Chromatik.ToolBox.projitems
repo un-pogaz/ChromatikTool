@@ -15,8 +15,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Env\clsDT.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Env\clsProcess.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Env\clsStack.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Fichier\clsCopieFichiers.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Fichier\clsSortFiles.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Win\clsMsgWindows.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Win\clsUser32.cs" />
   </ItemGroup>

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace System.Security.Cryptography.Machine
+namespace Chromatik.Machine
 {
     /// <summary>
     /// Represente a Rotor for the <see cref="Enigma"/>

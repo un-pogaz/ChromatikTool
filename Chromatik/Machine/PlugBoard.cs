@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace System.Security.Cryptography.Machine
+namespace Chromatik.Machine
 {
     /// <summary>
     /// Represent a Plug Board which will switch 2 characters.

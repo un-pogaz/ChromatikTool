@@ -77,6 +77,19 @@
     <Compile Include="$(MSBuildThisFileDirectory)Localization\Xliff\XliffTarget.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Localization\Xliff\XliffTranslatable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Localization\Xliff\XliffUnit.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Machine\Alphabet.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Machine\Enigma.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Machine\IMachine.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Machine\Kraken.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Machine\MarkMark.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Machine\Module.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Machine\PlugBoard.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Machine\Reflector.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Machine\Reflector.static.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Machine\Rotor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Machine\RotorEnigma.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Machine\RotorEnigma.static.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Machine\WireMatrix.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MimeType\Base64.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MimeType\MimeTypes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Reflection\TypeExtension.cs" />
@@ -151,5 +164,6 @@
     <None Include="$(MSBuildThisFileDirectory)Localization\Xliff\Translate XLIFF Files _ Transifex Documentation.url" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Ressources\Html.dtd" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Ressources\RegexStatic" />
+    <None Include="$(MSBuildThisFileDirectory)Machine\Enigma machine _ Tom MacWright _ Observable.url" />
   </ItemGroup>
 </Project>

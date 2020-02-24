@@ -4,57 +4,57 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace System.Security.Cryptography.Machine
+namespace Chromatik.Machine
 {
     /// <summary>
-    /// Represent MarkMark cryptography machine.
+    /// Represent famous WW2 cryptography machine.
     /// </summary>
-    sealed public class MarkMark : Alphabet, ICloneable, IMachine
+    sealed public class Enigma : Alphabet, ICloneable, IMachine
     {
         /// <summary>
-        /// Initialize a MarkMark machine.
+        /// Initialize a Enigma machine.
         /// </summary>
-        public MarkMark(Reflector reflector, params Module[] modules) : this(reflector, new PlugBoard(), modules)
+        public Enigma(Reflector reflector, params RotorEnigma[] rotors) : this(reflector, new PlugBoard(), rotors)
         { }
         /// <summary>
-        /// Initialize a MarkMark machine.
+        /// Initialize a Enigma machine.
         /// </summary>
-        public MarkMark(Reflector reflector, PlugBoard frontPlugBoard, params Module[] modules) : base(reflector.OperatingAlphabet)
+        public Enigma(Reflector reflector, PlugBoard plugBoard, params RotorEnigma[] rotors) : base(reflector.OperatingAlphabet)
 		{
             if (reflector == null)
                 throw new ArgumentNullException(nameof(reflector));
             Reflector = reflector;
 
-            if (modules == null)
-                modules = new Module[0];
-            Modules = modules;
+            if (rotors == null)
+                rotors = new RotorEnigma[0];
+            Rotors = rotors;
 
-            foreach (Module module in modules)
-            {
-                if (module.Rotor != null && !Reflector.Equals(module.Rotor))
+            foreach (RotorEnigma rotor in rotors)
+                if (!Reflector.Equals(rotor))
                     throw new ArgumentNullException("A rotor does not use the same Alphabet that the others.");
-            }
 
-            if (frontPlugBoard == null)
-                frontPlugBoard = new PlugBoard();
+            Reset();
+
+            if (plugBoard == null)
+                PlugBoard = new PlugBoard();
             else
-                FrontPlugBoard = frontPlugBoard;
+                PlugBoard = plugBoard;
         }
 
         /// <summary>
-        /// Reflector instaled on this MarkMark
+        /// Reflector instaled on this Enigma
         /// </summary>
         public Reflector Reflector { get; }
 
         /// <summary>
-        /// Rotors instaled on this MarkMark
+        /// Rotors instaled on this Enigma
         /// </summary>
-        public Module[] Modules { get; }
+        public RotorEnigma[] Rotors { get; }
 
         /// <summary>
-        /// Plug Board of this MarkMark
+        /// Plug Board of this Enigma
         /// </summary>
-        public PlugBoard FrontPlugBoard { get; }
+        public PlugBoard PlugBoard { get; }
 
         /// <summary>
         /// Process a key press.
@@ -66,39 +66,27 @@ namespace System.Security.Cryptography.Machine
             if (AlphabetContains(input))
             {
                 char working = input;
-                working = FrontPlugBoard.Process(working);
+                working = PlugBoard.Process(working);
 
                 bool should_rotate_next = true;
-                for (int i = 0; i < Modules.Length; i++)
+                for (int i = 0; i < Rotors.Length; i++)
                 {
                     if (should_rotate_next)
-                        should_rotate_next = Modules[i].Rotate();
-                    working = Modules[i].ProcessLeft(working);
+                        should_rotate_next = Rotors[i].Rotate();
+                    working = Rotors[i].ProcessLeft(working);
                 }
 
                 working = Reflector.Process(working);
 
-                for (int i = Modules.Length - 1; i >= 0; i--)
-                    working = Modules[i].ProcessRight(working);
+                for (int i = Rotors.Length - 1; i >= 0; i--)
+                    working = Rotors[i].ProcessRight(working);
 
-                working = FrontPlugBoard.Process(working);
+                working = PlugBoard.Process(working);
 
                 return working;
             }
             else
                 return input;
-        }
-        /// <summary>
-        /// Process the input <see cref="char"/> table to the output <see cref="char"/> table.
-        /// </summary>
-        /// <param name="input"></param>
-        /// <returns>return the processing <see cref="char"/> table. The <see cref="char"/> not contained in operating alphabet as not modified.</returns>
-        public char[] Process(char[] input)
-        {
-            for (int i = 0; i < input.Length; i++)
-                if (OperatingAlphabet.Contains(input[i]))
-                    input[i] = Process(input[i]);
-            return input;
         }
         /// <summary>
         /// Process the string signal to the string signal.
@@ -124,41 +112,37 @@ namespace System.Security.Cryptography.Machine
 
             return rslt;
         }
-
+        
         /// <summary>
-        /// Reset the MarkMark machine (all rotor to the initial position).
+        /// Reset the enigma machine (all rotor to the initial position).
         /// </summary>
         public void Reset()
         {
-            foreach (Module module in Modules)
-                module.Rotor.Reset();
+            foreach (RotorEnigma rotor in Rotors)
+                rotor.Reset();
         }
 
         /// <summary></summary>
         public override string ToString()
 		{
-            string module = " / [" + Modules.ToOneString("] [") + "]";
-            if (Modules.Length == 0)
-                module = string.Empty;
-
-            return Reflector.ToString() + module + " / FrontPlugs: " + FrontPlugBoard.ToString();
+            return Reflector.ToString() + " / " + Rotors.ToOneString(" / ") + " / Plugs: " + PlugBoard.ToString();
         }
 
         /// <summary>
         /// Creates a duplicate of this Enigma.
         /// </summary>
         /// <returns></returns>
-        public MarkMark Clone()
+        public Enigma Clone()
         {
-            return CloneMarkMark(false);
+            return CloneEnigma(false);
         }
         /// <summary>
         /// Creates a duplicate of this Enigma and reset then.
         /// </summary>
         /// <returns></returns>
-        public MarkMark Clone(bool andReset)
+        public Enigma Clone(bool andReset)
         {
-            return CloneMarkMark(andReset);
+            return CloneEnigma(andReset);
         }
         /// <summary>
         /// Creates a duplicate of this Enigma.
@@ -166,19 +150,19 @@ namespace System.Security.Cryptography.Machine
         /// <returns></returns>
         object ICloneable.Clone()
         {
-            return CloneMarkMark(false);
+            return CloneEnigma(false);
         }
         /// <summary>
         /// Creates a duplicate of this Enigma and reset then.
         /// </summary>
         /// <returns></returns>
-        public MarkMark CloneMarkMark(bool andReset)
+        public Enigma CloneEnigma(bool andReset)
         {
-            List<Module> lst = new List<Module>();
-            foreach (Module module in Modules)
-                lst.Add(module.Clone(andReset));
+            List<RotorEnigma> lst = new List<RotorEnigma>();
+            foreach (RotorEnigma rotor in Rotors)
+                lst.Add(rotor.Clone(andReset));
 
-            return new MarkMark(Reflector.Clone(), FrontPlugBoard.Clone(), lst.ToArray());
+            return new Enigma(Reflector.Clone(), PlugBoard.Clone(), lst.ToArray());
         }
     }
 }

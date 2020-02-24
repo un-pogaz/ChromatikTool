@@ -4,8 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace System.Security.Cryptography.Machine
+namespace Chromatik.Machine
 {
+
+    /// <summary>
+    /// Represent a reflector.
+    /// </summary>
     sealed public partial class Reflector : Alphabet, ICloneable
     {
         /// <summary>

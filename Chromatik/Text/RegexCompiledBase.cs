@@ -357,6 +357,7 @@ namespace System.Text.RegularExpressions
         public CompiledRegexEntry(string pattern, string fullqualifiedname) : base(pattern, fullqualifiedname)
         { }
     }
+
     /// <summary>
     /// A compiled <see cref="Regex"/>
     /// </summary>

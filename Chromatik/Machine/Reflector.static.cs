@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace System.Security.Cryptography.Machine
+namespace Chromatik.Machine
 {
     /// <summary>
     /// Represent a reflector for a <see cref="Enigma"/>.
     /// </summary>
-    sealed public partial class Reflector
+    sealed public partial class ReflectorEnigma
     {
         /// <summary>
         /// Standard reflector A

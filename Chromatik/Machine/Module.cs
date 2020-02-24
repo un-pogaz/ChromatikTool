@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace System.Security.Cryptography.Machine
+namespace Chromatik.Machine
 {
     /// <summary>
     /// Represents a combination of a <see cref="Machine.Rotor"/> and a <see cref="Machine.PlugBoard"/>
