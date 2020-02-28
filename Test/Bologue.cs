@@ -81,6 +81,13 @@ class Bologue
                         sub[ii] = sub[ii][0].ToString().ToUpper() + sub[ii].Substring(1).ToLower();
 
                 split[i] = sub.ToOneString(".");
+                
+                sub = split[i].Split('-');
+                for (int ii = 0; ii < sub.Length; ii++)
+                    if (sub[ii].Length > 0)
+                        sub[ii] = sub[ii][0].ToString().ToUpper() + sub[ii].Substring(1).ToLower();
+
+                split[i] = sub.ToOneString("-");
             }
 
             if (split.Length != 1 && split[i].RegexIsMatch("Mc.|Mac."))
