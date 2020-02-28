@@ -57,10 +57,13 @@ class Bologue
             }
             catch (Exception ex)
             {
+                throw ex;
             }
         }
-
-        XmlDocumentWriter.Document(path, rslt);
+        XmlWriterSettings set = XmlDocumentWriter.Settings;
+        set.IndentChars = "";
+        set.OmitXmlDeclaration = true;
+        XmlDocumentWriter.Document(path, rslt, set);
     }
 
     private static string TitleCase(string s)
@@ -69,8 +72,15 @@ class Bologue
 
         for (int i = 0; i < split.Length; i++)
         {
-            if (split[i].Length > 0 && (split.Length == 1 || split[i] != split[i].ToLower()))
-                split[i] = split[i][0].ToString().ToUpper() + split[i].Substring(1).ToLower();
+            if (split.Length == 1 || split[i] != split[i].ToLower())
+            {
+                string[] sub = split[i].Split('.');
+                for (int ii = 0; ii < sub.Length; ii++)
+                    if (sub[ii].Length > 0)
+                        sub[ii] = sub[ii][0].ToString().ToUpper() + sub[ii].Substring(1).ToLower();
+
+                split[i] = sub.ToOneString(".");
+            }
 
             if (split.Length != 1 && split[i].RegexIsMatch("Mc.|Mac."))
                 split[i] = split[i].RegexGetMatch("Mc|Mac") + TitleCase(split[i].Regex("(Mc|Mac)(.+)", "$2"));
