@@ -85,7 +85,9 @@ namespace System.Xml
             };
 
             using (Sgml.SgmlReader sgmlReader = CreateSgmlReader(html))
+            {
                 rslt.Load(sgmlReader);
+            }
 
             rslt.RemoveDeclaration();
             rslt.SetDocumentType("html");
@@ -99,14 +101,16 @@ namespace System.Xml
                 sgml = item.ParseXMLtoHTML(sgml);
 
             sgml = XmlHtmlEntity.ParseToCHAR(sgml, XmlHtmlEntity.Html2.Concat(XmlHtmlEntity.Html3, XmlHtmlEntity.Html4));
-            
-            return new Sgml.SgmlReader()
+            StreamReader reader = new StreamReader(new StreamString(sgml.RemoveDOCTYPE()));
+            Sgml.SgmlReader rslt = new Sgml.SgmlReader()
             {
                 DocType = "HTML",
                 WhitespaceHandling = WhitespaceHandling.All,
                 CaseFolding = Sgml.CaseFolding.ToLower,
-                InputStream = new StreamReader(new StreamString(sgml.RemoveDOCTYPE())),
+                InputStream = reader,
             };
+            reader.BaseStream.Position = 0;
+            return rslt;
         }
         
     }

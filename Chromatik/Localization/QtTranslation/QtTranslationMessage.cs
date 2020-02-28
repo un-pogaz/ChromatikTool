@@ -6,49 +6,53 @@ using System.Xml;
 
 namespace System.Globalization.Localization
 {
-    [Diagnostics.DebuggerDisplay("{DebbugString()}")]
     public class QtTranslationMessage
     {
-        public List<QtTranslationLocation> Locations { get; } = new List<QtTranslationLocation>();
-        public string Source { get; set; }
-        public string Translation { get; set; }
-        public string Comment { get; set; }
-
-        protected string DebbugString()
+        /// <summary>
+        /// List of locations use this message.
+        /// </summary>
+        public QtTranslationLocationList Locations { get; } = new QtTranslationLocationList();
+        /// <summary></summary>
+        public string Source
         {
-            string rslt = string.Empty;
-            int maxChar = 100;
-            if (Source.Length > maxChar)
+            get { return _source; }
+            set
             {
-                rslt = "[" + Source.Truncate(maxChar) + "…" + "]";
+                if (value == null)
+                    _source = string.Empty;
+                else
+                    _source = value;
             }
-            else
-            {
-                rslt = "["+ Source+"]";
-            }
-
-            if (Translation.Length > maxChar)
-            {
-                rslt += " " + Translation.Truncate(maxChar) + "…";
-            }
-            else
-            {
-                rslt += " "+Translation;
-            }
-            return rslt;
         }
-        
-        public QtTranslationMessage(string location, int line, string source, string translation)
+        string _source;
+        /// <summary></summary>
+        public string Translation
         {
-            if (line < 0)
-                line = -1;
-            if (location.IsNullOrWhiteSpace())
-                location = null;
-            if (source == null)
-                source = string.Empty;
-            if (translation == null)
-                translation = string.Empty;
+            get { return _translation; }
+            set
+            {
+                if (value == null)
+                    _translation = string.Empty;
+                else
+                    _translation = value;
+            }
+        }
+        string _translation;
+        /// <summary></summary>
+        public string Comment { get; set; }
+        
 
+        public QtTranslationMessage(QtTranslationLocation location, string source, string translation)
+            : this(new QtTranslationLocationList() { location }, source, translation)
+        { }
+        public QtTranslationMessage(QtTranslationLocationList locations, string source, string translation)
+        {
+            if (locations == null)
+                locations = new QtTranslationLocationList();
+
+            Locations = locations;
+            Source = source;
+            Translation = translation;
         }
 
         internal QtTranslationMessage(XmlElement message)
@@ -80,6 +84,29 @@ namespace System.Globalization.Localization
                 Comment = comment.InnerText;
         }
 
+        /// <summary></summary>
+        public override string ToString()
+        {
+            string rslt = string.Empty;
+            int maxChar = 50;
+            if (Source.Length > maxChar)
+            {
+                rslt = "[" + Source.Truncate(maxChar) + "…" + "]";
+            }
+            else
+            {
+                rslt = "[" + Source + "]";
+            }
 
+            if (Translation.Length > maxChar)
+            {
+                rslt += " " + Translation.Truncate(maxChar) + "…";
+            }
+            else
+            {
+                rslt += " " + Translation;
+            }
+            return rslt;
+        }
     }
 }

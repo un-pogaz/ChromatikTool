@@ -7,6 +7,7 @@ namespace System
     /// </summary>
     public interface IComparerEquatable<T> : IEquatable<T>, Collections.Generic.IEqualityComparer<T>, Collections.IEqualityComparer, IComparable<T>, IComparable, Collections.Generic.IComparer<T>, Collections.IComparer
     {
-
+        /// <summary></summary>
+        int GetHashCode();
     }
 }

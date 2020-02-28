@@ -59,6 +59,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Localization\QtTranslation\QtTranslation.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Localization\QtTranslation\QtTranslationContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Localization\QtTranslation\QtTranslationException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Localization\QtTranslation\QtTranslationLocationList.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Localization\QtTranslation\QtTranslationLocation.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Localization\QtTranslation\QtTranslationMessage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Localization\Xliff\Xliff.cs" />

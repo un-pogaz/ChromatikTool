@@ -98,7 +98,7 @@ namespace System.Globalization.Localization
                 Dictionary.Add(context.Name, context);
             else
                 foreach (QtTranslationMessage msg in context)
-                    this[context.Name].Add(msg);
+                    this[context.Name].AddMessage(msg);
         }
         public void AddContext(string contextName)
         {
