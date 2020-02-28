@@ -41,15 +41,16 @@ class Bologue
                 XmlElement[] sub = data.GetElements("span", "class", "SousFicheNiourf");
                 if (sub.Length > 0)
                 {
-                    XmlElement br = td.AppendElement("br");
-                    br.SetAttribute("class", "reedition");
-                    td.AppendText(sub[0].GetElements("a").Length + " réédition");
+                    td.AppendText(" ");
+                    td.AppendElement("span");
+                    td.LastElement().SetAttribute("class", "reedition");
+                    td.LastElement().AppendText("("+ sub[0].GetElements("a").Length + " réédition)");
                 }
                 
                 td = row.AppendElement("td");
                 td.SetAttribute("class", "date");
-                if (data.InnerText.RegexIsMatch(@"\d+"))
-                    td.AppendText(data.InnerText.RegexGetMatch(@"\d+"));
+                if (data.InnerText.RegexIsMatch(@"\d{4}"))
+                    td.AppendText(data.InnerText.RegexGetMatch(@"\d{4}"));
                 else
                     td.AppendText("");
 
