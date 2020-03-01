@@ -35,7 +35,7 @@ namespace Test
             /// Enigma enigma3 = enigma1.Clone(true);
             /// string rslt3 = enigma3.Process(test);
 
-            Bologue.NooSFereTabe(@"C:\Users\demeure.t\Downloads\table.html");
+            Bologue.NooSFereTabe(@"F:\Users\un_pogaz\Downloads\table.xml", 200);
 
 
             string[] tbl = new string[] {

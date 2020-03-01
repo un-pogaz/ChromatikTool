@@ -6,7 +6,7 @@ using System.Xml;
 
 class Bologue
 {
-    public static void NooSFereTabe(string path)
+    public static void NooSFereTabe(string path, int split)
     {
         XmlDocument src = XmlDocumentCreate.ParseHTML(path);
         XmlRacine rslt = new XmlRacine("table");
@@ -22,7 +22,7 @@ class Bologue
 
                 XmlElement td = row.AppendElement("td");
                 td.SetAttribute("class", "number");
-                td.AppendText(item.GetElements("td")[0].InnerText.Trim(WhiteCharacter.WhiteCharacters.Concat('.')));
+                XmlText num = td.AppendText(item.GetElements("td")[0].InnerText.Trim(WhiteCharacter.WhiteCharacters.Concat('.')));
                 ;
                 td = row.AppendElement("td");
                 td.SetAttribute("class", "bullet");
@@ -55,6 +55,10 @@ class Bologue
                     td.AppendText("");
 
                 body.AppendChild(row);
+
+                int i;
+                if (split > 0 && int.TryParse(num.InnerText, out i) && i % split == 0)
+                    body = rslt.AppendElement("tbody");
             }
             catch (Exception ex)
             {
