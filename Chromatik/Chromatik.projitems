@@ -97,7 +97,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Registry\Registry.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sgml\SgmlParser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sgml\SgmlReader.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)System\AttributeExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\ConvertExtend.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\DataTableExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\EnumerableExtension.cs" />

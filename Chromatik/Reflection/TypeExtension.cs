@@ -198,6 +198,25 @@ namespace System.Reflection
         }
 
 
+        static public T[] GetAttributesFrom<T>(object value)
+        {
+            IEnumerable<T> attributes = value.GetType().GetField(value.ToString())
+                .GetCustomAttributes(typeof(T), true).OfType<T>();
+
+            return attributes.ToArray();
+        }
+        static public T GetAttributeLastFrom<T>(object value)
+        {
+            T[] tbl = GetAttributesFrom<T>(value);
+            return tbl.IsEmpty() ? default(T) : tbl.Last();
+        }
+
+        /// <summary>
+        /// Get the Stream of the specified Resource in the assembly associated to the type
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="name"></param>
+        /// <returns></returns>
         static public IO.Stream GetManifestResourceStream(this Type type, params string[] name)
         {
             string fullName = name.Join(".");
@@ -215,23 +234,45 @@ namespace System.Reflection
 
             return type.Assembly.GetManifestResourceStream(name.Join("."));
         }
+        /// <summary>
+        /// Get the strint of the specified Resource in the assembly associated to the type
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="name"></param>
+        /// <returns></returns>
         static public string GetManifestResourceString(this Type type, params string[] name)
+        {
+            return type.GetManifestResourceString(Encoding.UTF8, name);
+        }
+        /// <summary>
+        /// Get the strint of the specified Resource in the assembly associated to the type
+        /// </summary>
+        /// <param name="type"></param>
+        /// <param name="name"></param>
+        /// <param name="encoding"></param>
+        /// <returns></returns>
+        static public string GetManifestResourceString(this Type type, Encoding encoding, params string[] name)
         {
             IO.Stream stream = type.GetManifestResourceStream(name);
             if (stream != null)
-                using (IO.StreamReader reader = new IO.StreamReader(stream, Encoding.UTF8, true, 2048))
+                using (IO.StreamReader reader = new IO.StreamReader(stream, encoding, true, 2048))
                     return reader.ReadToEnd();
 
             return null;
         }
 
+        /// <summary>
+        /// Get the nmaes of all Resource in the assembly associated to the type
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
         static public string[] GetManifestResourceNames(this Type type)
         {
             Assembly assembly = type.Assembly;
             return assembly.GetManifestResourceNames();
         }
         /// <summary>
-        /// 
+        /// Get the Info of the specified Resource in the assembly associated to the type
         /// </summary>
         /// <param name="type"></param>
         /// <param name="name"></param>
@@ -249,5 +290,7 @@ namespace System.Reflection
         {
             return type.Assembly.GetName().Name;
         }
+
+
     }
 }

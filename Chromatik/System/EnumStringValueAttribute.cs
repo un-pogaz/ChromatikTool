@@ -27,7 +27,7 @@ namespace System
         /// <returns></returns>
         static public string GetFrom(object value)
         {
-            EnumStringValueAttribute rslt = AttributeExtension.GetFrom<EnumStringValueAttribute>(value);
+            EnumStringValueAttribute rslt = Reflection.TypeExtension.GetAttributeLastFrom<EnumStringValueAttribute>(value);
             
             return rslt == null ? null : rslt.Value;
         }
