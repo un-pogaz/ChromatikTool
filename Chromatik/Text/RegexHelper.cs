@@ -63,6 +63,15 @@ namespace System.Text
         public const string ASCII_forCsharpNameClass = @"^([A-Z_a-z][0-9A-Z_a-z]*)$";
 
         /// <summary>
+        /// Pattern for match a ISBN 10
+        /// </summary>
+        public const string ISBN_10 = @"(?:ISBN(?:-10)?:? ?)?(?=[0-9X]{10}$|(?=(?:[0-9]+[- ]){3})[- 0-9X]{13}$)[0-9]{1,5}[- ]?[0-9]+[- ]?[0-9]+[- ]?[0-9X]";
+        /// <summary>
+        /// Pattern for match a ISBN 13
+        /// </summary>
+        public const string ISBN_13 = @"(?:ISBN(?:-13)?:? ?)?(?=[0-9]{13}$|(?=(?:[0-9]+[- ]){4})[- 0-9]{17}$)97[89][- ]?[0-9]{1,5}[- ]?[0-9]+[- ]?[0-9]+[- ]?[0-9]";
+
+        /// <summary>
         /// Execute a simple Search/Replace loop until the pattern disappears.
         /// </summary>
         /// <param name="input"></param>
