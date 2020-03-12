@@ -93,10 +93,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)Machine\WireMatrix.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MimeType\Base64.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MimeType\MimeTypes.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Reflection\AssemblyExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Reflection\TypeExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Registry\Registry.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sgml\SgmlParser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Sgml\SgmlReader.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)System\ArraysHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\ConvertExtend.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\DataTableExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)System\EnumerableExtension.cs" />

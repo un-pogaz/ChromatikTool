@@ -219,20 +219,7 @@ namespace System.Reflection
         /// <returns></returns>
         static public IO.Stream GetManifestResourceStream(this Type type, params string[] name)
         {
-            string fullName = name.Join(".");
-            if (type.GetManifestResourceNames().Contains(fullName))
-            { }
-            else
-            {
-                foreach (var item in type.GetManifestResourceNames())
-                    if (item.Equals(fullName, StringComparison.InvariantCultureIgnoreCase))
-                    {
-                        fullName = item;
-                        break;
-                    }
-            }
-
-            return type.Assembly.GetManifestResourceStream(name.Join("."));
+            return type.Assembly.GetManifestResourceStream(name);
         }
         /// <summary>
         /// Get the strint of the specified Resource in the assembly associated to the type
@@ -242,7 +229,7 @@ namespace System.Reflection
         /// <returns></returns>
         static public string GetManifestResourceString(this Type type, params string[] name)
         {
-            return type.GetManifestResourceString(Encoding.UTF8, name);
+            return type.Assembly.GetManifestResourceString(name);
         }
         /// <summary>
         /// Get the strint of the specified Resource in the assembly associated to the type
@@ -253,12 +240,7 @@ namespace System.Reflection
         /// <returns></returns>
         static public string GetManifestResourceString(this Type type, Encoding encoding, params string[] name)
         {
-            IO.Stream stream = type.GetManifestResourceStream(name);
-            if (stream != null)
-                using (IO.StreamReader reader = new IO.StreamReader(stream, encoding, true, 2048))
-                    return reader.ReadToEnd();
-
-            return null;
+            return type.Assembly.GetManifestResourceString(encoding, name);
         }
 
         /// <summary>
@@ -268,8 +250,7 @@ namespace System.Reflection
         /// <returns></returns>
         static public string[] GetManifestResourceNames(this Type type)
         {
-            Assembly assembly = type.Assembly;
-            return assembly.GetManifestResourceNames();
+            return type.Assembly.GetManifestResourceNames();
         }
         /// <summary>
         /// Get the Info of the specified Resource in the assembly associated to the type
@@ -281,8 +262,9 @@ namespace System.Reflection
         {
             return type.Assembly.GetManifestResourceInfo(name.Join("."));
         }
+
         /// <summary>
-        /// Get the name of the Assembly of the <see cref="Type"/>
+        /// Get the name of the Assembly of the type
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
@@ -290,7 +272,6 @@ namespace System.Reflection
         {
             return type.Assembly.GetName().Name;
         }
-
-
+        
     }
 }

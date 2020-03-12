@@ -34,8 +34,7 @@ namespace Test
             /// 
             /// Enigma enigma3 = enigma1.Clone(true);
             /// string rslt3 = enigma3.Process(test);
-
-            Bologue.NooSFereTabe(@"F:\Users\un_pogaz\Downloads\table.xml", 200);
+            
 
 
             string[] tbl = new string[] {
@@ -47,6 +46,8 @@ namespace Test
                 HashKey.DigestFile(HashAlgorithmEnum.KeyedHashAlgorithm, "XLIFF_2.xlf"),
                 HashKey.DigestFile(HashAlgorithmEnum.RIPEMD160, "XLIFF_2.xlf"),
             };
+
+            ArraysHelper.InitializeArray()
 
             tbl.ForEach(Incremente);
 
