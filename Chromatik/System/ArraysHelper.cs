@@ -586,11 +586,11 @@ namespace System
             /// <summary>
             /// The Constructor method if constructor is gotten from elementType.
             /// </summary>
-            private ConstructorInfo _constructor;
+            private Reflection.ConstructorInfo _constructor;
             /// <summary>
             /// Some Method used for initialization of the elementType, like "CreateInstance".
             /// </summary>
-            private MethodInfo _method;
+            private Reflection.MethodInfo _method;
 
             /// <summary>
             /// Constructor for IniatialValueProvider.

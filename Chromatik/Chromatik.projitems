@@ -14,6 +14,12 @@
     <Compile Include="$(MSBuildThisFileDirectory)Collections\Comparator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Collections\FileSystemComparator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Collections\ListExtension.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Csv\2019-03-13.txt" />
+    <Compile Include="$(MSBuildThisFileDirectory)Csv\CsvOptions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Csv\CsvReader.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Csv\CsvWriter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Csv\HeaderMode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Csv\ICsvLine.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Drawing\DrawingExtension.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Exception\ChromatikException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Forms\ControlExtension.cs" />
@@ -23,6 +29,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Forms\PictureBoxTransparent.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Ini\2019-02-19.txt" />
     <Compile Include="$(MSBuildThisFileDirectory)Ini\IniEnums\IniCommentStarter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Ini\IniEnums\IniCommentType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Ini\IniEnums\IniDuplication.cs" />

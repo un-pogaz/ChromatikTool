@@ -46,8 +46,7 @@ namespace Test
                 HashKey.DigestFile(HashAlgorithmEnum.KeyedHashAlgorithm, "XLIFF_2.xlf"),
                 HashKey.DigestFile(HashAlgorithmEnum.RIPEMD160, "XLIFF_2.xlf"),
             };
-
-            ArraysHelper.InitializeArray()
+            
 
             tbl.ForEach(Incremente);
 
