@@ -43,7 +43,7 @@ namespace System.Csv
         {
             using (var writer = new StringWriter())
             {
-                Write(writer, headers, lines, separator);
+                Write(writer, headers, lines, separator, alwaysQuotes);
 
                 return writer.ToString();
             }
@@ -61,7 +61,7 @@ namespace System.Csv
         {
             using (var writer = new StreamWriter(path, false, Text.Encoding.UTF8))
             {
-                Write(writer, headers, lines, separator);
+                Write(writer, headers, lines, separator, alwaysQuotes);
             }
         }
 
