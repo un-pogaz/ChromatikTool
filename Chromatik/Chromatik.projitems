@@ -162,7 +162,9 @@
   <ItemGroup>
     <Content Include="$(MSBuildThisFileDirectory)ExceptionMap.png" />
     <Content Include="$(MSBuildThisFileDirectory)Ini\IniInternal\SharedDocumentationComments.xml" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Ressources\HelloWorld.ts.xml" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Ressources\HelloWorld.xml" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Ressources\Html.dtd" />
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Ressources\RegexStatic" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Ressources\unicode.charsets.xml" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Ressources\unicode.conscript.xml" />
     <EmbeddedResource Include="$(MSBuildThisFileDirectory)Ressources\unicode.unicode.xml" />
@@ -171,8 +173,6 @@
     <None Include="$(MSBuildThisFileDirectory)ExceptionMap.mm" />
     <None Include="$(MSBuildThisFileDirectory)ExceptionMap.pdf" />
     <None Include="$(MSBuildThisFileDirectory)Localization\Xliff\Translate XLIFF Files _ Transifex Documentation.url" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Ressources\Html.dtd" />
-    <EmbeddedResource Include="$(MSBuildThisFileDirectory)Ressources\RegexStatic" />
     <None Include="$(MSBuildThisFileDirectory)Machine\Enigma machine _ Tom MacWright _ Observable.url" />
   </ItemGroup>
 </Project>

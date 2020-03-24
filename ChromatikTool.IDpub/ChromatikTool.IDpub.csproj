@@ -7,7 +7,7 @@
     <ProjectGuid>{5B3500D1-08D7-4849-864F-F142E252639D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ChromatikTool.IDpub</RootNamespace>
+    <RootNamespace>Chromatik</RootNamespace>
     <AssemblyName>ChromatikTool</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
