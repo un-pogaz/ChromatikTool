@@ -284,7 +284,7 @@ namespace System
         /// <returns></returns>
         static public int Compare(Hexa x, Hexa y)
         {
-            return y.AbsolutValue.CompareTo(y.AbsolutValue);
+            return x.AbsolutValue.CompareTo(y.AbsolutValue);
         }
         int IComparer<Hexa>.Compare(Hexa x, Hexa y)
         {
