@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Chromatik.ToolBox", "Chromatik.ToolBox\Chromatik.ToolBox.shproj", "{01CD2CC5-0985-46E7-B029-5C3BB2315B70}"
 EndProject
@@ -31,20 +31,21 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChromatikTool.IDpub", "Chro
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		Chromatik.Svg\Chromatik.Svg.projitems*{688bfc48-bd2b-4ae5-b4ad-460a047dda18}*SharedItemsImports = 13
-		Chromatik.SQLite\Chromatik.SQLite.projitems*{5b3500d1-08d7-4849-864f-f142e252639d}*SharedItemsImports = 4
-		Chromatik\Chromatik.projitems*{5b3500d1-08d7-4849-864f-f142e252639d}*SharedItemsImports = 4
-		Chromatik.Zip\Chromatik.Zip.projitems*{5b3500d1-08d7-4849-864f-f142e252639d}*SharedItemsImports = 4
-		Chromatik.LibNoise\Chromatik.Noise.projitems*{7701fd2d-6c9e-4a06-baa3-b214d0f82eaf}*SharedItemsImports = 13
-		Chromatik.SQLite\Chromatik.SQLite.projitems*{9816f78e-94fe-4b23-8aa9-ca29ca7007d6}*SharedItemsImports = 13
-		Chromatik.SlimDX\Chromatik.SlimDX.projitems*{25309b66-39d8-4afc-bf1d-16bee8985804}*SharedItemsImports = 13
-		Chromatik\Chromatik.projitems*{9465d1fe-3461-4000-9e2a-ae7ec3201341}*SharedItemsImports = 4
-		Chromatik.Zip\Chromatik.Zip.projitems*{8bc2613b-485c-44b7-a8d8-cdf86d8f835b}*SharedItemsImports = 13
-		Chromatik.Sequence\Chromatik.Sequence.projitems*{30da8341-fe8f-430e-b1a0-e83a2e4421e4}*SharedItemsImports = 13
 		Chromatik.ToolBox\Chromatik.ToolBox.projitems*{01cd2cc5-0985-46e7-b029-5c3bb2315b70}*SharedItemsImports = 13
-		Chromatik\Chromatik.projitems*{a7ccb438-74f5-4d49-82a5-8675c36b8215}*SharedItemsImports = 13
+		Chromatik.SlimDX\Chromatik.SlimDX.projitems*{25309b66-39d8-4afc-bf1d-16bee8985804}*SharedItemsImports = 13
+		Chromatik.Sequence\Chromatik.Sequence.projitems*{30da8341-fe8f-430e-b1a0-e83a2e4421e4}*SharedItemsImports = 13
 		Chromatik.RAmen\Chromatik.RAmen.projitems*{381aaaa2-6761-4711-82bf-2d3932f34c92}*SharedItemsImports = 13
+		Chromatik.SQLite\Chromatik.SQLite.projitems*{5b3500d1-08d7-4849-864f-f142e252639d}*SharedItemsImports = 4
+		Chromatik.Zip\Chromatik.Zip.projitems*{5b3500d1-08d7-4849-864f-f142e252639d}*SharedItemsImports = 4
+		Chromatik\Chromatik.projitems*{5b3500d1-08d7-4849-864f-f142e252639d}*SharedItemsImports = 4
 		Chromatik.NewtonsoftJson\Chromatik.NewtonsoftJson.projitems*{6779e6a3-1440-4db7-8230-0797068c2e38}*SharedItemsImports = 13
+		Chromatik.Svg\Chromatik.Svg.projitems*{688bfc48-bd2b-4ae5-b4ad-460a047dda18}*SharedItemsImports = 13
+		Chromatik.LibNoise\Chromatik.Noise.projitems*{7701fd2d-6c9e-4a06-baa3-b214d0f82eaf}*SharedItemsImports = 13
+		Chromatik.Zip\Chromatik.Zip.projitems*{8bc2613b-485c-44b7-a8d8-cdf86d8f835b}*SharedItemsImports = 13
+		Chromatik.NewtonsoftJson\Chromatik.NewtonsoftJson.projitems*{9465d1fe-3461-4000-9e2a-ae7ec3201341}*SharedItemsImports = 4
+		Chromatik\Chromatik.projitems*{9465d1fe-3461-4000-9e2a-ae7ec3201341}*SharedItemsImports = 4
+		Chromatik.SQLite\Chromatik.SQLite.projitems*{9816f78e-94fe-4b23-8aa9-ca29ca7007d6}*SharedItemsImports = 13
+		Chromatik\Chromatik.projitems*{a7ccb438-74f5-4d49-82a5-8675c36b8215}*SharedItemsImports = 13
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
