@@ -115,6 +115,7 @@ namespace System
             return rslt;
         }
 
+
         /// <summary>
         /// Application folder
         /// </summary>
@@ -123,17 +124,33 @@ namespace System
         /// <summary>
         /// ApplicationData (%AppData%) folder of the application
         /// </summary>
-        static public string ApplicationData { get; } = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), WorkFolderName) + DSC;
+        static public string ApplicationData { get; } = Path.Combine(ApplicationData_Default, WorkFolderName) + DSC;
 
         /// <summary>
-        /// ApplicationData (%AppData%) folder of the application
+        /// Default ApplicationData (%AppData%) folder
         /// </summary>
-        static public string LocalApplicationData { get; } = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), WorkFolderName) + DSC;
+        static public string ApplicationData_Default { get; } = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + DSC;
+
+        /// <summary>
+        /// LocalApplicationData folder of the application
+        /// </summary>
+        static public string LocalApplicationData { get; } = Path.Combine(LocalApplicationData_Default, WorkFolderName) + DSC;
+        
+        /// <summary>
+        /// Default ApplicationData (%AppData%) folder
+        /// </summary>
+        static public string LocalApplicationData_Default { get; } = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + DSC;
 
         /// <summary>
         /// ProgramData folder of the application
         /// </summary>
         static public string ProgramData { get; } = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), WorkFolderName) + DSC;
+        
+        /// <summary>
+        /// ProgramData folder
+        /// </summary>
+        static public string ProgramData_Default { get; } = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + DSC;
+
 
         /// <summary>
         /// Version info
